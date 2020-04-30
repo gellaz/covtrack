@@ -28,7 +28,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   Stream<SettingsState> _mapAppLaunchedToState() async* {
     final settings = await settingsRepository.loadSettings();
-    print('ciao');
     yield SettingsLoaded.fromMap(settings);
   }
 

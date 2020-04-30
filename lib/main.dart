@@ -1,12 +1,13 @@
-import 'package:covtrack/screens/splashscreen.dart';
-
-import 'screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/authentication/authentication_bloc.dart';
 import 'blocs/settings/settings_bloc.dart';
 import 'repositories/settings_repository.dart';
+import 'repositories/user_repository.dart';
 import 'screens/onboarding.dart';
+import 'screens/splashscreen.dart';
+import 'screens/wrappers/authentication_wrapper.dart';
 import 'themes/themes.dart';
 import 'utils/simple_bloc_delegate.dart';
 
@@ -16,17 +17,30 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Create the bloc delegate, that will help during debugging.
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  // Create instances of the repositories to supply to the app.
-  final SettingsRepository settingsRepository = SettingsRepository();
+  // Create instances of the repositories to supply them to the app.
+  final settingsRepository = SettingsRepository();
+  final userRepository = UserRepository();
 
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<SettingsBloc>(
-          create: (context) =>
-              SettingsBloc(settingsRepository: settingsRepository)
-                ..add(AppLaunched()),
-        ),
+        /**
+         * 
+         */
+        BlocProvider<SettingsBloc>(create: (_) {
+          return SettingsBloc(settingsRepository: settingsRepository)
+            ..add(AppLaunched());
+        }),
+        /**
+         * 
+         */
+        BlocProvider<AuthenticationBloc>(create: (_) {
+          return AuthenticationBloc(userRepository: userRepository)
+            ..add(AppStarted());
+        }),
+        /**
+         * 
+         */
       ],
       child: CovTrack(),
     ),
@@ -44,7 +58,8 @@ class CovTrack extends StatelessWidget {
           if (state is SettingsLoading) {
             return SplashScreen();
           } else if (state is SettingsLoaded) {
-            final firstScreen = state.isFirstLaunch ? Onboarding() : Home();
+            final firstScreen =
+                state.isFirstLaunch ? Onboarding() : AuthenticationWrapper();
             return firstScreen;
           } else {
             return SplashScreen();
