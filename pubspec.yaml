@@ -17,8 +17,12 @@ dependencies:
   flutter_bloc: ^4.0.0
   # Compare objects not references.
   equatable: ^1.1.1
-  #Reactive programming.
+  # Reactive programming.
   rxdart: ^0.24.0
+  # Firebase Core Flutter SDK.
+  firebase_core: ^0.4.4+3
+  # Firebase authentication API.
+  firebase_auth: ^0.16.0
   # iOS style icons.
   cupertino_icons: ^0.1.2
 

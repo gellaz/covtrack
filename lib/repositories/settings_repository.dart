@@ -32,7 +32,7 @@ class SettingsRepository {
     return map;
   }
 
-  // Change the color theme and set it to the one passed in.
+  // Change the app color theme.
   Future<void> setTheme(bool lightTheme) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('lightTheme', lightTheme);
