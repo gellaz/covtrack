@@ -1,3 +1,4 @@
+import 'package:covtrack/themes/decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -28,16 +29,7 @@ class Onboarding extends StatelessWidget {
       title: 'Stay Safe and get ready for change',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
-        boxDecoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).primaryColor,
-              Colors.white,
-            ],
-          ),
-        ),
+        boxDecoration: Decorations.linearGradient(context: context),
       ),
     );
   }
@@ -51,16 +43,7 @@ class Onboarding extends StatelessWidget {
       title: 'Stay Home',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
-        boxDecoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).primaryColor,
-              Colors.white,
-            ],
-          ),
-        ),
+        boxDecoration: Decorations.linearGradient(context: context),
       ),
     );
   }
@@ -74,16 +57,7 @@ class Onboarding extends StatelessWidget {
       title: 'Stay Home',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
-        boxDecoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).primaryColor,
-              Colors.white,
-            ],
-          ),
-        ),
+        boxDecoration: Decorations.linearGradient(context: context),
       ),
     );
   }

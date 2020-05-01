@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../../repositories/user_repository.dart';
 import '../error_screen.dart';
-import '../home_sceen.dart';
 import '../login/login_screen.dart';
+import '../root_screen.dart';
 import '../splashscreen.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
@@ -26,7 +26,7 @@ class AuthenticationWrapper extends StatelessWidget {
           return LoginScreen(userRepository: userRepository);
         }
         if (state is Authenticated) {
-          return HomeScreen();
+          return RootScreen();
         }
         return ErrorScreen();
       },

@@ -7,8 +7,7 @@ void main() {
       expect(Validators.isValidEmail(''), false);
       expect(Validators.isValidEmail('johndoe@'), false);
       expect(Validators.isValidEmail('johndoe@mail.'), false);
-      expect(
-          Validators.isValidEmail('johndoe@mail.comjohndoe@mail.com'), false);
+      expect(Validators.isValidEmail('johndoe@mail.com-joe@mail.com'), false);
       expect(Validators.isValidEmail('johndoe@mail.it'), true);
     });
 
