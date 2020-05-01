@@ -42,12 +42,20 @@ void main() {
          * 
          */
       ],
-      child: CovTrack(),
+      child: CovTrack(
+        userRepository: userRepository,
+      ),
     ),
   );
 }
 
 class CovTrack extends StatelessWidget {
+  final UserRepository userRepository;
+
+  const CovTrack({Key key, @required this.userRepository})
+      : assert(userRepository != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,8 +66,11 @@ class CovTrack extends StatelessWidget {
           if (state is SettingsLoading) {
             return SplashScreen();
           } else if (state is SettingsLoaded) {
-            final firstScreen =
-                state.isFirstLaunch ? Onboarding() : AuthenticationWrapper();
+            final firstScreen = state.isFirstLaunch
+                ? Onboarding()
+                : AuthenticationWrapper(
+                    userRepository: userRepository,
+                  );
             return firstScreen;
           } else {
             return SplashScreen();

@@ -25,7 +25,7 @@ class Onboarding extends StatelessWidget {
       image: Center(
         child: Image.asset('assets/images/home.png'),
       ),
-      title: 'Stay Home',
+      title: 'Stay Safe and get ready for change',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
         boxDecoration: BoxDecoration(
