@@ -9,6 +9,13 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="covtrack"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- Google Maps start -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBdavCw_mxRgwtC7w-Gyv1Lxi2FhO_6qk0"/>
+        <!-- Google Maps end -->
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
