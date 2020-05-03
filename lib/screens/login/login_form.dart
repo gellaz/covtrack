@@ -1,17 +1,18 @@
+import 'package:covtrack/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../../blocs/login/login_bloc.dart';
-import '../../repositories/user_repository.dart';
+
 import 'create_account_button.dart';
 import 'login_button.dart';
 
 class LoginForm extends StatefulWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  const LoginForm({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  const LoginForm({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
 
   LoginBloc _loginBloc;
 
-  UserRepository get _userRepository => widget.userRepository;
+  AuthenticationService get _authService => widget.authService;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -86,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Image.asset('assets/flutter_logo.png', height: 200),
+                    child: Image.asset('assets/images/home.png', height: 200),
                   ),
                   TextFormField(
                     controller: _emailController,
@@ -124,7 +125,7 @@ class _LoginFormState extends State<LoginForm> {
                               ? _onFormSubmitted
                               : null,
                         ),
-                        CreateAccountButton(userRepository: _userRepository),
+                        CreateAccountButton(authService: _authService),
                       ],
                     ),
                   ),

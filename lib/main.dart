@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/authentication/authentication_bloc.dart';
-import 'blocs/settings/settings_bloc.dart';
-import 'repositories/settings_repository.dart';
-import 'repositories/user_repository.dart';
+import 'blocs/authentication/authentication_bloc.dart' as ab;
+import 'blocs/settings/settings_bloc.dart' as sb;
+import 'blocs/simple_bloc_delegate.dart';
 import 'screens/onboarding.dart';
 import 'screens/splashscreen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
+import 'services/authentication/authentication_service.dart';
+import 'services/authentication/firebase_authentication_service.dart';
+import 'services/settings/sharedprefs_settings_service.dart';
 import 'themes/themes.dart';
-import 'utils/simple_bloc_delegate.dart';
 
 void main() {
   // Required in Flutter v1.9.4+ before using any plugins if
   // the code is executed before runApp.
   WidgetsFlutterBinding.ensureInitialized();
-  // Create the bloc delegate, that will help during debugging.
+
+  // Bloc delegate used for debugging.
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  // Create instances of the repositories to supply them to the app.
-  final settingsRepository = SettingsRepository();
-  final userRepository = UserRepository();
+
+  // Create the services used in the app.
+  final settingsService = SharedPrefsSettingsService();
+  final authService = FirebaseAuthenticationService();
 
   runApp(
     MultiBlocProvider(
@@ -27,33 +30,33 @@ void main() {
         /**
          * 
          */
-        BlocProvider<SettingsBloc>(create: (_) {
-          return SettingsBloc(settingsRepository: settingsRepository)
-            ..add(AppLaunched());
+        BlocProvider<sb.SettingsBloc>(create: (_) {
+          return sb.SettingsBloc(settingsService: settingsService)
+            ..add(sb.AppStarted());
         }),
         /**
          * 
          */
-        BlocProvider<AuthenticationBloc>(create: (_) {
-          return AuthenticationBloc(userRepository: userRepository)
-            ..add(AppStarted());
+        BlocProvider<ab.AuthenticationBloc>(create: (_) {
+          return ab.AuthenticationBloc(authService: authService)
+            ..add(ab.AppStarted());
         }),
         /**
          * 
          */
       ],
       child: CovTrack(
-        userRepository: userRepository,
+        authService: authService,
       ),
     ),
   );
 }
 
 class CovTrack extends StatelessWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  const CovTrack({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  const CovTrack({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -61,20 +64,15 @@ class CovTrack extends StatelessWidget {
     return MaterialApp(
       title: 'CovTrack',
       theme: Themes.light,
-      home: BlocBuilder<SettingsBloc, SettingsState>(
+      home: BlocBuilder<sb.SettingsBloc, sb.SettingsState>(
         builder: (context, state) {
-          if (state is SettingsLoading) {
-            return SplashScreen();
-          } else if (state is SettingsLoaded) {
-            final firstScreen = state.isFirstLaunch
-                ? Onboarding()
-                : AuthenticationWrapper(
-                    userRepository: userRepository,
-                  );
-            return firstScreen;
-          } else {
-            return SplashScreen();
+          if (state is sb.SettingsCreated) {
+            return Onboarding();
           }
+          if (state is sb.SettingsLoaded) {
+            return AuthenticationWrapper(authService: authService);
+          }
+          return SplashScreen();
         },
       ),
     );

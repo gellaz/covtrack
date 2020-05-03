@@ -1,40 +1,38 @@
 part of 'settings_bloc.dart';
 
-@immutable
-abstract class SettingsState {
-  final bool isFirstLaunch;
-  final bool isLightTheme;
+abstract class SettingsState extends Equatable {
+  const SettingsState();
+}
 
-  SettingsState({
-    @required this.isFirstLaunch,
-    @required this.isLightTheme,
-  });
+class SettingsInitial extends SettingsState {
+  const SettingsInitial();
+  @override
+  List<Object> get props => [];
 }
 
 class SettingsLoading extends SettingsState {
+  const SettingsLoading();
   @override
-  String toString() => 'SettingsLoading';
+  List<Object> get props => [];
+}
+
+class SettingsCreated extends SettingsState {
+  final Settings settings;
+  const SettingsCreated(this.settings);
+  @override
+  List<Object> get props => [settings];
 }
 
 class SettingsLoaded extends SettingsState {
-  SettingsLoaded.fromMap(Map<String, dynamic> map)
-      : super(
-          isFirstLaunch: map['firstLaunch'],
-          isLightTheme: map['lightTheme'],
-        );
-
+  final Settings settings;
+  const SettingsLoaded(this.settings);
   @override
-  String toString() => 'SettingsLoaded { $isFirstLaunch, $isLightTheme }';
+  List<Object> get props => [settings];
 }
 
-class NewSettings extends SettingsState {
-  NewSettings.fromOldSettingState(SettingsState oldSettings,
-      {bool isFirstLaunch, bool isLightTheme})
-      : super(
-          isFirstLaunch: isFirstLaunch ?? oldSettings.isFirstLaunch,
-          isLightTheme: isLightTheme ?? oldSettings.isLightTheme,
-        );
-
+class SettingsChanged extends SettingsState {
+  final Settings newSettings;
+  const SettingsChanged(this.newSettings);
   @override
-  String toString() => 'NewSettings { $isFirstLaunch, $isLightTheme }';
+  List<Object> get props => [newSettings];
 }

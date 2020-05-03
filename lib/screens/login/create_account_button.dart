@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../repositories/user_repository.dart';
+import '../../services/authentication/authentication_service.dart';
 import '../register/register_screen.dart';
 
 class CreateAccountButton extends StatelessWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  CreateAccountButton({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  CreateAccountButton({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class CreateAccountButton extends StatelessWidget {
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
-            return RegisterScreen(userRepository: userRepository);
+            return RegisterScreen(authService: authService);
           }),
         );
       },

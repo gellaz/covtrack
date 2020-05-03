@@ -4,19 +4,16 @@ abstract class SettingsEvent extends Equatable {
   const SettingsEvent();
 }
 
-class AppLaunched extends SettingsEvent {
+class AppStarted extends SettingsEvent {
   @override
   List<Object> get props => [];
 }
 
-class ChangedTheme extends SettingsEvent {
-  final bool lightTheme;
+class ChangeSettings extends SettingsEvent {
+  final Map<String, dynamic> newSettings;
 
-  const ChangedTheme(this.lightTheme);
-
-  @override
-  List<Object> get props => [lightTheme];
+  const ChangeSettings(this.newSettings);
 
   @override
-  String toString() => 'ChangedTheme { lightTheme: $lightTheme }';
+  List<Object> get props => [newSettings];
 }

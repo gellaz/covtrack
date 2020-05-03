@@ -5,16 +5,16 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../repositories/user_repository.dart';
+import '../../services/authentication/authentication_service.dart';
 import '../../utils/validators.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserRepository userRepository;
+  AuthenticationService authService;
 
-  LoginBloc({@required this.userRepository}) : assert(userRepository != null);
+  LoginBloc({@required this.authService}) : assert(authService != null);
 
   @override
   LoginState get initialState => LoginState.empty();
@@ -68,7 +68,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }) async* {
     yield LoginState.loading();
     try {
-      await userRepository.signInWithCredentials(email, password);
+      await authService.signInWithCredentials(
+        email: email,
+        password: password,
+      );
       yield LoginState.success();
     } catch (_) {
       yield LoginState.failure();

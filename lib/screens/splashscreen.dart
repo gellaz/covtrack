@@ -8,21 +8,23 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: Decorations.linearGradient(context: context),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'COVTRACK',
-                style: Theme.of(context)
-                    .textTheme
-                    .display2
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Image.asset('assets/images/home.png')
-            ],
-          ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: Decorations.linearGradient(context: context),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Text(
+              'COVTRACK',
+              style: Theme.of(context)
+                  .textTheme
+                  .display2
+                  .copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
+            ),
+            Image.asset('assets/images/home.png'),
+            Text('Caio')
+          ],
         ),
       ),
     );

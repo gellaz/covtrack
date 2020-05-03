@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "505543134073",
-    "firebase_url": "https://covtrack-cf1b0.firebaseio.com",
-    "project_id": "covtrack-cf1b0",
-    "storage_bucket": "covtrack-cf1b0.appspot.com"
+    "project_number": "225938101282",
+    "firebase_url": "https://covtrack-a11df.firebaseio.com",
+    "project_id": "covtrack-a11df",
+    "storage_bucket": "covtrack-a11df.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:505543134073:android:925b26df094ee39c847da8",
+        "mobilesdk_app_id": "1:225938101282:android:5949fa6c7c61f64baae67b",
         "android_client_info": {
           "package_name": "com.gellaz.covtrack"
         }
       },
       "oauth_client": [
         {
-          "client_id": "505543134073-hhpanhc5bqceokfptfou7f8bgsq97h1k.apps.googleusercontent.com",
+          "client_id": "225938101282-gt8j46vrc2i77blm36srcputqkg6m587.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.gellaz.covtrack",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "505543134073-ovj62gd62rjf4dqj2cm4i27kk3h8jmum.apps.googleusercontent.com",
+          "client_id": "225938101282-8t2hm4pm0k9956hgh9cs58128viu7ccj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCBfL0zcD5Lq9ouJZS0OBHB1Ji8yA8ehLE"
+          "current_key": "AIzaSyC31XYERPq-Iy_kke7gkN_BB5DHGcSSncI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "505543134073-ovj62gd62rjf4dqj2cm4i27kk3h8jmum.apps.googleusercontent.com",
+              "client_id": "225938101282-8t2hm4pm0k9956hgh9cs58128viu7ccj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

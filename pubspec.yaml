@@ -23,8 +23,12 @@ dependencies:
   firebase_core: ^0.4.4+3
   # Firebase authentication API.
   firebase_auth: ^0.16.0
-  # Google Maps
-  google_maps_flutter: ^0.5.27
+  # Cloud Firestore.
+  # cloud_firestore: ^0.13.5
+  # Google Maps.
+  # google_maps_flutter: ^0.5.27
+  # Google WebServices.
+  # google_maps_webservice: ^0.0.16
   # iOS style icons.
   cupertino_icons: ^0.1.2
 
@@ -44,7 +48,15 @@ flutter:
       fonts:
         - asset: assets/fonts/Prompt-Light.ttf
           weight: 300
-        - asset: assets/fonts/Prompt-Light.ttf
+        - asset: assets/fonts/Prompt-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Prompt-Light.ttf
+        - asset: assets/fonts/Prompt-Medium.ttf
           weight: 500
+        - asset: assets/fonts/Prompt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Prompt-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Prompt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Prompt-Black.ttf
+          weight: 900

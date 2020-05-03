@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/login/login_bloc.dart';
-import '../../repositories/user_repository.dart';
+import '../../services/authentication/authentication_service.dart';
 import 'login_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  const LoginScreen({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  const LoginScreen({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -19,8 +19,8 @@ class LoginScreen extends StatelessWidget {
         title: Text('Login'),
       ),
       body: BlocProvider<LoginBloc>(
-        create: (context) => LoginBloc(userRepository: userRepository),
-        child: LoginForm(userRepository: userRepository),
+        create: (context) => LoginBloc(authService: authService),
+        child: LoginForm(authService: authService),
       ),
     );
   }

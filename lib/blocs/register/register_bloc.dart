@@ -5,17 +5,16 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../repositories/user_repository.dart';
+import '../../services/authentication/authentication_service.dart';
 import '../../utils/validators.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  RegisterBloc({@required this.userRepository})
-      : assert(userRepository != null);
+  RegisterBloc({@required this.authService}) : assert(authService != null);
 
   @override
   RegisterState get initialState => RegisterState.empty();
@@ -68,7 +67,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   ) async* {
     yield RegisterState.loading();
     try {
-      await userRepository.signUp(
+      await authService.signUp(
         email: email,
         password: password,
       );

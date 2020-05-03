@@ -1,18 +1,19 @@
+import 'package:covtrack/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
-import '../../repositories/user_repository.dart';
+
 import '../error_screen.dart';
 import '../login/login_screen.dart';
 import '../root_screen.dart';
 import '../splashscreen.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  const AuthenticationWrapper({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  const AuthenticationWrapper({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -23,7 +24,8 @@ class AuthenticationWrapper extends StatelessWidget {
           return SplashScreen();
         }
         if (state is Unauthenticated) {
-          return LoginScreen(userRepository: userRepository);
+          return SplashScreen();
+          //return LoginScreen(authService: authService);
         }
         if (state is Authenticated) {
           return RootScreen();

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/register/register_bloc.dart';
-import '../../repositories/user_repository.dart';
+import '../../services/authentication/authentication_service.dart';
 import 'register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
-  final UserRepository userRepository;
+  final AuthenticationService authService;
 
-  RegisterScreen({Key key, @required this.userRepository})
-      : assert(userRepository != null),
+  RegisterScreen({Key key, @required this.authService})
+      : assert(authService != null),
         super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Register')),
       body: Center(
         child: BlocProvider<RegisterBloc>(
-          create: (context) => RegisterBloc(userRepository: userRepository),
+          create: (context) => RegisterBloc(authService: authService),
           child: RegisterForm(),
         ),
       ),
