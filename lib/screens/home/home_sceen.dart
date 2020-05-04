@@ -1,3 +1,4 @@
+import 'package:covtrack/screens/widgets/log_out_button.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,6 +7,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: <Widget>[
+          LogOutButton(),
+        ],
       ),
       body: Center(
         child: Text('Home'),
