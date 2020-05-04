@@ -10,7 +10,7 @@ import 'screens/wrappers/authentication_wrapper.dart';
 import 'services/authentication/authentication_service.dart';
 import 'services/authentication/firebase_authentication_service.dart';
 import 'services/settings/sharedprefs_settings_service.dart';
-import 'themes/themes.dart';
+import 'styles/themes.dart';
 
 void main() {
   // Required in Flutter v1.9.4+ before using any plugins if
@@ -67,7 +67,7 @@ class CovTrack extends StatelessWidget {
       home: BlocBuilder<sb.SettingsBloc, sb.SettingsState>(
         builder: (context, state) {
           if (state is sb.SettingsCreated) {
-            return Onboarding();
+            return Onboarding(authService: authService);
           }
           if (state is sb.SettingsLoaded) {
             return AuthenticationWrapper(authService: authService);

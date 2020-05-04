@@ -15,12 +15,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: BlocProvider<LoginBloc>(
-        create: (context) => LoginBloc(authService: authService),
-        child: LoginForm(authService: authService),
+      body: Center(
+        child: BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(authService: authService),
+          child: LoginForm(authService: authService),
+        ),
       ),
     );
   }

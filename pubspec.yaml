@@ -23,13 +23,6 @@ dependencies:
   firebase_core: ^0.4.4+3
   # Firebase authentication API.
   firebase_auth: ^0.16.0
-  # Cloud Firestore.
-  # cloud_firestore: ^0.13.5
-  # Google Maps.
-  # google_maps_flutter: ^0.5.27
-  # Google WebServices.
-  # google_maps_webservice: ^0.0.16
-  # iOS style icons.
   cupertino_icons: ^0.1.2
 
 

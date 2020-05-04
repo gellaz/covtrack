@@ -4,7 +4,16 @@ class Themes {
   static final ThemeData light = ThemeData(
     primarySwatch: Colors.deepOrange,
     accentColor: Colors.grey[850],
+    accentColorBrightness: Brightness.dark,
     canvasColor: Colors.white,
+    buttonTheme: ButtonThemeData(
+      height: 50,
+      buttonColor: Colors.grey[850],
+      textTheme: ButtonTextTheme.primary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    ),
     fontFamily: 'Prompt',
     textTheme: TextTheme(
       display4: TextStyle(
@@ -59,8 +68,9 @@ class Themes {
       ),
       button: TextStyle(
         fontWeight: FontWeight.w500,
-        fontSize: 15,
+        fontSize: 24,
         letterSpacing: 1.25,
+        color: Colors.white,
       ),
       subtitle: TextStyle(
         fontWeight: FontWeight.w400,
@@ -69,15 +79,17 @@ class Themes {
       ),
       overline: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 11,
+        fontSize: 15,
         letterSpacing: 1.5,
+        color: Colors.lightBlue,
+        decoration: TextDecoration.underline,
       ),
     ),
   );
 
   static final ThemeData dark = ThemeData(
-    primarySwatch: Colors.blue,
-    accentColor: Colors.yellow,
+    primarySwatch: Colors.grey[850],
+    accentColor: Colors.deepOrange,
     canvasColor: Colors.white,
     fontFamily: 'Prompt',
     textTheme: TextTheme(

@@ -31,6 +31,23 @@ class PasswordChanged extends RegisterEvent {
   String toString() => 'PasswordChanged { password: $password }';
 }
 
+class PasswordCheckChanged extends RegisterEvent {
+  final String password;
+  final String passwordCheck;
+
+  const PasswordCheckChanged({
+    @required this.password,
+    @required this.passwordCheck,
+  });
+
+  @override
+  List<Object> get props => [password, passwordCheck];
+
+  @override
+  String toString() =>
+      'PasswordCheckChanged { password:$password, passwordCheck: $passwordCheck }';
+}
+
 class Submitted extends RegisterEvent {
   final String email;
   final String password;

@@ -1,10 +1,19 @@
-import 'package:covtrack/themes/decorations.dart';
+import 'package:covtrack/screens/wrappers/authentication_wrapper.dart';
+import 'package:covtrack/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+
+import '../styles/decorations.dart';
 
 /// This widget is used to intorduce the user to the application if
 /// it is the first time he launches it.
 class Onboarding extends StatelessWidget {
+  final AuthenticationService authService;
+
+  const Onboarding({Key key, @required this.authService})
+      : assert(authService != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
@@ -13,10 +22,19 @@ class Onboarding extends StatelessWidget {
         _buildPageTwo(context),
         _buildPageThree(context),
       ],
-      onDone: () {},
+      onDone: () => _onDone(context),
       done: const Text('Done'),
       showSkipButton: true,
       skip: const Text('Skip'),
+    );
+  }
+
+  void _onDone(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => AuthenticationWrapper(authService: authService),
+      ),
     );
   }
 

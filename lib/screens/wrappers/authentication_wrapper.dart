@@ -1,9 +1,8 @@
-import 'package:covtrack/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
-
+import '../../services/authentication/authentication_service.dart';
 import '../error_screen.dart';
 import '../login/login_screen.dart';
 import '../root_screen.dart';
@@ -24,8 +23,7 @@ class AuthenticationWrapper extends StatelessWidget {
           return SplashScreen();
         }
         if (state is Unauthenticated) {
-          return SplashScreen();
-          //return LoginScreen(authService: authService);
+          return LoginScreen(authService: authService);
         }
         if (state is Authenticated) {
           return RootScreen();

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../themes/decorations.dart';
+import '../styles/decorations.dart';
 
 class SplashScreen extends StatelessWidget {
   @override

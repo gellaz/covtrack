@@ -25,10 +25,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     TransitionFunction<RegisterEvent, RegisterState> transitionFn,
   ) {
     final nonDebounceStream = events.where((event) {
-      return (event is! EmailChanged && event is! PasswordChanged);
+      return (event is! EmailChanged &&
+          event is! PasswordChanged &&
+          event is! PasswordCheckChanged);
     });
     final debounceStream = events.where((event) {
-      return (event is EmailChanged || event is PasswordChanged);
+      return (event is EmailChanged ||
+          event is PasswordChanged ||
+          event is PasswordCheckChanged);
     }).debounceTime(Duration(milliseconds: 300));
     return super.transformEvents(
       nonDebounceStream.mergeWith([debounceStream]),
@@ -44,6 +48,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       yield* _mapEmailChangedToState(event.email);
     } else if (event is PasswordChanged) {
       yield* _mapPasswordChangedToState(event.password);
+    } else if (event is PasswordCheckChanged) {
+      yield* _mapPasswordCheckChangedToState(
+          event.password, event.passwordCheck);
     } else if (event is Submitted) {
       yield* _mapFormSubmittedToState(event.email, event.password);
     }
@@ -61,6 +68,15 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     );
   }
 
+  Stream<RegisterState> _mapPasswordCheckChangedToState(
+    String password,
+    String passwordCheck,
+  ) async* {
+    yield state.update(
+      isPasswordCheckValid: password == passwordCheck,
+    );
+  }
+
   Stream<RegisterState> _mapFormSubmittedToState(
     String email,
     String password,
@@ -72,7 +88,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         password: password,
       );
       yield RegisterState.success();
-    } catch (_) {
+    } catch (e) {
+      print(e);
       yield RegisterState.failure();
     }
   }

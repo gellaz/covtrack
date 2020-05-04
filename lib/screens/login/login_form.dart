@@ -1,12 +1,13 @@
-import 'package:covtrack/services/authentication/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../../blocs/login/login_bloc.dart';
-
-import 'create_account_button.dart';
+import '../../services/authentication/authentication_service.dart';
+import '../../styles/decorations.dart';
+import '../widgets/text_divider.dart';
 import 'login_button.dart';
+import 'register_link.dart';
 
 class LoginForm extends StatefulWidget {
   final AuthenticationService authService;
@@ -78,62 +79,86 @@ class _LoginFormState extends State<LoginForm> {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
         }
       },
-      child: BlocBuilder<LoginBloc, LoginState>(
-        builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Form(
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Image.asset('assets/images/home.png', height: 200),
-                  ),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      labelText: 'Email',
+      child: Container(
+        decoration: Decorations.linearGradient(context: context),
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Form(
+                child: ListView(
+                  children: <Widget>[
+                    Text(
+                      'LOGIN',
+                      style: Theme.of(context).textTheme.display2.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 8,
+                          ),
+                      textAlign: TextAlign.center,
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                    autovalidate: true,
-                    autocorrect: false,
-                    validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'Password',
+                    Icon(
+                      Icons.person,
+                      size: 200,
+                      color: Colors.white,
                     ),
-                    obscureText: true,
-                    autovalidate: true,
-                    autocorrect: false,
-                    validator: (_) {
-                      return !state.isPasswordValid ? 'Invalid Password' : null;
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        LoginButton(
-                          onPressed: isLoginButtonEnabled(state)
-                              ? _onFormSubmitted
-                              : null,
-                        ),
-                        CreateAccountButton(authService: _authService),
-                      ],
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isEmailValid ? 'Invalid Email' : null;
+                      },
                     ),
-                  ),
-                ],
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                      ),
+                      obscureText: true,
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isPasswordValid
+                            ? 'Invalid Password'
+                            : null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          LoginButton(
+                            onPressed: isLoginButtonEnabled(state)
+                                ? _onFormSubmitted
+                                : null,
+                          ),
+                          SizedBox(height: 60),
+                          Column(
+                            children: <Widget>[
+                              TextDivider(text: 'or'),
+                              SizedBox(height: 8),
+                              RegisterLink(authService: _authService),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
