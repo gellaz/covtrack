@@ -21,7 +21,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
-    if (event is AppStarted) {
+    if (event is AppLoaded) {
       yield* _mapAppStartedToState();
     } else if (event is ChangeSettings) {
       yield* _mapChangeSettingsToState(event.newSettings);

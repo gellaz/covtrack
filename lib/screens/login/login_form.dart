@@ -3,19 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../../blocs/login/login_bloc.dart';
-import '../../services/authentication/authentication_service.dart';
 import '../../styles/decorations.dart';
 import '../widgets/text_divider.dart';
 import 'login_button.dart';
 import 'register_link.dart';
 
 class LoginForm extends StatefulWidget {
-  final AuthenticationService authService;
-
-  const LoginForm({Key key, @required this.authService})
-      : assert(authService != null),
-        super(key: key);
-
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -25,8 +18,6 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   LoginBloc _loginBloc;
-
-  AuthenticationService get _authService => widget.authService;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -147,7 +138,7 @@ class _LoginFormState extends State<LoginForm> {
                             children: <Widget>[
                               TextDivider(text: 'or'),
                               SizedBox(height: 8),
-                              RegisterLink(authService: _authService),
+                              RegisterLink(),
                             ],
                           ),
                         ],

@@ -6,18 +6,14 @@ import '../../services/authentication/authentication_service.dart';
 import 'register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
-  final AuthenticationService authService;
-
-  RegisterScreen({Key key, @required this.authService})
-      : assert(authService != null),
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: BlocProvider<RegisterBloc>(
-          create: (context) => RegisterBloc(authService: authService),
+          create: (context) => RegisterBloc(
+            authService: RepositoryProvider.of<AuthenticationService>(context),
+          ),
           child: RegisterForm(),
         ),
       ),

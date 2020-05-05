@@ -6,19 +6,15 @@ import '../../services/authentication/authentication_service.dart';
 import 'login_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  final AuthenticationService authService;
-
-  const LoginScreen({Key key, @required this.authService})
-      : assert(authService != null),
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(authService: authService),
-          child: LoginForm(authService: authService),
+          create: (context) => LoginBloc(
+            authService: RepositoryProvider.of<AuthenticationService>(context),
+          ),
+          child: LoginForm(),
         ),
       ),
     );

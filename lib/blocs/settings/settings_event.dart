@@ -4,7 +4,7 @@ abstract class SettingsEvent extends Equatable {
   const SettingsEvent();
 }
 
-class AppStarted extends SettingsEvent {
+class AppLoaded extends SettingsEvent {
   @override
   List<Object> get props => [];
 }
