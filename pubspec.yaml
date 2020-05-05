@@ -25,6 +25,8 @@ dependencies:
   firebase_auth: ^0.16.0
   # User location.
   geolocator: ^5.3.1
+  # Autocomplete.
+  flutter_typeahead: ^1.8.0
   # iOS style icons.
   cupertino_icons: ^0.1.2
 
