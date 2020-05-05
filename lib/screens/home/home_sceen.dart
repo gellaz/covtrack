@@ -1,5 +1,6 @@
-import 'package:covtrack/screens/widgets/log_out_button.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/logout_button.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
         actions: <Widget>[
-          LogOutButton(),
+          LogoutButton(),
         ],
       ),
       body: Center(

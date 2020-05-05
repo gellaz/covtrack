@@ -1,5 +1,6 @@
-import 'package:covtrack/screens/widgets/log_out_button.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/logout_button.dart';
 
 class DonateScreen extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class DonateScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Donate'),
         actions: <Widget>[
-          LogOutButton(),
+          LogoutButton(),
         ],
       ),
       body: Center(
