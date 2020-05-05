@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'blocs/authentication/authentication_bloc.dart';
-import 'blocs/places/places_bloc.dart';
 import 'blocs/settings/settings_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
 import 'screens/onboarding.dart';
@@ -33,10 +32,14 @@ void main() {
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider<SettingsService>(
-            create: (context) => settingsService),
+          create: (context) => settingsService,
+        ),
         RepositoryProvider<AuthenticationService>(
-            create: (context) => authService),
-        RepositoryProvider<PlacesService>(create: (context) => placesService),
+          create: (context) => authService,
+        ),
+        RepositoryProvider<PlacesService>(
+          create: (context) => placesService,
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -48,7 +51,6 @@ void main() {
             return AuthenticationBloc(authService: authService)
               ..add(AppStarted());
           }),
-          BlocProvider<PlacesBloc>(create: (_) => PlacesBloc(placesService)),
         ],
         child: CovTrack(),
       ),

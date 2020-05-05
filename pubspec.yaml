@@ -27,6 +27,8 @@ dependencies:
   geolocator: ^5.3.1
   # Autocomplete.
   flutter_typeahead: ^1.8.0
+  # Google Maps.
+  google_maps_flutter: ^0.5.27
   # iOS style icons.
   cupertino_icons: ^0.1.2
 
