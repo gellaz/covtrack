@@ -1,5 +1,6 @@
-import 'package:covtrack/routes/tab_item.dart';
 import 'package:flutter/material.dart';
+
+import 'tab_item.dart';
 
 class TabNavigator extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;

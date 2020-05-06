@@ -9,7 +9,6 @@ import 'screens/splashscreen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
 import 'services/authentication/authentication_service.dart';
 import 'services/authentication/firebase_authentication_service.dart';
-import 'services/places/mock_places_service.dart';
 import 'services/places/places_service.dart';
 import 'services/settings/settings_service.dart';
 import 'services/settings/sharedprefs_settings_service.dart';
@@ -26,7 +25,7 @@ void main() {
   // Create the services used in the app.
   final settingsService = SharedPrefsSettingsService();
   final authService = FirebaseAuthenticationService();
-  final placesService = MockPlacesService();
+  final placesService = GooglePlacesService();
 
   runApp(
     MultiRepositoryProvider(

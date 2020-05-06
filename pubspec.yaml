@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # HTTP client for making requests.
+  http: ^0.12.1
   # Onboarding.
   introduction_screen: ^1.0.7
   # Local storage for simple data.

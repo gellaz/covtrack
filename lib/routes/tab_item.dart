@@ -1,5 +1,6 @@
-import 'package:covtrack/routes/routers.dart';
 import 'package:flutter/material.dart';
+
+import 'routers.dart';
 
 enum TabIndex { donate, home, info }
 
