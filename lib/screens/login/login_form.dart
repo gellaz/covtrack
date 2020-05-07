@@ -14,17 +14,15 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   LoginBloc _loginBloc;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
-  bool isLoginButtonEnabled(LoginState state) {
-    return state.isFormValid && isPopulated && !state.isSubmitting;
-  }
+  bool isLoginButtonEnabled(LoginState state) =>
+      state.isFormValid && isPopulated && !state.isSubmitting;
 
   @override
   void initState() {
@@ -81,7 +79,7 @@ class _LoginFormState extends State<LoginForm> {
                   children: <Widget>[
                     Text(
                       'LOGIN',
-                      style: Theme.of(context).textTheme.display2.copyWith(
+                      style: Theme.of(context).textTheme.headline3.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 8,
@@ -94,25 +92,28 @@ class _LoginFormState extends State<LoginForm> {
                       color: Colors.white,
                     ),
                     TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
-                      autovalidate: true,
-                      autocorrect: false,
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
                       validator: (_) {
                         return !state.isEmailValid ? 'Invalid Email' : null;
                       },
                     ),
                     TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
                       controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: 'Password',
                       ),
                       obscureText: true,
-                      autovalidate: true,
-                      autocorrect: false,
                       validator: (_) {
                         return !state.isPasswordValid
                             ? 'Invalid Password'

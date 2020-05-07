@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
               'COVTRACK',
               style: Theme.of(context)
                   .textTheme
-                  .display2
+                  .headline3
                   .copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
             ),
             Image.asset('assets/images/home.png'),

@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../../models/user.dart';
 import '../../services/authentication/authentication_service.dart';
 
 part 'authentication_event.dart';
@@ -36,15 +35,15 @@ class AuthenticationBloc
   Stream<AuthenticationState> _mapAppStartedToState() async* {
     final isSignedIn = await authService.isSignedIn();
     if (isSignedIn) {
-      final user = await authService.getUser();
-      yield Authenticated(user);
+      final userId = await authService.getUserId();
+      yield Authenticated(userId);
     } else {
       yield Unauthenticated();
     }
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await authService.getUser());
+    yield Authenticated(await authService.getUserId());
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {

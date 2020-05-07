@@ -16,52 +16,52 @@ class Themes {
     ),
     fontFamily: 'Prompt',
     textTheme: TextTheme(
-      display4: TextStyle(
+      headline1: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 106,
         letterSpacing: -1.5,
       ),
-      display3: TextStyle(
+      headline2: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 66,
         letterSpacing: -0.5,
       ),
-      display2: TextStyle(
+      headline3: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 53,
         letterSpacing: 0,
       ),
-      display1: TextStyle(
+      headline4: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 38,
         letterSpacing: 0.25,
       ),
-      headline: TextStyle(
+      headline5: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 27,
         letterSpacing: 0,
       ),
-      title: TextStyle(
+      headline6: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 22,
         letterSpacing: 0.15,
       ),
-      subhead: TextStyle(
+      subtitle1: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 18,
         letterSpacing: 0.15,
       ),
-      body2: TextStyle(
+      subtitle2: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 15,
         letterSpacing: 0.1,
       ),
-      body1: TextStyle(
+      bodyText1: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 18,
         letterSpacing: 0.5,
       ),
-      caption: TextStyle(
+      bodyText2: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 15,
         letterSpacing: 0.25,
@@ -72,7 +72,7 @@ class Themes {
         letterSpacing: 1.25,
         color: Colors.white,
       ),
-      subtitle: TextStyle(
+      caption: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 13,
         letterSpacing: 0.4,
@@ -90,73 +90,85 @@ class Themes {
   static final ThemeData dark = ThemeData(
     primarySwatch: Colors.grey[850],
     accentColor: Colors.deepOrange,
+    accentColorBrightness: Brightness.dark,
     canvasColor: Colors.white,
+    buttonTheme: ButtonThemeData(
+      height: 50,
+      buttonColor: Colors.grey[850],
+      textTheme: ButtonTextTheme.primary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    ),
     fontFamily: 'Prompt',
     textTheme: TextTheme(
-      display4: TextStyle(
+      headline1: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 106,
         letterSpacing: -1.5,
       ),
-      display3: TextStyle(
+      headline2: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 66,
         letterSpacing: -0.5,
       ),
-      display2: TextStyle(
+      headline3: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 53,
         letterSpacing: 0,
       ),
-      display1: TextStyle(
+      headline4: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 38,
         letterSpacing: 0.25,
       ),
-      headline: TextStyle(
+      headline5: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 27,
         letterSpacing: 0,
       ),
-      title: TextStyle(
+      headline6: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 22,
         letterSpacing: 0.15,
       ),
-      subhead: TextStyle(
+      subtitle1: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 18,
         letterSpacing: 0.15,
       ),
-      body2: TextStyle(
+      subtitle2: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 15,
         letterSpacing: 0.1,
       ),
-      body1: TextStyle(
+      bodyText1: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 18,
         letterSpacing: 0.5,
       ),
-      caption: TextStyle(
+      bodyText2: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 15,
         letterSpacing: 0.25,
       ),
       button: TextStyle(
         fontWeight: FontWeight.w500,
-        fontSize: 15,
+        fontSize: 24,
         letterSpacing: 1.25,
+        color: Colors.white,
       ),
-      subtitle: TextStyle(
+      caption: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 13,
         letterSpacing: 0.4,
       ),
       overline: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 11,
+        fontSize: 15,
         letterSpacing: 1.5,
+        color: Colors.lightBlue,
+        decoration: TextDecoration.underline,
       ),
     ),
   );

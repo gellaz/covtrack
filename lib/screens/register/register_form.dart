@@ -1,10 +1,10 @@
-import 'package:covtrack/screens/widgets/text_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../../blocs/register/register_bloc.dart';
 import '../../styles/decorations.dart';
+import '../widgets/text_divider.dart';
 import 'login_link.dart';
 import 'register_button.dart';
 
@@ -13,11 +13,9 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _passwordCheckController =
-      TextEditingController();
-
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordCheckController = TextEditingController();
   RegisterBloc _registerBloc;
 
   bool get isPopulated =>
@@ -25,9 +23,8 @@ class _RegisterFormState extends State<RegisterForm> {
       _passwordController.text.isNotEmpty &&
       _passwordCheckController.text.isNotEmpty;
 
-  bool isRegisterButtonEnabled(RegisterState state) {
-    return state.isFormValid && isPopulated && !state.isSubmitting;
-  }
+  bool isRegisterButtonEnabled(RegisterState state) =>
+      state.isFormValid && isPopulated && !state.isSubmitting;
 
   @override
   void initState() {
@@ -89,7 +86,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   children: <Widget>[
                     Text(
                       'REGISTER',
-                      style: Theme.of(context).textTheme.display2.copyWith(
+                      style: Theme.of(context).textTheme.headline3.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 8,
@@ -102,25 +99,31 @@ class _RegisterFormState extends State<RegisterForm> {
                       color: Colors.white,
                     ),
                     TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
-                      autocorrect: false,
-                      autovalidate: true,
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
                       validator: (_) {
                         return !state.isEmailValid ? 'Invalid Email' : null;
                       },
                     ),
                     TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
                       controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: 'Password',
                       ),
                       obscureText: true,
-                      autocorrect: false,
-                      autovalidate: true,
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
                       validator: (_) {
                         return !state.isPasswordValid
                             ? 'Invalid Password'
@@ -128,13 +131,13 @@ class _RegisterFormState extends State<RegisterForm> {
                       },
                     ),
                     TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
                       controller: _passwordCheckController,
                       decoration: InputDecoration(
                         labelText: 'Insert password again',
                       ),
                       obscureText: true,
-                      autocorrect: false,
-                      autovalidate: true,
                       validator: (_) {
                         return !state.isPasswordCheckValid
                             ? 'The two passwords are not the same'
@@ -179,6 +182,7 @@ class _RegisterFormState extends State<RegisterForm> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _passwordCheckController.dispose();
     super.dispose();
   }
 
