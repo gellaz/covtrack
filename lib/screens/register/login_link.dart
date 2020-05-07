@@ -9,9 +9,7 @@ class LoginLink extends StatelessWidget {
         style: Theme.of(context).textTheme.overline,
         textAlign: TextAlign.center,
       ),
-      onTap: () {
-        Navigator.of(context).pop();
-      },
+      onTap: () => Navigator.of(context).pop(),
     );
   }
 }

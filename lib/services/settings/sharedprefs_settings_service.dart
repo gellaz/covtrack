@@ -1,7 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../models/settings.dart';
-import 'settings_service.dart';
+part of 'settings_service.dart';
 
 class SharedPrefsSettingsService implements SettingsService {
   @override

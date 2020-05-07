@@ -8,10 +8,8 @@ import 'screens/onboarding.dart';
 import 'screens/splashscreen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
 import 'services/authentication/authentication_service.dart';
-import 'services/authentication/firebase_authentication_service.dart';
 import 'services/places/places_service.dart';
 import 'services/settings/settings_service.dart';
-import 'services/settings/sharedprefs_settings_service.dart';
 import 'styles/themes.dart';
 
 void main() {

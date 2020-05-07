@@ -1,15 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../models/user.dart';
-import 'authentication_service.dart';
+part of 'authentication_service.dart';
 
 class FirebaseAuthenticationService implements AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<User> getUser() async {
+  Future<String> getUserId() async {
     final firebaseUser = await _firebaseAuth.currentUser();
-    return User(uid: firebaseUser.uid);
+    return firebaseUser.uid;
   }
 
   @override

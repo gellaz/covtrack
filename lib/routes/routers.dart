@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../screens/donate/donate_detail_screen.dart';
 import '../screens/donate/donate_screen.dart';
 import '../screens/home/home_detail_screen.dart';
-import '../screens/home/home_sceen.dart';
+import '../screens/home/home_screen.dart';
 import '../screens/info/info_detail_screen.dart';
 import '../screens/info/info_screen.dart';
 

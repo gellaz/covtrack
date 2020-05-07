@@ -1,4 +1,8 @@
-import 'package:covtrack/models/settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/settings.dart';
+
+part 'sharedprefs_settings_service.dart';
 
 abstract class SettingsService {
   Future<Settings> initSettings();
