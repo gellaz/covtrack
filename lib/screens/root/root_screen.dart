@@ -1,8 +1,8 @@
-import 'package:covtrack/routes/tab_item.dart';
 import 'package:flutter/material.dart';
 
-import '../routes/tab_navigator.dart';
 import 'bottom_navigation.dart';
+import 'tab_item.dart';
+import 'tab_navigator.dart';
 
 class RootScreen extends StatefulWidget {
   @override

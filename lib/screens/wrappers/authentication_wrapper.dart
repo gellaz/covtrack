@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../error_screen.dart';
 import '../login/login_screen.dart';
-import '../root_screen.dart';
+import '../root/root_screen.dart';
 import '../splash_screen.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
