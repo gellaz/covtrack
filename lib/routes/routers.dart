@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../screens/donate/donate_detail_screen.dart';
 import '../screens/donate/donate_screen.dart';
-import '../screens/home/home_detail_screen.dart';
 import '../screens/home/home_screen.dart';
-import '../screens/info/info_detail_screen.dart';
 import '../screens/info/info_screen.dart';
+import '../screens/place_picker/place_picker_screen.dart';
 
 abstract class Router {
   final String initialRoute;
@@ -25,8 +24,8 @@ class HomeRouter implements Router {
       case '/home':
         return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
-      case '/home/detail':
-        return MaterialPageRoute(builder: (_) => HomeDetailScreen());
+      case '/home/place-picker':
+        return MaterialPageRoute(builder: (_) => PlacePickerScreen());
         break;
     }
   }
@@ -41,9 +40,6 @@ class InfoRouter implements Router {
     switch (settings.name) {
       case '/info':
         return MaterialPageRoute(builder: (_) => InfoScreen());
-        break;
-      case '/info/detail':
-        return MaterialPageRoute(builder: (_) => InfoDetailScreen());
         break;
     }
   }

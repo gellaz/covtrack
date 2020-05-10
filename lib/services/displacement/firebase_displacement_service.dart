@@ -1,7 +1,7 @@
 part of 'displacement_service.dart';
 
 class FirebaseDisplacementService implements DisplacementService {
-  final displacementCollection = Firestore.instance.collection('displacements');
+  // final displacementCollection = Firestore.instance.collection('displacements');
 
   @override
   Future<void> addDisplacement(Displacement displacement) {

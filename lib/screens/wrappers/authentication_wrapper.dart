@@ -5,7 +5,7 @@ import '../../blocs/authentication/authentication_bloc.dart';
 import '../error_screen.dart';
 import '../login/login_screen.dart';
 import '../root_screen.dart';
-import '../splashscreen.dart';
+import '../splash_screen.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
   @override

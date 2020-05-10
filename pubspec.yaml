@@ -24,6 +24,8 @@ dependencies:
   geolocator: ^5.3.1
   # Google Maps.
   google_maps_flutter: ^0.5.27
+  # Wrapper for Google Maps APIs.
+  google_maps_webservice: ^0.0.16
   # HTTP client for making requests.
   http: ^0.12.1
   # Onboarding.

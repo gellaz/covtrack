@@ -37,8 +37,9 @@ class Onboarding extends StatelessWidget {
       image: Center(
         child: Image.asset('assets/images/home.png'),
       ),
-      title: 'Stay Safe and get ready for change',
-      body: 'AAAAAAAAA',
+      title: 'Objective',
+      body:
+          'The main functionality of CovTrack is replacing the mandatory self-certification form',
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context: context),
       ),

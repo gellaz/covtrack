@@ -8,7 +8,7 @@ class ClearButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      color: Colors.grey,
+      color: Colors.white,
       icon: Icon(Icons.clear),
       onPressed: onClear,
     );

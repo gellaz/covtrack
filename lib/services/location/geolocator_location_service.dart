@@ -4,8 +4,7 @@ class GeolocatorLocationService implements LocationService {
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
   @override
-  Future<Place> getCurrentLocation() {
-    // TODO: implement getCurrentLocation
-    throw UnimplementedError();
+  Future<Position> getCurrentPosition() async {
+    return await geolocator.getCurrentPosition();
   }
 }

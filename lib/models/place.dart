@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 class Place extends Equatable {
   final String id;
@@ -9,12 +8,28 @@ class Place extends Equatable {
   final String formattedAddress;
 
   const Place({
-    @required this.id,
-    @required this.latitude,
-    @required this.longitude,
-    @required this.name,
-    @required this.formattedAddress,
+    this.id,
+    this.latitude,
+    this.longitude,
+    this.name,
+    this.formattedAddress,
   });
+
+  Place copyWith({
+    String id,
+    double latitude,
+    double longitude,
+    String name,
+    String formattedAddress,
+  }) {
+    return Place(
+      id: id ?? this.id,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      name: name ?? this.name,
+      formattedAddress: formattedAddress ?? this.formattedAddress,
+    );
+  }
 
   factory Place.fromJson(Map<String, dynamic> json) {
     return Place(
@@ -37,7 +52,13 @@ class Place extends Equatable {
   }
 
   @override
-  List<Object> get props => [id, latitude, longitude, name, formattedAddress];
+  List<Object> get props => [
+        id,
+        latitude,
+        longitude,
+        name,
+        formattedAddress,
+      ];
 
   @override
   String toString() {

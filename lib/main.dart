@@ -5,7 +5,7 @@ import 'blocs/authentication/authentication_bloc.dart';
 import 'blocs/settings/settings_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
 import 'screens/onboarding.dart';
-import 'screens/splashscreen.dart';
+import 'screens/splash_screen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
 import 'services/authentication/authentication_service.dart';
 import 'services/places/places_service.dart';

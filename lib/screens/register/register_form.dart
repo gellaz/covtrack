@@ -160,7 +160,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           SizedBox(height: 10),
                           Column(
                             children: <Widget>[
-                              TextDivider(text: 'or'),
+                              TextDivider('or'),
                               SizedBox(height: 8),
                               LoginLink(),
                             ],

@@ -137,7 +137,7 @@ class _LoginFormState extends State<LoginForm> {
                           SizedBox(height: 60),
                           Column(
                             children: <Widget>[
-                              TextDivider(text: 'or'),
+                              TextDivider('or'),
                               SizedBox(height: 8),
                               RegisterLink(),
                             ],

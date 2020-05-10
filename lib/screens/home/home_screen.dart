@@ -16,8 +16,8 @@ class HomeScreen extends StatelessWidget {
         child: Text('Home'),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.pushNamed(context, '/home/detail'),
-        label: Text('Go to next page'),
+        onPressed: () => Navigator.pushNamed(context, '/home/place-picker'),
+        label: Text('Pick a place'),
       ),
     );
   }

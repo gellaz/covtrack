@@ -56,26 +56,22 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
 
   void _onSuggestionSelected(PlaceSuggestion placeSuggestion) async {
     final place = await _placesService.fetchPlaceDetails(
-      placeId: placeSuggestion.placeId,
+      placeSuggestion.placeId,
     );
     widget.centerMapOn(place);
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {
-    return await _placesService.fetchSuggestions(input: input);
+    return await _placesService.fetchPlaceSuggestions(input);
   }
 
   TextFieldConfiguration _buildConfiguration() {
     return TextFieldConfiguration(
       controller: _controller,
       decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-        ),
-        fillColor: Colors.grey[850].withOpacity(0.8),
-        filled: true,
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.white),
         hintText: 'Insert a place...',
-        prefixIcon: Icon(Icons.search, color: Colors.white),
         suffixIcon: ClearButton(onClear: _onClear),
       ),
       style: TextStyle(color: Colors.white),
