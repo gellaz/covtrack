@@ -17,8 +17,7 @@ class User extends Equatable {
 
   @override
   String toString() {
-    return '''
-    User {
+    return '''User {
       uid: $uid,
       home: $home,
     }''';

@@ -4,7 +4,7 @@ import '../screens/donate/donate_detail_screen.dart';
 import '../screens/donate/donate_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/info/info_screen.dart';
-import '../screens/place_picker/place_picker_screen.dart';
+import '../screens/places_picker/places_picker_screen.dart';
 
 abstract class Router {
   final String initialRoute;
@@ -25,7 +25,7 @@ class HomeRouter implements Router {
         return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
       case '/home/place-picker':
-        return MaterialPageRoute(builder: (_) => PlacePickerScreen());
+        return MaterialPageRoute(builder: (_) => PlacesPickerScreen());
         break;
     }
   }

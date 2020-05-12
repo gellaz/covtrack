@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
+import '../../models/coordinates.dart';
 import '../../models/place_suggestion.dart';
 import '../../services/places/places_service.dart';
 import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
 class PlacesSearchField extends StatefulWidget {
-  final Function centerMapOn;
+  final Coordinates userLocation;
+  final Function addMarkerAndCenterMapOn;
 
-  const PlacesSearchField({Key key, @required this.centerMapOn})
-      : assert(centerMapOn != null),
+  const PlacesSearchField(this.userLocation, this.addMarkerAndCenterMapOn,
+      {Key key})
+      : assert(userLocation != null),
+        assert(addMarkerAndCenterMapOn != null),
         super(key: key);
 
   @override
@@ -19,24 +23,33 @@ class PlacesSearchField extends StatefulWidget {
 }
 
 class _PlacesSearchFieldState extends State<PlacesSearchField> {
-  PlacesService _placesService;
-  TextFieldConfiguration _textFieldConfiguration;
   final _controller = TextEditingController();
+  PlacesService _placesService;
 
   @override
   void initState() {
     super.initState();
     _placesService = RepositoryProvider.of<PlacesService>(context);
-    _textFieldConfiguration = _buildConfiguration();
+    _controller.text = '';
   }
 
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
       itemBuilder: _itemBuilder,
-      textFieldConfiguration: _textFieldConfiguration,
       onSuggestionSelected: _onSuggestionSelected,
       suggestionsCallback: _suggestionsCallback,
+      textFieldConfiguration: TextFieldConfiguration(
+        controller: _controller,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintStyle: TextStyle(color: Colors.white),
+          hintText: 'Insert a place...',
+          suffixIcon: ClearButton(_onClear),
+        ),
+        style: TextStyle(color: Colors.white),
+        textInputAction: TextInputAction.none,
+      ),
     );
   }
 
@@ -46,36 +59,20 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
     _controller.dispose();
   }
 
-  Widget _itemBuilder(BuildContext context, PlaceSuggestion placeSuggestion) {
-    return PlaceSuggestionListTile(placeSuggestion: placeSuggestion);
+  Widget _itemBuilder(_, PlaceSuggestion suggestion) {
+    return PlaceSuggestionListTile(suggestion);
   }
 
   void _onClear() {
     _controller.text = '';
   }
 
-  void _onSuggestionSelected(PlaceSuggestion placeSuggestion) async {
-    final place = await _placesService.fetchPlaceDetails(
-      placeSuggestion.placeId,
-    );
-    widget.centerMapOn(place);
+  void _onSuggestionSelected(PlaceSuggestion suggestion) async {
+    final place = await _placesService.getDetails(suggestion.placeId);
+    widget.addMarkerAndCenterMapOn(place);
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {
-    return await _placesService.fetchPlaceSuggestions(input);
-  }
-
-  TextFieldConfiguration _buildConfiguration() {
-    return TextFieldConfiguration(
-      controller: _controller,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintStyle: TextStyle(color: Colors.white),
-        hintText: 'Insert a place...',
-        suffixIcon: ClearButton(onClear: _onClear),
-      ),
-      style: TextStyle(color: Colors.white),
-      textInputAction: TextInputAction.none,
-    );
+    return await _placesService.getSuggestions(input, widget.userLocation);
   }
 }

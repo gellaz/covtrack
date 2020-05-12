@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class ClearButton extends StatelessWidget {
   final VoidCallback onClear;
 
-  const ClearButton({Key key, this.onClear}) : super(key: key);
+  const ClearButton(this.onClear, {Key key})
+      : assert(onClear != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

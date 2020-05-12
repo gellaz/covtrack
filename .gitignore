@@ -9,6 +9,7 @@
 .history
 .svn/
 help.txt
+Google APIs.md
 
 # IntelliJ related
 *.iml

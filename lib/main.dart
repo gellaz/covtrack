@@ -8,6 +8,7 @@ import 'screens/onboarding.dart';
 import 'screens/splash_screen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
 import 'services/authentication/authentication_service.dart';
+import 'services/location/location_service.dart';
 import 'services/places/places_service.dart';
 import 'services/settings/settings_service.dart';
 import 'styles/themes.dart';
@@ -24,18 +25,22 @@ void main() {
   final settingsService = SharedPrefsSettingsService();
   final authService = FirebaseAuthenticationService();
   final placesService = GooglePlacesService();
+  final locationService = GeolocatorLocationService();
 
   runApp(
     MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<SettingsService>(
-          create: (context) => settingsService,
-        ),
         RepositoryProvider<AuthenticationService>(
           create: (context) => authService,
         ),
+        RepositoryProvider<LocationService>(
+          create: (context) => locationService,
+        ),
         RepositoryProvider<PlacesService>(
           create: (context) => placesService,
+        ),
+        RepositoryProvider<SettingsService>(
+          create: (context) => settingsService,
         ),
       ],
       child: MultiBlocProvider(

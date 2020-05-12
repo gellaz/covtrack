@@ -1,74 +1,56 @@
+import 'package:covtrack/models/coordinates.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 class Place extends Equatable {
-  final String id;
-  final double latitude;
-  final double longitude;
-  final String name;
+  final String placeId;
+  final Coordinates coordinates;
   final String formattedAddress;
+  final String name;
 
   const Place({
-    this.id,
-    this.latitude,
-    this.longitude,
+    @required this.placeId,
+    @required this.coordinates,
+    @required this.formattedAddress,
     this.name,
-    this.formattedAddress,
   });
 
+  String get mainText => name;
+
+  String get secondaryText => formattedAddress.contains(name)
+      ? formattedAddress.replaceFirst(RegExp(name + ','), '').trim()
+      : formattedAddress;
+
   Place copyWith({
-    String id,
-    double latitude,
-    double longitude,
-    String name,
+    String placeId,
+    Coordinates coordinates,
     String formattedAddress,
+    String name,
   }) {
     return Place(
-      id: id ?? this.id,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-      name: name ?? this.name,
+      placeId: placeId ?? this.placeId,
+      coordinates: coordinates ?? this.coordinates,
       formattedAddress: formattedAddress ?? this.formattedAddress,
+      name: name ?? this.name,
     );
-  }
-
-  factory Place.fromJson(Map<String, dynamic> json) {
-    return Place(
-      id: json['place_id'],
-      latitude: json['geometry']['location']['lat'],
-      longitude: json['geometry']['location']['lng'],
-      name: json['name'],
-      formattedAddress: json['formatted_address'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'latitude': latitude,
-      'longitude': longitude,
-      'name': name,
-      'formattedAddress': formattedAddress,
-    };
   }
 
   @override
   List<Object> get props => [
-        id,
-        latitude,
-        longitude,
-        name,
+        placeId,
+        coordinates,
         formattedAddress,
+        name,
       ];
 
   @override
   String toString() {
     return '''
     Place {
-      id: $id,
-      latitude: $latitude,
-      longitude: $longitude,
-      name: $name,
+      placeId: $placeId,
+      coordinates: $coordinates,
       formattedAddress: $formattedAddress,
+      name: $name,
     }''';
   }
 }
