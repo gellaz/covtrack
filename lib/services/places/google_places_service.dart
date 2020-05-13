@@ -23,17 +23,19 @@ class GooglePlacesService implements PlacesService {
     return Place(
       placeId: result.placeId,
       formattedAddress: result.formattedAddress,
-      coordinates: Coordinates(resultCoords.lat, resultCoords.lng),
+      latitude: resultCoords.lat,
+      longitude: resultCoords.lng,
       name: result.name,
     );
   }
 
   @override
   Future<String> getPlaceId(
-    Coordinates coordinates,
+    double latitude,
+    double longitude,
   ) async {
     final response = await geocoding.searchByLocation(
-      Location(coordinates.latitude, coordinates.longitude),
+      Location(latitude, longitude),
     );
     final firstResult = response.results[0];
     return firstResult.placeId;
@@ -42,13 +44,14 @@ class GooglePlacesService implements PlacesService {
   @override
   Future<List<PlaceSuggestion>> getSuggestions(
     String input,
-    Coordinates coordinates,
+    double latitude,
+    double longitude,
   ) async {
     final response = await places.autocomplete(
       input,
       components: [Component(Component.country, 'it')],
       language: 'it',
-      location: Location(coordinates.latitude, coordinates.longitude),
+      location: Location(latitude, longitude),
       radius: 50000,
       sessionToken: Uuid().v4(),
     );

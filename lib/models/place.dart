@@ -1,16 +1,17 @@
-import 'package:covtrack/models/coordinates.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class Place extends Equatable {
   final String placeId;
-  final Coordinates coordinates;
+  final double latitude;
+  final double longitude;
   final String formattedAddress;
   final String name;
 
   const Place({
     @required this.placeId,
-    @required this.coordinates,
+    @required this.latitude,
+    @required this.longitude,
     @required this.formattedAddress,
     this.name,
   });
@@ -23,13 +24,15 @@ class Place extends Equatable {
 
   Place copyWith({
     String placeId,
-    Coordinates coordinates,
+    double latitude,
+    double longitude,
     String formattedAddress,
     String name,
   }) {
     return Place(
       placeId: placeId ?? this.placeId,
-      coordinates: coordinates ?? this.coordinates,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
       formattedAddress: formattedAddress ?? this.formattedAddress,
       name: name ?? this.name,
     );
@@ -38,7 +41,8 @@ class Place extends Equatable {
   @override
   List<Object> get props => [
         placeId,
-        coordinates,
+        latitude,
+        longitude,
         formattedAddress,
         name,
       ];
@@ -48,7 +52,8 @@ class Place extends Equatable {
     return '''
     Place {
       placeId: $placeId,
-      coordinates: $coordinates,
+      latitude: $latitude,
+      longitude: $longitude,
       formattedAddress: $formattedAddress,
       name: $name,
     }''';

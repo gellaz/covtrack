@@ -7,8 +7,7 @@ class GeolocatorLocationService implements LocationService {
   final Geolocator geolocator = Geolocator();
 
   @override
-  Future<Coordinates> getCurrentLocation() async {
-    final position = await geolocator.getCurrentPosition();
-    return Coordinates(position.latitude, position.longitude);
+  Future<Position> getCurrentLocation() async {
+    return await geolocator.getCurrentPosition();
   }
 }

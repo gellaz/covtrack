@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import '../../models/coordinates.dart';
 import '../../models/place_suggestion.dart';
 import '../../services/places/places_service.dart';
 import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
 class PlacesSearchField extends StatefulWidget {
-  final Coordinates userLocation;
+  final double userLatitude;
+  final double userLongitude;
   final Function addMarkerAndCenterMapOn;
 
-  const PlacesSearchField(this.userLocation, this.addMarkerAndCenterMapOn,
+  const PlacesSearchField(
+      this.userLatitude, this.userLongitude, this.addMarkerAndCenterMapOn,
       {Key key})
-      : assert(userLocation != null),
+      : assert(userLatitude != null),
+        assert(userLongitude != null),
         assert(addMarkerAndCenterMapOn != null),
         super(key: key);
 
@@ -73,6 +75,10 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {
-    return await _placesService.getSuggestions(input, widget.userLocation);
+    return await _placesService.getSuggestions(
+      input,
+      widget.userLatitude,
+      widget.userLongitude,
+    );
   }
 }
