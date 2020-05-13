@@ -3,16 +3,16 @@ import 'package:meta/meta.dart';
 
 import 'place.dart';
 
-class Displacement extends Equatable {
-  final String id;
+class Trip extends Equatable {
+  final String tripId;
   final String reason;
   final DateTime startingTime;
   final DateTime arrivalTime;
   final Place source;
   final Place destination;
 
-  Displacement({
-    @required this.id,
+  Trip({
+    @required this.tripId,
     @required this.reason,
     @required this.startingTime,
     @required this.arrivalTime,
@@ -20,16 +20,16 @@ class Displacement extends Equatable {
     @required this.destination,
   });
 
-  Displacement copyWith({
-    String id,
+  Trip copyWith({
+    String tripId,
     String reason,
     DateTime startingTime,
     DateTime arrivalTime,
     Place source,
     Place destination,
   }) {
-    return Displacement(
-      id: id ?? this.id,
+    return Trip(
+      tripId: tripId ?? this.tripId,
       reason: reason ?? this.reason,
       startingTime: startingTime ?? this.startingTime,
       arrivalTime: arrivalTime ?? this.arrivalTime,
@@ -40,7 +40,7 @@ class Displacement extends Equatable {
 
   @override
   List<Object> get props => [
-        id,
+        tripId,
         reason,
         startingTime,
         arrivalTime,
@@ -51,8 +51,8 @@ class Displacement extends Equatable {
   @override
   String toString() {
     return '''
-    Displacement {
-      id: $id,
+    Trip {
+      tripId: $tripId,
       reason: $reason,
       startingTime: $startingTime,
       arrivalTime: $arrivalTime,
