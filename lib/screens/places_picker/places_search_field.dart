@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../models/place_suggestion.dart';
 import '../../services/places/places_service.dart';
@@ -71,7 +72,12 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
     final place = await _placesService.getDetails(suggestion.placeId);
-    widget.addMarkerAndCenterMapOn(place);
+    widget.addMarkerAndCenterMapOn(
+      LatLng(
+        place.latitude,
+        place.longitude,
+      ),
+    );
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {

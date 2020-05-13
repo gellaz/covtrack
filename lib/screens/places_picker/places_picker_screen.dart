@@ -1,14 +1,12 @@
+import 'package:covtrack/screens/places_picker/places_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../models/coordinates.dart';
 import '../../models/place.dart';
 import '../../services/location/location_service.dart';
 import '../../services/places/places_service.dart';
-
-// TODO: Handle latitude called on null exception.
-// TODO: Overwrite search bar text with address of marker.
+import 'destination_card.dart';
 
 class PlacesPickerScreen extends StatefulWidget {
   @override
@@ -21,6 +19,7 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   LocationService _locationService;
   Marker _marker;
   PlacesService _placesService;
+  Widget _detailCard;
 
   @override
   void initState() {
@@ -33,7 +32,13 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Places Picker'),
+        title: _userLocation != null
+            ? PlacesSearchField(
+                _userLocation.latitude,
+                _userLocation.longitude,
+                _onTap,
+              )
+            : null,
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(target: LatLng(0, 0)),
@@ -43,20 +48,28 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
         myLocationButtonEnabled: true,
         onMapCreated: _onMapCreated,
         onTap: _onTap,
+        zoomControlsEnabled: false,
       ),
+      floatingActionButton: _detailCard,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  void _addMarker(LatLng location, Place place) {
-    final markerId = MarkerId(place.placeId);
+  void _addMarker(LatLng location) {
+    final markerId = MarkerId(location.toString());
     setState(() {
       _marker = Marker(
-        infoWindow: InfoWindow(
-          title: '${place.mainText}',
-          snippet: '${place.secondaryText}',
-        ),
         markerId: markerId,
         position: location,
+      );
+    });
+  }
+
+  void _buildDestinationCard(Place destination) {
+    setState(() {
+      _detailCard = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: DestinationCard(destination),
       );
     });
   }
@@ -71,11 +84,10 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   }
 
   Future<Place> _getLocationDetails(LatLng location) async {
-    final coords = Coordinates(
+    final placeId = await _placesService.getPlaceId(
       location.latitude,
       location.longitude,
     );
-    final placeId = await _placesService.getPlaceId(coords);
     return await _placesService.getDetails(placeId);
   }
 
@@ -93,8 +105,9 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   }
 
   void _onTap(LatLng location) async {
-    final place = await _getLocationDetails(location);
-    _addMarker(location, place);
+    _addMarker(location);
     _centerMapOn(location);
+    final place = await _getLocationDetails(location);
+    _buildDestinationCard(place);
   }
 }
