@@ -13,7 +13,7 @@ class Place extends Equatable {
     @required this.latitude,
     @required this.longitude,
     @required this.formattedAddress,
-    this.name,
+    @required this.name,
   });
 
   String get mainText => name;
@@ -21,6 +21,26 @@ class Place extends Equatable {
   String get secondaryText => formattedAddress.contains(name)
       ? formattedAddress.replaceFirst(RegExp(name + ','), '').trim()
       : formattedAddress;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'placeId': placeId,
+      'latitude': latitude,
+      'longitude': longitude,
+      'formattedAddress': formattedAddress,
+      'name': name,
+    };
+  }
+
+  factory Place.fromMap(Map<String, dynamic> map) {
+    return Place(
+      placeId: map['placeId'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
+      formattedAddress: map['formattedAddress'],
+      name: map['name'],
+    );
+  }
 
   Place copyWith({
     String placeId,

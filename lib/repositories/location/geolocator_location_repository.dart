@@ -1,9 +1,11 @@
-part of 'location_service.dart';
+import 'package:geolocator/geolocator.dart';
 
-/// Implementation of the [LocationService] interface that uses
+import 'location_repository.dart';
+
+/// Implementation of the [LocationRepository] interface that uses
 /// the package [geolocator] to retrieve location data from the
 /// device and manage the relative permissions.
-class GeolocatorLocationService implements LocationService {
+class GeolocatorLocationRepository implements LocationRepository {
   final Geolocator geolocator = Geolocator();
 
   @override

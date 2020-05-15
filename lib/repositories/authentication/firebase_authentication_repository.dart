@@ -1,6 +1,6 @@
-part of 'authentication_service.dart';
+part of 'authentication_repository.dart';
 
-class FirebaseAuthenticationService implements AuthenticationService {
+class FirebaseAuthenticationRepository implements AuthenticationRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override

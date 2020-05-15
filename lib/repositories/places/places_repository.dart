@@ -4,10 +4,10 @@ import 'package:uuid/uuid.dart';
 import '../../models/place.dart';
 import '../../models/place_suggestion.dart';
 
-part 'google_places_service.dart';
+part 'google_places_repository.dart';
 
 /// Contract that all the implementations of the interface must follow.
-abstract class PlacesService {
+abstract class PlacesRepository {
   /// Returns a list of suggested places matching the [input] string entered by
   /// the user and computed starting from the given coordinates ([latitude] and
   /// [longitude]).

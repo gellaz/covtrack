@@ -4,7 +4,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../models/place_suggestion.dart';
-import '../../services/places/places_service.dart';
+import '../../repositories/places/places_repository.dart';
 import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
@@ -27,12 +27,12 @@ class PlacesSearchField extends StatefulWidget {
 
 class _PlacesSearchFieldState extends State<PlacesSearchField> {
   final _controller = TextEditingController();
-  PlacesService _placesService;
+  PlacesRepository _placesRepository;
 
   @override
   void initState() {
     super.initState();
-    _placesService = RepositoryProvider.of<PlacesService>(context);
+    _placesRepository = RepositoryProvider.of<PlacesRepository>(context);
     _controller.text = '';
   }
 
@@ -71,7 +71,7 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
   }
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
-    final place = await _placesService.getDetails(suggestion.placeId);
+    final place = await _placesRepository.getDetails(suggestion.placeId);
     widget.addMarkerAndCenterMapOn(
       LatLng(
         place.latitude,
@@ -81,7 +81,7 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {
-    return await _placesService.getSuggestions(
+    return await _placesRepository.getSuggestions(
       input,
       widget.userLatitude,
       widget.userLongitude,

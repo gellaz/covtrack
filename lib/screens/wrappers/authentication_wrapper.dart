@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/authentication/authentication_bloc.dart';
 import '../error_screen.dart';
 import '../login/login_screen.dart';
-import '../root/root_screen.dart';
 import '../splash_screen.dart';
+import 'houses_wrapper.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
   @override
@@ -19,7 +19,7 @@ class AuthenticationWrapper extends StatelessWidget {
           return LoginScreen();
         }
         if (state is Authenticated) {
-          return RootScreen();
+          return HousesWrapper();
         }
         return ErrorScreen();
       },

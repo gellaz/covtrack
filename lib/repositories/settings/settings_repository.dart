@@ -2,9 +2,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/settings.dart';
 
-part 'sharedprefs_settings_service.dart';
+part 'sharedprefs_settings_repository.dart';
 
-abstract class SettingsService {
+abstract class SettingsRepository {
   Future<Settings> initSettings();
   Future<bool> isFirstRun();
   Future<Settings> loadSettings();

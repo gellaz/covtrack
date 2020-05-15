@@ -8,34 +8,37 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Cloud Firestore.
-  cloud_firestore: ^0.13.5
   # Compare objects not references.
-  equatable: ^1.1.1
+  equatable:
   # Firebase authentication API.
-  firebase_auth: ^0.16.0
+  firebase_auth:
   # Firebase Core Flutter SDK.
-  firebase_core: ^0.4.4+3
+  firebase_core:
   # BLoC pattern utilities.
-  flutter_bloc: ^4.0.0
+  flutter_bloc:
   # Autocomplete.
-  flutter_typeahead: ^1.8.0
+  flutter_typeahead:
   # User location.
-  geolocator: ^5.3.1
+  geolocator:
   # Google Maps.
-  google_maps_flutter: ^0.5.27
+  google_maps_flutter:
   # Wrapper for Google Maps APIs.
-  google_maps_webservice: ^0.0.16
+  google_maps_webservice:
   # HTTP client for making requests.
-  http: ^0.12.1
+  http:
   # Onboarding.
-  introduction_screen: ^1.0.7
+  introduction_screen:
+  #
+  path:
+  path_provider:
   # Reactive programming.
-  rxdart: ^0.24.0
+  rxdart:
   # Local storage for simple data.
-  shared_preferences: ^0.5.7
+  shared_preferences:
+  # SQLite
+  sqflite:
   # Generate unique tokens.
-  uuid: ^2.0.4
+  uuid:
 
 
 dev_dependencies:

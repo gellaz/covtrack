@@ -2,14 +2,17 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class PlaceSuggestion extends Equatable {
+  @required
   final String placeId;
+  @required
   final String mainText;
+  @required
   final String secondaryText;
 
   const PlaceSuggestion({
-    @required this.placeId,
-    @required this.mainText,
-    @required this.secondaryText,
+    this.placeId,
+    this.mainText,
+    this.secondaryText,
   });
 
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/register/register_bloc.dart';
-import '../../services/authentication/authentication_service.dart';
+import '../../repositories/authentication/authentication_repository.dart';
 import 'register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
       body: Center(
         child: BlocProvider<RegisterBloc>(
           create: (context) => RegisterBloc(
-            authService: RepositoryProvider.of<AuthenticationService>(context),
+            RepositoryProvider.of<AuthenticationRepository>(context),
           ),
           child: RegisterForm(),
         ),

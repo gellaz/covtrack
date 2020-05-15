@@ -1,12 +1,12 @@
-import 'package:covtrack/screens/places_picker/places_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../models/place.dart';
-import '../../services/location/location_service.dart';
-import '../../services/places/places_service.dart';
+import '../../repositories/location/location_repository.dart';
+import '../../repositories/places/places_repository.dart';
 import 'destination_card.dart';
+import 'places_search_field.dart';
 
 class PlacesPickerScreen extends StatefulWidget {
   @override
@@ -16,16 +16,16 @@ class PlacesPickerScreen extends StatefulWidget {
 class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   LatLng _userLocation;
   GoogleMapController _mapController;
-  LocationService _locationService;
+  LocationRepository _locationRepository;
   Marker _marker;
-  PlacesService _placesService;
+  PlacesRepository _placesRepository;
   Widget _detailCard;
 
   @override
   void initState() {
     super.initState();
-    _locationService = RepositoryProvider.of<LocationService>(context);
-    _placesService = RepositoryProvider.of<PlacesService>(context);
+    _locationRepository = RepositoryProvider.of<LocationRepository>(context);
+    _placesRepository = RepositoryProvider.of<PlacesRepository>(context);
   }
 
   @override
@@ -84,15 +84,15 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   }
 
   Future<Place> _getLocationDetails(LatLng location) async {
-    final placeId = await _placesService.getPlaceId(
+    final placeId = await _placesRepository.getPlaceId(
       location.latitude,
       location.longitude,
     );
-    return await _placesService.getDetails(placeId);
+    return await _placesRepository.getDetails(placeId);
   }
 
   void _onMapCreated(GoogleMapController mapController) {
-    _locationService.getCurrentLocation().then((coords) {
+    _locationRepository.getCurrentLocation().then((coords) {
       setState(() {
         _userLocation = LatLng(
           coords.latitude,

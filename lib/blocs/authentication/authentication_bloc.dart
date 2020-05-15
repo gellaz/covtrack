@@ -2,19 +2,17 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
-import '../../services/authentication/authentication_service.dart';
+import '../../repositories/authentication/authentication_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final AuthenticationService authService;
+  final AuthenticationRepository authRepository;
 
-  AuthenticationBloc({@required this.authService})
-      : assert(authService != null);
+  AuthenticationBloc(this.authRepository) : assert(authRepository != null);
 
   @override
   AuthenticationState get initialState => Uninitialized();
@@ -33,9 +31,9 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapAppStartedToState() async* {
-    final isSignedIn = await authService.isSignedIn();
+    final isSignedIn = await authRepository.isSignedIn();
     if (isSignedIn) {
-      final userId = await authService.getUserId();
+      final userId = await authRepository.getUserId();
       yield Authenticated(userId);
     } else {
       yield Unauthenticated();
@@ -43,11 +41,11 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await authService.getUserId());
+    yield Authenticated(await authRepository.getUserId());
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {
     yield Unauthenticated();
-    authService.signOut();
+    authRepository.signOut();
   }
 }

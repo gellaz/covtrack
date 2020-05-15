@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'blocs/authentication/authentication_bloc.dart';
+import 'blocs/houses/houses_bloc.dart';
 import 'blocs/settings/settings_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
+import 'providers/database_provider.dart';
+import 'repositories/authentication/authentication_repository.dart';
+import 'repositories/houses/houses_database_repository.dart';
+import 'repositories/houses/houses_repository.dart';
+import 'repositories/location/geolocator_location_repository.dart';
+import 'repositories/location/location_repository.dart';
+import 'repositories/places/places_repository.dart';
+import 'repositories/settings/settings_repository.dart';
 import 'screens/onboarding.dart';
 import 'screens/splash_screen.dart';
 import 'screens/wrappers/authentication_wrapper.dart';
-import 'services/authentication/authentication_service.dart';
-import 'services/location/location_service.dart';
-import 'services/places/places_service.dart';
-import 'services/settings/settings_service.dart';
 import 'styles/themes.dart';
 
 void main() {
@@ -22,36 +27,46 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
   // Create the services used in the app.
-  final settingsService = SharedPrefsSettingsService();
-  final authService = FirebaseAuthenticationService();
-  final placesService = GooglePlacesService();
-  final locationService = GeolocatorLocationService();
+  final settingsRepository = SharedPrefsSettingsRepository();
+  final authRepository = FirebaseAuthenticationRepository();
+  final placesRepository = GooglePlacesRepository();
+  final locationRepository = GeolocatorLocationRepository();
+
+  // Create the providers.
+  final databaseProvider = DatabaseProvider.instance;
+
+  // Create the repositories.
+  final housesRepository = HousesDatabaseRepository(databaseProvider);
 
   runApp(
     MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AuthenticationService>(
-          create: (context) => authService,
+        RepositoryProvider<AuthenticationRepository>(
+          create: (context) => authRepository,
         ),
-        RepositoryProvider<LocationService>(
-          create: (context) => locationService,
+        RepositoryProvider<LocationRepository>(
+          create: (context) => locationRepository,
         ),
-        RepositoryProvider<PlacesService>(
-          create: (context) => placesService,
+        RepositoryProvider<PlacesRepository>(
+          create: (context) => placesRepository,
         ),
-        RepositoryProvider<SettingsService>(
-          create: (context) => settingsService,
+        RepositoryProvider<SettingsRepository>(
+          create: (context) => settingsRepository,
         ),
+        RepositoryProvider<HousesRepository>(
+          create: (context) => housesRepository,
+        )
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider<SettingsBloc>(create: (_) {
-            return SettingsBloc(settingsService: settingsService)
-              ..add(AppLoaded());
+            return SettingsBloc(settingsRepository)..add(AppLoaded());
           }),
           BlocProvider<AuthenticationBloc>(create: (_) {
-            return AuthenticationBloc(authService: authService)
-              ..add(AppStarted());
+            return AuthenticationBloc(authRepository)..add(AppStarted());
+          }),
+          BlocProvider<HousesBloc>(create: (_) {
+            return HousesBloc(housesRepository);
           }),
         ],
         child: CovTrack(),

@@ -1,9 +1,9 @@
-part of 'places_service.dart';
+part of 'places_repository.dart';
 
 /// Implementation of the [PlacesService] interface that uses
 /// the package [google_maps_webservice] which is simply a wrapper
 /// around Google Places APIs.
-class GooglePlacesService implements PlacesService {
+class GooglePlacesRepository implements PlacesRepository {
   static const GOOGLE_API_KEY = 'AIzaSyC5k8IchkmGBB4bNVjkIpVjm_X-XVMEvXQ';
   final places = GoogleMapsPlaces(apiKey: GOOGLE_API_KEY);
   final geocoding = GoogleMapsGeocoding(apiKey: GOOGLE_API_KEY);

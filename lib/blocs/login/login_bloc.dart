@@ -1,20 +1,20 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:covtrack/repositories/authentication/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../services/authentication/authentication_service.dart';
 import '../../utils/validators.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  AuthenticationService authService;
+  AuthenticationRepository authRepository;
 
-  LoginBloc({@required this.authService}) : assert(authService != null);
+  LoginBloc(this.authRepository) : assert(authRepository != null);
 
   @override
   LoginState get initialState => LoginState.empty();
@@ -68,7 +68,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }) async* {
     yield LoginState.loading();
     try {
-      await authService.signInWithCredentials(
+      await authRepository.signInWithCredentials(
         email: email,
         password: password,
       );

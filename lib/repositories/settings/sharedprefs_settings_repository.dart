@@ -1,6 +1,6 @@
-part of 'settings_service.dart';
+part of 'settings_repository.dart';
 
-class SharedPrefsSettingsService implements SettingsService {
+class SharedPrefsSettingsRepository implements SettingsRepository {
   @override
   Future<bool> isFirstRun() async {
     final sharedPrefs = await SharedPreferences.getInstance();

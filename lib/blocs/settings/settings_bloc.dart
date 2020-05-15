@@ -2,19 +2,17 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 import '../../models/settings.dart';
-import '../../services/settings/settings_service.dart';
+import '../../repositories/settings/settings_repository.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  final SettingsService settingsService;
+  final SettingsRepository settingsRepository;
 
-  SettingsBloc({@required this.settingsService})
-      : assert(settingsService != null);
+  SettingsBloc(this.settingsRepository) : assert(settingsRepository != null);
 
   @override
   SettingsState get initialState => SettingsInitial();
@@ -30,12 +28,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   Stream<SettingsState> _mapAppStartedToState() async* {
     yield SettingsLoading();
-    final firstRun = await settingsService.isFirstRun();
+    final firstRun = await settingsRepository.isFirstRun();
     if (firstRun) {
-      final createdSettings = await settingsService.initSettings();
+      final createdSettings = await settingsRepository.initSettings();
       yield SettingsCreated(createdSettings);
     } else {
-      final loadedSettings = await settingsService.loadSettings();
+      final loadedSettings = await settingsRepository.loadSettings();
       yield SettingsLoaded(loadedSettings);
     }
   }
@@ -43,7 +41,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   Stream<SettingsState> _mapChangeSettingsToState(
     Map<String, dynamic> newSettings,
   ) async* {
-    await settingsService.saveSettings(newSettings);
+    await settingsRepository.saveSettings(newSettings);
     final settings = Settings();
     settings.updateFromMap(settingsMap: newSettings);
     yield SettingsChanged(settings);

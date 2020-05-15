@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-part 'firebase_authentication_service.dart';
+part 'firebase_authentication_repository.dart';
 
-abstract class AuthenticationService {
+abstract class AuthenticationRepository {
   Future<String> getUserId();
   Future<bool> isSignedIn();
   Future<void> signInWithCredentials({String email, String password});
