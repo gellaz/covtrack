@@ -1,37 +1,43 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Settings {
+class Settings extends Equatable {
+  final String settingsId;
   final bool firstRun;
-  String theme;
+  final String theme;
 
-  static final _instance = Settings._internal(
-    firstRun: false,
-    theme: 'light',
-  );
-
-  Settings._internal({
+  Settings({
+    @required this.settingsId,
     @required this.firstRun,
     @required this.theme,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'firstRun': this.firstRun,
-      'theme': this.theme,
-    };
-  }
-
-  void updateFromMap({@required Map<String, dynamic> settingsMap}) {
-    Settings._internal(
-      firstRun: settingsMap['firstRun'] ?? this.firstRun,
-      theme: settingsMap['theme'] ?? this.theme,
+  Settings copyWith({
+    String tripId,
+    bool firstRun,
+    String theme,
+  }) {
+    return Settings(
+      settingsId: settingsId ?? this.settingsId,
+      firstRun: firstRun ?? this.firstRun,
+      theme: theme ?? this.theme,
     );
   }
 
-  factory Settings() => _instance;
+  @override
+  List<Object> get props => [
+        settingsId,
+        firstRun,
+        theme,
+      ];
 
   @override
   String toString() {
-    return 'Settings { theme: $theme }';
+    return '''
+    Settings {
+      settingsId: $settingsId,
+      firstRun: $firstRun,
+      theme: $theme,
+    }''';
   }
 }

@@ -1,3 +1,4 @@
+import 'package:covtrack/screens/error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,11 +8,13 @@ import 'blocs/settings/settings_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
 import 'providers/database_provider.dart';
 import 'repositories/authentication/authentication_repository.dart';
+import 'repositories/authentication/firebase_authentication_repository.dart';
 import 'repositories/houses/houses_database_repository.dart';
 import 'repositories/houses/houses_repository.dart';
 import 'repositories/location/geolocator_location_repository.dart';
 import 'repositories/location/location_repository.dart';
 import 'repositories/places/places_repository.dart';
+import 'repositories/settings/settings_database_repository.dart';
 import 'repositories/settings/settings_repository.dart';
 import 'screens/onboarding.dart';
 import 'screens/splash_screen.dart';
@@ -26,17 +29,15 @@ void main() {
   // Bloc delegate used for debugging.
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  // Create the services used in the app.
-  final settingsRepository = SharedPrefsSettingsRepository();
-  final authRepository = FirebaseAuthenticationRepository();
-  final placesRepository = GooglePlacesRepository();
-  final locationRepository = GeolocatorLocationRepository();
-
   // Create the providers.
   final databaseProvider = DatabaseProvider.instance;
 
   // Create the repositories.
+  final authRepository = FirebaseAuthenticationRepository();
   final housesRepository = HousesDatabaseRepository(databaseProvider);
+  final locationRepository = GeolocatorLocationRepository();
+  final placesRepository = GooglePlacesRepository();
+  final settingsRepository = SettingsDatabaseRepository(databaseProvider);
 
   runApp(
     MultiRepositoryProvider(
@@ -83,13 +84,19 @@ class CovTrack extends StatelessWidget {
       theme: Themes.light,
       home: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
-          if (state is SettingsCreated) {
-            return Onboarding();
+          if (state is SettingsLoadInProgress) {
+            return SplashScreen();
           }
-          if (state is SettingsLoaded) {
-            return AuthenticationWrapper();
+          if (state is SettingsLoadSuccess) {
+            if (state.settings.firstRun)
+              return Onboarding();
+            else
+              return AuthenticationWrapper();
           }
-          return SplashScreen();
+          if (state is SettingsLoadFailure) {
+            return ErrorScreen();
+          }
+          return ErrorScreen();
         },
       ),
     );

@@ -9,11 +9,14 @@ class AppLoaded extends SettingsEvent {
   List<Object> get props => [];
 }
 
-class ChangeSettings extends SettingsEvent {
-  final Map<String, dynamic> newSettings;
+class SettingsChanged extends SettingsEvent {
+  final Settings newSettings;
 
-  const ChangeSettings(this.newSettings);
+  const SettingsChanged(this.newSettings);
 
   @override
   List<Object> get props => [newSettings];
+
+  @override
+  String toString() => 'SettingsChanged {newSettings: $newSettings}';
 }

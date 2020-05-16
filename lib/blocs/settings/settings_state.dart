@@ -5,34 +5,41 @@ abstract class SettingsState extends Equatable {
 }
 
 class SettingsInitial extends SettingsState {
-  const SettingsInitial();
   @override
   List<Object> get props => [];
+
+  @override
+  String toString() => 'SettingsInitial';
 }
 
-class SettingsLoading extends SettingsState {
-  const SettingsLoading();
+class SettingsLoadInProgress extends SettingsState {
   @override
   List<Object> get props => [];
+
+  @override
+  String toString() => 'SettingsLoadInProgress';
 }
 
-class SettingsCreated extends SettingsState {
+class SettingsLoadSuccess extends SettingsState {
   final Settings settings;
-  const SettingsCreated(this.settings);
+
+  const SettingsLoadSuccess(this.settings);
+
   @override
   List<Object> get props => [settings];
+
+  @override
+  String toString() => 'SettingsLoadSuccess {settings: $settings}';
 }
 
-class SettingsLoaded extends SettingsState {
-  final Settings settings;
-  const SettingsLoaded(this.settings);
-  @override
-  List<Object> get props => [settings];
-}
+class SettingsLoadFailure extends SettingsState {
+  final String message;
 
-class SettingsChanged extends SettingsState {
-  final Settings newSettings;
-  const SettingsChanged(this.newSettings);
+  const SettingsLoadFailure(this.message);
+
   @override
-  List<Object> get props => [newSettings];
+  List<Object> get props => [message];
+
+  @override
+  String toString() => 'SettingsLoadFailure {message: $message}';
 }

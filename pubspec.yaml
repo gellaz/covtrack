@@ -33,8 +33,6 @@ dependencies:
   path_provider:
   # Reactive programming.
   rxdart:
-  # Local storage for simple data.
-  shared_preferences:
   # SQLite
   sqflite:
   # Generate unique tokens.

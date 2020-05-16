@@ -33,7 +33,7 @@ class PlaceDao implements Dao<Place> {
       latitude: map[columnLatitude],
       longitude: map[columnLongitude],
       formattedAddress: map[columnFormattedAddress],
-      name: columnName,
+      name: map[columnName],
     );
   }
 

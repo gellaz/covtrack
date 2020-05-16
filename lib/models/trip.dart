@@ -4,26 +4,20 @@ import 'package:meta/meta.dart';
 import 'place.dart';
 
 class Trip extends Equatable {
-  @required
   final String tripId;
-  @required
   final String reason;
-  @required
   final DateTime startingTime;
-  @required
   final DateTime arrivalTime;
-  @required
   final Place source;
-  @required
   final Place destination;
 
   Trip({
-    this.tripId,
-    this.reason,
-    this.startingTime,
-    this.arrivalTime,
-    this.source,
-    this.destination,
+    @required this.tripId,
+    @required this.reason,
+    @required this.startingTime,
+    @required this.arrivalTime,
+    @required this.source,
+    @required this.destination,
   });
 
   Trip copyWith({

@@ -20,30 +20,42 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
     if (event is AppLoaded) {
-      yield* _mapAppStartedToState();
-    } else if (event is ChangeSettings) {
-      yield* _mapChangeSettingsToState(event.newSettings);
+      yield* _mapAppLoadedToState();
+    } else if (event is SettingsChanged) {
+      yield* _mapSettingsChangedToState(event.newSettings);
     }
   }
 
-  Stream<SettingsState> _mapAppStartedToState() async* {
-    yield SettingsLoading();
-    final firstRun = await settingsRepository.isFirstRun();
-    if (firstRun) {
-      final createdSettings = await settingsRepository.initSettings();
-      yield SettingsCreated(createdSettings);
-    } else {
-      final loadedSettings = await settingsRepository.loadSettings();
-      yield SettingsLoaded(loadedSettings);
+  Stream<SettingsState> _mapAppLoadedToState() async* {
+    yield SettingsLoadInProgress();
+    try {
+      final settings = await settingsRepository.getSettings();
+      print('settingz: $settings');
+      if (settings == null) {
+        settingsRepository.insert(
+          Settings(
+            settingsId: 'covtrackSettings',
+            firstRun: true,
+            theme: 'light',
+          ),
+        );
+      }
+
+      yield SettingsLoadSuccess(settings);
+    } catch (e) {
+      yield SettingsLoadFailure(e.toString());
     }
   }
 
-  Stream<SettingsState> _mapChangeSettingsToState(
-    Map<String, dynamic> newSettings,
+  Stream<SettingsState> _mapSettingsChangedToState(
+    Settings newSettings,
   ) async* {
-    await settingsRepository.saveSettings(newSettings);
-    final settings = Settings();
-    settings.updateFromMap(settingsMap: newSettings);
-    yield SettingsChanged(settings);
+    yield SettingsLoadInProgress();
+    try {
+      await settingsRepository.update(newSettings);
+      yield SettingsLoadSuccess(newSettings);
+    } catch (e) {
+      yield SettingsLoadFailure(e.toString());
+    }
   }
 }
