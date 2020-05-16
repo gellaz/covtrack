@@ -37,6 +37,8 @@ class HomeRouter implements Router {
       case '/home/old-trips':
         return MaterialPageRoute(builder: (_) => OldTripsScreen());
         break;
+      default:
+        throw Exception('Route ${settings.name} doesn\'t exist');
     }
   }
 }
@@ -51,6 +53,8 @@ class InfoRouter implements Router {
       case '/info':
         return MaterialPageRoute(builder: (_) => InfoScreen());
         break;
+      default:
+        throw Exception('Route ${settings.name} doesn\'t exist');
     }
   }
 }
@@ -65,6 +69,8 @@ class DonateRouter implements Router {
       case '/donate':
         return MaterialPageRoute(builder: (_) => DonateScreen());
         break;
+      default:
+        throw Exception('Route ${settings.name} doesn\'t exist');
     }
   }
 }
