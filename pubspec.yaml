@@ -12,30 +12,25 @@ dependencies:
   equatable:
   # Firebase authentication API.
   firebase_auth:
-  # Firebase Core Flutter SDK.
+  # Firebase core Flutter SDK.
   firebase_core:
   # BLoC pattern utilities.
   flutter_bloc:
-  # Autocomplete.
+  # Autocomplete TextField.
   flutter_typeahead:
-  # User location.
+  # Device location.
   geolocator:
   # Google Maps.
   google_maps_flutter:
-  # Wrapper for Google Maps APIs.
+  # Google Maps APIs.
   google_maps_webservice:
-  # HTTP client for making requests.
-  http:
   # Onboarding.
   introduction_screen:
-  #
-  path:
-  path_provider:
   # Reactive programming.
   rxdart:
-  # SQLite
+  # SQLite database.
   sqflite:
-  # Generate unique tokens.
+  # Generate RFC4122 UUIDs.
   uuid:
 
 
