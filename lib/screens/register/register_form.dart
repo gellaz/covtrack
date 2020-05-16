@@ -76,7 +76,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       child: Container(
-        decoration: Decorations.linearGradient(context: context),
+        decoration: Decorations.linearGradient(context),
         child: BlocBuilder<RegisterBloc, RegisterState>(
           builder: (context, state) {
             return Padding(

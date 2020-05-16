@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
         }
       },
       child: Container(
-        decoration: Decorations.linearGradient(context: context),
+        decoration: Decorations.linearGradient(context),
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             return Padding(

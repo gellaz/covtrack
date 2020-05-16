@@ -9,36 +9,17 @@ class GooglePlacesRepository implements PlacesRepository {
   final geocoding = GoogleMapsGeocoding(apiKey: GOOGLE_API_KEY);
 
   @override
-  Future<Place> getDetails(
-    String placeId,
-  ) async {
-    final response = await places.getDetailsByPlaceId(
-      placeId,
-      fields: ['formatted_address', 'geometry', 'name', 'place_id'],
-      language: 'it',
-      sessionToken: Uuid().v4(),
+  Future<Place> getPlaceFromCoords(double latitude, double longitude) async {
+    final geocodingResponse = await geocoding.searchByLocation(
+      Location(latitude, longitude),
     );
-    final result = response.result;
-    final resultCoords = response.result.geometry.location;
-    return Place(
-      placeId: result.placeId,
-      formattedAddress: result.formattedAddress,
-      latitude: resultCoords.lat,
-      longitude: resultCoords.lng,
-      name: result.name,
-    );
+    final firstResult = geocodingResponse.results.first;
+    return await _getDetailsByPlaceId(firstResult.placeId);
   }
 
   @override
-  Future<String> getPlaceId(
-    double latitude,
-    double longitude,
-  ) async {
-    final response = await geocoding.searchByLocation(
-      Location(latitude, longitude),
-    );
-    final firstResult = response.results[0];
-    return firstResult.placeId;
+  Future<Place> getPlaceFromSuggestion(PlaceSuggestion suggestion) async {
+    return await _getDetailsByPlaceId(suggestion.placeId);
   }
 
   @override
@@ -63,5 +44,23 @@ class GooglePlacesRepository implements PlacesRepository {
         secondaryText: formatting.secondaryText,
       );
     }).toList();
+  }
+
+  Future<Place> _getDetailsByPlaceId(String placeId) async {
+    final response = await places.getDetailsByPlaceId(
+      placeId,
+      fields: ['formatted_address', 'geometry', 'name', 'place_id'],
+      language: 'it',
+      sessionToken: Uuid().v4(),
+    );
+    final result = response.result;
+    final resultCoords = result.geometry.location;
+    return Place(
+      placeId: result.placeId,
+      formattedAddress: result.formattedAddress,
+      latitude: resultCoords.lat,
+      longitude: resultCoords.lng,
+      name: result.name,
+    );
   }
 }

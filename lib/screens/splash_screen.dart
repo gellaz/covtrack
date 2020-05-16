@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: Decorations.linearGradient(context: context),
+        decoration: Decorations.linearGradient(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[

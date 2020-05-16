@@ -8,12 +8,18 @@ import '../../repositories/places/places_repository.dart';
 import 'destination_card.dart';
 import 'places_search_field.dart';
 
-class PlacesPickerScreen extends StatefulWidget {
+class PlacesPicker extends StatefulWidget {
+  final Function onPlaceSelected;
+
+  const PlacesPicker({Key key, @required this.onPlaceSelected})
+      : assert(onPlaceSelected != null),
+        super(key: key);
+
   @override
-  _PlacesPickerScreenState createState() => _PlacesPickerScreenState();
+  _PlacesPickerState createState() => _PlacesPickerState();
 }
 
-class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
+class _PlacesPickerState extends State<PlacesPicker> {
   LatLng _userLocation;
   GoogleMapController _mapController;
   LocationRepository _locationRepository;
@@ -69,7 +75,10 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
     setState(() {
       _detailCard = Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: DestinationCard(destination),
+        child: DestinationCard(
+          place: destination,
+          onButtonPressed: widget.onPlaceSelected,
+        ),
       );
     });
   }
@@ -84,19 +93,18 @@ class _PlacesPickerScreenState extends State<PlacesPickerScreen> {
   }
 
   Future<Place> _getLocationDetails(LatLng location) async {
-    final placeId = await _placesRepository.getPlaceId(
+    return await _placesRepository.getPlaceFromCoords(
       location.latitude,
       location.longitude,
     );
-    return await _placesRepository.getDetails(placeId);
   }
 
   void _onMapCreated(GoogleMapController mapController) {
     _locationRepository.getCurrentLocation().then((coords) {
       setState(() {
         _userLocation = LatLng(
-          coords.latitude,
-          coords.longitude,
+          coords['latitude'],
+          coords['longitude'],
         );
       });
       _mapController = mapController;

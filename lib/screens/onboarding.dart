@@ -41,7 +41,7 @@ class Onboarding extends StatelessWidget {
       body:
           'The main functionality of CovTrack is replacing the mandatory self-certification form',
       decoration: PageDecoration(
-        boxDecoration: Decorations.linearGradient(context: context),
+        boxDecoration: Decorations.linearGradient(context),
       ),
     );
   }
@@ -55,7 +55,7 @@ class Onboarding extends StatelessWidget {
       title: 'Stay Home',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
-        boxDecoration: Decorations.linearGradient(context: context),
+        boxDecoration: Decorations.linearGradient(context),
       ),
     );
   }
@@ -69,7 +69,7 @@ class Onboarding extends StatelessWidget {
       title: 'Stay Home',
       body: 'AAAAAAAAA',
       decoration: PageDecoration(
-        boxDecoration: Decorations.linearGradient(context: context),
+        boxDecoration: Decorations.linearGradient(context),
       ),
     );
   }

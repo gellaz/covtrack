@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../screens/donate/donate_detail_screen.dart';
 import '../screens/donate/donate_screen.dart';
+import '../screens/home/destination_picker_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/home/old_trips_screen.dart';
 import '../screens/home/trip_details_screen.dart';
 import '../screens/info/info_screen.dart';
-import '../screens/places_picker/places_picker_screen.dart';
 
 abstract class Router {
   final String initialRoute;
@@ -26,10 +26,10 @@ class HomeRouter implements Router {
       case '/home':
         return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
-      case '/home/place-picker':
-        return MaterialPageRoute(builder: (_) => PlacesPickerScreen());
+      case '/home/destination-picker':
+        return MaterialPageRoute(builder: (_) => DestinationPickerScreen());
         break;
-      case '/home/displacement-detail':
+      case '/home/trip-detail':
         var destination = settings.arguments;
         return MaterialPageRoute(
           builder: (_) => TripDetailsScreen(destination),

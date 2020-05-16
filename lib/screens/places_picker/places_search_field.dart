@@ -9,16 +9,16 @@ import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
 class PlacesSearchField extends StatefulWidget {
+  final Function addMarkerAndCenterMapOn;
   final double userLatitude;
   final double userLongitude;
-  final Function addMarkerAndCenterMapOn;
 
   const PlacesSearchField(
       this.userLatitude, this.userLongitude, this.addMarkerAndCenterMapOn,
       {Key key})
-      : assert(userLatitude != null),
+      : assert(addMarkerAndCenterMapOn != null),
+        assert(userLatitude != null),
         assert(userLongitude != null),
-        assert(addMarkerAndCenterMapOn != null),
         super(key: key);
 
   @override
@@ -71,7 +71,7 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
   }
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
-    final place = await _placesRepository.getDetails(suggestion.placeId);
+    final place = await _placesRepository.getPlaceFromSuggestion(suggestion);
     widget.addMarkerAndCenterMapOn(
       LatLng(
         place.latitude,

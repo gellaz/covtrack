@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'blocs/authentication/authentication_bloc.dart';
-import 'blocs/houses/houses_bloc.dart';
 import 'blocs/settings/settings_bloc.dart';
 import 'blocs/simple_bloc_delegate.dart';
 import 'providers/database_provider.dart';
 import 'repositories/authentication/authentication_repository.dart';
 import 'repositories/authentication/firebase_authentication_repository.dart';
-import 'repositories/houses/houses_database_repository.dart';
-import 'repositories/houses/houses_repository.dart';
 import 'repositories/location/geolocator_location_repository.dart';
 import 'repositories/location/location_repository.dart';
 import 'repositories/places/places_repository.dart';
@@ -34,7 +31,6 @@ void main() {
 
   // Create the repositories.
   final authRepository = FirebaseAuthenticationRepository();
-  final housesRepository = HousesDatabaseRepository(databaseProvider);
   final locationRepository = GeolocatorLocationRepository();
   final placesRepository = GooglePlacesRepository();
   final settingsRepository = SettingsDatabaseRepository(databaseProvider);
@@ -54,9 +50,6 @@ void main() {
         RepositoryProvider<SettingsRepository>(
           create: (context) => settingsRepository,
         ),
-        RepositoryProvider<HousesRepository>(
-          create: (context) => housesRepository,
-        )
       ],
       child: MultiBlocProvider(
         providers: [
@@ -65,9 +58,6 @@ void main() {
           }),
           BlocProvider<AuthenticationBloc>(create: (_) {
             return AuthenticationBloc(authRepository)..add(AppStarted());
-          }),
-          BlocProvider<HousesBloc>(create: (_) {
-            return HousesBloc(housesRepository);
           }),
         ],
         child: CovTrack(),

@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
         Text('Stay Home. Stay Safe.'),
         SizedBox(height: 10),
         Text(
-          'At the moment there is no active displacement. If you need to go somewhere for a specific reason start create a new displacement or select one from the list of your previous displacements.',
+          'At the moment there is no active trip. If you need to go somewhere for a specific reason create a new trip or select one from the list of your previous trips.',
           textAlign: TextAlign.center,
         ),
       ],
@@ -44,24 +44,26 @@ class HomeScreen extends StatelessWidget {
   Widget _buildButtonBar(BuildContext context) {
     return Column(
       children: <Widget>[
-        FloatingActionButton.extended(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/home/place-picker',
-          ),
-          label: Text('New Trip'),
-          icon: Icon(Icons.add),
-        ),
+        _buildNewTripButton(context),
         SizedBox(height: 10),
-        FloatingActionButton.extended(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/home/old-trips',
-          ),
-          label: Text('Old Trips'),
-          icon: Icon(Icons.history),
-        ),
+        _buildOldTripsButton(context),
       ],
+    );
+  }
+
+  Widget _buildNewTripButton(BuildContext context) {
+    return FloatingActionButton.extended(
+      icon: Icon(Icons.add),
+      label: Text('New Trip'),
+      onPressed: () => Navigator.pushNamed(context, '/home/destination-picker'),
+    );
+  }
+
+  Widget _buildOldTripsButton(BuildContext context) {
+    return FloatingActionButton.extended(
+      icon: Icon(Icons.history),
+      label: Text('Old Trips'),
+      onPressed: () => Navigator.pushNamed(context, '/home/old-trips'),
     );
   }
 }

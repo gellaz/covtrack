@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Decorations {
-  static BoxDecoration linearGradient({@required BuildContext context}) {
+  static BoxDecoration linearGradient(BuildContext context) {
     return BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,

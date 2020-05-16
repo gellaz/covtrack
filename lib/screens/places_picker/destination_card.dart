@@ -2,26 +2,25 @@ import 'package:covtrack/models/place.dart';
 import 'package:flutter/material.dart';
 
 class DestinationCard extends StatelessWidget {
-  final Place destination;
+  final Place place;
+  final Function onButtonPressed;
 
-  const DestinationCard(this.destination, {Key key})
-      : assert(destination != null),
+  const DestinationCard({
+    Key key,
+    @required this.place,
+    @required this.onButtonPressed,
+  })  : assert(place != null),
+        assert(onButtonPressed != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('${destination.mainText}'),
-        subtitle: Text('${destination.secondaryText}'),
+        title: Text('${place.mainText}'),
+        subtitle: Text('${place.secondaryText}'),
         trailing: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(
-              context,
-              '/home/displacement-detail',
-              arguments: destination,
-            );
-          },
+          onPressed: onButtonPressed,
           child: Icon(Icons.keyboard_arrow_right),
         ),
       ),

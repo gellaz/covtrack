@@ -9,7 +9,11 @@ class GeolocatorLocationRepository implements LocationRepository {
   final Geolocator geolocator = Geolocator();
 
   @override
-  Future<Position> getCurrentLocation() async {
-    return await geolocator.getCurrentPosition();
+  Future<Map<String, double>> getCurrentLocation() async {
+    final position = await geolocator.getCurrentPosition();
+    return {
+      'latitude': position.latitude,
+      'longitude': position.longitude,
+    };
   }
 }

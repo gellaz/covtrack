@@ -1,13 +1,32 @@
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:uuid/uuid.dart';
+
 import '../../models/place.dart';
 import '../../models/place_suggestion.dart';
 
 part 'google_places_repository.dart';
 
-/// Contract that all the implementations of the interface must follow.
+/// Contract that all the implementations of the [PlacesRepository] interface must follow.
+/// This interface is an abstraction to let the user retrieve different kind of information
+/// about the places in the nearby area. In particular:
+///
+/// 1. Retrieve a list of [PlaceSuggestion] given an input query and a location in terms of latitude and longitude.
+/// 2. Retrieve a [Place] given the latitude and the longitude of that place.
+/// 3. Retrieve the name of a place given the
 abstract class PlacesRepository {
+  /// Returns the the place with the given coordinates ([latitude] and
+  /// [longitude]).
+  Future<Place> getPlaceFromCoords(
+    double latitude,
+    double longitude,
+  );
+
+  /// Returns the [Place] associated to the given [suggestion].
+  Future<Place> getPlaceFromSuggestion(
+    PlaceSuggestion suggestion,
+  );
+
   /// Returns a list of suggested places matching the [input] string entered by
   /// the user and computed starting from the given coordinates ([latitude] and
   /// [longitude]).
@@ -15,19 +34,5 @@ abstract class PlacesRepository {
     String input,
     double latitude,
     double longitude,
-  );
-
-  /// Returns the id of the place with the given coordinates ([latitude] and
-  /// [longitude]).
-  Future<String> getPlaceId(
-    double latitude,
-    double longitude,
-  );
-
-  /// Returns the details for the given [placeId]. In particular returns a [Place]
-  /// object with all the useful information: placeId, coordinates, formattedAddress,
-  /// name.
-  Future<Place> getDetails(
-    String placeId,
   );
 }

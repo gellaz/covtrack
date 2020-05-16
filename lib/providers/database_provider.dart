@@ -1,7 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../dao/house_dao.dart';
 import '../dao/place_dao.dart';
 import '../dao/settings_dao.dart';
 
@@ -36,7 +35,6 @@ class DatabaseProvider {
 
   // Executes the SQL queries to create the tables.
   Future<void> _onCreate(Database db, int version) async {
-    await db.execute(HouseDao().createTableQuery);
     await db.execute(PlaceDao().createTableQuery);
     await db.execute(SettingsDao().createTableQuery);
   }
