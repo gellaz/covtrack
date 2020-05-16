@@ -1,22 +1,22 @@
-import 'package:covtrack/screens/error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/authentication/authentication_bloc.dart';
-import 'blocs/settings/settings_bloc.dart';
-import 'blocs/simple_bloc_delegate.dart';
-import 'providers/database_provider.dart';
-import 'repositories/authentication/authentication_repository.dart';
-import 'repositories/authentication/firebase_authentication_repository.dart';
-import 'repositories/location/geolocator_location_repository.dart';
-import 'repositories/location/location_repository.dart';
-import 'repositories/places/places_repository.dart';
-import 'repositories/settings/settings_database_repository.dart';
-import 'repositories/settings/settings_repository.dart';
-import 'screens/onboarding.dart';
-import 'screens/splash_screen.dart';
-import 'screens/wrappers/authentication_wrapper.dart';
-import 'styles/themes.dart';
+import 'business/blocs/authentication/authentication_bloc.dart';
+import 'business/blocs/settings/settings_bloc.dart';
+import 'business/blocs/simple_bloc_delegate.dart';
+import 'business/providers/database_provider.dart';
+import 'business/repositories/authentication/authentication_repository.dart';
+import 'business/repositories/authentication/firebase_authentication_repository.dart';
+import 'business/repositories/location/geolocator_location_repository.dart';
+import 'business/repositories/location/location_repository.dart';
+import 'business/repositories/places/places_repository.dart';
+import 'business/repositories/settings/settings_database_repository.dart';
+import 'business/repositories/settings/settings_repository.dart';
+import 'presentation/containers/authentication_container.dart';
+import 'presentation/screens/error_screen.dart';
+import 'presentation/screens/onboarding_screen.dart';
+import 'presentation/screens/splash_screen.dart';
+import 'presentation/styles/themes.dart';
 
 void main() {
   // Required in Flutter v1.9.4+ before using any plugins if
@@ -79,9 +79,9 @@ class CovTrack extends StatelessWidget {
           }
           if (state is SettingsLoadSuccess) {
             if (state.settings.firstRun)
-              return Onboarding();
+              return OnboardingScreen();
             else
-              return AuthenticationWrapper();
+              return AuthenticationContainer();
           }
           if (state is SettingsLoadFailure) {
             return ErrorScreen();

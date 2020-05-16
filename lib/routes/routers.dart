@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../screens/donate/donate_detail_screen.dart';
-import '../screens/donate/donate_screen.dart';
-import '../screens/home/destination_picker_screen.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/home/old_trips_screen.dart';
-import '../screens/home/trip_details_screen.dart';
-import '../screens/info/info_screen.dart';
+import '../presentation/screens/destination_picker_screen.dart';
+import '../presentation/screens/donate_screen.dart';
+import '../presentation/screens/home_screen.dart';
+import '../presentation/screens/info_screen.dart';
+import '../presentation/screens/old_trips_screen.dart';
+import '../presentation/screens/trip_details_screen.dart';
 
 abstract class Router {
   final String initialRoute;
@@ -29,7 +28,7 @@ class HomeRouter implements Router {
       case '/home/destination-picker':
         return MaterialPageRoute(builder: (_) => DestinationPickerScreen());
         break;
-      case '/home/trip-detail':
+      case '/home/trip-details':
         var destination = settings.arguments;
         return MaterialPageRoute(
           builder: (_) => TripDetailsScreen(destination),
@@ -65,9 +64,6 @@ class DonateRouter implements Router {
     switch (settings.name) {
       case '/donate':
         return MaterialPageRoute(builder: (_) => DonateScreen());
-        break;
-      case '/donate/detail':
-        return MaterialPageRoute(builder: (_) => DonateDetailScreen());
         break;
     }
   }

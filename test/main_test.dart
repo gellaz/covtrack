@@ -1,4 +1,4 @@
-import 'package:covtrack/screens/onboarding.dart';
+import 'package:covtrack/presentation/screens/onboarding_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:covtrack/main.dart';
 
@@ -8,6 +8,6 @@ void main() {
     await tester.pumpWidget(CovTrack());
 
     // The root widget contains the SplashScreen.
-    expect(find.byType(Onboarding), findsOneWidget);
+    expect(find.byType(OnboardingScreen), findsOneWidget);
   });
 }
