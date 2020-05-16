@@ -1,4 +1,4 @@
-import '../../../data/dao/settings_dao.dart';
+import '../../../data/daos/settings_dao.dart';
 import '../../../data/models/settings.dart';
 import '../../providers/database_provider.dart';
 import 'settings_repository.dart';

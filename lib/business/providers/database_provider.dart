@@ -1,8 +1,8 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../data/dao/place_dao.dart';
-import '../../data/dao/settings_dao.dart';
+import '../../data/daos/place_dao.dart';
+import '../../data/daos/settings_dao.dart';
 
 class DatabaseProvider {
   static final _databaseName = 'covtrack.db';
