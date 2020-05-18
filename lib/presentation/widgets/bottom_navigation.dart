@@ -19,16 +19,16 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentTab.index,
       items: [
-        _buildItem(tabItem: tabs[TabIndex.donate]),
-        _buildItem(tabItem: tabs[TabIndex.home]),
-        _buildItem(tabItem: tabs[TabIndex.info]),
+        _buildItem(tabs[TabIndex.donate]),
+        _buildItem(tabs[TabIndex.home]),
+        _buildItem(tabs[TabIndex.info]),
       ],
       onTap: (index) => onSelectTab(TabIndex.values[index]),
       type: BottomNavigationBarType.fixed,
     );
   }
 
-  BottomNavigationBarItem _buildItem({TabItem tabItem}) {
+  BottomNavigationBarItem _buildItem(TabItem tabItem) {
     return BottomNavigationBarItem(
       icon: tabItem.icon,
       title: tabItem.title,

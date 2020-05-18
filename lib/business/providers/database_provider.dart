@@ -29,8 +29,14 @@ class DatabaseProvider {
     return await openDatabase(
       path,
       version: _databaseVersion,
+      onConfigure: _onConfigure,
       onCreate: _onCreate,
     );
+  }
+
+  // Enables foreign keys support.
+  Future<void> _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
   }
 
   // Executes the SQL queries to create the tables.

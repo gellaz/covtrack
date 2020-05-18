@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'place.dart';
 
 class Trip extends Equatable {
-  final String tripId;
+  final int tripId;
   final String reason;
   final DateTime startingTime;
   final DateTime arrivalTime;
@@ -21,7 +21,7 @@ class Trip extends Equatable {
   });
 
   Trip copyWith({
-    String tripId,
+    int tripId,
     String reason,
     DateTime startingTime,
     DateTime arrivalTime,

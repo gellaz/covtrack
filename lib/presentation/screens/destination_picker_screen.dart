@@ -25,8 +25,8 @@ class _DestinationPickerScreenState extends State<DestinationPickerScreen> {
   @override
   void initState() {
     super.initState();
-    _locationRepository = RepositoryProvider.of<LocationRepository>(context);
-    _placesRepository = RepositoryProvider.of<PlacesRepository>(context);
+    _locationRepository = context.repository<LocationRepository>();
+    _placesRepository = context.repository<PlacesRepository>();
   }
 
   @override
