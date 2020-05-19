@@ -30,17 +30,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     yield SettingsLoadInProgress();
     try {
       final settings = await settingsRepository.getSettings();
-      print('settingz: $settings');
-      if (settings == null) {
-        settingsRepository.insert(
-          Settings(
-            settingsId: 'covtrackSettings',
-            firstRun: true,
-            theme: 'light',
-          ),
-        );
-      }
-
       yield SettingsLoadSuccess(settings);
     } catch (e) {
       yield SettingsLoadFailure(e.toString());

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
-import 'business/providers/database_provider.dart';
+import 'business/blocs/trips/trips_bloc.dart';
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/location/geolocator_location_repository.dart';
@@ -12,6 +12,7 @@ import 'business/repositories/location/location_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
+import 'business/repositories/trips/trips_database_repository.dart';
 import 'presentation/containers/authentication_container.dart';
 import 'presentation/screens/error_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
@@ -26,14 +27,12 @@ void main() {
   // Bloc delegate used for debugging.
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  // Create the providers.
-  final databaseProvider = DatabaseProvider.instance;
-
   // Create the repositories.
   final authRepository = FirebaseAuthenticationRepository();
   final locationRepository = GeolocatorLocationRepository();
   final placesRepository = GooglePlacesRepository();
-  final settingsRepository = SettingsDatabaseRepository(databaseProvider);
+  final settingsRepository = SettingsDatabaseRepository();
+  final tripsRepository = TripsDatabaseRepository();
 
   runApp(
     MultiRepositoryProvider(
@@ -58,6 +57,9 @@ void main() {
           }),
           BlocProvider<AuthenticationBloc>(create: (_) {
             return AuthenticationBloc(authRepository)..add(AppStarted());
+          }),
+          BlocProvider<TripsBloc>(create: (_) {
+            return TripsBloc(tripsRepository)..add(TripsLoaded());
           }),
         ],
         child: CovTrack(),

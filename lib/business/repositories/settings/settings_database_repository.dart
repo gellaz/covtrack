@@ -1,43 +1,49 @@
-import '../../../data/daos/settings_dao.dart';
+import 'package:covtrack/data/app_database.dart';
+import 'package:sembast/sembast.dart';
+
 import '../../../data/models/settings.dart';
-import '../../providers/database_provider.dart';
 import 'settings_repository.dart';
 
 class SettingsDatabaseRepository implements SettingsRepository {
-  final dao = SettingsDao();
+  // The name of the store.
+  static const String SETTINGS_STORE_NAME = 'settings';
+
+  // This store acts like a persistent map, values of which are Settings objects
+  // converted to Map.
+  final _settingsStore = intMapStoreFactory.store(SETTINGS_STORE_NAME);
+
+  // Private getter to shorten the amount of code needed to get the singleton
+  // instance of an opened database.
+  Future<Database> get _db async => await AppDatabase.instance.database;
 
   @override
-  DatabaseProvider databaseProvider;
-
-  SettingsDatabaseRepository(this.databaseProvider)
-      : assert(databaseProvider != null);
+  Future<void> _init() async {
+    await _settingsStore.add(await _db, Settings.init().toMap());
+  }
 
   @override
-  Future<Settings> insert(Settings settings) async {
-    final db = await databaseProvider.database;
-    await db.insert(dao.tableName, dao.toMap(settings));
-    return settings;
+  Future<void> update(Settings settings) async {
+    final finder = Finder(filter: Filter.byKey(settings.settingsId));
+    await _settingsStore.update(
+      await _db,
+      settings.toMap(),
+      finder: finder,
+    );
   }
 
   @override
   Future<Settings> getSettings() async {
-    final db = await databaseProvider.database;
-    List<Map> maps = await db.query(dao.tableName);
-    if (maps.isNotEmpty) {
-      return dao.fromList(maps).first;
+    var recordSnapshots = await _settingsStore.find(await _db);
+    if (recordSnapshots.isEmpty) {
+      _init();
+      recordSnapshots = await _settingsStore.find(await _db);
     }
-    return null;
-  }
 
-  @override
-  Future<Settings> update(Settings settings) async {
-    final db = await databaseProvider.database;
-    await db.update(
-      dao.tableName,
-      dao.toMap(settings),
-      where: dao.columnSettingsId + ' = ?',
-      whereArgs: [settings.settingsId],
-    );
-    return settings;
+    final settingsList = recordSnapshots.map((snapshot) {
+      final settings = Settings.fromMap(snapshot.value);
+      settings.copyWith(settingsId: snapshot.key);
+      return settings;
+    }).toList();
+    return settingsList.first;
   }
 }

@@ -1,5 +1,8 @@
+import 'package:covtrack/data/models/trip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/trips/trips_bloc.dart';
 import '../widgets/logout_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,18 +15,48 @@ class HomeScreen extends StatelessWidget {
           LogoutButton(),
         ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _buildContent(),
-              _buildButtonBar(context),
-            ],
-          ),
+      body: BlocBuilder<TripsBloc, TripsState>(
+        builder: (context, state) {
+          if (state is TripsLoadInProgress) {
+            return _buildTripsLoadInProgress();
+          }
+          if (state is TripsLoadSuccess) {
+            return _buildTripsLoadSuccess(context, state.trips);
+          }
+          if (state is TripsLoadFailure) {
+            return _buildTripsLoadFailure(context);
+          }
+          return Container();
+        },
+      ),
+    );
+  }
+
+  Widget _buildTripsLoadInProgress() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildTripsLoadSuccess(BuildContext context, List<Trip> trips) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            // _buildContent(),
+            _buildTripsList(trips),
+            _buildButtonBar(context),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTripsLoadFailure(BuildContext context) {
+    return Center(
+      child: Text('Failure'),
     );
   }
 
@@ -64,6 +97,16 @@ class HomeScreen extends StatelessWidget {
       icon: Icon(Icons.history),
       label: Text('Old Trips'),
       onPressed: () => Navigator.pushNamed(context, '/home/old-trips'),
+    );
+  }
+
+  Widget _buildTripsList(List<Trip> trips) {
+    return Container(
+      height: 200,
+      child: ListView.builder(
+        itemBuilder: (context, index) => Text(trips[index].toString()),
+        itemCount: trips.length,
+      ),
     );
   }
 }

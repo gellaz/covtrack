@@ -1,10 +1,6 @@
-import '../../../data/models/settings.dart';
-import '../../providers/database_provider.dart';
+import 'package:covtrack/data/models/settings.dart';
 
 abstract class SettingsRepository {
-  DatabaseProvider databaseProvider;
-
-  Future<Settings> insert(Settings settings);
-  Future<Settings> update(Settings settings);
+  Future<void> update(Settings settings);
   Future<Settings> getSettings();
 }

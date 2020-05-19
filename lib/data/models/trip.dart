@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:sembast/timestamp.dart';
 
 import 'place.dart';
 
@@ -12,13 +13,35 @@ class Trip extends Equatable {
   final Place destination;
 
   Trip({
-    @required this.tripId,
+    this.tripId,
     @required this.reason,
     @required this.startingTime,
     @required this.arrivalTime,
     @required this.source,
     @required this.destination,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'tripId': tripId,
+      'reason': reason,
+      'startingTime': Timestamp.fromDateTime(startingTime),
+      'arrivalTime': Timestamp.fromDateTime(arrivalTime),
+      'source': source.toMap(),
+      'destination': source.toMap(),
+    };
+  }
+
+  factory Trip.fromMap(Map<String, dynamic> map) {
+    return Trip(
+      tripId: map['tripId'],
+      reason: map['reason'],
+      startingTime: (map['startingTime'] as Timestamp).toDateTime(),
+      arrivalTime: (map['arrivalTime'] as Timestamp).toDateTime(),
+      source: Place.fromMap(map['source']),
+      destination: Place.fromMap(map['destination']),
+    );
+  }
 
   Trip copyWith({
     int tripId,

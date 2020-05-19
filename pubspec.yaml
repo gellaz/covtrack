@@ -28,8 +28,12 @@ dependencies:
   introduction_screen:
   # Reactive programming.
   rxdart:
-  # SQLite database.
-  sqflite:
+  # Define the location for storing the database on disk.
+  path:
+  # Find commonly used locations on the filesystem.
+  path_provider:
+  # NoSQL database.
+  sembast:
   # Generate RFC4122 UUIDs.
   uuid:
 

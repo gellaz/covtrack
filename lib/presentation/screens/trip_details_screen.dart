@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/models/place.dart';
+import '../../data/models/trip.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/reason_picker.dart';
 
@@ -28,11 +31,25 @@ class TripDetailsScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text('Start Trip'),
         icon: Icon(Icons.keyboard_arrow_right),
+        label: Text('Start Trip'),
+        onPressed: () => _onPressed(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  void _onPressed(BuildContext context) {
+    context.bloc<TripsBloc>().add(
+          TripAdded(
+            Trip(
+                reason: 'aaaa',
+                startingTime: DateTime.now(),
+                arrivalTime: DateTime.now(),
+                source: destination,
+                destination: destination),
+          ),
+        );
+    Navigator.popUntil(context, (route) => route.isFirst);
   }
 }

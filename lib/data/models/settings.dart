@@ -2,18 +2,41 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class Settings extends Equatable {
-  final String settingsId;
+  final int settingsId;
   final bool firstRun;
   final String theme;
 
   Settings({
-    @required this.settingsId,
+    this.settingsId,
     @required this.firstRun,
     @required this.theme,
   });
 
+  factory Settings.init() {
+    return Settings(
+      firstRun: true,
+      theme: 'light',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'settingsId': settingsId,
+      'firstRun': firstRun,
+      'theme': theme,
+    };
+  }
+
+  factory Settings.fromMap(Map<String, dynamic> map) {
+    return Settings(
+      settingsId: map['settingsId'],
+      firstRun: map['firstRun'],
+      theme: map['theme'],
+    );
+  }
+
   Settings copyWith({
-    String tripId,
+    int settingsId,
     bool firstRun,
     String theme,
   }) {
