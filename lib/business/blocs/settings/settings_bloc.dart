@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../data/models/settings.dart';
 import '../../repositories/settings/settings_repository.dart';
 
 part 'settings_event.dart';
@@ -21,8 +20,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
     if (event is AppLoaded) {
       yield* _mapAppLoadedToState();
-    } else if (event is SettingsChanged) {
-      yield* _mapSettingsChangedToState(event.newSettings);
+    } else if (event is SettingChanged) {
+      yield* _mapSettingsChangedToState(event.key, event.value);
     }
   }
 
@@ -37,12 +36,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   Stream<SettingsState> _mapSettingsChangedToState(
-    Settings newSettings,
+    String key,
+    dynamic value,
   ) async* {
     yield SettingsLoadInProgress();
     try {
-      await settingsRepository.update(newSettings);
-      yield SettingsLoadSuccess(newSettings);
+      await settingsRepository.saveKV(key, value);
+      final settings = await settingsRepository.getSettings();
+      yield SettingsLoadSuccess(settings);
     } catch (e) {
       yield SettingsLoadFailure(e.toString());
     }

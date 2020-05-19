@@ -34,6 +34,8 @@ dependencies:
   path_provider:
   # NoSQL database.
   sembast:
+  # Shared preferences.
+  shared_preferences:
   # Generate RFC4122 UUIDs.
   uuid:
 

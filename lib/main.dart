@@ -80,9 +80,10 @@ class CovTrack extends StatelessWidget {
             return SplashScreen();
           }
           if (state is SettingsLoadSuccess) {
-            if (state.settings.firstRun)
+            if (state.settings['firstRun']) {
+              print('here');
               return OnboardingScreen();
-            else
+            } else
               return AuthenticationContainer();
           }
           if (state is SettingsLoadFailure) {

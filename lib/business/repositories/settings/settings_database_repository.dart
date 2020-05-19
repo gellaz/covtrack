@@ -1,49 +1,45 @@
-import 'package:covtrack/data/app_database.dart';
-import 'package:sembast/sembast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../data/models/settings.dart';
 import 'settings_repository.dart';
 
 class SettingsDatabaseRepository implements SettingsRepository {
-  // The name of the store.
-  static const String SETTINGS_STORE_NAME = 'settings';
-
-  // This store acts like a persistent map, values of which are Settings objects
-  // converted to Map.
-  final _settingsStore = intMapStoreFactory.store(SETTINGS_STORE_NAME);
-
-  // Private getter to shorten the amount of code needed to get the singleton
-  // instance of an opened database.
-  Future<Database> get _db async => await AppDatabase.instance.database;
-
   @override
-  Future<void> _init() async {
-    await _settingsStore.add(await _db, Settings.init().toMap());
+  Future<Map<String, dynamic>> getSettings() async {
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+
+    final firstRun = sharedPrefs.getBool('firstRun') ?? true;
+
+    if (firstRun) await init();
+
+    final keys = sharedPrefs.getKeys();
+
+    Map<String, dynamic> settings = Map();
+
+    for (var key in keys) settings[key] = sharedPrefs.get(key);
+
+    return settings;
   }
 
   @override
-  Future<void> update(Settings settings) async {
-    final finder = Finder(filter: Filter.byKey(settings.settingsId));
-    await _settingsStore.update(
-      await _db,
-      settings.toMap(),
-      finder: finder,
-    );
+  Future<void> init() async {
+    await saveKV('firstRun', true);
+    await saveKV('theme', 'light');
   }
 
   @override
-  Future<Settings> getSettings() async {
-    var recordSnapshots = await _settingsStore.find(await _db);
-    if (recordSnapshots.isEmpty) {
-      _init();
-      recordSnapshots = await _settingsStore.find(await _db);
+  Future<void> saveKV(String key, dynamic value) async {
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+
+    if (value is bool) {
+      sharedPrefs.setBool(key, value);
+    } else if (value is String) {
+      sharedPrefs.setString(key, value);
+    } else if (value is int) {
+      sharedPrefs.setInt(key, value);
+    } else if (value is double) {
+      sharedPrefs.setDouble(key, value);
+    } else if (value is List<String>) {
+      sharedPrefs.setStringList(key, value);
     }
-
-    final settingsList = recordSnapshots.map((snapshot) {
-      final settings = Settings.fromMap(snapshot.value);
-      settings.copyWith(settingsId: snapshot.key);
-      return settings;
-    }).toList();
-    return settingsList.first;
   }
 }

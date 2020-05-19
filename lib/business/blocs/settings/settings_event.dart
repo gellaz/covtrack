@@ -9,14 +9,15 @@ class AppLoaded extends SettingsEvent {
   List<Object> get props => [];
 }
 
-class SettingsChanged extends SettingsEvent {
-  final Settings newSettings;
+class SettingChanged extends SettingsEvent {
+  final String key;
+  final dynamic value;
 
-  const SettingsChanged(this.newSettings);
-
-  @override
-  List<Object> get props => [newSettings];
+  const SettingChanged(this.key, this.value);
 
   @override
-  String toString() => 'SettingsChanged {newSettings: $newSettings}';
+  List<Object> get props => [key, value];
+
+  @override
+  String toString() => 'SettingChanged {key: $key, value: $value}';
 }

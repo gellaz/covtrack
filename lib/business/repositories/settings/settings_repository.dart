@@ -1,6 +1,5 @@
-import 'package:covtrack/data/models/settings.dart';
-
 abstract class SettingsRepository {
-  Future<void> update(Settings settings);
-  Future<Settings> getSettings();
+  Future<void> init();
+  Future<void> saveKV(String key, dynamic value);
+  Future<Map<String, dynamic>> getSettings();
 }
