@@ -24,6 +24,10 @@ dependencies:
   google_maps_flutter:
   # Google Maps APIs.
   google_maps_webservice:
+  # HTTP client for making requests.
+  http:
+  # Internationalization and localization facilities.
+  intl:
   # Onboarding.
   introduction_screen:
   # Reactive programming.
@@ -36,6 +40,8 @@ dependencies:
   sembast:
   # Shared preferences.
   shared_preferences:
+  # Launching a URL in the mobile platform.
+  url_launcher:
   # Generate RFC4122 UUIDs.
   uuid:
 

@@ -37,7 +37,7 @@ class Themes {
         letterSpacing: 0.25,
       ),
       headline5: TextStyle(
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
         fontSize: 27,
         letterSpacing: 0,
       ),

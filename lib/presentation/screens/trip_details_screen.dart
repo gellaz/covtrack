@@ -43,11 +43,12 @@ class TripDetailsScreen extends StatelessWidget {
     context.bloc<TripsBloc>().add(
           TripAdded(
             Trip(
-                reason: 'aaaa',
-                startingTime: DateTime.now(),
-                arrivalTime: DateTime.now(),
-                source: destination,
-                destination: destination),
+              reason: 'aaaa',
+              startingTime: DateTime.now(),
+              arrivalTime: DateTime.now(),
+              source: destination,
+              destination: destination,
+            ),
           ),
         );
     Navigator.popUntil(context, (route) => route.isFirst);
