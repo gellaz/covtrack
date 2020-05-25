@@ -8,6 +8,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Internationalization.
+  flutter_localizations:
+    sdk: flutter
   # Compare objects not references.
   equatable:
   # Firebase authentication API.
@@ -28,6 +31,7 @@ dependencies:
   http:
   # Internationalization and localization facilities.
   intl:
+  intl_translation:
   # Onboarding.
   introduction_screen:
   # Reactive programming.
@@ -54,22 +58,20 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/home.png
   fonts:
     - family: Prompt
       fonts:
-        - asset: assets/fonts/Prompt-Light.ttf
+        - asset: fonts/Prompt-Light.ttf
           weight: 300
-        - asset: assets/fonts/Prompt-Regular.ttf
+        - asset: fonts/Prompt-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Prompt-Medium.ttf
+        - asset: fonts/Prompt-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Prompt-SemiBold.ttf
+        - asset: fonts/Prompt-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Prompt-Bold.ttf
+        - asset: fonts/Prompt-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Prompt-ExtraBold.ttf
+        - asset: fonts/Prompt-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/Prompt-Black.ttf
+        - asset: fonts/Prompt-Black.ttf
           weight: 900

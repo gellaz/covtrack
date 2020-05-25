@@ -1,3 +1,4 @@
+import 'package:covtrack/utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/logout_button.dart';
@@ -7,7 +8,7 @@ class DonateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Donate'),
+        title: Text(AppLocalizations.of(context).donate),
         actions: <Widget>[
           LogoutButton(),
         ],

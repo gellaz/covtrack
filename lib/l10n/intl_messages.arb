@@ -1,0 +1,147 @@
+{
+  "@@last_modified": "2020-05-21T13:08:06.265475",
+  "createAccount": "Create a new account",
+  "@createAccount": {
+    "description": "Create new account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "differentPasswords": "The two passwords are not the same",
+  "@differentPasswords": {
+    "description": "Error message when the entered passwords are not the same",
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "Donate",
+  "@donate": {
+    "description": "Donate section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Done button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "info": "Info",
+  "@info": {
+    "description": "Info section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "insertPasswordAgain": "Insert password again",
+  "@insertPasswordAgain": {
+    "description": "Hint message of the InputField for the second password in the RegisterScreen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "insertPlace": "Insert a place...",
+  "@insertPlace": {
+    "description": "Hint message of the InputField DestinationPickerScreen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "description": "Error message of the Email InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPassword": "Invalid password",
+  "@invalidPassword": {
+    "description": "Hint message of the Password InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loggingIn": "Logging in...",
+  "@loggingIn": {
+    "description": "Snackbar message for the login process loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginFailure": "Login failure",
+  "@loginFailure": {
+    "description": "Snackbar message for the login process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithYourAccount": "Login with your account",
+  "@loginWithYourAccount": {
+    "description": "Login with your account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "objective": "Objective",
+  "@objective": {
+    "description": "First onboarding screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding1": "The main functionality of CovTrack is replacing the mandatory self-certification form",
+  "@onboarding1": {
+    "description": "First onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding2": "In the Home section you can view the active trip or create a new one",
+  "@onboarding2": {
+    "description": "Second onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding3": "In the Info section you can read the latest information regarding the sanitary situation in your country and in the world",
+  "@onboarding3": {
+    "description": "Third onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding4": "In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19",
+  "@onboarding4": {
+    "description": "Fourth onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "or",
+  "@or": {
+    "description": "Text found in the TextDivider widget",
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registering": "Registering...",
+  "@registering": {
+    "description": "Snackbar message for the register process loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registrationFailure": "Registration failure",
+  "@registrationFailure": {
+    "description": "Snackbar message for the registration process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  }
+}

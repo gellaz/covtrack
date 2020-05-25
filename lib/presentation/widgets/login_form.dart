@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../../business/blocs/login/login_bloc.dart';
+import '../../utils/app_localizations.dart';
 import '../styles/decorations.dart';
 import '../widgets/text_divider.dart';
 import 'login_button.dart';
@@ -43,7 +44,12 @@ class _LoginFormState extends State<LoginForm> {
               SnackBar(
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('Login Failure'), Icon(Icons.error)],
+                  children: [
+                    Text(
+                      AppLocalizations.of(context).loginFailure,
+                    ),
+                    Icon(Icons.error)
+                  ],
                 ),
                 backgroundColor: Colors.red,
               ),
@@ -57,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Logging In...'),
+                    Text(AppLocalizations.of(context).loggingIn),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -78,7 +84,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: ListView(
                   children: <Widget>[
                     Text(
-                      'LOGIN',
+                      AppLocalizations.of(context).login.toUpperCase(),
                       style: Theme.of(context).textTheme.headline3.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
@@ -103,7 +109,9 @@ class _LoginFormState extends State<LoginForm> {
                           FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.next,
                       validator: (_) {
-                        return !state.isEmailValid ? 'Invalid Email' : null;
+                        return !state.isEmailValid
+                            ? AppLocalizations.of(context).invalidEmail
+                            : null;
                       },
                     ),
                     TextFormField(
@@ -116,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                       obscureText: true,
                       validator: (_) {
                         return !state.isPasswordValid
-                            ? 'Invalid Password'
+                            ? AppLocalizations.of(context).invalidPassword
                             : null;
                       },
                     ),
@@ -137,7 +145,9 @@ class _LoginFormState extends State<LoginForm> {
                           SizedBox(height: 60),
                           Column(
                             children: <Widget>[
-                              TextDivider('or'),
+                              TextDivider(
+                                AppLocalizations.of(context).or,
+                              ),
                               SizedBox(height: 8),
                               RegisterLink(),
                             ],

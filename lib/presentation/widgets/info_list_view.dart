@@ -32,7 +32,7 @@ class InfoListView extends StatelessWidget {
   }
 
   Widget _buildListTile(Icon icon, String title, int data) {
-    var f = NumberFormat.compact();
+    var f = NumberFormat.decimalPattern();
     return Card(
       child: ListTile(
         leading: icon,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
@@ -20,6 +21,7 @@ import 'presentation/screens/error_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
+import 'utils/app_localizations.dart';
 
 void main() {
   // Required in Flutter v1.9.4+ before using any plugins if
@@ -80,6 +82,28 @@ class CovTrack extends StatelessWidget {
     return MaterialApp(
       title: 'CovTrack',
       theme: Themes.light,
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+        const Locale('it', 'IT'), // Italian
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        // Check if the current device locale is supported
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+        // If the locale of the device is not supported, use the first one
+        // from the list (English, in this case).
+        return supportedLocales.first;
+      },
       home: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
           if (state is SettingsLoadInProgress) {
@@ -87,7 +111,6 @@ class CovTrack extends StatelessWidget {
           }
           if (state is SettingsLoadSuccess) {
             if (state.settings['firstRun']) {
-              print('here');
               return OnboardingScreen();
             } else
               return AuthenticationContainer();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
+import '../../utils/app_localizations.dart';
 import '../containers/authentication_container.dart';
 import '../styles/decorations.dart';
 
@@ -14,11 +15,12 @@ class OnboardingScreen extends StatelessWidget {
         _buildPageOne(context),
         _buildPageTwo(context),
         _buildPageThree(context),
+        _buildPageFour(context),
       ],
       onDone: () => _onDone(context),
-      done: const Text('Done'),
+      done: Text(AppLocalizations.of(context).done),
       showSkipButton: true,
-      skip: const Text('Skip'),
+      skip: Text(AppLocalizations.of(context).skip),
     );
   }
 
@@ -35,11 +37,24 @@ class OnboardingScreen extends StatelessWidget {
   PageViewModel _buildPageOne(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Image.asset('assets/images/home.png'),
+        child: Icon(Icons.library_books, size: 150),
       ),
-      title: 'Objective',
-      body:
-          'The main functionality of CovTrack is replacing the mandatory self-certification form',
+      title: AppLocalizations.of(context).objective,
+      body: AppLocalizations.of(context).onboarding1,
+      decoration: PageDecoration(
+        boxDecoration: Decorations.linearGradient(context),
+      ),
+    );
+  }
+
+  // First page of the onboarding.
+  PageViewModel _buildPageTwo(BuildContext context) {
+    return PageViewModel(
+      image: Center(
+        child: Icon(Icons.home, size: 150),
+      ),
+      title: AppLocalizations.of(context).home,
+      body: AppLocalizations.of(context).onboarding2,
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context),
       ),
@@ -47,13 +62,13 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   // Second page of the onboarding.
-  PageViewModel _buildPageTwo(BuildContext context) {
+  PageViewModel _buildPageThree(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Image.asset('assets/images/home.png'),
+        child: Icon(Icons.info_outline, size: 150),
       ),
-      title: 'Stay Home',
-      body: 'AAAAAAAAA',
+      title: AppLocalizations.of(context).info,
+      body: AppLocalizations.of(context).onboarding3,
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context),
       ),
@@ -61,13 +76,13 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   // Third page of the onboarding.
-  PageViewModel _buildPageThree(BuildContext context) {
+  PageViewModel _buildPageFour(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Image.asset('assets/images/home.png'),
+        child: Icon(Icons.favorite, size: 150),
       ),
-      title: 'Stay Home',
-      body: 'AAAAAAAAA',
+      title: AppLocalizations.of(context).donate,
+      body: AppLocalizations.of(context).onboarding4,
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context),
       ),

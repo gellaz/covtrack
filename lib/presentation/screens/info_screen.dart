@@ -36,7 +36,11 @@ class InfoContent extends StatelessWidget {
           } else if (state is InfoLoadInProgress) {
             return _buildLoading();
           } else if (state is InfoLoadSuccess) {
-            return _buildLoadedData(context, state.localInfo, state.globalInfo);
+            return _buildLoadedData(
+              context,
+              state.localInfo,
+              state.globalInfo,
+            );
           } else if (state is InfoLoadFailure) {
             return _buildInitial();
           }
@@ -63,31 +67,34 @@ class InfoContent extends StatelessWidget {
     Info localInfo,
     Info globalInfo,
   ) {
-    return ListView(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: <Widget>[
-              _buildDescription(),
-              SizedBox(height: 40),
-              _buildInfoTitle(context, 'Italy', localInfo.date),
-              InfoListView(localInfo),
-              SizedBox(height: 40),
-              _buildInfoTitle(context, 'Global', globalInfo.date),
-              InfoListView(globalInfo),
-              SizedBox(height: 40),
-              _buildDisclaimer(context),
-            ],
+    return RefreshIndicator(
+      child: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: <Widget>[
+                _buildDescription(),
+                SizedBox(height: 40),
+                _buildInfoTitle(context, 'Italy', localInfo.date),
+                InfoListView(localInfo),
+                SizedBox(height: 40),
+                _buildInfoTitle(context, 'Global', globalInfo.date),
+                InfoListView(globalInfo),
+                SizedBox(height: 40),
+                _buildDisclaimer(context),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+      onRefresh: () async => context.bloc<InfoBloc>().add(InfoFetched()),
     );
   }
 
   Widget _buildDescription() {
     return Text(
-      'Below you can find a summary of the sanitary situation in your country and in the world.',
+      'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
       textAlign: TextAlign.center,
     );
   }

@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../business/repositories/places/places_repository.dart';
 import '../../data/models/place_suggestion.dart';
+import '../../utils/app_localizations.dart';
 import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
@@ -47,7 +48,7 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
         decoration: InputDecoration(
           border: InputBorder.none,
           hintStyle: TextStyle(color: Colors.white),
-          hintText: 'Insert a place...',
+          hintText: AppLocalizations.of(context).insertPlace,
           suffixIcon: ClearButton(_onClear),
         ),
         style: TextStyle(color: Colors.white),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_localizations.dart';
 import '../screens/register_screen.dart';
 
 class RegisterLink extends StatelessWidget {
@@ -7,7 +8,7 @@ class RegisterLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Text(
-        'Create an account',
+        AppLocalizations.of(context).createAccount,
         style: Theme.of(context).textTheme.overline,
         textAlign: TextAlign.center,
       ),

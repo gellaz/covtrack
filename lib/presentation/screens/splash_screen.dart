@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
                   .headline3
                   .copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
             ),
-            Image.asset('assets/images/home.png'),
+            Icon(Icons.home, size: 150),
             Text('Caio')
           ],
         ),

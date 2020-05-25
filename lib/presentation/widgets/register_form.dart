@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../../business/blocs/register/register_bloc.dart';
+import '../../utils/app_localizations.dart';
 import '../styles/decorations.dart';
 import '../widgets/text_divider.dart';
 import 'login_link.dart';
@@ -47,7 +48,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Registering...'),
+                    Text(AppLocalizations.of(context).registering),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -66,7 +67,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Registration Failure'),
+                    Text(
+                      AppLocalizations.of(context).registrationFailure,
+                    ),
                     Icon(Icons.error),
                   ],
                 ),
@@ -85,7 +88,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 child: ListView(
                   children: <Widget>[
                     Text(
-                      'REGISTER',
+                      AppLocalizations.of(context).register.toUpperCase(),
                       style: Theme.of(context).textTheme.headline3.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
@@ -110,7 +113,9 @@ class _RegisterFormState extends State<RegisterForm> {
                           FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.next,
                       validator: (_) {
-                        return !state.isEmailValid ? 'Invalid Email' : null;
+                        return !state.isEmailValid
+                            ? AppLocalizations.of(context).invalidEmail
+                            : null;
                       },
                     ),
                     TextFormField(
@@ -126,7 +131,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       textInputAction: TextInputAction.next,
                       validator: (_) {
                         return !state.isPasswordValid
-                            ? 'Invalid Password'
+                            ? AppLocalizations.of(context).invalidPassword
                             : null;
                       },
                     ),
@@ -135,12 +140,13 @@ class _RegisterFormState extends State<RegisterForm> {
                       autovalidate: true,
                       controller: _passwordCheckController,
                       decoration: InputDecoration(
-                        labelText: 'Insert password again',
+                        labelText:
+                            AppLocalizations.of(context).insertPasswordAgain,
                       ),
                       obscureText: true,
                       validator: (_) {
                         return !state.isPasswordCheckValid
-                            ? 'The two passwords are not the same'
+                            ? AppLocalizations.of(context).differentPasswords
                             : null;
                       },
                     ),
@@ -160,7 +166,9 @@ class _RegisterFormState extends State<RegisterForm> {
                           SizedBox(height: 10),
                           Column(
                             children: <Widget>[
-                              TextDivider('or'),
+                              TextDivider(
+                                AppLocalizations.of(context).or,
+                              ),
                               SizedBox(height: 8),
                               LoginLink(),
                             ],

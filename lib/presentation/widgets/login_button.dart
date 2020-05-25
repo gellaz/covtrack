@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_localizations.dart';
+
 class LoginButton extends StatelessWidget {
   final VoidCallback _onPressed;
 
@@ -11,7 +13,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: _onPressed,
-      child: Text('Login'),
+      child: Text(AppLocalizations.of(context).login),
     );
   }
 }

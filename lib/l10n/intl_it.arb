@@ -1,0 +1,147 @@
+{
+  "@@last_modified": "2020-05-21T13:08:06.265475",
+  "createAccount": "Crea un nuovo account",
+  "@createAccount": {
+    "description": "Create new account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "differentPasswords": "Le due password inserite sono diverse",
+  "@differentPasswords": {
+    "description": "Error message when the entered passwords are not the same",
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "Dona",
+  "@donate": {
+    "description": "Donate section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "done": "Fatto",
+  "@done": {
+    "description": "Done button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "info": "Info",
+  "@info": {
+    "description": "Info section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "insertPasswordAgain": "Inserisci nuovamente la password",
+  "@insertPasswordAgain": {
+    "description": "Hint message of the InputField for the second password in the RegisterScreen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "insertPlace": "Inserisci un luogo...",
+  "@insertPlace": {
+    "description": "Hint message of the InputField DestinationPickerScreen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Email non valida",
+  "@invalidEmail": {
+    "description": "Error message of the Email InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidPassword": "Password non valida",
+  "@invalidPassword": {
+    "description": "Hint message of the Password InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loggingIn": "Accesso in corso...",
+  "@loggingIn": {
+    "description": "Snackbar message for the login process loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Accedi",
+  "@login": {
+    "description": "Login button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginFailure": "Accesso fallito",
+  "@loginFailure": {
+    "description": "Snackbar message for the login process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithYourAccount": "Accedi con il tuo account",
+  "@loginWithYourAccount": {
+    "description": "Login with your account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "objective": "Obiettivo",
+  "@objective": {
+    "description": "First onboarding screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding1": "La funzionalità principale di CovTrack è quella di rimpiazzare completamente il modulo di autocertificazione",
+  "@onboarding1": {
+    "description": "First onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding2": "Nella sezione Home puoi visualizzare il percorso attivo o crearne uno nuovo",
+  "@onboarding2": {
+    "description": "Second onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding3": "Nella sezione Info puoi consultare le ultime informazioni riguardo la situazione sanitaria nel tuo paese e nel mondo",
+  "@onboarding3": {
+    "description": "Third onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "onboarding4": "Nella sezione Dona trovi una lista delle principali associazioni sanitarie ed ospedali a cui puoi fare una donazione per dare un aiuto nella lotta contro il Covid-19",
+  "@onboarding4": {
+    "description": "Fourth onboarding screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "oppure",
+  "@or": {
+    "description": "Text found in the TextDivider widget",
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registrati",
+  "@register": {
+    "description": "Register button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registering": "Registrazione in corso...",
+  "@registering": {
+    "description": "Snackbar message for the register process loading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registrationFailure": "Registrazione fallita",
+  "@registrationFailure": {
+    "description": "Snackbar message for the registration process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Salta",
+  "@skip": {
+    "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  }
+}
