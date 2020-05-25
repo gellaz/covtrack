@@ -1,8 +1,14 @@
 {
-  "@@last_modified": "2020-05-25T15:14:42.560440",
+  "@@last_modified": "2020-05-25T18:06:53.100790",
   "createAccount": "Create a new account",
   "@createAccount": {
     "description": "Create new account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "destination": "Destination:",
+  "@destination": {
+    "description": "Destination description text",
     "type": "text",
     "placeholders": {}
   },
@@ -132,7 +138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reasonPickerDesc": "Reason of the trip:",
+  "reasonPickerDesc": "Reason:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
     "type": "text",
@@ -159,6 +165,12 @@
   "skip": "Skip",
   "@skip": {
     "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "source": "Source:",
+  "@source": {
+    "description": "Source description text",
     "type": "text",
     "placeholders": {}
   },

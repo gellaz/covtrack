@@ -37,6 +37,15 @@ class AppLocalizations {
     );
   }
 
+  String get destination {
+    return Intl.message(
+      'Destination:',
+      name: 'destination',
+      desc: 'Destination description text',
+      locale: localeName,
+    );
+  }
+
   String get differentPasswords {
     return Intl.message(
       'The two passwords are not the same',
@@ -229,7 +238,7 @@ class AppLocalizations {
 
   String get reasonPickerDesc {
     return Intl.message(
-      'Reason of the trip:',
+      'Reason:',
       name: 'reasonPickerDesc',
       desc: 'Reason picker description',
       locale: localeName,
@@ -268,6 +277,15 @@ class AppLocalizations {
       'Skip',
       name: 'skip',
       desc: 'Skip button label',
+      locale: localeName,
+    );
+  }
+
+  String get source {
+    return Intl.message(
+      'Source:',
+      name: 'source',
+      desc: 'Source description text',
       locale: localeName,
     );
   }

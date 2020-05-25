@@ -6,6 +6,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "destination": "Destinazione:",
+  "@destination": {
+    "description": "Destination description text",
+    "type": "text",
+    "placeholders": {}
+  },
   "differentPasswords": "Le due password inserite sono diverse",
   "@differentPasswords": {
     "description": "Error message when the entered passwords are not the same",
@@ -132,7 +138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reasonPickerDesc": "Ragione dello spostamento:",
+  "reasonPickerDesc": "Motivazione:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
     "type": "text",
@@ -159,6 +165,12 @@
   "skip": "Salta",
   "@skip": {
     "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "source": "Partenza:",
+  "@source": {
+    "description": "Source description text",
     "type": "text",
     "placeholders": {}
   },

@@ -6,6 +6,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "destination": "Destination:",
+  "@destination": {
+    "description": "Destination description text",
+    "type": "text",
+    "placeholders": {}
+  },
   "differentPasswords": "The two passwords are not the same",
   "@differentPasswords": {
     "description": "Error message when the entered passwords are not the same",
@@ -132,7 +138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reasonPickerDesc": "Reason of the trip:",
+  "reasonPickerDesc": "Reason:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
     "type": "text",
@@ -159,6 +165,12 @@
   "skip": "Skip",
   "@skip": {
     "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "source": "Source:",
+  "@source": {
+    "description": "Source description text",
     "type": "text",
     "placeholders": {}
   },
