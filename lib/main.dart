@@ -17,7 +17,6 @@ import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
 import 'business/repositories/trips/trips_database_repository.dart';
 import 'presentation/containers/authentication_container.dart';
-import 'presentation/screens/error_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
@@ -116,9 +115,19 @@ class CovTrack extends StatelessWidget {
               return AuthenticationContainer();
           }
           if (state is SettingsLoadFailure) {
-            return ErrorScreen();
+            Scaffold.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Text(state.message), Icon(Icons.error)],
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
           }
-          return ErrorScreen();
+          return Container();
         },
       ),
     );

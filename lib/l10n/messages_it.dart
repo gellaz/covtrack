@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount" : MessageLookupByLibrary.simpleMessage("Crea un nuovo account"),
     "differentPasswords" : MessageLookupByLibrary.simpleMessage("Le due password inserite sono diverse"),
     "donate" : MessageLookupByLibrary.simpleMessage("Dona"),
+    "donateBody" : MessageLookupByLibrary.simpleMessage("Aiuta i medici e i volontari impegnati nella lotta contro il Covid-19. Anche una piccola donazione può fare una grande differenza."),
+    "donateTitle" : MessageLookupByLibrary.simpleMessage("Dai il tuo contributo."),
     "done" : MessageLookupByLibrary.simpleMessage("Fatto"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "info" : MessageLookupByLibrary.simpleMessage("Info"),
@@ -41,9 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboarding3" : MessageLookupByLibrary.simpleMessage("Nella sezione Info puoi consultare le ultime informazioni riguardo la situazione sanitaria nel tuo paese e nel mondo"),
     "onboarding4" : MessageLookupByLibrary.simpleMessage("Nella sezione Dona trovi una lista delle principali associazioni sanitarie ed ospedali a cui puoi fare una donazione per dare un aiuto nella lotta contro il Covid-19"),
     "or" : MessageLookupByLibrary.simpleMessage("oppure"),
+    "reasonPickerDesc" : MessageLookupByLibrary.simpleMessage("Ragione dello spostamento:"),
     "register" : MessageLookupByLibrary.simpleMessage("Registrati"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registrazione in corso..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registrazione fallita"),
-    "skip" : MessageLookupByLibrary.simpleMessage("Salta")
+    "skip" : MessageLookupByLibrary.simpleMessage("Salta"),
+    "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
+    "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento")
   };
 }

@@ -1,8 +1,8 @@
-import 'package:covtrack/data/models/trip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/trips/trips_bloc.dart';
+import '../../data/models/trip.dart';
 import '../widgets/logout_button.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/models/place.dart';
 import '../../data/models/trip.dart';
+import '../../utils/app_localizations.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/reason_picker.dart';
 
@@ -18,21 +19,20 @@ class TripDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trip Details'),
+        title: Text(AppLocalizations.of(context).tripDetails),
       ),
       body: Column(
         children: <Widget>[
           PlaceListTile(destination, PlaceType.Home),
           PlaceListTile(destination, PlaceType.Destination),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ReasonPicker(),
-          ),
+          Text(AppLocalizations.of(context).reasonPickerDesc),
+          SizedBox(height: 10),
+          ReasonPicker(),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.keyboard_arrow_right),
-        label: Text('Start Trip'),
+        label: Text(AppLocalizations.of(context).startTrip),
         onPressed: () => _onPressed(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -18,6 +18,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "donateBody": "Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference.",
+  "@donateBody": {
+    "description": "Donate screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "donateTitle": "Give your contribution.",
+  "@donateTitle": {
+    "description": "Donate screen title",
+    "type": "text",
+    "placeholders": {}
+  },
   "done": "Done",
   "@done": {
     "description": "Done button label",
@@ -120,6 +132,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "reasonPickerDesc": "Reason of the trip:",
+  "@reasonPickerDesc": {
+    "description": "Reason picker description",
+    "type": "text",
+    "placeholders": {}
+  },
   "register": "Register",
   "@register": {
     "description": "Register button label",
@@ -141,6 +159,18 @@
   "skip": "Skip",
   "@skip": {
     "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "startTrip": "Start Trip",
+  "@startTrip": {
+    "description": "Start Trip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripDetails": "Trip Details",
+  "@tripDetails": {
+    "description": "Trip Details appbar title",
     "type": "text",
     "placeholders": {}
   }

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create a new account"),
     "differentPasswords" : MessageLookupByLibrary.simpleMessage("The two passwords are not the same"),
     "donate" : MessageLookupByLibrary.simpleMessage("Donate"),
+    "donateBody" : MessageLookupByLibrary.simpleMessage("Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference."),
+    "donateTitle" : MessageLookupByLibrary.simpleMessage("Give your contribution."),
     "done" : MessageLookupByLibrary.simpleMessage("Done"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "info" : MessageLookupByLibrary.simpleMessage("Info"),
@@ -41,9 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboarding3" : MessageLookupByLibrary.simpleMessage("In the Info section you can read the latest information regarding the sanitary situation in your country and in the world"),
     "onboarding4" : MessageLookupByLibrary.simpleMessage("In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19"),
     "or" : MessageLookupByLibrary.simpleMessage("or"),
+    "reasonPickerDesc" : MessageLookupByLibrary.simpleMessage("Reason of the trip:"),
     "register" : MessageLookupByLibrary.simpleMessage("Register"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),
-    "skip" : MessageLookupByLibrary.simpleMessage("Skip")
+    "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
+    "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
+    "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details")
   };
 }

@@ -55,6 +55,24 @@ class AppLocalizations {
     );
   }
 
+  String get donateBody {
+    return Intl.message(
+      'Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference.',
+      name: 'donateBody',
+      desc: 'Donate screen body',
+      locale: localeName,
+    );
+  }
+
+  String get donateTitle {
+    return Intl.message(
+      'Give your contribution.',
+      name: 'donateTitle',
+      desc: 'Donate screen title',
+      locale: localeName,
+    );
+  }
+
   String get done {
     return Intl.message(
       'Done',
@@ -209,6 +227,15 @@ class AppLocalizations {
     );
   }
 
+  String get reasonPickerDesc {
+    return Intl.message(
+      'Reason of the trip:',
+      name: 'reasonPickerDesc',
+      desc: 'Reason picker description',
+      locale: localeName,
+    );
+  }
+
   String get register {
     return Intl.message(
       'Register',
@@ -241,6 +268,24 @@ class AppLocalizations {
       'Skip',
       name: 'skip',
       desc: 'Skip button label',
+      locale: localeName,
+    );
+  }
+
+  String get startTrip {
+    return Intl.message(
+      'Start Trip',
+      name: 'startTrip',
+      desc: 'Start Trip button label',
+      locale: localeName,
+    );
+  }
+
+  String get tripDetails {
+    return Intl.message(
+      'Trip Details',
+      name: 'tripDetails',
+      desc: 'Trip Details appbar title',
       locale: localeName,
     );
   }

@@ -18,6 +18,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "donateBody": "Aiuta i medici e i volontari impegnati nella lotta contro il Covid-19. Anche una piccola donazione può fare una grande differenza.",
+  "@donateBody": {
+    "description": "Donate screen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "donateTitle": "Dai il tuo contributo.",
+  "@donateTitle": {
+    "description": "Donate screen title",
+    "type": "text",
+    "placeholders": {}
+  },
   "done": "Fatto",
   "@done": {
     "description": "Done button label",
@@ -120,6 +132,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "reasonPickerDesc": "Ragione dello spostamento:",
+  "@reasonPickerDesc": {
+    "description": "Reason picker description",
+    "type": "text",
+    "placeholders": {}
+  },
   "register": "Registrati",
   "@register": {
     "description": "Register button label",
@@ -141,6 +159,18 @@
   "skip": "Salta",
   "@skip": {
     "description": "Skip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "startTrip": "Avvia Spostamento",
+  "@startTrip": {
+    "description": "Start Trip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripDetails": "Dettagli Spostamento",
+  "@tripDetails": {
+    "description": "Trip Details appbar title",
     "type": "text",
     "placeholders": {}
   }
