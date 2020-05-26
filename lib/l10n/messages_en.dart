@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Login failure"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Login with your account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("New Trip"),
+    "noActiveTrips" : MessageLookupByLibrary.simpleMessage("At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips."),
     "objective" : MessageLookupByLibrary.simpleMessage("Objective"),
     "oldTrips" : MessageLookupByLibrary.simpleMessage("Old Trips"),
     "onboarding1" : MessageLookupByLibrary.simpleMessage("The main functionality of CovTrack is replacing the mandatory self-certification form"),

@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Accesso fallito"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Accedi con il tuo account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("Nuovo Spostamento"),
+    "noActiveTrips" : MessageLookupByLibrary.simpleMessage("Al momento non c\'è nessuno spostamento attivo. Se hai bisogno di andare da qualche parte crea un nuovo spostamento o selezionane uno dalla lista dei tuoi spostamenti passati."),
     "objective" : MessageLookupByLibrary.simpleMessage("Obiettivo"),
     "oldTrips" : MessageLookupByLibrary.simpleMessage("Spostamenti Effettuati"),
     "onboarding1" : MessageLookupByLibrary.simpleMessage("La funzionalità principale di CovTrack è quella di rimpiazzare completamente il modulo di autocertificazione"),

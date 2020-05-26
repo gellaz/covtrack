@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            // _buildContent(),
+            _buildContent(context),
             _buildTripsList(trips),
             _buildButtonBar(context),
           ],
@@ -61,14 +61,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Column(
       children: <Widget>[
         Icon(Icons.home, size: 100),
         Text('Stay Home. Stay Safe.'),
         SizedBox(height: 10),
         Text(
-          'At the moment there is no active trip. If you need to go somewhere for a specific reason create a new trip or select one from the list of your previous trips.',
+          AppLocalizations.of(context).noActiveTrips,
           textAlign: TextAlign.center,
         ),
       ],

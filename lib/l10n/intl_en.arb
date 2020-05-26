@@ -140,6 +140,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "noActiveTrips": "At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips.",
+  "@noActiveTrips": {
+    "description": "Home Screen description text",
+    "type": "text",
+    "placeholders": {}
+  },
   "objective": "Objective",
   "@objective": {
     "description": "First onboarding screen title",

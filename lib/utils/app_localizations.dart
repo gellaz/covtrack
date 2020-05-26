@@ -237,6 +237,15 @@ class AppLocalizations {
     );
   }
 
+  String get noActiveTrips {
+    return Intl.message(
+      'At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips.',
+      name: 'noActiveTrips',
+      desc: 'Home Screen description text',
+      locale: localeName,
+    );
+  }
+
   String get objective {
     return Intl.message(
       'Objective',

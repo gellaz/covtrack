@@ -140,6 +140,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "noActiveTrips": "Al momento non c'è nessuno spostamento attivo. Se hai bisogno di andare da qualche parte crea un nuovo spostamento o selezionane uno dalla lista dei tuoi spostamenti passati.",
+  "@noActiveTrips": {
+    "description": "Home Screen description text",
+    "type": "text",
+    "placeholders": {}
+  },
   "objective": "Obiettivo",
   "@objective": {
     "description": "First onboarding screen title",

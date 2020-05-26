@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../styles/decorations.dart';
 
+/// Splash screen of CovTrack application
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,8 @@ class SplashScreen extends StatelessWidget {
                   .copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
             ),
             Icon(Icons.home, size: 150),
-            Text('Caio')
+            Text('from'),
+            Text('MARCO GELLI')
           ],
         ),
       ),
