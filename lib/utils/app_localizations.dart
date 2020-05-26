@@ -381,6 +381,15 @@ class AppLocalizations {
     );
   }
 
+  String get stayHome {
+    return Intl.message(
+      'Stay Home. Stay Safe.',
+      name: 'stayHome',
+      desc: 'HomeScreen title when there is no active trips',
+      locale: localeName,
+    );
+  }
+
   String get tripDetails {
     return Intl.message(
       'Trip Details',

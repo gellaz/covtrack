@@ -12,6 +12,12 @@ import '../../utils/app_localizations.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/reason_picker.dart';
 
+const List<String> reasonsList = [
+  'Comprovate esigenze lavorative',
+  'Situazioni di necessità',
+  'Motivi di salute'
+];
+
 class TripDetailsScreen extends StatefulWidget {
   final Place destination;
 
@@ -41,6 +47,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   // for my custom icons
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
+  String _selectedReason;
 
   @override
   void initState() {
@@ -109,7 +116,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(height: 10),
-                    ReasonPicker(),
+                    ReasonPicker(reasonsList, _onReasonSelected),
                   ],
                 ),
                 FloatingActionButton.extended(
@@ -160,15 +167,21 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     context.bloc<TripsBloc>().add(
           TripAdded(
             Trip(
-              reason: 'aaaa',
+              reason: _selectedReason,
               startingTime: DateTime.now(),
-              arrivalTime: DateTime.now(),
+              arrivalTime: null,
               source: widget.destination,
               destination: widget.destination,
             ),
           ),
         );
     Navigator.popUntil(context, (route) => route.isFirst);
+  }
+
+  void _onReasonSelected(int index) {
+    setState(() {
+      _selectedReason = reasonsList.elementAt(index);
+    });
   }
 
   void _setMarkers() {

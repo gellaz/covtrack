@@ -236,6 +236,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "stayHome": "Rimani a casa.",
+  "@stayHome": {
+    "description": "HomeScreen title when there is no active trips",
+    "type": "text",
+    "placeholders": {}
+  },
   "tripDetails": "Dettagli Spostamento",
   "@tripDetails": {
     "description": "Trip Details appbar title",

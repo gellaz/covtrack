@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "skip" : MessageLookupByLibrary.simpleMessage("Salta"),
     "source" : MessageLookupByLibrary.simpleMessage("Partenza:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
+    "stayHome" : MessageLookupByLibrary.simpleMessage("Rimani a casa."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento")
   };
 }

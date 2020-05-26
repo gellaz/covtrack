@@ -26,7 +26,8 @@ class Trip extends Equatable {
       'tripId': tripId,
       'reason': reason,
       'startingTime': Timestamp.fromDateTime(startingTime),
-      'arrivalTime': Timestamp.fromDateTime(arrivalTime),
+      'arrivalTime':
+          arrivalTime != null ? Timestamp.fromDateTime(arrivalTime) : null,
       'source': source.toMap(),
       'destination': source.toMap(),
     };
@@ -37,7 +38,7 @@ class Trip extends Equatable {
       tripId: map['tripId'],
       reason: map['reason'],
       startingTime: (map['startingTime'] as Timestamp).toDateTime(),
-      arrivalTime: (map['arrivalTime'] as Timestamp).toDateTime(),
+      arrivalTime: (map['arrivalTime'] as Timestamp)?.toDateTime(),
       source: Place.fromMap(map['source']),
       destination: Place.fromMap(map['destination']),
     );

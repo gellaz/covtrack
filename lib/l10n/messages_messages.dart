@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
     "source" : MessageLookupByLibrary.simpleMessage("Source:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
+    "stayHome" : MessageLookupByLibrary.simpleMessage("Stay Home. Stay Safe."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details")
   };
 }

@@ -236,6 +236,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "stayHome": "Stay Home. Stay Safe.",
+  "@stayHome": {
+    "description": "HomeScreen title when there is no active trips",
+    "type": "text",
+    "placeholders": {}
+  },
   "tripDetails": "Trip Details",
   "@tripDetails": {
     "description": "Trip Details appbar title",

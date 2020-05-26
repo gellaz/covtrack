@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-26T12:59:51.822342",
+  "@@last_modified": "2020-05-26T19:45:35.493651",
   "confirmed": "Confirmed",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",
@@ -233,6 +233,12 @@
   "startTrip": "Start Trip",
   "@startTrip": {
     "description": "Start Trip button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stayHome": "Stay Home. Stay Safe.",
+  "@stayHome": {
+    "description": "HomeScreen title when there is no active trips",
     "type": "text",
     "placeholders": {}
   },
