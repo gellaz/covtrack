@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/models/info.dart';
+import '../../utils/app_localizations.dart';
 
 class InfoListView extends StatelessWidget {
   final Info info;
@@ -14,17 +15,17 @@ class InfoListView extends StatelessWidget {
       children: <Widget>[
         _buildListTile(
           Icon(Icons.local_hotel, color: Colors.yellow[700]),
-          'Confirmed:',
+          AppLocalizations.of(context).confirmed,
           info.confirmed,
         ),
         _buildListTile(
           Icon(Icons.local_hospital, color: Colors.red),
-          'Deaths:',
+          AppLocalizations.of(context).deaths,
           info.deaths,
         ),
         _buildListTile(
           Icon(Icons.sentiment_satisfied, color: Colors.green),
-          'Recovered:',
+          AppLocalizations.of(context).recovered,
           info.recovered,
         ),
       ],

@@ -19,9 +19,13 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static m0(lastUpdate) => "Last update: ${lastUpdate}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "confirmed" : MessageLookupByLibrary.simpleMessage("Confirmed"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create a new account"),
+    "deaths" : MessageLookupByLibrary.simpleMessage("Deaths"),
     "destination" : MessageLookupByLibrary.simpleMessage("Destination:"),
     "differentPasswords" : MessageLookupByLibrary.simpleMessage("The two passwords are not the same"),
     "donate" : MessageLookupByLibrary.simpleMessage("Donate"),
@@ -30,21 +34,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "done" : MessageLookupByLibrary.simpleMessage("Done"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "info" : MessageLookupByLibrary.simpleMessage("Info"),
+    "infoDescription" : MessageLookupByLibrary.simpleMessage("Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation."),
+    "infoDisclaimer" : MessageLookupByLibrary.simpleMessage("All data presented in this section are fetched from the API"),
     "insertPasswordAgain" : MessageLookupByLibrary.simpleMessage("Insert password again"),
     "insertPlace" : MessageLookupByLibrary.simpleMessage("Insert a place..."),
     "invalidEmail" : MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalidPassword" : MessageLookupByLibrary.simpleMessage("Invalid password"),
+    "lastUpdate" : m0,
     "loggingIn" : MessageLookupByLibrary.simpleMessage("Logging in..."),
     "login" : MessageLookupByLibrary.simpleMessage("Login"),
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Login failure"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Login with your account"),
+    "newTrip" : MessageLookupByLibrary.simpleMessage("New Trip"),
     "objective" : MessageLookupByLibrary.simpleMessage("Objective"),
+    "oldTrips" : MessageLookupByLibrary.simpleMessage("Old Trips"),
     "onboarding1" : MessageLookupByLibrary.simpleMessage("The main functionality of CovTrack is replacing the mandatory self-certification form"),
     "onboarding2" : MessageLookupByLibrary.simpleMessage("In the Home section you can view the active trip or create a new one"),
     "onboarding3" : MessageLookupByLibrary.simpleMessage("In the Info section you can read the latest information regarding the sanitary situation in your country and in the world"),
     "onboarding4" : MessageLookupByLibrary.simpleMessage("In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19"),
     "or" : MessageLookupByLibrary.simpleMessage("or"),
     "reasonPickerDesc" : MessageLookupByLibrary.simpleMessage("Reason:"),
+    "recovered" : MessageLookupByLibrary.simpleMessage("Recovered"),
     "register" : MessageLookupByLibrary.simpleMessage("Register"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),

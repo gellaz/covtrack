@@ -28,11 +28,29 @@ class AppLocalizations {
       _AppLocalizationsDelegate();
 
   // Messages that have to be translated.
+  String get confirmed {
+    return Intl.message(
+      'Confirmed',
+      name: 'confirmed',
+      desc: 'Confirmed Info screen list tile description',
+      locale: localeName,
+    );
+  }
+
   String get createAccount {
     return Intl.message(
       'Create a new account',
       name: 'createAccount',
       desc: 'Create new account button label',
+      locale: localeName,
+    );
+  }
+
+  String get deaths {
+    return Intl.message(
+      'Deaths',
+      name: 'deaths',
+      desc: 'Deaths Info screen list tile description',
       locale: localeName,
     );
   }
@@ -109,6 +127,24 @@ class AppLocalizations {
     );
   }
 
+  String get infoDescription {
+    return Intl.message(
+      'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
+      name: 'infoDescription',
+      desc: 'Info screen body description',
+      locale: localeName,
+    );
+  }
+
+  String get infoDisclaimer {
+    return Intl.message(
+      'All data presented in this section are fetched from the API',
+      name: 'infoDisclaimer',
+      desc: 'Info screen disclaimer text',
+      locale: localeName,
+    );
+  }
+
   String get insertPasswordAgain {
     return Intl.message(
       'Insert password again',
@@ -142,6 +178,16 @@ class AppLocalizations {
       'Invalid password',
       name: 'invalidPassword',
       desc: 'Hint message of the Password InputField',
+      locale: localeName,
+    );
+  }
+
+  String lastUpdate(String lastUpdate) {
+    return Intl.message(
+      'Last update: $lastUpdate',
+      args: [lastUpdate],
+      name: 'lastUpdate',
+      desc: 'InfoListView last update description',
       locale: localeName,
     );
   }
@@ -182,11 +228,29 @@ class AppLocalizations {
     );
   }
 
+  String get newTrip {
+    return Intl.message(
+      'New Trip',
+      name: 'newTrip',
+      desc: 'New Trip button label',
+      locale: localeName,
+    );
+  }
+
   String get objective {
     return Intl.message(
       'Objective',
       name: 'objective',
       desc: 'First onboarding screen title',
+      locale: localeName,
+    );
+  }
+
+  String get oldTrips {
+    return Intl.message(
+      'Old Trips',
+      name: 'oldTrips',
+      desc: 'Old Trips button label',
       locale: localeName,
     );
   }
@@ -241,6 +305,15 @@ class AppLocalizations {
       'Reason:',
       name: 'reasonPickerDesc',
       desc: 'Reason picker description',
+      locale: localeName,
+    );
+  }
+
+  String get recovered {
+    return Intl.message(
+      'Recovered',
+      name: 'recovered',
+      desc: 'Recovered Info screen list tile description',
       locale: localeName,
     );
   }

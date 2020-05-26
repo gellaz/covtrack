@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../business/blocs/info/info_bloc.dart';
 import '../../business/repositories/info/info_repository.dart';
 import '../../data/models/info.dart';
+import '../../utils/app_localizations.dart';
 import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
 import '../widgets/web_link.dart';
@@ -31,9 +33,7 @@ class InfoContent extends StatelessWidget {
       ),
       body: BlocBuilder<InfoBloc, InfoState>(
         builder: (context, state) {
-          if (state is InfoInitial) {
-            return _buildInitial();
-          } else if (state is InfoLoadInProgress) {
+          if (state is InfoLoadInProgress) {
             return _buildLoading();
           } else if (state is InfoLoadSuccess) {
             return _buildLoadedData(
@@ -74,7 +74,7 @@ class InfoContent extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: <Widget>[
-                _buildDescription(),
+                _buildDescription(context),
                 SizedBox(height: 40),
                 _buildInfoTitle(context, 'Italy', localInfo.date),
                 InfoListView(localInfo),
@@ -92,9 +92,10 @@ class InfoContent extends StatelessWidget {
     );
   }
 
-  Widget _buildDescription() {
+  Widget _buildDescription(BuildContext context) {
     return Text(
-      'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
+      AppLocalizations.of(context).infoDescription,
+      style: Theme.of(context).textTheme.bodyText2,
       textAlign: TextAlign.center,
     );
   }
@@ -104,6 +105,8 @@ class InfoContent extends StatelessWidget {
     String title,
     DateTime lastUpdate,
   ) {
+    final formattedLastUpdate = DateFormat.yMd().format(lastUpdate);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
@@ -114,7 +117,7 @@ class InfoContent extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
           Text(
-            'Last update: ${lastUpdate.toString().split(' ').first}',
+            AppLocalizations.of(context).lastUpdate(formattedLastUpdate),
             style: Theme.of(context).textTheme.caption,
           ),
         ],
@@ -126,7 +129,7 @@ class InfoContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text(
-          'All data presented in this section are fetched from the API',
+          AppLocalizations.of(context).infoDisclaimer,
           style: Theme.of(context).textTheme.caption,
           textAlign: TextAlign.center,
         ),

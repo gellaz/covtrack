@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/models/trip.dart';
+import '../../utils/app_localizations.dart';
 import '../widgets/logout_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildNewTripButton(BuildContext context) {
     return FloatingActionButton.extended(
       icon: Icon(Icons.add),
-      label: Text('New Trip'),
+      label: Text(AppLocalizations.of(context).newTrip),
       onPressed: () => Navigator.pushNamed(context, '/home/destination-picker'),
     );
   }
@@ -95,7 +96,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildOldTripsButton(BuildContext context) {
     return FloatingActionButton.extended(
       icon: Icon(Icons.history),
-      label: Text('Old Trips'),
+      label: Text(AppLocalizations.of(context).oldTrips),
       onPressed: () => Navigator.pushNamed(context, '/home/old-trips'),
     );
   }

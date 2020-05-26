@@ -1,8 +1,20 @@
 {
   "@@last_modified": "2020-05-21T13:08:06.265475",
+  "confirmed": "Confirmed",
+  "@confirmed": {
+    "description": "Confirmed Info screen list tile description",
+    "type": "text",
+    "placeholders": {}
+  },
   "createAccount": "Create a new account",
   "@createAccount": {
     "description": "Create new account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deaths": "Deaths",
+  "@deaths": {
+    "description": "Deaths Info screen list tile description",
     "type": "text",
     "placeholders": {}
   },
@@ -54,6 +66,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "infoDescription": "Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.",
+  "@infoDescription": {
+    "description": "Info screen body description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoDisclaimer": "All data presented in this section are fetched from the API",
+  "@infoDisclaimer": {
+    "description": "Info screen disclaimer text",
+    "type": "text",
+    "placeholders": {}
+  },
   "insertPasswordAgain": "Insert password again",
   "@insertPasswordAgain": {
     "description": "Hint message of the InputField for the second password in the RegisterScreen",
@@ -77,6 +101,14 @@
     "description": "Hint message of the Password InputField",
     "type": "text",
     "placeholders": {}
+  },
+  "lastUpdate": "Last update: {lastUpdate}",
+  "@lastUpdate": {
+    "description": "InfoListView last update description",
+    "type": "text",
+    "placeholders": {
+      "lastUpdate": {}
+    }
   },
   "loggingIn": "Logging in...",
   "@loggingIn": {
@@ -102,9 +134,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "newTrip": "New Trip",
+  "@newTrip": {
+    "description": "New Trip button label",
+    "type": "text",
+    "placeholders": {}
+  },
   "objective": "Objective",
   "@objective": {
     "description": "First onboarding screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "oldTrips": "Old Trips",
+  "@oldTrips": {
+    "description": "Old Trips button label",
     "type": "text",
     "placeholders": {}
   },
@@ -141,6 +185,12 @@
   "reasonPickerDesc": "Reason:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "recovered": "Recovered",
+  "@recovered": {
+    "description": "Recovered Info screen list tile description",
     "type": "text",
     "placeholders": {}
   },

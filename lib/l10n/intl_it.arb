@@ -1,8 +1,20 @@
 {
   "@@last_modified": "2020-05-21T13:08:06.265475",
+  "confirmed": "Confermati",
+  "@confirmed": {
+    "description": "Confirmed Info screen list tile description",
+    "type": "text",
+    "placeholders": {}
+  },
   "createAccount": "Crea un nuovo account",
   "@createAccount": {
     "description": "Create new account button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deaths": "Morti",
+  "@deaths": {
+    "description": "Deaths Info screen list tile description",
     "type": "text",
     "placeholders": {}
   },
@@ -54,6 +66,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "infoDescription": "Di seguito trovi un resoconto della situazione sanitaria nel tuo paese e nel mondo. I dati presentati non hanno la presunzione di essere affidabili al 100% ma possono essere considerati una buona stima della situazione corrente.",
+  "@infoDescription": {
+    "description": "Info screen body description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoDisclaimer": "Tutti i dati presenti in questa sezione sono raccolti dalla API",
+  "@infoDisclaimer": {
+    "description": "Info screen disclaimer text",
+    "type": "text",
+    "placeholders": {}
+  },
   "insertPasswordAgain": "Inserisci nuovamente la password",
   "@insertPasswordAgain": {
     "description": "Hint message of the InputField for the second password in the RegisterScreen",
@@ -77,6 +101,14 @@
     "description": "Hint message of the Password InputField",
     "type": "text",
     "placeholders": {}
+  },
+  "lastUpdate": "Ultimo aggiornamento: {lastUpdate}",
+  "@lastUpdate": {
+    "description": "InfoListView last update description",
+    "type": "text",
+    "placeholders": {
+      "lastUpdate": {}
+    }
   },
   "loggingIn": "Accesso in corso...",
   "@loggingIn": {
@@ -102,9 +134,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "newTrip": "Nuovo Spostamento",
+  "@newTrip": {
+    "description": "New Trip button label",
+    "type": "text",
+    "placeholders": {}
+  },
   "objective": "Obiettivo",
   "@objective": {
     "description": "First onboarding screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "oldTrips": "Spostamenti Effettuati",
+  "@oldTrips": {
+    "description": "Old Trips button label",
     "type": "text",
     "placeholders": {}
   },
@@ -141,6 +185,12 @@
   "reasonPickerDesc": "Motivazione:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "recovered": "Guariti",
+  "@recovered": {
+    "description": "Recovered Info screen list tile description",
     "type": "text",
     "placeholders": {}
   },
