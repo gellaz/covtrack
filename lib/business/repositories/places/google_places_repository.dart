@@ -30,8 +30,8 @@ class GooglePlacesRepository implements PlacesRepository {
   ) async {
     final response = await places.autocomplete(
       input,
-      components: [Component(Component.country, 'it')],
-      language: 'it',
+      components: [Component(Component.country, window.locale.languageCode)],
+      language: window.locale.languageCode,
       location: Location(latitude, longitude),
       radius: 50000,
       sessionToken: Uuid().v4(),
@@ -50,7 +50,7 @@ class GooglePlacesRepository implements PlacesRepository {
     final response = await places.getDetailsByPlaceId(
       placeId,
       fields: ['formatted_address', 'geometry', 'name', 'place_id'],
-      language: 'it',
+      language: window.locale.languageCode,
       sessionToken: Uuid().v4(),
     );
     final result = response.result;
