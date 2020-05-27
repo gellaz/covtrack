@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/place.dart';
 
-enum PlaceType { Home, Destination }
+enum PlaceType { Source, Destination }
 
 class PlaceListTile extends StatelessWidget {
   final Place place;
@@ -23,8 +23,8 @@ class PlaceListTile extends StatelessWidget {
   }
 
   Widget _buildIcon() {
-    return placeType == PlaceType.Home
-        ? Icon(Icons.home)
+    return placeType == PlaceType.Source
+        ? Icon(Icons.place)
         : Icon(Icons.pin_drop);
   }
 }

@@ -28,6 +28,15 @@ class AppLocalizations {
       _AppLocalizationsDelegate();
 
   // Messages that have to be translated.
+  String get activeTrip {
+    return Intl.message(
+      'Active Trip:',
+      name: 'activeTrip',
+      desc: 'Active trip Home screen description',
+      locale: localeName,
+    );
+  }
+
   String get confirmed {
     return Intl.message(
       'Confirmed',
@@ -105,6 +114,15 @@ class AppLocalizations {
       'Done',
       name: 'done',
       desc: 'Done button label',
+      locale: localeName,
+    );
+  }
+
+  String get elapsedTime {
+    return Intl.message(
+      'Elapsed Time:',
+      name: 'elapsedTime',
+      desc: 'Elapsed time Home screen description',
       locale: localeName,
     );
   }
@@ -246,6 +264,15 @@ class AppLocalizations {
     );
   }
 
+  String get numStops {
+    return Intl.message(
+      'Number of stops:',
+      name: 'numStops',
+      desc: 'Home Screen number of stops description text',
+      locale: localeName,
+    );
+  }
+
   String get objective {
     return Intl.message(
       'Objective',
@@ -350,6 +377,15 @@ class AppLocalizations {
       'Registration failure',
       name: 'registrationFailure',
       desc: 'Snackbar message for the registration process failure',
+      locale: localeName,
+    );
+  }
+
+  String get showQr {
+    return Intl.message(
+      'Show QR Code',
+      name: 'showQr',
+      desc: 'Show QR Code button label',
       locale: localeName,
     );
   }

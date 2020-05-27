@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "activeTrip" : MessageLookupByLibrary.simpleMessage("Active Trip:"),
     "confirmed" : MessageLookupByLibrary.simpleMessage("Confirmed"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create a new account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deaths"),
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "donateBody" : MessageLookupByLibrary.simpleMessage("Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference."),
     "donateTitle" : MessageLookupByLibrary.simpleMessage("Give your contribution."),
     "done" : MessageLookupByLibrary.simpleMessage("Done"),
+    "elapsedTime" : MessageLookupByLibrary.simpleMessage("Elapsed Time:"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "info" : MessageLookupByLibrary.simpleMessage("Info"),
     "infoDescription" : MessageLookupByLibrary.simpleMessage("Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation."),
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "register" : MessageLookupByLibrary.simpleMessage("Register"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),
+    "showQr" : MessageLookupByLibrary.simpleMessage("Show QR Code"),
     "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
     "source" : MessageLookupByLibrary.simpleMessage("Source:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),

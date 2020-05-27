@@ -14,7 +14,10 @@ class ActiveTripTimer extends StatelessWidget {
             ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
         final String secondsStr =
             (state.duration % 60).floor().toString().padLeft(2, '0');
-        return Text('$hoursStr:$minutesStr:$secondsStr');
+        return Text(
+          '$hoursStr:$minutesStr:$secondsStr',
+          style: Theme.of(context).textTheme.headline5,
+        );
       },
     );
   }

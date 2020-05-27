@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+import '../../data/models/trip.dart';
 
 class QrScreen extends StatelessWidget {
+  final Trip activeTrip;
+
+  const QrScreen(this.activeTrip, {Key key})
+      : assert(activeTrip != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QrScreen'),
+        elevation: 0,
       ),
-      body: Center(
-        child: Text('QrScreen'),
+      body: Container(
+        color: Theme.of(context).primaryColor,
+        child: Center(
+          child: QrImage(
+            data: activeTrip.toString(),
+            backgroundColor: Colors.white,
+            padding: EdgeInsets.all(20),
+            version: QrVersions.auto,
+            size: 300,
+          ),
+        ),
       ),
     );
   }

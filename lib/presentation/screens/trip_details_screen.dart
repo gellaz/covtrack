@@ -77,7 +77,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                       AppLocalizations.of(context).source,
                       style: Theme.of(context).textTheme.headline5,
                     ),
-                    PlaceListTile(snapshot.data, PlaceType.Home),
+                    PlaceListTile(snapshot.data, PlaceType.Source),
                     Text(
                       AppLocalizations.of(context).destination,
                       style: Theme.of(context).textTheme.headline5,

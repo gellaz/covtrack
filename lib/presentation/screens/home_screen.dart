@@ -8,6 +8,7 @@ import '../../data/models/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/active_trip_timer.dart';
 import '../widgets/logout_button.dart';
+import '../widgets/place_list_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -44,11 +45,10 @@ class HomeScreen extends StatelessWidget {
               }
               if (state is TripsLoadSuccess) {
                 final trips = state.trips;
-                final lastTrip = trips.last;
 
-                if (trips.isNotEmpty && lastTrip.arrivalTime == null) {
+                if (trips.isNotEmpty && trips.last.arrivalTime == null) {
                   final duration =
-                      DateTime.now().difference(lastTrip.startingTime);
+                      DateTime.now().difference(trips.last.startingTime);
                   context.bloc<TimerBloc>().add(Start(duration.inSeconds));
                   return _buildTripsLoadSuccessActiveTrip(context, trips.last);
                 } else {
@@ -77,14 +77,71 @@ class HomeScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(activeTrip.toString()),
-            ActiveTripTimer(),
-            FloatingActionButton.extended(
-              icon: Icon(Icons.stop),
-              label: Text('Stop Timer'),
-              onPressed: () => context.bloc<TimerBloc>().add(Pause()),
+            Text(
+              AppLocalizations.of(context).activeTrip,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Column(
+              children: <Widget>[
+                PlaceListTile(activeTrip.source, PlaceType.Source),
+                PlaceListTile(activeTrip.destination, PlaceType.Destination),
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Text(
+                  AppLocalizations.of(context).numStops,
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                Text('0'),
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Text(
+                  AppLocalizations.of(context).elapsedTime,
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                ActiveTripTimer(),
+              ],
+            ),
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              buttonPadding: EdgeInsets.symmetric(horizontal: 20),
+              children: <Widget>[
+                Tooltip(
+                  message: AppLocalizations.of(context).showQr,
+                  preferBelow: false,
+                  verticalOffset: 40,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.stop),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      '/home/qr',
+                      arguments: activeTrip,
+                    ),
+                  ),
+                ),
+                Tooltip(
+                  message: AppLocalizations.of(context).newTrip,
+                  preferBelow: false,
+                  verticalOffset: 40,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.keyboard_return),
+                    onPressed: () {},
+                  ),
+                ),
+                Tooltip(
+                  message: AppLocalizations.of(context).newTrip,
+                  preferBelow: false,
+                  verticalOffset: 40,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
             ),
           ],
         ),

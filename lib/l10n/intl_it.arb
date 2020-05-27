@@ -1,5 +1,11 @@
 {
   "@@last_modified": "2020-05-21T13:08:06.265475",
+  "activeTrip": "Spostamento Attivo:",
+  "@activeTrip": {
+    "description": "Active trip Home screen description",
+    "type": "text",
+    "placeholders": {}
+  },
   "confirmed": "Confermati",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",
@@ -51,6 +57,12 @@
   "done": "Fatto",
   "@done": {
     "description": "Done button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "elapsedTime": "Tempo Trascorso:",
+  "@elapsedTime": {
+    "description": "Elapsed time Home screen description",
     "type": "text",
     "placeholders": {}
   },
@@ -146,6 +158,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "numStops": "Numero di fermate:",
+  "@numStops": {
+    "description": "Home Screen number of stops description text",
+    "type": "text",
+    "placeholders": {}
+  },
   "objective": "Obiettivo",
   "@objective": {
     "description": "First onboarding screen title",
@@ -215,6 +233,12 @@
   "registrationFailure": "Registrazione fallita",
   "@registrationFailure": {
     "description": "Snackbar message for the registration process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "showQr": "Mostra QR Code",
+  "@showQr": {
+    "description": "Show QR Code button label",
     "type": "text",
     "placeholders": {}
   },

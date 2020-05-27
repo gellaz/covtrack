@@ -42,6 +42,8 @@ dependencies:
   path:
   # Find commonly used locations on the filesystem.
   path_provider:
+  # QR code rendering.
+  qr_flutter:
   # NoSQL database.
   sembast:
   # Shared preferences.

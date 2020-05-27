@@ -5,6 +5,7 @@ import '../presentation/screens/donate_screen.dart';
 import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/info_screen.dart';
 import '../presentation/screens/old_trips_screen.dart';
+import '../presentation/screens/qr_screen.dart';
 import '../presentation/screens/trip_details_screen.dart';
 
 abstract class Router {
@@ -36,6 +37,10 @@ class HomeRouter implements Router {
         break;
       case '/home/old-trips':
         return MaterialPageRoute(builder: (_) => OldTripsScreen());
+        break;
+      case '/home/qr':
+        var activeTrip = settings.arguments;
+        return MaterialPageRoute(builder: (_) => QrScreen(activeTrip));
         break;
       // default:
       //   throw Exception('Invalid route: ${settings.name}');
