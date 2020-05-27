@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../business/blocs/info/info_bloc.dart';
 import '../../business/repositories/info/info_repository.dart';
@@ -8,7 +10,6 @@ import '../../data/models/info.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
-import '../widgets/web_link.dart';
 
 class InfoScreen extends StatelessWidget {
   @override
@@ -76,10 +77,18 @@ class InfoContent extends StatelessWidget {
               children: <Widget>[
                 _buildDescription(context),
                 SizedBox(height: 40),
-                _buildInfoTitle(context, 'Italy', localInfo.date),
+                _buildInfoTitle(
+                  context,
+                  AppLocalizations.of(context).italy,
+                  localInfo.date,
+                ),
                 InfoListView(localInfo),
                 SizedBox(height: 40),
-                _buildInfoTitle(context, 'Global', globalInfo.date),
+                _buildInfoTitle(
+                  context,
+                  AppLocalizations.of(context).global,
+                  globalInfo.date,
+                ),
                 InfoListView(globalInfo),
                 SizedBox(height: 40),
                 _buildDisclaimer(context),
@@ -118,7 +127,7 @@ class InfoContent extends StatelessWidget {
           ),
           Text(
             AppLocalizations.of(context).lastUpdate(formattedLastUpdate),
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).textTheme.overline,
           ),
         ],
       ),
@@ -128,16 +137,32 @@ class InfoContent extends StatelessWidget {
   Widget _buildDisclaimer(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text(
-          AppLocalizations.of(context).infoDisclaimer,
-          style: Theme.of(context).textTheme.caption,
+        RichText(
+          text: TextSpan(
+            text: AppLocalizations.of(context).infoDisclaimer,
+            style: Theme.of(context).textTheme.overline,
+            children: <TextSpan>[
+              TextSpan(
+                text: 'covidapi.info',
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      color: Colors.lightBlue,
+                      decoration: TextDecoration.underline,
+                    ),
+                recognizer: TapGestureRecognizer()..onTap = _onTap,
+              ),
+            ],
+          ),
           textAlign: TextAlign.center,
-        ),
-        WebLink(
-          text: 'covidapi.info',
-          url: 'https://covidapi.info/',
         ),
       ],
     );
+  }
+
+  void _onTap() async {
+    if (await canLaunch('https://covidapi.info/')) {
+      await launch('https://covidapi.info/');
+    } else {
+      throw Exception('Cannot launch https://covidapi.info/');
+    }
   }
 }

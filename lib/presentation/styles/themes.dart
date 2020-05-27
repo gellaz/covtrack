@@ -74,15 +74,13 @@ class Themes {
       ),
       caption: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 13,
+        fontSize: 14,
         letterSpacing: 0.4,
       ),
       overline: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 15,
-        letterSpacing: 1.5,
-        color: Colors.lightBlue,
-        decoration: TextDecoration.underline,
+        fontSize: 13,
+        letterSpacing: 0.4,
       ),
     ),
   );
@@ -160,15 +158,13 @@ class Themes {
       ),
       caption: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 13,
+        fontSize: 14,
         letterSpacing: 0.4,
       ),
       overline: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 15,
-        letterSpacing: 1.5,
-        color: Colors.lightBlue,
-        decoration: TextDecoration.underline,
+        fontSize: 14,
+        letterSpacing: 0.4,
       ),
     ),
   );

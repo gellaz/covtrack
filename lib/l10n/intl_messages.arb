@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-27T17:11:20.179829",
+  "@@last_modified": "2020-05-27T18:37:19.868461",
   "activeTrip": "Active Trip:",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -66,6 +66,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "global": "Global",
+  "@global": {
+    "description": "Info screen Global title",
+    "type": "text",
+    "placeholders": {}
+  },
   "home": "Home",
   "@home": {
     "description": "Home section label",
@@ -111,6 +117,12 @@
   "invalidPassword": "Invalid password",
   "@invalidPassword": {
     "description": "Hint message of the Password InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "italy": "Italy",
+  "@italy": {
+    "description": "Info screen Italy title",
     "type": "text",
     "placeholders": {}
   },

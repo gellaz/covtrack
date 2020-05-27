@@ -127,6 +127,15 @@ class AppLocalizations {
     );
   }
 
+  String get global {
+    return Intl.message(
+      'Global',
+      name: 'global',
+      desc: 'Info screen Global title',
+      locale: localeName,
+    );
+  }
+
   String get home {
     return Intl.message(
       'Home',
@@ -196,6 +205,15 @@ class AppLocalizations {
       'Invalid password',
       name: 'invalidPassword',
       desc: 'Hint message of the Password InputField',
+      locale: localeName,
+    );
+  }
+
+  String get italy {
+    return Intl.message(
+      'Italy',
+      name: 'italy',
+      desc: 'Info screen Italy title',
       locale: localeName,
     );
   }

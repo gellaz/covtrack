@@ -69,60 +69,71 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             _source = snapshot.data;
-            return ListView(
+            return Column(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text(
-                      AppLocalizations.of(context).source,
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    PlaceListTile(snapshot.data, PlaceType.Source),
-                    Text(
-                      AppLocalizations.of(context).destination,
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    PlaceListTile(widget.destination, PlaceType.Destination),
-                    SizedBox(height: 10),
-                    Container(
-                      height: 300,
-                      child: GoogleMap(
-                        compassEnabled: false,
-                        gestureRecognizers: null,
-                        initialCameraPosition: CameraPosition(
-                          target: LatLng(
-                            snapshot.data.latitude,
-                            snapshot.data.longitude,
+                Expanded(
+                  child: ListView(
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            AppLocalizations.of(context).source,
+                            style: Theme.of(context).textTheme.headline5,
                           ),
-                          zoom: 16,
-                        ),
-                        mapToolbarEnabled: false,
-                        mapType: MapType.normal,
-                        markers: _markers,
-                        myLocationButtonEnabled: false,
-                        myLocationEnabled: false,
-                        onMapCreated: _onMapCreated,
-                        polylines: _polylines,
-                        scrollGesturesEnabled: false,
-                        tiltGesturesEnabled: false,
-                        trafficEnabled: false,
-                        zoomControlsEnabled: false,
-                        zoomGesturesEnabled: false,
+                          PlaceListTile(snapshot.data, PlaceType.Source),
+                          Text(
+                            AppLocalizations.of(context).destination,
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          PlaceListTile(
+                              widget.destination, PlaceType.Destination),
+                          SizedBox(height: 10),
+                          Container(
+                            height: 300,
+                            child: GoogleMap(
+                              compassEnabled: false,
+                              gestureRecognizers: null,
+                              initialCameraPosition: CameraPosition(
+                                target: LatLng(
+                                  snapshot.data.latitude,
+                                  snapshot.data.longitude,
+                                ),
+                                zoom: 16,
+                              ),
+                              mapToolbarEnabled: false,
+                              mapType: MapType.normal,
+                              markers: _markers,
+                              myLocationButtonEnabled: false,
+                              myLocationEnabled: false,
+                              onMapCreated: _onMapCreated,
+                              polylines: _polylines,
+                              scrollGesturesEnabled: false,
+                              tiltGesturesEnabled: false,
+                              trafficEnabled: false,
+                              zoomControlsEnabled: false,
+                              zoomGesturesEnabled: false,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            AppLocalizations.of(context).reasonPickerDesc,
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          SizedBox(height: 10),
+                          ReasonPicker(reasonsList, _onReasonSelected),
+                          SizedBox(height: 10),
+                        ],
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      AppLocalizations.of(context).reasonPickerDesc,
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    SizedBox(height: 10),
-                    ReasonPicker(reasonsList, _onReasonSelected),
-                  ],
+                    ],
+                  ),
                 ),
-                FloatingActionButton.extended(
-                  icon: Icon(Icons.keyboard_arrow_right),
-                  label: Text(AppLocalizations.of(context).startTrip),
-                  onPressed: () => _onPressed(context),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: FloatingActionButton.extended(
+                    icon: Icon(Icons.keyboard_arrow_right),
+                    label: Text(AppLocalizations.of(context).startTrip),
+                    onPressed: () => _onPressed(context),
+                  ),
                 ),
               ],
             );
@@ -170,7 +181,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
               reason: _selectedReason,
               startingTime: DateTime.now(),
               arrivalTime: null,
-              source: widget.destination,
+              source: _source,
               destination: widget.destination,
             ),
           ),

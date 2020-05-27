@@ -91,6 +91,15 @@ class HomeScreen extends StatelessWidget {
             Column(
               children: <Widget>[
                 Text(
+                  AppLocalizations.of(context).reasonPickerDesc,
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                Text(activeTrip.reason),
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Text(
                   AppLocalizations.of(context).numStops,
                   style: Theme.of(context).textTheme.subtitle2,
                 ),

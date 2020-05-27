@@ -18,7 +18,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deaths": "Morti",
+  "deaths": "Deceduti",
   "@deaths": {
     "description": "Deaths Info screen list tile description",
     "type": "text",
@@ -66,6 +66,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "global": "Globale",
+  "@global": {
+    "description": "Info screen Global title",
+    "type": "text",
+    "placeholders": {}
+  },
   "home": "Home",
   "@home": {
     "description": "Home section label",
@@ -84,7 +90,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "infoDisclaimer": "Tutti i dati presenti in questa sezione sono raccolti dalla API",
+  "infoDisclaimer": "Tutti i dati presenti in questa sezione sono raccolti dalla API ",
   "@infoDisclaimer": {
     "description": "Info screen disclaimer text",
     "type": "text",
@@ -111,6 +117,12 @@
   "invalidPassword": "Password non valida",
   "@invalidPassword": {
     "description": "Hint message of the Password InputField",
+    "type": "text",
+    "placeholders": {}
+  },
+  "italy": "Italia",
+  "@italy": {
+    "description": "Info screen Italy title",
     "type": "text",
     "placeholders": {}
   },
