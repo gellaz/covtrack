@@ -9,7 +9,10 @@ class RegisterLink extends StatelessWidget {
     return InkWell(
       child: Text(
         AppLocalizations.of(context).createAccount,
-        style: Theme.of(context).textTheme.overline,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(
+              color: Colors.lightBlue,
+              decoration: TextDecoration.underline,
+            ),
         textAlign: TextAlign.center,
       ),
       onTap: () {

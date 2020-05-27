@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "info" : MessageLookupByLibrary.simpleMessage("Info"),
     "infoDescription" : MessageLookupByLibrary.simpleMessage("Di seguito trovi un resoconto della situazione sanitaria nel tuo paese e nel mondo. I dati presentati non hanno la presunzione di essere affidabili al 100% ma possono essere considerati una buona stima della situazione corrente."),
     "infoDisclaimer" : MessageLookupByLibrary.simpleMessage("Tutti i dati presenti in questa sezione sono raccolti dalla API "),
-    "insertPasswordAgain" : MessageLookupByLibrary.simpleMessage("Inserisci nuovamente la password"),
+    "insertPasswordAgain" : MessageLookupByLibrary.simpleMessage("Reinserisci la password"),
     "insertPlace" : MessageLookupByLibrary.simpleMessage("Inserisci un luogo..."),
     "invalidEmail" : MessageLookupByLibrary.simpleMessage("Email non valida"),
     "invalidPassword" : MessageLookupByLibrary.simpleMessage("Password non valida"),

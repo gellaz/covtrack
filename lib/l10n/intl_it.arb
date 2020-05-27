@@ -96,7 +96,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "insertPasswordAgain": "Inserisci nuovamente la password",
+  "insertPasswordAgain": "Reinserisci la password",
   "@insertPasswordAgain": {
     "description": "Hint message of the InputField for the second password in the RegisterScreen",
     "type": "text",

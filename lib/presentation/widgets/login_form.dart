@@ -79,81 +79,86 @@ class _LoginFormState extends State<LoginForm> {
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               child: Form(
-                child: ListView(
+                child: Column(
                   children: <Widget>[
-                    Text(
-                      AppLocalizations.of(context).login.toUpperCase(),
-                      style: Theme.of(context).textTheme.headline3.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 8,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Icon(
-                      Icons.person,
-                      size: 200,
-                      color: Colors.white,
-                    ),
-                    TextFormField(
-                      autocorrect: false,
-                      autovalidate: true,
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      onFieldSubmitted: (_) =>
-                          FocusScope.of(context).nextFocus(),
-                      textInputAction: TextInputAction.next,
-                      validator: (_) {
-                        return !state.isEmailValid
-                            ? AppLocalizations.of(context).invalidEmail
-                            : null;
-                      },
-                    ),
-                    TextFormField(
-                      autocorrect: false,
-                      autovalidate: true,
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                      ),
-                      obscureText: true,
-                      validator: (_) {
-                        return !state.isPasswordValid
-                            ? AppLocalizations.of(context).invalidPassword
-                            : null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                    Expanded(
+                      child: ListView(
                         children: <Widget>[
-                          LoginButton(
-                            onPressed: isLoginButtonEnabled(state)
-                                ? _onFormSubmitted
-                                : null,
+                          Text(
+                            AppLocalizations.of(context).login.toUpperCase(),
+                            style:
+                                Theme.of(context).textTheme.headline3.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 8,
+                                    ),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 60),
-                          Column(
-                            children: <Widget>[
-                              TextDivider(
-                                AppLocalizations.of(context).or,
-                              ),
-                              SizedBox(height: 8),
-                              RegisterLink(),
-                            ],
+                          Icon(
+                            Icons.person,
+                            size: 200,
+                            color: Colors.white,
+                          ),
+                          TextFormField(
+                            autocorrect: false,
+                            autovalidate: true,
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            onFieldSubmitted: (_) =>
+                                FocusScope.of(context).nextFocus(),
+                            textInputAction: TextInputAction.next,
+                            validator: (_) {
+                              return !state.isEmailValid
+                                  ? AppLocalizations.of(context).invalidEmail
+                                  : null;
+                            },
+                          ),
+                          TextFormField(
+                            autocorrect: false,
+                            autovalidate: true,
+                            controller: _passwordController,
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                            ),
+                            obscureText: true,
+                            validator: (_) {
+                              return !state.isPasswordValid
+                                  ? AppLocalizations.of(context).invalidPassword
+                                  : null;
+                            },
+                          ),
+                          SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                LoginButton(
+                                  onPressed: isLoginButtonEnabled(state)
+                                      ? _onFormSubmitted
+                                      : null,
+                                ),
+                                SizedBox(height: 60),
+                              ],
+                            ),
                           ),
                         ],
                       ),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        TextDivider(
+                          AppLocalizations.of(context).or,
+                        ),
+                        SizedBox(height: 8),
+                        RegisterLink(),
+                      ],
                     ),
                   ],
                 ),

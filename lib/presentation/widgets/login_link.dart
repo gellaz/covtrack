@@ -8,7 +8,10 @@ class LoginLink extends StatelessWidget {
     return InkWell(
       child: Text(
         AppLocalizations.of(context).loginWithYourAccount,
-        style: Theme.of(context).textTheme.overline,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(
+              color: Colors.lightBlue,
+              decoration: TextDecoration.underline,
+            ),
         textAlign: TextAlign.center,
       ),
       onTap: () => Navigator.of(context).pop(),
