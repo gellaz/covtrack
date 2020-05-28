@@ -4,6 +4,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../business/repositories/places/places_repository.dart';
+import '../../data/models/place.dart';
 import '../../data/models/place_suggestion.dart';
 import '../../utils/app_localizations.dart';
 import 'clear_button.dart';
@@ -13,10 +14,11 @@ class PlacesSearchField extends StatefulWidget {
   final Function addMarkerAndCenterMapOn;
   final double userLatitude;
   final double userLongitude;
+  final Place selectedPlace;
 
   const PlacesSearchField(
       this.userLatitude, this.userLongitude, this.addMarkerAndCenterMapOn,
-      {Key key})
+      {this.selectedPlace, Key key})
       : assert(addMarkerAndCenterMapOn != null),
         assert(userLatitude != null),
         assert(userLongitude != null),
@@ -27,7 +29,7 @@ class PlacesSearchField extends StatefulWidget {
 }
 
 class _PlacesSearchFieldState extends State<PlacesSearchField> {
-  final _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   PlacesRepository _placesRepository;
 
   @override
@@ -39,10 +41,13 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
 
   @override
   Widget build(BuildContext context) {
+    _controller.text = widget.selectedPlace?.formattedAddress ?? '';
+
     return TypeAheadField(
       itemBuilder: _itemBuilder,
       onSuggestionSelected: _onSuggestionSelected,
       suggestionsCallback: _suggestionsCallback,
+      hideOnEmpty: true,
       textFieldConfiguration: TextFieldConfiguration(
         controller: _controller,
         decoration: InputDecoration(
@@ -73,12 +78,17 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
     final place = await _placesRepository.getPlaceFromSuggestion(suggestion);
+    setText(place.formattedAddress);
     widget.addMarkerAndCenterMapOn(
       LatLng(
         place.latitude,
         place.longitude,
       ),
     );
+  }
+
+  void setText(String text) {
+    _controller.text = text;
   }
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {

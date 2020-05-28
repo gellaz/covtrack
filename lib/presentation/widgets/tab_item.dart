@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../routes/routers.dart';
+import '../../utils/routers.dart';
 
 enum TabIndex { info, home, settings }
 

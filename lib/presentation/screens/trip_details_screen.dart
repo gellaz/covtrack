@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../business/blocs/timer/timer_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../business/repositories/location/location_repository.dart';
 import '../../business/repositories/places/places_repository.dart';
@@ -57,6 +58,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     _locationRepository = context.repository<LocationRepository>();
     _placesRepository = context.repository<PlacesRepository>();
     _futureSource = _getCurrentPlace();
+    _selectedReason = reasonsList.first;
     _setSourceAndDestinationIcons();
   }
 
@@ -247,9 +249,10 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
       // create a Polyline instance
       // with an id, an RGB color and the list of LatLng pairs
       Polyline polyline = Polyline(
-          polylineId: PolylineId('poly'),
-          color: Color.fromARGB(255, 40, 122, 198),
-          points: polylineCoordinates);
+        polylineId: PolylineId('poly'),
+        color: Color.fromARGB(255, 40, 122, 198),
+        points: polylineCoordinates,
+      );
 
       // add the constructed polyline as a set of points
       // to the polyline set, which will eventually

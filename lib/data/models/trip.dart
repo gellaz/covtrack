@@ -29,7 +29,7 @@ class Trip extends Equatable {
       'arrivalTime':
           arrivalTime != null ? Timestamp.fromDateTime(arrivalTime) : null,
       'source': source.toMap(),
-      'destination': source.toMap(),
+      'destination': destination.toMap(),
     };
   }
 

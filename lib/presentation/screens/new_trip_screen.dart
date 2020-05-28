@@ -7,6 +7,7 @@ import '../../business/repositories/places/places_repository.dart';
 import '../../data/models/place.dart';
 import '../widgets/destination_card.dart';
 import '../widgets/places_search_field.dart';
+import 'trip_details_screen.dart';
 
 class NewTripScreen extends StatefulWidget {
   static const routeName = '/new-trip';
@@ -22,6 +23,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
   Marker _marker;
   PlacesRepository _placesRepository;
   Widget _detailCard;
+  Place _selectedPlace;
 
   @override
   void initState() {
@@ -39,6 +41,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
                 _userLocation.latitude,
                 _userLocation.longitude,
                 _onTap,
+                selectedPlace: _selectedPlace,
               )
             : null,
       ),
@@ -76,7 +79,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
             onButtonPressed: () {
               Navigator.pushNamed(
                 context,
-                '/home/trip-details',
+                TripDetailsScreen.routeName,
                 arguments: destination,
               );
             }),
@@ -117,6 +120,9 @@ class _NewTripScreenState extends State<NewTripScreen> {
     _addMarker(location);
     _centerMapOn(location);
     final place = await _getLocationDetails(location);
+    setState(() {
+      _selectedPlace = place;
+    });
     _buildDestinationCard(place);
   }
 }

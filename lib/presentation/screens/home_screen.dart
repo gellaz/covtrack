@@ -3,63 +3,65 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/timer/timer_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
-import '../../business/ticker.dart';
 import '../../data/models/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/active_trip_timer.dart';
 import '../widgets/logout_button.dart';
 import '../widgets/place_list_tile.dart';
+import 'new_trip_screen.dart';
+import 'old_trips_screen.dart';
+import 'qr_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TimerBloc(Ticker(), 10),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-          actions: <Widget>[
-            LogoutButton(),
-          ],
-        ),
-        body: BlocListener<TripsBloc, TripsState>(
-          listener: (context, state) {
-            if (state is TripsLoadFailure) {
-              Scaffold.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text(state.message), Icon(Icons.error)],
-                    ),
-                    backgroundColor: Colors.red,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        actions: <Widget>[
+          LogoutButton(),
+        ],
+      ),
+      body: BlocListener<TripsBloc, TripsState>(
+        listener: (context, state) {
+          if (state is TripsLoadFailure) {
+            Scaffold.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Text(state.message), Icon(Icons.error)],
                   ),
-                );
+                  backgroundColor: Colors.red,
+                ),
+              );
+          }
+        },
+        child: BlocBuilder<TripsBloc, TripsState>(
+          builder: (context, state) {
+            if (state is TripsLoadInProgress) {
+              return _buildTripsLoadInProgress();
             }
-          },
-          child: BlocBuilder<TripsBloc, TripsState>(
-            builder: (context, state) {
-              if (state is TripsLoadInProgress) {
-                return _buildTripsLoadInProgress();
-              }
-              if (state is TripsLoadSuccess) {
-                final trips = state.trips;
+            if (state is TripsLoadSuccess) {
+              final trips = state.trips;
 
-                if (trips.isNotEmpty && trips.last.arrivalTime == null) {
-                  final duration =
-                      DateTime.now().difference(trips.last.startingTime);
-                  context.bloc<TimerBloc>().add(Start(duration.inSeconds));
-                  return _buildTripsLoadSuccessActiveTrip(context, trips.last);
-                } else {
-                  return _buildTripsLoadSuccessNoActiveTrips(context);
-                }
+              if (trips.isNotEmpty && trips.last.arrivalTime == null) {
+                final duration =
+                    DateTime.now().difference(trips.last.startingTime);
+                context.bloc<TimerBloc>()..add(Start(duration.inSeconds));
+                return _buildTripsLoadSuccessActiveTrip(
+                  context,
+                  trips.last,
+                );
+              } else {
+                return _buildTripsLoadSuccessNoActiveTrips(context);
               }
-              return Container();
-            },
-          ),
+            }
+            return Container();
+          },
         ),
       ),
     );
@@ -129,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                     child: Icon(Icons.stop),
                     onPressed: () => Navigator.pushNamed(
                       context,
-                      '/home/qr',
+                      QrScreen.routeName,
                       arguments: activeTrip,
                     ),
                   ),
@@ -190,14 +192,14 @@ class HomeScreen extends StatelessWidget {
                   icon: Icon(Icons.add),
                   label: Text(AppLocalizations.of(context).newTrip),
                   onPressed: () =>
-                      Navigator.pushNamed(context, '/home/new-trip'),
+                      Navigator.pushNamed(context, NewTripScreen.routeName),
                 ),
                 SizedBox(height: 10),
                 FloatingActionButton.extended(
                   icon: Icon(Icons.history),
                   label: Text(AppLocalizations.of(context).oldTrips),
                   onPressed: () =>
-                      Navigator.pushNamed(context, '/home/old-trips'),
+                      Navigator.pushNamed(context, OldTripsScreen.routeName),
                 ),
               ],
             ),

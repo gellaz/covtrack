@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
+import 'business/blocs/timer/timer_bloc.dart';
 import 'business/blocs/trips/trips_bloc.dart';
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
@@ -16,6 +17,7 @@ import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
 import 'business/repositories/trips/trips_database_repository.dart';
+import 'business/ticker.dart';
 import 'presentation/containers/authentication_container.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
@@ -59,14 +61,17 @@ void main() {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<SettingsBloc>(create: (_) {
+          BlocProvider(create: (_) {
             return SettingsBloc(settingsRepository)..add(AppLoaded());
           }),
-          BlocProvider<AuthenticationBloc>(create: (_) {
+          BlocProvider(create: (_) {
             return AuthenticationBloc(authRepository)..add(AppStarted());
           }),
-          BlocProvider<TripsBloc>(create: (_) {
+          BlocProvider(create: (_) {
             return TripsBloc(tripsRepository)..add(TripsLoaded());
+          }),
+          BlocProvider(create: (_) {
+            return TimerBloc(Ticker(), 10);
           }),
         ],
         child: CovTrack(),
