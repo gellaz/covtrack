@@ -4,6 +4,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../data/models/trip.dart';
 
 class QrScreen extends StatelessWidget {
+  static const routeName = '/qr';
+
   final Trip activeTrip;
 
   const QrScreen(this.activeTrip, {Key key})

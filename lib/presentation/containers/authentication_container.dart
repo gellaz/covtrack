@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../screens/login_screen.dart';
-import '../screens/root_screen.dart';
 import '../screens/splash_screen.dart';
+import 'root_screen.dart';
 
 class AuthenticationContainer extends StatelessWidget {
   @override

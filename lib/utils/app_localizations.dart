@@ -82,33 +82,6 @@ class AppLocalizations {
     );
   }
 
-  String get donate {
-    return Intl.message(
-      'Donate',
-      name: 'donate',
-      desc: 'Donate section label',
-      locale: localeName,
-    );
-  }
-
-  String get donateBody {
-    return Intl.message(
-      'Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference.',
-      name: 'donateBody',
-      desc: 'Donate screen body',
-      locale: localeName,
-    );
-  }
-
-  String get donateTitle {
-    return Intl.message(
-      'Give your contribution.',
-      name: 'donateTitle',
-      desc: 'Donate screen title',
-      locale: localeName,
-    );
-  }
-
   String get done {
     return Intl.message(
       'Done',
@@ -395,6 +368,15 @@ class AppLocalizations {
       'Registration failure',
       name: 'registrationFailure',
       desc: 'Snackbar message for the registration process failure',
+      locale: localeName,
+    );
+  }
+
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: 'Settings section label',
       locale: localeName,
     );
   }

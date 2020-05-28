@@ -13,13 +13,13 @@ class _RootScreenState extends State<RootScreen> {
   TabIndex _currentTab = TabIndex.home;
 
   final Map<TabIndex, TabItem> _tabs = {
-    TabIndex.donate: TabItem.donate(),
+    TabIndex.settings: TabItem.settings(),
     TabIndex.home: TabItem.home(),
     TabIndex.info: TabItem.info(),
   };
 
   final Map<TabIndex, GlobalKey<NavigatorState>> _navigatorKeys = {
-    TabIndex.donate: GlobalKey<NavigatorState>(),
+    TabIndex.settings: GlobalKey<NavigatorState>(),
     TabIndex.home: GlobalKey<NavigatorState>(),
     TabIndex.info: GlobalKey<NavigatorState>(),
   };
@@ -33,9 +33,9 @@ class _RootScreenState extends State<RootScreen> {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            _buildOffstageNavigator(TabIndex.donate),
-            _buildOffstageNavigator(TabIndex.home),
             _buildOffstageNavigator(TabIndex.info),
+            _buildOffstageNavigator(TabIndex.home),
+            _buildOffstageNavigator(TabIndex.settings),
           ],
         ),
         bottomNavigationBar: BottomNavigation(

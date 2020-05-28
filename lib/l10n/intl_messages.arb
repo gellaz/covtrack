@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-27T19:05:42.387540",
+  "@@last_modified": "2020-05-28T16:18:38.686992",
   "activeTrip": "Active Trip:",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -33,24 +33,6 @@
   "differentPasswords": "The two passwords are not the same",
   "@differentPasswords": {
     "description": "Error message when the entered passwords are not the same",
-    "type": "text",
-    "placeholders": {}
-  },
-  "donate": "Donate",
-  "@donate": {
-    "description": "Donate section label",
-    "type": "text",
-    "placeholders": {}
-  },
-  "donateBody": "Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference.",
-  "@donateBody": {
-    "description": "Donate screen body",
-    "type": "text",
-    "placeholders": {}
-  },
-  "donateTitle": "Give your contribution.",
-  "@donateTitle": {
-    "description": "Donate screen title",
     "type": "text",
     "placeholders": {}
   },
@@ -245,6 +227,12 @@
   "registrationFailure": "Registration failure",
   "@registrationFailure": {
     "description": "Snackbar message for the registration process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings section label",
     "type": "text",
     "placeholders": {}
   },

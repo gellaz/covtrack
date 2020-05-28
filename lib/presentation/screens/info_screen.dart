@@ -12,6 +12,8 @@ import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
 
 class InfoScreen extends StatelessWidget {
+  static const routeName = '/';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -8,13 +8,14 @@ import '../../data/models/place.dart';
 import '../widgets/destination_card.dart';
 import '../widgets/places_search_field.dart';
 
-class DestinationPickerScreen extends StatefulWidget {
+class NewTripScreen extends StatefulWidget {
+  static const routeName = '/new-trip';
+
   @override
-  _DestinationPickerScreenState createState() =>
-      _DestinationPickerScreenState();
+  _NewTripScreenState createState() => _NewTripScreenState();
 }
 
-class _DestinationPickerScreenState extends State<DestinationPickerScreen> {
+class _NewTripScreenState extends State<NewTripScreen> {
   LatLng _userLocation;
   GoogleMapController _mapController;
   LocationRepository _locationRepository;

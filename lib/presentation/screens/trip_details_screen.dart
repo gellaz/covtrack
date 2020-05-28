@@ -19,6 +19,8 @@ const List<String> reasonsList = [
 ];
 
 class TripDetailsScreen extends StatefulWidget {
+  static const routeName = '/trip-details';
+
   final Place destination;
 
   const TripDetailsScreen(this.destination, {Key key})

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../routes/routers.dart';
 
-enum TabIndex { donate, home, info }
+enum TabIndex { info, home, settings }
 
 class TabItem {
   final Router router;
@@ -15,19 +15,19 @@ class TabItem {
     this.title,
   });
 
+  factory TabItem.settings() {
+    return TabItem(
+      router: DonateRouter(),
+      icon: Icon(Icons.settings),
+      title: Text('Settings'),
+    );
+  }
+
   factory TabItem.home() {
     return TabItem(
       router: HomeRouter(),
       icon: Icon(Icons.home),
       title: Text('Home'),
-    );
-  }
-
-  factory TabItem.donate() {
-    return TabItem(
-      router: DonateRouter(),
-      icon: Icon(Icons.favorite),
-      title: Text('Donate'),
     );
   }
 

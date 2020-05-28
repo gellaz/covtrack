@@ -79,9 +79,9 @@ class OnboardingScreen extends StatelessWidget {
   PageViewModel _buildPageFour(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Icon(Icons.favorite, size: 150),
+        child: Icon(Icons.settings, size: 150),
       ),
-      title: AppLocalizations.of(context).donate,
+      title: AppLocalizations.of(context).settings,
       body: AppLocalizations.of(context).onboarding4,
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context),

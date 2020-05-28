@@ -36,24 +36,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "donate": "Donate",
-  "@donate": {
-    "description": "Donate section label",
-    "type": "text",
-    "placeholders": {}
-  },
-  "donateBody": "Help the doctors and volunteers involved in the fight against Covid-19. Even a small donation can make a big difference.",
-  "@donateBody": {
-    "description": "Donate screen body",
-    "type": "text",
-    "placeholders": {}
-  },
-  "donateTitle": "Give your contribution.",
-  "@donateTitle": {
-    "description": "Donate screen title",
-    "type": "text",
-    "placeholders": {}
-  },
   "done": "Done",
   "@done": {
     "description": "Done button label",
@@ -245,6 +227,12 @@
   "registrationFailure": "Registration failure",
   "@registrationFailure": {
     "description": "Snackbar message for the registration process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings section label",
     "type": "text",
     "placeholders": {}
   },

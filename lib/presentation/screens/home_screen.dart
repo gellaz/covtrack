@@ -11,6 +11,8 @@ import '../widgets/logout_button.dart';
 import '../widgets/place_list_tile.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -188,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                   icon: Icon(Icons.add),
                   label: Text(AppLocalizations.of(context).newTrip),
                   onPressed: () =>
-                      Navigator.pushNamed(context, '/home/destination-picker'),
+                      Navigator.pushNamed(context, '/home/new-trip'),
                 ),
                 SizedBox(height: 10),
                 FloatingActionButton.extended(
