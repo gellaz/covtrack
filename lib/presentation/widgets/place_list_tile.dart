@@ -20,13 +20,18 @@ class PlaceListTile extends StatelessWidget {
         leading: _buildIcon(),
         title: Text('${place.mainText}'),
         subtitle: Text('${place.secondaryText}'),
+        isThreeLine: true,
       ),
     );
   }
 
   Widget _buildIcon() {
-    return placeType == PlaceType.Source
+    final child = placeType == PlaceType.Source
         ? Icon(Icons.place)
         : Icon(Icons.pin_drop);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[child],
+    );
   }
 }

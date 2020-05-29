@@ -89,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
                           Text(
                             AppLocalizations.of(context).login.toUpperCase(),
                             style:
-                                Theme.of(context).textTheme.headline3.copyWith(
+                                Theme.of(context).textTheme.headline4.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 8,

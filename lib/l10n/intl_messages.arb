@@ -1,6 +1,6 @@
 {
-  "@@last_modified": "2020-05-29T14:17:23.701667",
-  "activeTrip": "Active Trip:",
+  "@@last_modified": "2020-05-29T15:21:58.006202",
+  "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
     "type": "text",
@@ -242,6 +242,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "returnTrip": "Return",
+  "@returnTrip": {
+    "description": "Return tooltip text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnTripStarted": "Return trip started",
+  "@returnTripStarted": {
+    "description": "Return trip started Snackbar message",
+    "type": "text",
+    "placeholders": {}
+  },
   "settings": "Settings",
   "@settings": {
     "description": "Settings section label",
@@ -281,12 +293,6 @@
   "tripDetails": "Trip Details",
   "@tripDetails": {
     "description": "Trip Details appbar title",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tripReturn": "Return",
-  "@tripReturn": {
-    "description": "Return tooltip text",
     "type": "text",
     "placeholders": {}
   },

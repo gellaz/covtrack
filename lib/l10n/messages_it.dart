@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "activeTrip" : MessageLookupByLibrary.simpleMessage("Spostamento Attivo:"),
+    "activeTrip" : MessageLookupByLibrary.simpleMessage("Spostamento Attivo"),
     "confirmed" : MessageLookupByLibrary.simpleMessage("Confermati"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Crea un nuovo account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deceduti"),
@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "register" : MessageLookupByLibrary.simpleMessage("Registrati"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registrazione in corso..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registrazione fallita"),
+    "returnTrip" : MessageLookupByLibrary.simpleMessage("Ritorno"),
+    "returnTripStarted" : MessageLookupByLibrary.simpleMessage("Spostamento di ritorno avviato"),
     "settings" : MessageLookupByLibrary.simpleMessage("Impostazioni"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Mostra QR Code"),
     "skip" : MessageLookupByLibrary.simpleMessage("Salta"),
@@ -70,7 +72,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Rimani a casa."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento"),
-    "tripReturn" : MessageLookupByLibrary.simpleMessage("Ritorno"),
     "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento dei vecchi spostamenti")
   };
 }

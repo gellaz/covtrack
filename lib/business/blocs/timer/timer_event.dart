@@ -19,6 +19,9 @@ class Start extends TimerEvent {
   const Start(this.duration);
 
   @override
+  List<Object> get props => [duration];
+
+  @override
   String toString() => "Start { duration: $duration }";
 }
 

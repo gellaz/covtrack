@@ -30,7 +30,7 @@ class AppLocalizations {
   // Messages that have to be translated.
   String get activeTrip {
     return Intl.message(
-      'Active Trip:',
+      'Active Trip',
       name: 'activeTrip',
       desc: 'Active trip Home screen description',
       locale: localeName,
@@ -390,6 +390,24 @@ class AppLocalizations {
     );
   }
 
+  String get returnTrip {
+    return Intl.message(
+      'Return',
+      name: 'returnTrip',
+      desc: 'Return tooltip text',
+      locale: localeName,
+    );
+  }
+
+  String get returnTripStarted {
+    return Intl.message(
+      'Return trip started',
+      name: 'returnTripStarted',
+      desc: 'Return trip started Snackbar message',
+      locale: localeName,
+    );
+  }
+
   String get settings {
     return Intl.message(
       'Settings',
@@ -449,15 +467,6 @@ class AppLocalizations {
       'Trip Details',
       name: 'tripDetails',
       desc: 'Trip Details appbar title',
-      locale: localeName,
-    );
-  }
-
-  String get tripReturn {
-    return Intl.message(
-      'Return',
-      name: 'tripReturn',
-      desc: 'Return tooltip text',
       locale: localeName,
     );
   }

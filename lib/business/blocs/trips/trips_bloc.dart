@@ -19,17 +19,20 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
 
   @override
   Stream<TripsState> mapEventToState(TripsEvent event) async* {
-    if (event is TripAdded) {
-      yield* _mapTripAddedToState(event.trip);
-    } else if (event is TripsLoaded) {
+    yield TripsLoadInProgress();
+
+    if (event is TripsLoaded) {
       yield* _mapTripsLoadedToState();
+    } else if (event is TripAdded) {
+      yield* _mapTripAddedToState(event.trip);
     } else if (event is TripDeleted) {
       yield* _mapTripDeletedToState(event.trip);
+    } else if (event is TripUpdated) {
+      yield* _mapTripUpdatedToState(event.trip);
     }
   }
 
   Stream<TripsState> _mapTripAddedToState(Trip trip) async* {
-    yield TripsLoadInProgress();
     try {
       await tripsRepository.insert(trip);
       final trips = await tripsRepository.getAllTrips();
@@ -40,7 +43,6 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   }
 
   Stream<TripsState> _mapTripsLoadedToState() async* {
-    yield TripsLoadInProgress();
     try {
       final trips = await tripsRepository.getAllTrips();
       yield TripsLoadSuccess(trips);
@@ -50,9 +52,18 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   }
 
   Stream<TripsState> _mapTripDeletedToState(Trip trip) async* {
-    yield TripsLoadInProgress();
     try {
       await tripsRepository.delete(trip);
+      final trips = await tripsRepository.getAllTrips();
+      yield TripsLoadSuccess(trips);
+    } catch (e) {
+      yield TripsLoadFailure(e.toString());
+    }
+  }
+
+  Stream<TripsState> _mapTripUpdatedToState(Trip trip) async* {
+    try {
+      await tripsRepository.update(trip);
       final trips = await tripsRepository.getAllTrips();
       yield TripsLoadSuccess(trips);
     } catch (e) {

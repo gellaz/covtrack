@@ -37,10 +37,20 @@ class Trip extends Equatable {
     return Trip(
       tripId: map['tripId'],
       reason: map['reason'],
-      startingTime: (map['startingTime'] as Timestamp).toDateTime(),
+      startingTime: (map['startingTime'] as Timestamp)?.toDateTime(),
       arrivalTime: (map['arrivalTime'] as Timestamp)?.toDateTime(),
       source: Place.fromMap(map['source']),
       destination: Place.fromMap(map['destination']),
+    );
+  }
+
+  Trip returnTrip() {
+    return Trip(
+      reason: this.reason,
+      startingTime: DateTime.now(),
+      arrivalTime: null,
+      source: this.destination,
+      destination: this.source,
     );
   }
 

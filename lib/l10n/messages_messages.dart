@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "activeTrip" : MessageLookupByLibrary.simpleMessage("Active Trip:"),
+    "activeTrip" : MessageLookupByLibrary.simpleMessage("Active Trip"),
     "confirmed" : MessageLookupByLibrary.simpleMessage("Confirmed"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create a new account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deaths"),
@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "register" : MessageLookupByLibrary.simpleMessage("Register"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),
+    "returnTrip" : MessageLookupByLibrary.simpleMessage("Return"),
+    "returnTripStarted" : MessageLookupByLibrary.simpleMessage("Return trip started"),
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Show QR Code"),
     "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
@@ -70,7 +72,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Stay Home. Stay Safe."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details"),
-    "tripReturn" : MessageLookupByLibrary.simpleMessage("Return"),
     "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips")
   };
 }

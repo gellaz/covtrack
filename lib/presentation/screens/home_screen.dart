@@ -90,6 +90,8 @@ class HomeScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 SizedBox(height: 10),
+                Divider(),
+                SizedBox(height: 10),
                 PlaceListTile(
                   activeTrip.source,
                   PlaceType.Source,
@@ -100,7 +102,12 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Card(
                   child: ListTile(
-                    leading: Icon(Icons.not_listed_location),
+                    leading: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.not_listed_location),
+                      ],
+                    ),
                     title: Text(AppLocalizations.of(context).reasonPickerDesc),
                     subtitle: Text(activeTrip.reason),
                   ),
@@ -139,12 +146,32 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Tooltip(
-                  message: AppLocalizations.of(context).tripReturn,
+                  message: AppLocalizations.of(context).returnTrip,
                   preferBelow: false,
                   verticalOffset: 40,
                   child: FloatingActionButton(
                     child: Icon(Icons.keyboard_return),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.bloc<TripsBloc>()
+                        ..add(TripUpdated(
+                            activeTrip.copyWith(arrivalTime: DateTime.now())))
+                        ..add(TripAdded(activeTrip.returnTrip()));
+
+                      Scaffold.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          SnackBar(
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .returnTripStarted),
+                                Icon(Icons.check),
+                              ],
+                            ),
+                          ),
+                        );
+                    },
                   ),
                 ),
                 Tooltip(
@@ -154,7 +181,9 @@ class HomeScreen extends StatelessWidget {
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
                     onPressed: () {
-                      context.bloc<TripsBloc>()..add(TripAdded(activeTrip));
+                      context.bloc<TripsBloc>()
+                        ..add(TripUpdated(
+                            activeTrip.copyWith(arrivalTime: DateTime.now())));
                       Navigator.of(context).pushNamed(NewTripScreen.routeName);
                     },
                   ),

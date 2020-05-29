@@ -2,7 +2,12 @@ part of 'trips_bloc.dart';
 
 abstract class TripsEvent extends Equatable {
   const TripsEvent();
+
+  @override
+  List<Object> get props => [];
 }
+
+class TripsLoaded extends TripsEvent {}
 
 class TripAdded extends TripsEvent {
   final Trip trip;
@@ -11,11 +16,9 @@ class TripAdded extends TripsEvent {
 
   @override
   List<Object> get props => [trip];
-}
 
-class TripsLoaded extends TripsEvent {
   @override
-  List<Object> get props => [];
+  String toString() => 'TripAdded { trip: $trip }';
 }
 
 class TripDeleted extends TripsEvent {
@@ -25,4 +28,19 @@ class TripDeleted extends TripsEvent {
 
   @override
   List<Object> get props => [trip];
+
+  @override
+  String toString() => 'TripDeleted { trip: $trip }';
+}
+
+class TripUpdated extends TripsEvent {
+  final Trip trip;
+
+  const TripUpdated(this.trip);
+
+  @override
+  List<Object> get props => [trip];
+
+  @override
+  String toString() => 'TripUpdated { trip: $trip }';
 }

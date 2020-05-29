@@ -2,23 +2,14 @@ part of 'trips_bloc.dart';
 
 abstract class TripsState extends Equatable {
   const TripsState();
-}
 
-class TripsInitial extends TripsState {
   @override
   List<Object> get props => [];
-
-  @override
-  String toString() => 'TripsInitial';
 }
 
-class TripsLoadInProgress extends TripsState {
-  @override
-  List<Object> get props => [];
+class TripsInitial extends TripsState {}
 
-  @override
-  String toString() => 'TripsLoadInProgress';
-}
+class TripsLoadInProgress extends TripsState {}
 
 class TripsLoadSuccess extends TripsState {
   final List<Trip> trips;
@@ -29,7 +20,7 @@ class TripsLoadSuccess extends TripsState {
   List<Object> get props => [trips];
 
   @override
-  String toString() => 'TripsLoadSuccess {trips: $trips}';
+  String toString() => 'TripsLoadSuccess { trips: $trips }';
 }
 
 class TripsLoadFailure extends TripsState {
@@ -41,5 +32,5 @@ class TripsLoadFailure extends TripsState {
   List<Object> get props => [message];
 
   @override
-  String toString() => 'TripsLoadFailure {message: $message}';
+  String toString() => 'TripsLoadFailure { message: $message }';
 }

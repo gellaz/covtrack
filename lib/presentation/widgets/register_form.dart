@@ -93,7 +93,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           Text(
                             AppLocalizations.of(context).register.toUpperCase(),
                             style:
-                                Theme.of(context).textTheme.headline3.copyWith(
+                                Theme.of(context).textTheme.headline4.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 8,
