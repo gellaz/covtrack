@@ -255,6 +255,24 @@ class AppLocalizations {
     );
   }
 
+  String get noPreviousTripsBody {
+    return Intl.message(
+      'To create a new trip go back and tap on the "New Trip" button',
+      name: 'noPreviousTripsBody',
+      desc: 'OldTripsScreen body when the loaded trips list is empty',
+      locale: localeName,
+    );
+  }
+
+  String get noPreviousTripsTitle {
+    return Intl.message(
+      'No previous trips',
+      name: 'noPreviousTripsTitle',
+      desc: 'OldTripsScreen title when the loaded trips list is empty',
+      locale: localeName,
+    );
+  }
+
   String get numStops {
     return Intl.message(
       'Number of stops:',
@@ -431,6 +449,24 @@ class AppLocalizations {
       'Trip Details',
       name: 'tripDetails',
       desc: 'Trip Details appbar title',
+      locale: localeName,
+    );
+  }
+
+  String get tripReturn {
+    return Intl.message(
+      'Return',
+      name: 'tripReturn',
+      desc: 'Return tooltip text',
+      locale: localeName,
+    );
+  }
+
+  String get tripsLoadFailure {
+    return Intl.message(
+      'Error retrieving your previous trips',
+      name: 'tripsLoadFailure',
+      desc: 'Trips load failure message',
       locale: localeName,
     );
   }

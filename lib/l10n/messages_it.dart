@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Accedi con il tuo account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("Nuovo Spostamento"),
     "noActiveTrips" : MessageLookupByLibrary.simpleMessage("Al momento non c\'è nessuno spostamento attivo. Se hai bisogno di andare da qualche parte crea un nuovo spostamento o selezionane uno dalla lista dei tuoi spostamenti passati."),
+    "noPreviousTripsBody" : MessageLookupByLibrary.simpleMessage("Per creare un nuovo spostamento torna indietro e seleziona \"Nuovo Spostamento\""),
+    "noPreviousTripsTitle" : MessageLookupByLibrary.simpleMessage("Nessuno spostamento precedente"),
     "numStops" : MessageLookupByLibrary.simpleMessage("Numero di fermate:"),
     "objective" : MessageLookupByLibrary.simpleMessage("Obiettivo"),
     "oldTrips" : MessageLookupByLibrary.simpleMessage("Spostamenti Effettuati"),
@@ -67,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "source" : MessageLookupByLibrary.simpleMessage("Partenza:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Rimani a casa."),
-    "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento")
+    "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento"),
+    "tripReturn" : MessageLookupByLibrary.simpleMessage("Ritorno"),
+    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento dei vecchi spostamenti")
   };
 }

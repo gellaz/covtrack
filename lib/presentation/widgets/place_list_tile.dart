@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/place.dart';
+import '../../data/place.dart';
 
 enum PlaceType { Source, Destination }
 
@@ -15,10 +15,12 @@ class PlaceListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: _buildIcon(),
-      title: Text('${place.mainText}'),
-      subtitle: Text('${place.secondaryText}'),
+    return Card(
+      child: ListTile(
+        leading: _buildIcon(),
+        title: Text('${place.mainText}'),
+        subtitle: Text('${place.secondaryText}'),
+      ),
     );
   }
 

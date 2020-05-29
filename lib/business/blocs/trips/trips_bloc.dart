@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../data/models/trip.dart';
+import '../../../data/trip.dart';
 import '../../repositories/trips/trips_repository.dart';
 
 part 'trips_event.dart';

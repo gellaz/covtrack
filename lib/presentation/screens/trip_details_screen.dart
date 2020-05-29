@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../business/blocs/timer/timer_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../business/repositories/location/location_repository.dart';
 import '../../business/repositories/places/places_repository.dart';
-import '../../data/models/place.dart';
-import '../../data/models/trip.dart';
+import '../../data/place.dart';
+import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/reason_picker.dart';

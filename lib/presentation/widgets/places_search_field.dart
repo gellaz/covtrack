@@ -4,8 +4,8 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../business/repositories/places/places_repository.dart';
-import '../../data/models/place.dart';
-import '../../data/models/place_suggestion.dart';
+import '../../data/place.dart';
+import '../../data/place_suggestion.dart';
 import '../../utils/app_localizations.dart';
 import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';

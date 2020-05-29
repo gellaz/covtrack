@@ -7,6 +7,7 @@ import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
 import 'business/blocs/timer/timer_bloc.dart';
 import 'business/blocs/trips/trips_bloc.dart';
+import 'business/providers/ticker.dart';
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/info/info_api_repository.dart';
@@ -17,7 +18,6 @@ import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
 import 'business/repositories/trips/trips_database_repository.dart';
-import 'business/ticker.dart';
 import 'presentation/containers/authentication_container.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
@@ -44,19 +44,19 @@ void main() {
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider<AuthenticationRepository>(
-          create: (context) => authRepository,
+          create: (_) => authRepository,
         ),
         RepositoryProvider<LocationRepository>(
-          create: (context) => locationRepository,
+          create: (_) => locationRepository,
         ),
         RepositoryProvider<PlacesRepository>(
-          create: (context) => placesRepository,
+          create: (_) => placesRepository,
         ),
         RepositoryProvider<SettingsRepository>(
-          create: (context) => settingsRepository,
+          create: (_) => settingsRepository,
         ),
         RepositoryProvider<InfoRepository>(
-          create: (context) => infoRepository,
+          create: (_) => infoRepository,
         ),
       ],
       child: MultiBlocProvider(

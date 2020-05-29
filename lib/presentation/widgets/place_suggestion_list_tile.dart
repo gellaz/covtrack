@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/place_suggestion.dart';
+import '../../data/place_suggestion.dart';
 
 class PlaceSuggestionListTile extends StatelessWidget {
   final PlaceSuggestion suggestion;

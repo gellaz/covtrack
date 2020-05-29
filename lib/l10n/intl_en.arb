@@ -152,6 +152,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPreviousTripsBody": "To create a new trip go back and tap on the \"New Trip\" button",
+  "@noPreviousTripsBody": {
+    "description": "OldTripsScreen body when the loaded trips list is empty",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPreviousTripsTitle": "No previous trips",
+  "@noPreviousTripsTitle": {
+    "description": "OldTripsScreen title when the loaded trips list is empty",
+    "type": "text",
+    "placeholders": {}
+  },
   "numStops": "Number of stops:",
   "@numStops": {
     "description": "Home Screen number of stops description text",
@@ -269,6 +281,18 @@
   "tripDetails": "Trip Details",
   "@tripDetails": {
     "description": "Trip Details appbar title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripReturn": "Return",
+  "@tripReturn": {
+    "description": "Return tooltip text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripsLoadFailure": "Error retrieving your previous trips",
+  "@tripsLoadFailure": {
+    "description": "Trips load failure message",
     "type": "text",
     "placeholders": {}
   }

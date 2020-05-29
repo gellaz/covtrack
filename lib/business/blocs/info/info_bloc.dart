@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../data/models/info.dart';
+import '../../../data/info.dart';
 import '../../repositories/info/info_repository.dart';
 
 part 'info_event.dart';

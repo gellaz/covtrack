@@ -152,6 +152,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPreviousTripsBody": "Per creare un nuovo spostamento torna indietro e seleziona \"Nuovo Spostamento\"",
+  "@noPreviousTripsBody": {
+    "description": "OldTripsScreen body when the loaded trips list is empty",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPreviousTripsTitle": "Nessuno spostamento precedente",
+  "@noPreviousTripsTitle": {
+    "description": "OldTripsScreen title when the loaded trips list is empty",
+    "type": "text",
+    "placeholders": {}
+  },
   "numStops": "Numero di fermate:",
   "@numStops": {
     "description": "Home Screen number of stops description text",
@@ -269,6 +281,18 @@
   "tripDetails": "Dettagli Spostamento",
   "@tripDetails": {
     "description": "Trip Details appbar title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripReturn": "Ritorno",
+  "@tripReturn": {
+    "description": "Return tooltip text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tripsLoadFailure": "Errore nel caricamento dei vecchi spostamenti",
+  "@tripsLoadFailure": {
+    "description": "Trips load failure message",
     "type": "text",
     "placeholders": {}
   }

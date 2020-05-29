@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/timer/timer_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
-import '../../data/models/trip.dart';
+import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/active_trip_timer.dart';
 import '../widgets/logout_button.dart';
@@ -81,42 +81,44 @@ class HomeScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              AppLocalizations.of(context).activeTrip,
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            Column(
-              children: <Widget>[
-                PlaceListTile(activeTrip.source, PlaceType.Source),
-                PlaceListTile(activeTrip.destination, PlaceType.Destination),
-              ],
-            ),
             Column(
               children: <Widget>[
                 Text(
-                  AppLocalizations.of(context).reasonPickerDesc,
-                  style: Theme.of(context).textTheme.subtitle2,
+                  AppLocalizations.of(context).activeTrip,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
-                Text(activeTrip.reason),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Text(
-                  AppLocalizations.of(context).numStops,
-                  style: Theme.of(context).textTheme.subtitle2,
+                SizedBox(height: 10),
+                PlaceListTile(
+                  activeTrip.source,
+                  PlaceType.Source,
                 ),
-                Text('0'),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Text(
-                  AppLocalizations.of(context).elapsedTime,
-                  style: Theme.of(context).textTheme.subtitle2,
+                PlaceListTile(
+                  activeTrip.destination,
+                  PlaceType.Destination,
                 ),
-                ActiveTripTimer(),
+                Card(
+                  child: ListTile(
+                    leading: Icon(Icons.not_listed_location),
+                    title: Text(AppLocalizations.of(context).reasonPickerDesc),
+                    subtitle: Text(activeTrip.reason),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Icon(Icons.exposure_plus_1),
+                    title: Text(AppLocalizations.of(context).numStops),
+                    trailing: Text('0'),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Icon(Icons.access_time),
+                    title: Text(AppLocalizations.of(context).elapsedTime),
+                    trailing: ActiveTripTimer(),
+                  ),
+                ),
               ],
             ),
             ButtonBar(
@@ -137,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Tooltip(
-                  message: AppLocalizations.of(context).newTrip,
+                  message: AppLocalizations.of(context).tripReturn,
                   preferBelow: false,
                   verticalOffset: 40,
                   child: FloatingActionButton(
@@ -151,7 +153,10 @@ class HomeScreen extends StatelessWidget {
                   verticalOffset: 40,
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.bloc<TripsBloc>()..add(TripAdded(activeTrip));
+                      Navigator.of(context).pushNamed(NewTripScreen.routeName);
+                    },
                   ),
                 ),
               ],
@@ -167,39 +172,61 @@ class HomeScreen extends StatelessWidget {
   ) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Column(
               children: <Widget>[
                 Icon(Icons.home, size: 100),
                 Text(
                   AppLocalizations.of(context).stayHome,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline4,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 10),
-                Text(
-                  AppLocalizations.of(context).noActiveTrips,
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Text(
+                    AppLocalizations.of(context).noActiveTrips,
+                    style: Theme.of(context).textTheme.subtitle1,
+                    textAlign: TextAlign.justify,
+                  ),
                 ),
               ],
             ),
-            Column(
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              buttonPadding: EdgeInsets.symmetric(horizontal: 40),
               children: <Widget>[
-                FloatingActionButton.extended(
-                  icon: Icon(Icons.add),
-                  label: Text(AppLocalizations.of(context).newTrip),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, NewTripScreen.routeName),
+                Tooltip(
+                  message: AppLocalizations.of(context).newTrip,
+                  preferBelow: false,
+                  verticalOffset: 40,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      NewTripScreen.routeName,
+                    ),
+                  ),
                 ),
-                SizedBox(height: 10),
-                FloatingActionButton.extended(
-                  icon: Icon(Icons.history),
-                  label: Text(AppLocalizations.of(context).oldTrips),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, OldTripsScreen.routeName),
+                Tooltip(
+                  message: AppLocalizations.of(context).oldTrips,
+                  preferBelow: false,
+                  verticalOffset: 40,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.history),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      OldTripsScreen.routeName,
+                    ),
+                  ),
                 ),
               ],
             ),

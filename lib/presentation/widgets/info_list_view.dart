@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../data/models/info.dart';
+import '../../data/info.dart';
 import '../../utils/app_localizations.dart';
 
 class InfoListView extends StatelessWidget {

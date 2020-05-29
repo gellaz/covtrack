@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Login with your account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("New Trip"),
     "noActiveTrips" : MessageLookupByLibrary.simpleMessage("At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips."),
+    "noPreviousTripsBody" : MessageLookupByLibrary.simpleMessage("To create a new trip go back and tap on the \"New Trip\" button"),
+    "noPreviousTripsTitle" : MessageLookupByLibrary.simpleMessage("No previous trips"),
     "numStops" : MessageLookupByLibrary.simpleMessage("Number of stops:"),
     "objective" : MessageLookupByLibrary.simpleMessage("Objective"),
     "oldTrips" : MessageLookupByLibrary.simpleMessage("Old Trips"),
@@ -67,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "source" : MessageLookupByLibrary.simpleMessage("Source:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Stay Home. Stay Safe."),
-    "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details")
+    "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details"),
+    "tripReturn" : MessageLookupByLibrary.simpleMessage("Return"),
+    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips")
   };
 }

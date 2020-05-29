@@ -4,8 +4,8 @@ import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../data/models/place.dart';
-import '../../../data/models/place_suggestion.dart';
+import '../../../data/place.dart';
+import '../../../data/place_suggestion.dart';
 
 part 'google_places_repository.dart';
 

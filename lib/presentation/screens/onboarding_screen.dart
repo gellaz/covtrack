@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
+import '../../business/blocs/settings/settings_bloc.dart';
 import '../../utils/app_localizations.dart';
 import '../containers/authentication_container.dart';
 import '../styles/decorations.dart';
@@ -25,6 +27,10 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   void _onDone(BuildContext context) {
+    // Changing the `firstRun` setting so that the next time the application
+    // is launched, onboarding will no longer be displayed.
+    context.bloc<SettingsBloc>()..add(SettingChanged('firstRun', false));
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -47,7 +53,7 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  // First page of the onboarding.
+  // Second page of the onboarding.
   PageViewModel _buildPageTwo(BuildContext context) {
     return PageViewModel(
       image: Center(
@@ -61,7 +67,7 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  // Second page of the onboarding.
+  // Third page of the onboarding.
   PageViewModel _buildPageThree(BuildContext context) {
     return PageViewModel(
       image: Center(
@@ -75,7 +81,7 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  // Third page of the onboarding.
+  // Fourth page of the onboarding.
   PageViewModel _buildPageFour(BuildContext context) {
     return PageViewModel(
       image: Center(

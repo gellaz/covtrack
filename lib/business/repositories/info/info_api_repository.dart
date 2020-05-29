@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../../data/models/info.dart';
+import '../../../data/info.dart';
 import 'info_repository.dart';
 
 class InfoApiRepository implements InfoRepository {

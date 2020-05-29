@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../business/blocs/info/info_bloc.dart';
 import '../../business/repositories/info/info_repository.dart';
-import '../../data/models/info.dart';
+import '../../data/info.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
@@ -74,25 +74,31 @@ class InfoContent extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: <Widget>[
                 _buildDescription(context),
-                SizedBox(height: 40),
+                SizedBox(height: 10),
+                Divider(),
+                SizedBox(height: 10),
                 _buildInfoTitle(
                   context,
                   AppLocalizations.of(context).italy,
                   localInfo.date,
                 ),
                 InfoListView(localInfo),
-                SizedBox(height: 40),
+                SizedBox(height: 10),
+                Divider(),
+                SizedBox(height: 10),
                 _buildInfoTitle(
                   context,
                   AppLocalizations.of(context).global,
                   globalInfo.date,
                 ),
                 InfoListView(globalInfo),
-                SizedBox(height: 40),
+                SizedBox(height: 10),
+                Divider(),
+                SizedBox(height: 10),
                 _buildDisclaimer(context),
               ],
             ),
@@ -107,7 +113,7 @@ class InfoContent extends StatelessWidget {
     return Text(
       AppLocalizations.of(context).infoDescription,
       style: Theme.of(context).textTheme.bodyText2,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.justify,
     );
   }
 
@@ -129,7 +135,7 @@ class InfoContent extends StatelessWidget {
           ),
           Text(
             AppLocalizations.of(context).lastUpdate(formattedLastUpdate),
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.caption,
           ),
         ],
       ),
@@ -142,7 +148,7 @@ class InfoContent extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: AppLocalizations.of(context).infoDisclaimer,
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.caption,
             children: <TextSpan>[
               TextSpan(
                 text: 'covidapi.info',

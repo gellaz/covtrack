@@ -1,4 +1,4 @@
-import '../../../data/models/trip.dart';
+import '../../../data/trip.dart';
 
 abstract class TripsRepository {
   Future<void> insert(Trip trip);

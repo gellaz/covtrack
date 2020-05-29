@@ -1,7 +1,7 @@
 import 'package:sembast/sembast.dart';
 
-import '../../../data/app_database.dart';
-import '../../../data/models/trip.dart';
+import '../../../data/trip.dart';
+import '../../providers/app_database.dart';
 import 'trips_repository.dart';
 
 class TripsDatabaseRepository implements TripsRepository {
