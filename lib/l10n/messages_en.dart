@@ -47,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Login failure"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Login with your account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("New Trip"),
+    "newTripDialogContent" : MessageLookupByLibrary.simpleMessage("Do you want to create a new trip? The current trip will be stopped and then stored."),
+    "newTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Create new trip"),
+    "no" : MessageLookupByLibrary.simpleMessage("No"),
     "noActiveTrips" : MessageLookupByLibrary.simpleMessage("At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips."),
     "noPreviousTripsBody" : MessageLookupByLibrary.simpleMessage("To create a new trip go back and tap on the \"New Trip\" button"),
     "noPreviousTripsTitle" : MessageLookupByLibrary.simpleMessage("No previous trips"),
@@ -64,7 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),
     "returnTrip" : MessageLookupByLibrary.simpleMessage("Return"),
-    "returnTripStarted" : MessageLookupByLibrary.simpleMessage("Return trip started"),
+    "returnTripDialogContent" : MessageLookupByLibrary.simpleMessage("Do you want to start the return trip?"),
+    "returnTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Start return trip"),
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Show QR Code"),
     "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
@@ -72,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Stay Home. Stay Safe."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details"),
-    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips")
+    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips"),
+    "yes" : MessageLookupByLibrary.simpleMessage("Yes")
   };
 }

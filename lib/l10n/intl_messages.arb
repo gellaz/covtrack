@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-29T15:21:58.006202",
+  "@@last_modified": "2020-05-29T16:13:34.626859",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -146,6 +146,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "newTripDialogTitle": "Create new trip",
+  "@newTripDialogTitle": {
+    "description": "New Trip dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTripDialogContent": "Do you want to create a new trip? The current trip will be stopped and then stored.",
+  "@newTripDialogContent": {
+    "description": "New Trip dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "No",
+  "@no": {
+    "description": "No message",
+    "type": "text",
+    "placeholders": {}
+  },
   "noActiveTrips": "At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips.",
   "@noActiveTrips": {
     "description": "Home Screen description text",
@@ -248,9 +266,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "returnTripStarted": "Return trip started",
-  "@returnTripStarted": {
-    "description": "Return trip started Snackbar message",
+  "returnTripDialogTitle": "Start return trip",
+  "@returnTripDialogTitle": {
+    "description": "Return trip alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnTripDialogContent": "Do you want to start the return trip?",
+  "@returnTripDialogContent": {
+    "description": "Return trip alert dialog content",
     "type": "text",
     "placeholders": {}
   },
@@ -299,6 +323,12 @@
   "tripsLoadFailure": "Error retrieving your previous trips",
   "@tripsLoadFailure": {
     "description": "Trips load failure message",
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes message",
     "type": "text",
     "placeholders": {}
   }

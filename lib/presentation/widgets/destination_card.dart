@@ -20,9 +20,15 @@ class DestinationCard extends StatelessWidget {
       child: ListTile(
         title: Text('${place.mainText}'),
         subtitle: Text('${place.secondaryText}'),
-        trailing: FloatingActionButton(
-          onPressed: onButtonPressed,
-          child: Icon(Icons.keyboard_arrow_right),
+        isThreeLine: true,
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: onButtonPressed,
+              child: Icon(Icons.keyboard_arrow_right),
+            ),
+          ],
         ),
       ),
       elevation: 5,

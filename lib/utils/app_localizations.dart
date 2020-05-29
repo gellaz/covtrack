@@ -246,6 +246,33 @@ class AppLocalizations {
     );
   }
 
+  String get newTripDialogTitle {
+    return Intl.message(
+      'Create new trip',
+      name: 'newTripDialogTitle',
+      desc: 'New Trip dialog title',
+      locale: localeName,
+    );
+  }
+
+  String get newTripDialogContent {
+    return Intl.message(
+      'Do you want to create a new trip? The current trip will be stopped and then stored.',
+      name: 'newTripDialogContent',
+      desc: 'New Trip dialog title',
+      locale: localeName,
+    );
+  }
+
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: 'No message',
+      locale: localeName,
+    );
+  }
+
   String get noActiveTrips {
     return Intl.message(
       'At the moment there is no active trip. If you need to go somewhere create a new trip or select one from the list of your previous trips.',
@@ -399,11 +426,20 @@ class AppLocalizations {
     );
   }
 
-  String get returnTripStarted {
+  String get returnTripDialogTitle {
     return Intl.message(
-      'Return trip started',
-      name: 'returnTripStarted',
-      desc: 'Return trip started Snackbar message',
+      'Start return trip',
+      name: 'returnTripDialogTitle',
+      desc: 'Return trip alert dialog title',
+      locale: localeName,
+    );
+  }
+
+  String get returnTripDialogContent {
+    return Intl.message(
+      'Do you want to start the return trip?',
+      name: 'returnTripDialogContent',
+      desc: 'Return trip alert dialog content',
       locale: localeName,
     );
   }
@@ -476,6 +512,15 @@ class AppLocalizations {
       'Error retrieving your previous trips',
       name: 'tripsLoadFailure',
       desc: 'Trips load failure message',
+      locale: localeName,
+    );
+  }
+
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: 'Yes message',
       locale: localeName,
     );
   }

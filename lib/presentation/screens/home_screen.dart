@@ -151,27 +151,7 @@ class HomeScreen extends StatelessWidget {
                   verticalOffset: 40,
                   child: FloatingActionButton(
                     child: Icon(Icons.keyboard_return),
-                    onPressed: () {
-                      context.bloc<TripsBloc>()
-                        ..add(TripUpdated(
-                            activeTrip.copyWith(arrivalTime: DateTime.now())))
-                        ..add(TripAdded(activeTrip.returnTrip()));
-
-                      Scaffold.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          SnackBar(
-                            content: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(AppLocalizations.of(context)
-                                    .returnTripStarted),
-                                Icon(Icons.check),
-                              ],
-                            ),
-                          ),
-                        );
-                    },
+                    onPressed: () => _showReturnTripDialog(context, activeTrip),
                   ),
                 ),
                 Tooltip(
@@ -180,12 +160,7 @@ class HomeScreen extends StatelessWidget {
                   verticalOffset: 40,
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
-                    onPressed: () {
-                      context.bloc<TripsBloc>()
-                        ..add(TripUpdated(
-                            activeTrip.copyWith(arrivalTime: DateTime.now())));
-                      Navigator.of(context).pushNamed(NewTripScreen.routeName);
-                    },
+                    onPressed: () => _showNewTripDialog(context, activeTrip),
                   ),
                 ),
               ],
@@ -208,6 +183,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Spacer(),
             Column(
               children: <Widget>[
                 Icon(Icons.home, size: 100),
@@ -229,6 +205,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(),
             ButtonBar(
               alignment: MainAxisAlignment.center,
               buttonPadding: EdgeInsets.symmetric(horizontal: 40),
@@ -262,6 +239,67 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showReturnTripDialog(BuildContext context, Trip activeTrip) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).returnTripDialogTitle),
+          content: Text(AppLocalizations.of(context).returnTripDialogContent),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                context.bloc<TripsBloc>()
+                  ..add(TripUpdated(
+                      activeTrip.copyWith(arrivalTime: DateTime.now())))
+                  ..add(TripAdded(activeTrip.returnTrip()));
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showNewTripDialog(BuildContext context, Trip activeTrip) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).newTripDialogTitle),
+          content: Text(AppLocalizations.of(context).newTripDialogContent),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                context.bloc<TripsBloc>()
+                  ..add(TripUpdated(
+                      activeTrip.copyWith(arrivalTime: DateTime.now())));
+                Navigator.of(context).pushNamed(NewTripScreen.routeName);
+              },
+            ),
+            FlatButton(
+              child: Text(AppLocalizations.of(context).no),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

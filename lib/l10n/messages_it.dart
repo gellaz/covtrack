@@ -47,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Accesso fallito"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Accedi con il tuo account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("Nuovo Spostamento"),
+    "newTripDialogContent" : MessageLookupByLibrary.simpleMessage("Vuoi creare un nuovo spostamento? Lo spostamento corrente verrà sospeso e memorizzato."),
+    "newTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Crea nuovo spostamento"),
+    "no" : MessageLookupByLibrary.simpleMessage("No"),
     "noActiveTrips" : MessageLookupByLibrary.simpleMessage("Al momento non c\'è nessuno spostamento attivo. Se hai bisogno di andare da qualche parte crea un nuovo spostamento o selezionane uno dalla lista dei tuoi spostamenti passati."),
     "noPreviousTripsBody" : MessageLookupByLibrary.simpleMessage("Per creare un nuovo spostamento torna indietro e seleziona \"Nuovo Spostamento\""),
     "noPreviousTripsTitle" : MessageLookupByLibrary.simpleMessage("Nessuno spostamento precedente"),
@@ -64,7 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "registering" : MessageLookupByLibrary.simpleMessage("Registrazione in corso..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registrazione fallita"),
     "returnTrip" : MessageLookupByLibrary.simpleMessage("Ritorno"),
-    "returnTripStarted" : MessageLookupByLibrary.simpleMessage("Spostamento di ritorno avviato"),
+    "returnTripDialogContent" : MessageLookupByLibrary.simpleMessage("Vuoi avviare lo spostamento di ritorno?"),
+    "returnTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Avvio spostamento di ritorno"),
     "settings" : MessageLookupByLibrary.simpleMessage("Impostazioni"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Mostra QR Code"),
     "skip" : MessageLookupByLibrary.simpleMessage("Salta"),
@@ -72,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Rimani a casa."),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento"),
-    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento dei vecchi spostamenti")
+    "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento dei vecchi spostamenti"),
+    "yes" : MessageLookupByLibrary.simpleMessage("Si")
   };
 }

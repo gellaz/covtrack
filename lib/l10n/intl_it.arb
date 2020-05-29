@@ -146,6 +146,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "newTripDialogTitle": "Crea nuovo spostamento",
+  "@newTripDialogTitle": {
+    "description": "New Trip dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTripDialogContent": "Vuoi creare un nuovo spostamento? Lo spostamento corrente verrà sospeso e memorizzato.",
+  "@newTripDialogContent": {
+    "description": "New Trip dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "No",
+  "@no": {
+    "description": "No message",
+    "type": "text",
+    "placeholders": {}
+  },
   "noActiveTrips": "Al momento non c'è nessuno spostamento attivo. Se hai bisogno di andare da qualche parte crea un nuovo spostamento o selezionane uno dalla lista dei tuoi spostamenti passati.",
   "@noActiveTrips": {
     "description": "Home Screen description text",
@@ -248,9 +266,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "returnTripStarted": "Spostamento di ritorno avviato",
-  "@returnTripStarted": {
-    "description": "Return trip started Snackbar message",
+  "returnTripDialogTitle": "Avvio spostamento di ritorno",
+  "@returnTripDialogTitle": {
+    "description": "Return trip alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnTripDialogContent": "Vuoi avviare lo spostamento di ritorno?",
+  "@returnTripDialogContent": {
+    "description": "Return trip alert dialog content",
     "type": "text",
     "placeholders": {}
   },
@@ -299,6 +323,12 @@
   "tripsLoadFailure": "Errore nel caricamento dei vecchi spostamenti",
   "@tripsLoadFailure": {
     "description": "Trips load failure message",
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Si",
+  "@yes": {
+    "description": "Yes message",
     "type": "text",
     "placeholders": {}
   }
