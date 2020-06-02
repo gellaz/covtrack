@@ -186,6 +186,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
               arrivalTime: null,
               source: _source,
               destination: widget.destination,
+              stops: [],
             ),
           ),
         );

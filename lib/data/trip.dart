@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:sembast/timestamp.dart';
 
@@ -11,6 +12,7 @@ class Trip extends Equatable {
   final DateTime arrivalTime;
   final Place source;
   final Place destination;
+  final List<Position> stops;
 
   Trip({
     this.tripId,
@@ -19,6 +21,7 @@ class Trip extends Equatable {
     @required this.arrivalTime,
     @required this.source,
     @required this.destination,
+    @required this.stops,
   });
 
   Map<String, dynamic> toMap() {
@@ -30,10 +33,20 @@ class Trip extends Equatable {
           arrivalTime != null ? Timestamp.fromDateTime(arrivalTime) : null,
       'source': source.toMap(),
       'destination': destination.toMap(),
+      'stops': this.stops != null
+          ? this.stops.map((pos) => pos.toJson()).toList()
+          : null,
     };
   }
 
   factory Trip.fromMap(Map<String, dynamic> map) {
+    var myStops;
+    if (map['stops'] != null) {
+      myStops = List<Position>();
+      map['stops'].forEach((v) {
+        myStops.add(Position.fromMap(v));
+      });
+    }
     return Trip(
       tripId: map['tripId'],
       reason: map['reason'],
@@ -41,6 +54,7 @@ class Trip extends Equatable {
       arrivalTime: (map['arrivalTime'] as Timestamp)?.toDateTime(),
       source: Place.fromMap(map['source']),
       destination: Place.fromMap(map['destination']),
+      stops: myStops,
     );
   }
 
@@ -51,6 +65,7 @@ class Trip extends Equatable {
       arrivalTime: null,
       source: this.destination,
       destination: this.source,
+      stops: [],
     );
   }
 
@@ -61,6 +76,7 @@ class Trip extends Equatable {
     DateTime arrivalTime,
     Place source,
     Place destination,
+    List<Position> stops,
   }) {
     return Trip(
       tripId: tripId ?? this.tripId,
@@ -69,6 +85,7 @@ class Trip extends Equatable {
       arrivalTime: arrivalTime ?? this.arrivalTime,
       source: source ?? this.source,
       destination: destination ?? this.destination,
+      stops: stops ?? this.stops,
     );
   }
 
@@ -80,6 +97,7 @@ class Trip extends Equatable {
         arrivalTime,
         source,
         destination,
+        stops,
       ];
 
   @override
@@ -92,6 +110,7 @@ class Trip extends Equatable {
       arrivalTime: $arrivalTime,
       source: $source,
       destination: $destination,
+      stops: $stops,
     }''';
   }
 }
