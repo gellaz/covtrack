@@ -181,6 +181,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     context.bloc<TripsBloc>().add(
           TripAdded(
             Trip(
+              tripId: null,
               reason: _selectedReason,
               startingTime: DateTime.now(),
               arrivalTime: null,

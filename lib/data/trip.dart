@@ -15,7 +15,7 @@ class Trip extends Equatable {
   final List<Position> stops;
 
   Trip({
-    this.tripId,
+    @required this.tripId,
     @required this.reason,
     @required this.startingTime,
     @required this.arrivalTime,
@@ -60,6 +60,7 @@ class Trip extends Equatable {
 
   Trip returnTrip() {
     return Trip(
+      tripId: null,
       reason: this.reason,
       startingTime: DateTime.now(),
       arrivalTime: null,

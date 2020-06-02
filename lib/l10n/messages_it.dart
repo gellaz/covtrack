@@ -75,6 +75,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "source" : MessageLookupByLibrary.simpleMessage("Partenza:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Rimani a casa."),
+    "stopTrip" : MessageLookupByLibrary.simpleMessage("Concludi spostamento"),
+    "stopTripDialogContent" : MessageLookupByLibrary.simpleMessage("Sei sicuro di voler concludere lo spostamento corrente?"),
+    "stopTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Concludi spostamento corrente"),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Dettagli Spostamento"),
     "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento dei vecchi spostamenti"),
     "yes" : MessageLookupByLibrary.simpleMessage("Si")

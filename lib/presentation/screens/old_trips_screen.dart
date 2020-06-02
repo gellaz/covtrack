@@ -34,20 +34,23 @@ class OldTripsScreen extends StatelessWidget {
               );
           }
         },
-        child: BlocBuilder<TripsBloc, TripsState>(
-          builder: (context, state) {
-            if (state is TripsLoadInProgress) {
-              return _buildTripsLoadInProgress();
-            }
-            if (state is TripsLoadSuccess) {
-              if (state.trips.isEmpty) {
-                return _buildNoPreviousTrips(context);
-              } else {
-                return _buildTripsLoadSuccess(context, state.trips);
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: BlocBuilder<TripsBloc, TripsState>(
+            builder: (context, state) {
+              if (state is TripsLoadInProgress) {
+                return _buildTripsLoadInProgress();
               }
-            }
-            return Container();
-          },
+              if (state is TripsLoadSuccess) {
+                if (state.trips.isEmpty) {
+                  return _buildNoPreviousTrips(context);
+                } else {
+                  return _buildTripsLoadSuccess(context, state.trips);
+                }
+              }
+              return Container();
+            },
+          ),
         ),
       ),
     );
@@ -60,36 +63,33 @@ class OldTripsScreen extends StatelessWidget {
   }
 
   Widget _buildNoPreviousTrips(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(25),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              Icons.do_not_disturb_alt,
-              color: Theme.of(context).disabledColor,
-              size: 150,
-            ),
-            Text(
-              AppLocalizations.of(context).noPreviousTripsTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(color: Theme.of(context).disabledColor),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10),
-            Text(
-              AppLocalizations.of(context).noPreviousTripsBody,
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .copyWith(color: Theme.of(context).disabledColor),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            Icons.do_not_disturb_alt,
+            color: Theme.of(context).disabledColor,
+            size: 150,
+          ),
+          Text(
+            AppLocalizations.of(context).noPreviousTripsTitle,
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                .copyWith(color: Theme.of(context).disabledColor),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 10),
+          Text(
+            AppLocalizations.of(context).noPreviousTripsBody,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                .copyWith(color: Theme.of(context).disabledColor),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

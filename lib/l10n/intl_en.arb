@@ -314,6 +314,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "stopTrip": "Stop trip",
+  "@stopTrip": {
+    "description": "Stop trip tooltip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogTitle": "Stop current trip",
+  "@stopTripDialogTitle": {
+    "description": "Stop trip alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogContent": "Are you sure you want to stop the current trip?",
+  "@stopTripDialogContent": {
+    "description": "Stop trip alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
   "tripDetails": "Trip Details",
   "@tripDetails": {
     "description": "Trip Details appbar title",

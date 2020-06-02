@@ -498,6 +498,33 @@ class AppLocalizations {
     );
   }
 
+  String get stopTrip {
+    return Intl.message(
+      'Stop trip',
+      name: 'stopTrip',
+      desc: 'Stop trip tooltip',
+      locale: localeName,
+    );
+  }
+
+  String get stopTripDialogTitle {
+    return Intl.message(
+      'Stop current trip',
+      name: 'stopTripDialogTitle',
+      desc: 'Stop trip alert dialog title',
+      locale: localeName,
+    );
+  }
+
+  String get stopTripDialogContent {
+    return Intl.message(
+      'Are you sure you want to stop the current trip?',
+      name: 'stopTripDialogContent',
+      desc: 'Stop trip alert dialog content',
+      locale: localeName,
+    );
+  }
+
   String get tripDetails {
     return Intl.message(
       'Trip Details',

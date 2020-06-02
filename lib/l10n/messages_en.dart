@@ -75,6 +75,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "source" : MessageLookupByLibrary.simpleMessage("Source:"),
     "startTrip" : MessageLookupByLibrary.simpleMessage("Start Trip"),
     "stayHome" : MessageLookupByLibrary.simpleMessage("Stay Home. Stay Safe."),
+    "stopTrip" : MessageLookupByLibrary.simpleMessage("Stop trip"),
+    "stopTripDialogContent" : MessageLookupByLibrary.simpleMessage("Are you sure you want to stop the current trip?"),
+    "stopTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Stop current trip"),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details"),
     "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips"),
     "yes" : MessageLookupByLibrary.simpleMessage("Yes")

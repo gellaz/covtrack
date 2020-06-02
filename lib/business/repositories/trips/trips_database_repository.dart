@@ -45,8 +45,8 @@ class TripsDatabaseRepository implements TripsRepository {
     final recordSnapshots = await _tripsStore.find(await _db);
     return recordSnapshots.map((snapshot) {
       final trip = Trip.fromMap(snapshot.value);
-      trip.copyWith(tripId: snapshot.key);
-      return trip;
+
+      return trip.copyWith(tripId: snapshot.key);
     }).toList();
   }
 }

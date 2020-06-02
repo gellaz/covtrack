@@ -95,6 +95,16 @@ class ActiveTripScreen extends StatelessWidget {
                         ),
                       ),
                       Tooltip(
+                        message: AppLocalizations.of(context).stopTrip,
+                        preferBelow: false,
+                        verticalOffset: 40,
+                        child: FloatingActionButton(
+                          child: Icon(Icons.stop),
+                          onPressed: () =>
+                              _showStopTripDialog(context, activeTrip),
+                        ),
+                      ),
+                      Tooltip(
                         message: AppLocalizations.of(context).returnTrip,
                         preferBelow: false,
                         verticalOffset: 40,
@@ -122,6 +132,35 @@ class ActiveTripScreen extends StatelessWidget {
           );
         }
         return Container();
+      },
+    );
+  }
+
+  void _showStopTripDialog(BuildContext context, Trip activeTrip) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).stopTripDialogTitle),
+          content: Text(AppLocalizations.of(context).stopTripDialogContent),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(AppLocalizations.of(context).yes),
+              onPressed: () {
+                final updatedTrip =
+                    activeTrip.copyWith(arrivalTime: DateTime.now());
+
+                context.bloc<TripsBloc>()..add(TripUpdated(updatedTrip));
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text(AppLocalizations.of(context).no),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
       },
     );
   }

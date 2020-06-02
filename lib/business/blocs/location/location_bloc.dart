@@ -31,6 +31,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     }
   }
 
+  /// Cancels the [tickerSubscription] when the [TimerBloc] is closed.
+  @override
+  Future<void> close() {
+    locationSubscription?.cancel();
+    return super.close();
+  }
+
   Stream<LocationState> _mapLocationStartedToState() async* {
     yield LocationLoadInProgress();
 

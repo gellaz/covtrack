@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-29T16:13:34.626859",
+  "@@last_modified": "2020-06-02T13:21:43.920412",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -311,6 +311,24 @@
   "stayHome": "Stay Home. Stay Safe.",
   "@stayHome": {
     "description": "HomeScreen title when there is no active trips",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTrip": "Stop trip",
+  "@stopTrip": {
+    "description": "Stop trip tooltip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogTitle": "Stop current trip",
+  "@stopTripDialogTitle": {
+    "description": "Stop trip alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogContent": "Are you sure you want to stop the current trip?",
+  "@stopTripDialogContent": {
+    "description": "Stop trip alert dialog content",
     "type": "text",
     "placeholders": {}
   },

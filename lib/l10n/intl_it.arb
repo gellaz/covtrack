@@ -314,6 +314,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "stopTrip": "Concludi spostamento",
+  "@stopTrip": {
+    "description": "Stop trip tooltip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogTitle": "Concludi spostamento corrente",
+  "@stopTripDialogTitle": {
+    "description": "Stop trip alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopTripDialogContent": "Sei sicuro di voler concludere lo spostamento corrente?",
+  "@stopTripDialogContent": {
+    "description": "Stop trip alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
   "tripDetails": "Dettagli Spostamento",
   "@tripDetails": {
     "description": "Trip Details appbar title",
