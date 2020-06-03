@@ -37,6 +37,24 @@ class AppLocalizations {
     );
   }
 
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: 'Change Password SettingsScreen description',
+      locale: localeName,
+    );
+  }
+
+  String get changeTheme {
+    return Intl.message(
+      'Change Theme',
+      name: 'changeTheme',
+      desc: 'Change Theme SettingsScreen description',
+      locale: localeName,
+    );
+  }
+
   String get confirmed {
     return Intl.message(
       'Confirmed',

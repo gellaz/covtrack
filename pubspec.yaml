@@ -19,8 +19,6 @@ dependencies:
   firebase_core:
   # BLoC pattern utilities.
   flutter_bloc:
-  # Background location-tracking & geofencing.
-  #flutter_background_geolocation:
   # Decodes encoded google polyline string into list of geo-coordinates suitable for showing route/polyline on maps.
   flutter_polyline_points:
   # Autocomplete TextField.
@@ -31,6 +29,8 @@ dependencies:
   google_maps_flutter:
   # Google Maps APIs.
   google_maps_webservice:
+  # Authentication with Google.
+  google_sign_in:
   # HTTP client for making requests.
   http:
   # Internationalization and localization facilities.

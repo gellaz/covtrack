@@ -1,14 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'authentication_repository.dart';
 
 class FirebaseAuthenticationRepository implements AuthenticationRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
-  Future<String> getUserId() async {
-    final firebaseUser = await _firebaseAuth.currentUser();
-    return firebaseUser.uid;
+  Future<FirebaseUser> signInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    await _firebaseAuth.signInWithCredential(credential);
+    return _firebaseAuth.currentUser();
+  }
+
+  @override
+  Future<String> getUser() async {
+    return (await _firebaseAuth.currentUser()).email;
   }
 
   @override
@@ -27,7 +41,10 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
 
   @override
   Future<void> signOut() async {
-    return await _firebaseAuth.signOut();
+    return Future.wait([
+      _firebaseAuth.signOut(),
+      _googleSignIn.signOut(),
+    ]);
   }
 
   @override

@@ -8,6 +8,7 @@ import '../../repositories/authentication/authentication_repository.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
+/// BLoC that is going to manage checking and updating a user's [AuthenticationState] in response to [AuthenticationEvents].
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthenticationRepository authRepository;
@@ -33,7 +34,7 @@ class AuthenticationBloc
   Stream<AuthenticationState> _mapAppStartedToState() async* {
     final isSignedIn = await authRepository.isSignedIn();
     if (isSignedIn) {
-      final userId = await authRepository.getUserId();
+      final userId = await authRepository.getUser();
       yield Authenticated(userId);
     } else {
       yield Unauthenticated();
@@ -41,7 +42,7 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await authRepository.getUserId());
+    yield Authenticated(await authRepository.getUser());
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {

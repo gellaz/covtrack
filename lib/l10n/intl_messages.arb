@@ -1,8 +1,20 @@
 {
-  "@@last_modified": "2020-06-02T13:21:43.920412",
+  "@@last_modified": "2020-06-03T13:36:35.870155",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change Password SettingsScreen description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Change Theme",
+  "@changeTheme": {
+    "description": "Change Theme SettingsScreen description",
     "type": "text",
     "placeholders": {}
   },

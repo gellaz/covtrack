@@ -6,6 +6,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change Password SettingsScreen description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Change Theme",
+  "@changeTheme": {
+    "description": "Change Theme SettingsScreen description",
+    "type": "text",
+    "placeholders": {}
+  },
   "confirmed": "Confirmed",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "activeTrip" : MessageLookupByLibrary.simpleMessage("Spostamento Attivo"),
+    "changePassword" : MessageLookupByLibrary.simpleMessage("Cambia Password"),
+    "changeTheme" : MessageLookupByLibrary.simpleMessage("Cambia Tema"),
     "confirmed" : MessageLookupByLibrary.simpleMessage("Confermati"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Crea un nuovo account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deceduti"),
