@@ -8,6 +8,7 @@ import '../styles/decorations.dart';
 import '../widgets/text_divider.dart';
 import 'google_login_button.dart';
 import 'login_button.dart';
+import 'password_form_field.dart';
 import 'register_link.dart';
 
 class LoginForm extends StatefulWidget {
@@ -117,14 +118,12 @@ class _LoginFormState extends State<LoginForm> {
                                   : null;
                             },
                           ),
-                          TextFormField(
-                            autocorrect: false,
-                            autovalidate: true,
+                          PasswordFormField(
                             controller: _passwordController,
-                            decoration: InputDecoration(
-                              labelText: 'Password',
-                            ),
-                            obscureText: true,
+                            labelText: 'Password',
+                            onFieldSubmitted: (_) =>
+                                FocusScope.of(context).nextFocus(),
+                            textInputAction: TextInputAction.next,
                             validator: (_) {
                               return !state.isPasswordValid
                                   ? AppLocalizations.of(context).invalidPassword
