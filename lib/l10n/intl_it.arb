@@ -12,6 +12,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "changePasswordFailure": "Aggiornamento password fallito",
+  "@changePasswordFailure": {
+    "description": "Snackbar message for the change password process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordScreenBody": "Non appena cambierai la password dovrai rieseguire l'accesso utilizzando le tue nuove credenziali",
+  "@changePasswordScreenBody": {
+    "description": "ChangePasswordScreen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordScreenTitle": "Aggiorna la tua password",
+  "@changePasswordScreenTitle": {
+    "description": "ChangePasswordScreen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordSuccess": "Password aggiornata con successo. Accedi con le tue nuove credenziali",
+  "@changePasswordSuccess": {
+    "description": "Snackbar message for the change password process success",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changingPassword": "Aggiornando la password...",
+  "@changingPassword": {
+    "description": "Snackbar message for the change password process loading",
+    "type": "text",
+    "placeholders": {}
+  },
   "changeTheme": "Cambia Tema",
   "@changeTheme": {
     "description": "Change Theme SettingsScreen description",
@@ -33,6 +63,12 @@
   "deaths": "Deceduti",
   "@deaths": {
     "description": "Deaths Info screen list tile description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Elimina Account",
+  "@deleteAccount": {
+    "description": "Delete Account SettingsScreen description",
     "type": "text",
     "placeholders": {}
   },

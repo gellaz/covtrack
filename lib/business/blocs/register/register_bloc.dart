@@ -52,7 +52,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       yield* _mapPasswordChangedToState(event.password);
     } else if (event is PasswordCheckChanged) {
       yield* _mapPasswordCheckChangedToState(
-          event.password, event.passwordCheck);
+        event.password,
+        event.passwordCheck,
+      );
     } else if (event is Submitted) {
       yield* _mapFormSubmittedToState(event.email, event.password);
     }

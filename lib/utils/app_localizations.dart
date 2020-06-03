@@ -46,6 +46,51 @@ class AppLocalizations {
     );
   }
 
+  String get changePasswordFailure {
+    return Intl.message(
+      'Change password failure',
+      name: 'changePasswordFailure',
+      desc: 'Snackbar message for the change password process failure',
+      locale: localeName,
+    );
+  }
+
+  String get changePasswordScreenBody {
+    return Intl.message(
+      'As soon as you change your password you will have to log in again using your new credentials',
+      name: 'changePasswordScreenBody',
+      desc: 'ChangePasswordScreen body',
+      locale: localeName,
+    );
+  }
+
+  String get changePasswordScreenTitle {
+    return Intl.message(
+      'Change your password',
+      name: 'changePasswordScreenTitle',
+      desc: 'ChangePasswordScreen title',
+      locale: localeName,
+    );
+  }
+
+  String get changePasswordSuccess {
+    return Intl.message(
+      'Password updated successfully. Log in with your new credentials',
+      name: 'changePasswordSuccess',
+      desc: 'Snackbar message for the change password process success',
+      locale: localeName,
+    );
+  }
+
+  String get changingPassword {
+    return Intl.message(
+      'Changing password...',
+      name: 'changingPassword',
+      desc: 'Snackbar message for the change password process loading',
+      locale: localeName,
+    );
+  }
+
   String get changeTheme {
     return Intl.message(
       'Change Theme',
@@ -78,6 +123,15 @@ class AppLocalizations {
       'Deaths',
       name: 'deaths',
       desc: 'Deaths Info screen list tile description',
+      locale: localeName,
+    );
+  }
+
+  String get deleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccount',
+      desc: 'Delete Account SettingsScreen description',
       locale: localeName,
     );
   }

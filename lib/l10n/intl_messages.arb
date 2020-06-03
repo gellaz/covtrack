@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-03T15:27:30.168",
+  "@@last_modified": "2020-06-03T18:13:09.382816",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -9,6 +9,36 @@
   "changePassword": "Change Password",
   "@changePassword": {
     "description": "Change Password SettingsScreen description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordFailure": "Change password failure",
+  "@changePasswordFailure": {
+    "description": "Snackbar message for the change password process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordScreenBody": "As soon as you change your password you will have to log in again using your new credentials",
+  "@changePasswordScreenBody": {
+    "description": "ChangePasswordScreen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordScreenTitle": "Change your password",
+  "@changePasswordScreenTitle": {
+    "description": "ChangePasswordScreen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePasswordSuccess": "Password updated successfully. Log in with your new credentials",
+  "@changePasswordSuccess": {
+    "description": "Snackbar message for the change password process success",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changingPassword": "Changing password...",
+  "@changingPassword": {
+    "description": "Snackbar message for the change password process loading",
     "type": "text",
     "placeholders": {}
   },
@@ -33,6 +63,12 @@
   "deaths": "Deaths",
   "@deaths": {
     "description": "Deaths Info screen list tile description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {
+    "description": "Delete Account SettingsScreen description",
     "type": "text",
     "placeholders": {}
   },

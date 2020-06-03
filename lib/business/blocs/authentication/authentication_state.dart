@@ -1,9 +1,9 @@
 part of 'authentication_bloc.dart';
 
 /// A user's authentication state can be one of the following:
-/// [Uninitialized]: waiting to see if the user is authenticated or not on app start.
-/// [Authenticated]: successfully authenticated.
-/// [Unauthenticated]: not authenticated.
+/// [Uninitialized] - waiting to see if the user is authenticated or not on app start
+/// [Authenticated] - successfully authenticated
+/// [Unauthenticated] - not authenticated
 abstract class AuthenticationState extends Equatable {
   const AuthenticationState();
 

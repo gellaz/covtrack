@@ -1,8 +1,9 @@
 abstract class AuthenticationRepository {
-  Future<String> getUser();
-  Future<bool> isSignedIn();
-  Future<void> signInWithCredentials(String email, String password);
-  Future<void> signOut();
-  Future<void> signUp(String email, String password);
+  Future changePassword(String password);
+  Future getUser();
+  Future isSignedIn();
+  Future signInWithCredentials(String email, String password);
   Future signInWithGoogle();
+  Future signOut();
+  Future signUp(String email, String password);
 }

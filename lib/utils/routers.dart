@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/screens/change_password_screen.dart';
 import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/info_screen.dart';
 import '../presentation/screens/new_trip_screen.dart';
@@ -44,6 +45,7 @@ class HomeRouter implements Router {
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');
+        break;
     }
   }
 }
@@ -60,6 +62,7 @@ class InfoRouter implements Router {
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');
+        break;
     }
   }
 }
@@ -74,8 +77,12 @@ class DonateRouter implements Router {
       case SettingsScreen.routeName:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
         break;
+      case ChangePasswordScreen.routeName:
+        return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+        break;
       default:
         throw Exception('Invalid route: ${settings.name}');
+        break;
     }
   }
 }

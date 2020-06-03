@@ -8,16 +8,10 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
-  Future<FirebaseUser> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    await _firebaseAuth.signInWithCredential(credential);
-    return _firebaseAuth.currentUser();
+  Future<void> changePassword(String password) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    print('WAT');
+    return await user.updatePassword(password);
   }
 
   @override
@@ -37,6 +31,19 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
       email: email,
       password: password,
     );
+  }
+
+  @override
+  Future<FirebaseUser> signInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    await _firebaseAuth.signInWithCredential(credential);
+    return _firebaseAuth.currentUser();
   }
 
   @override

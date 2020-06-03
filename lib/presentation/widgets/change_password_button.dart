@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_localizations.dart';
 
-class RegisterButton extends StatelessWidget {
+class ChangePasswordButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const RegisterButton({Key key, this.onPressed}) : super(key: key);
+  const ChangePasswordButton({Key key, @required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: onPressed,
-      child: Text(AppLocalizations.of(context).register),
+      child: Text(AppLocalizations.of(context).changePassword),
     );
   }
 }

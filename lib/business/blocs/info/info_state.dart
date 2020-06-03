@@ -2,23 +2,14 @@ part of 'info_bloc.dart';
 
 abstract class InfoState extends Equatable {
   const InfoState();
-}
 
-class InfoInitial extends InfoState {
   @override
   List<Object> get props => [];
-
-  @override
-  String toString() => 'InfoInitial';
 }
 
-class InfoLoadInProgress extends InfoState {
-  @override
-  List<Object> get props => [];
+class InfoInitial extends InfoState {}
 
-  @override
-  String toString() => 'InfoLoadInProgress';
-}
+class InfoLoadInProgress extends InfoState {}
 
 class InfoLoadSuccess extends InfoState {
   final Info localInfo;
@@ -31,7 +22,7 @@ class InfoLoadSuccess extends InfoState {
 
   @override
   String toString() =>
-      'InfoLoadSuccess {localInfo: $localInfo, globalInfo: $globalInfo}';
+      'InfoLoadSuccess { localInfo: $localInfo, globalInfo: $globalInfo }';
 }
 
 class InfoLoadFailure extends InfoState {
@@ -43,5 +34,5 @@ class InfoLoadFailure extends InfoState {
   List<Object> get props => [message];
 
   @override
-  String toString() => 'InfoLoadFailure {message: $message}';
+  String toString() => 'InfoLoadFailure { message: $message }';
 }
