@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../../utils/app_localizations.dart';
+import '../widgets/change_theme_dialog.dart';
 import '../widgets/logout_button.dart';
 import 'change_password_screen.dart';
 
@@ -52,7 +53,11 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         title: Text(AppLocalizations.of(context).changeTheme),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {},
+                        onTap: () => showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (_) => ChangeThemeDialog(),
+                        ),
                       ),
                       _buildContainer(),
                       ListTile(

@@ -100,6 +100,24 @@ class AppLocalizations {
     );
   }
 
+  String get changeThemeDialogContent {
+    return Intl.message(
+      'Choose your favourite theme for the application',
+      name: 'changeThemeDialogContent',
+      desc: 'Change theme alert dialog content',
+      locale: localeName,
+    );
+  }
+
+  String get changeThemeDialogTitle {
+    return Intl.message(
+      'Change App Theme',
+      name: 'changeThemeDialogTitle',
+      desc: 'Change theme alert dialog title',
+      locale: localeName,
+    );
+  }
+
   String get confirmed {
     return Intl.message(
       'Confirmed',
