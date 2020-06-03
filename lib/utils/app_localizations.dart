@@ -527,9 +527,9 @@ class AppLocalizations {
 
   String get stopTrip {
     return Intl.message(
-      'Stop trip',
+      'Stop Trip',
       name: 'stopTrip',
-      desc: 'Stop trip tooltip',
+      desc: 'Stop Trip tooltip',
       locale: localeName,
     );
   }

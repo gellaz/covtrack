@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-03T14:39:57.881780",
+  "@@last_modified": "2020-06-03T15:27:30.168",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -332,9 +332,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "stopTrip": "Stop trip",
+  "stopTrip": "Stop Trip",
   "@stopTrip": {
-    "description": "Stop trip tooltip",
+    "description": "Stop Trip tooltip",
     "type": "text",
     "placeholders": {}
   },

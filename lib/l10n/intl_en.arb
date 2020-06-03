@@ -332,9 +332,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "stopTrip": "Stop trip",
+  "stopTrip": "Stop Trip",
   "@stopTrip": {
-    "description": "Stop trip tooltip",
+    "description": "Stop Trip tooltip",
     "type": "text",
     "placeholders": {}
   },

@@ -332,9 +332,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "stopTrip": "Concludi spostamento",
+  "stopTrip": "Concludi Spostamento",
   "@stopTrip": {
-    "description": "Stop trip tooltip",
+    "description": "Stop Trip tooltip",
     "type": "text",
     "placeholders": {}
   },

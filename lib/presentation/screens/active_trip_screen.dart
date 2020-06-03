@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../business/blocs/location/location_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
@@ -86,7 +87,7 @@ class ActiveTripScreen extends StatelessWidget {
                         preferBelow: false,
                         verticalOffset: 40,
                         child: FloatingActionButton(
-                          child: Icon(Icons.stop),
+                          child: Icon(FontAwesomeIcons.qrcode),
                           onPressed: () => Navigator.pushNamed(
                             context,
                             QrScreen.routeName,
