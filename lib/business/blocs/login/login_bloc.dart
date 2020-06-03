@@ -19,6 +19,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
   LoginState get initialState => LoginState.empty();
 
+  // Overriding transformEvents in order to debounce the EmailChanged and PasswordChanged events
+  // so that we give the user some time to stop typing before validating the input.
   @override
   Stream<Transition<LoginEvent, LoginState>> transformEvents(
     Stream<LoginEvent> events,
@@ -42,6 +44,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield* _mapEmailChangedToState(event.email);
     } else if (event is PasswordChanged) {
       yield* _mapPasswordChangedToState(event.password);
+    } else if (event is LoginWithGooglePressed) {
+      yield* _mapLoginWithGooglePressedToState();
     } else if (event is LoginWithCredentialsPressed) {
       yield* _mapLoginWithCredentialsPressedToState(
         email: event.email,
@@ -60,6 +64,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     yield state.update(
       isPasswordValid: Validators.isValidPassword(password),
     );
+  }
+
+  Stream<LoginState> _mapLoginWithGooglePressedToState() async* {
+    try {
+      await authRepository.signInWithGoogle();
+      yield LoginState.success();
+    } catch (_) {
+      yield LoginState.failure();
+    }
   }
 
   Stream<LoginState> _mapLoginWithCredentialsPressedToState({

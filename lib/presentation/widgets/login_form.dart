@@ -6,6 +6,7 @@ import '../../business/blocs/login/login_bloc.dart';
 import '../../utils/app_localizations.dart';
 import '../styles/decorations.dart';
 import '../widgets/text_divider.dart';
+import 'google_login_button.dart';
 import 'login_button.dart';
 import 'register_link.dart';
 
@@ -45,9 +46,7 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      AppLocalizations.of(context).loginFailure,
-                    ),
+                    Text(AppLocalizations.of(context).loginFailure),
                     Icon(Icons.error)
                   ],
                 ),
@@ -132,9 +131,8 @@ class _LoginFormState extends State<LoginForm> {
                                   : null;
                             },
                           ),
-                          SizedBox(height: 20),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(vertical: 40),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -144,7 +142,8 @@ class _LoginFormState extends State<LoginForm> {
                                       ? _onFormSubmitted
                                       : null,
                                 ),
-                                SizedBox(height: 60),
+                                SizedBox(height: 10),
+                                GoogleLoginButton(),
                               ],
                             ),
                           ),

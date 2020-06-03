@@ -1,5 +1,10 @@
 part of 'login_bloc.dart';
 
+/// Here is a list of the possible [LoginState] in which the [LoginForm] can be:
+/// [empty]: initial state of the [LoginForm]
+/// [loading]: state of the [LoginForm] when we are validating credentials
+/// [failure]: state of the [LoginForm] when a login attempt has failed
+/// [success]: state of the [LoginForm] when a login attempt has succeeded
 @immutable
 class LoginState {
   final bool isEmailValid;

@@ -1,5 +1,10 @@
 part of 'login_bloc.dart';
 
+/// List of [LoginEvent] objects to which our [LoginBloc] will be reacting to:
+/// [EmailChanged] - notifies the BLoC that the user has changed the email
+/// [Submitted] - notifies the BLoC that the user has submitted the form
+/// [LoginWithGooglePressed] - notifies the BLoC that the user has pressed the Google Sign In button
+/// [LoginWithCredentialsPressed] - notifies the BLoC that the user has pressed the regular sign in button
 abstract class LoginEvent extends Equatable {
   const LoginEvent();
 
@@ -48,6 +53,8 @@ class Submitted extends LoginEvent {
     return 'Submitted { email: $email, password: $password }';
   }
 }
+
+class LoginWithGooglePressed extends LoginEvent {}
 
 class LoginWithCredentialsPressed extends LoginEvent {
   final String email;

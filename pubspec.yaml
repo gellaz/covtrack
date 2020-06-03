@@ -23,6 +23,8 @@ dependencies:
   flutter_polyline_points:
   # Autocomplete TextField.
   flutter_typeahead:
+  #
+  font_awesome_flutter:
   # Device location.
   geolocator:
   # Google Maps.

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-03T13:36:35.870155",
+  "@@last_modified": "2020-06-03T14:39:57.881780",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -143,6 +143,12 @@
   "loginFailure": "Login failure",
   "@loginFailure": {
     "description": "Snackbar message for the login process failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithGoogle": "Login with Google",
+  "@loginWithGoogle": {
+    "description": "Login with Google button label",
     "type": "text",
     "placeholders": {}
   },

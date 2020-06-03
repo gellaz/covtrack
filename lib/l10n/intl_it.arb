@@ -146,6 +146,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "loginWithGoogle": "Accedi con Google",
+  "@loginWithGoogle": {
+    "description": "Login with Google button label",
+    "type": "text",
+    "placeholders": {}
+  },
   "loginWithYourAccount": "Accedi con il tuo account",
   "@loginWithYourAccount": {
     "description": "Login with your account button label",

@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loggingIn" : MessageLookupByLibrary.simpleMessage("Logging in..."),
     "login" : MessageLookupByLibrary.simpleMessage("Login"),
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Login failure"),
+    "loginWithGoogle" : MessageLookupByLibrary.simpleMessage("Login with Google"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Login with your account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("New Trip"),
     "newTripDialogContent" : MessageLookupByLibrary.simpleMessage("Do you want to create a new trip? The current trip will be stopped and then stored."),

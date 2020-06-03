@@ -19,6 +19,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   @override
   RegisterState get initialState => RegisterState.empty();
 
+  // Overriding transformEvents in order to debounce the EmailChanged, PasswordChanged and PasswordCheckChanged
+  // events so that we give the user some time to stop typing before validating the input.
   @override
   Stream<Transition<RegisterEvent, RegisterState>> transformEvents(
     Stream<RegisterEvent> events,

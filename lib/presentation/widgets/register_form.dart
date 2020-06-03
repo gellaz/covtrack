@@ -155,11 +155,8 @@ class _RegisterFormState extends State<RegisterForm> {
                                   : null;
                             },
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.symmetric(vertical: 40),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
@@ -168,7 +165,6 @@ class _RegisterFormState extends State<RegisterForm> {
                                       ? _onFormSubmitted
                                       : null,
                                 ),
-                                SizedBox(height: 10),
                               ],
                             ),
                           ),

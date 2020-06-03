@@ -1,5 +1,10 @@
 part of 'register_bloc.dart';
 
+/// List of [RegisterEvent] objects to which our [RegisterBloc] will be reacting to:
+/// [EmailChanged] - notifies the BLoC that the user has changed the email
+/// [PasswordChanged] - notifies the BLoC that the user has changed the password
+/// [PasswordCheckChanged] - notifies the BLoC that the user has changed the password verification
+/// [Submitted] - notifies the BLoC that the user has submitted the form
 abstract class RegisterEvent extends Equatable {
   const RegisterEvent();
 

@@ -246,6 +246,15 @@ class AppLocalizations {
     );
   }
 
+  String get loginWithGoogle {
+    return Intl.message(
+      'Login with Google',
+      name: 'loginWithGoogle',
+      desc: 'Login with Google button label',
+      locale: localeName,
+    );
+  }
+
   String get loginWithYourAccount {
     return Intl.message(
       'Login with your account',

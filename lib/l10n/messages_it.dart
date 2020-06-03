@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loggingIn" : MessageLookupByLibrary.simpleMessage("Accesso in corso..."),
     "login" : MessageLookupByLibrary.simpleMessage("Accedi"),
     "loginFailure" : MessageLookupByLibrary.simpleMessage("Accesso fallito"),
+    "loginWithGoogle" : MessageLookupByLibrary.simpleMessage("Accedi con Google"),
     "loginWithYourAccount" : MessageLookupByLibrary.simpleMessage("Accedi con il tuo account"),
     "newTrip" : MessageLookupByLibrary.simpleMessage("Nuovo Spostamento"),
     "newTripDialogContent" : MessageLookupByLibrary.simpleMessage("Vuoi creare un nuovo spostamento? Lo spostamento corrente verrà sospeso e memorizzato."),
