@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Themes {
+class AppTheme {
   static final ThemeData light = ThemeData(
     primarySwatch: Colors.deepOrange,
     accentColor: Colors.grey[850],
@@ -20,11 +20,13 @@ class Themes {
   );
 
   static final ThemeData dark = ThemeData(
-    primarySwatch: Colors.grey[850],
+    primarySwatch: Colors.grey,
+    primaryColor: Colors.grey[850],
+    primaryColorBrightness: Brightness.light,
     accentColor: Colors.deepOrange,
     accentColorBrightness: Brightness.dark,
     disabledColor: Colors.grey,
-    canvasColor: Colors.white,
+    canvasColor: Colors.grey[850],
     buttonTheme: ButtonThemeData(
       height: 50,
       buttonColor: Colors.deepOrange,

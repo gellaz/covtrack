@@ -83,58 +83,79 @@ void main() {
 class CovTrack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CovTrack',
-      theme: Themes.light,
-      supportedLocales: [
-        const Locale('en', 'US'), // English
-        const Locale('it', 'IT'), // Italian
-      ],
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      localeResolutionCallback: (locale, supportedLocales) {
-        // Check if the current device locale is supported
-        for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode &&
-              supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
-          }
-        }
-        // If the locale of the device is not supported, use the first one
-        // from the list (English, in this case)
-        return supportedLocales.first;
-      },
-      home: BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (context, state) {
-          if (state is SettingsLoadInProgress) {
-            return SplashScreen();
-          }
-          if (state is SettingsLoadSuccess) {
-            if (state.settings['firstRun']) {
-              return OnboardingScreen();
-            } else
-              return AuthenticationContainer();
-          }
-          if (state is SettingsLoadFailure) {
-            Scaffold.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text(state.message), Icon(Icons.error)],
-                  ),
-                  backgroundColor: Colors.red,
+    return BlocConsumer<SettingsBloc, SettingsState>(
+      listener: (context, state) {
+        if (state is SettingsLoadFailure) {
+          Scaffold.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text(state.message), Icon(Icons.error)],
                 ),
-              );
-          }
-          return Container();
-        },
-      ),
+              ),
+            );
+        }
+      },
+      builder: (_, state) {
+        ThemeData currentTheme;
+        Widget home;
+
+        if (state is SettingsLoadInProgress) {
+          home = SplashScreen();
+        } else if (state is SettingsLoadSuccess) {
+          currentTheme = state.settings['theme'] == 'light'
+              ? AppTheme.light
+              : AppTheme.dark;
+          home = state.settings['firstRun']
+              ? OnboardingScreen()
+              : AuthenticationContainer();
+        } else if (state is SettingsLoadFailure) {
+          Scaffold.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text(state.message), Icon(Icons.error)],
+                ),
+              ),
+            );
+        } else {
+          home = Container();
+        }
+
+        return MaterialApp(
+          title: 'CovTrack',
+          theme: currentTheme,
+          supportedLocales: [
+            const Locale('en', 'US'), // English
+            const Locale('it', 'IT'), // Italian
+          ],
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            // Check if the current device locale is supported
+            for (var supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale.languageCode &&
+                  supportedLocale.countryCode == locale.countryCode) {
+                return supportedLocale;
+              }
+            }
+            // If the locale of the device is not supported, use the first one
+            // from the list (English, in this case)
+            return supportedLocales.first;
+          },
+          home: home,
+        );
+      },
     );
   }
 }
