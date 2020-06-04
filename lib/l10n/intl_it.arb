@@ -48,6 +48,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeThemeDialogContent": "Scegli il tuo tema preferito per l'applicazione",
+  "@changeThemeDialogContent": {
+    "description": "Change theme alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeThemeDialogTitle": "Cambia il tema dell'applicazione",
+  "@changeThemeDialogTitle": {
+    "description": "Change theme alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
   "confirmed": "Confermati",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",
@@ -335,6 +347,12 @@
   "settings": "Impostazioni",
   "@settings": {
     "description": "Settings section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsFailure": "Errore nel caricamento delle impostazioni",
+  "@settingsFailure": {
+    "description": "Snackbar settings loading failure text",
     "type": "text",
     "placeholders": {}
   },

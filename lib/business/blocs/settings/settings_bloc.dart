@@ -18,6 +18,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
+    yield SettingsLoadInProgress();
+
     if (event is AppLoaded) {
       yield* _mapAppLoadedToState();
     } else if (event is SettingChanged) {
@@ -26,7 +28,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   Stream<SettingsState> _mapAppLoadedToState() async* {
-    yield SettingsLoadInProgress();
     try {
       final settings = await settingsRepository.getSettings();
       yield SettingsLoadSuccess(settings);
@@ -39,7 +40,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     String key,
     dynamic value,
   ) async* {
-    yield SettingsLoadInProgress();
     try {
       await settingsRepository.saveKV(key, value);
       final settings = await settingsRepository.getSettings();

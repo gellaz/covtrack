@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-03T18:13:09.382816",
+  "@@last_modified": "2020-06-04T10:29:59.999246",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -45,6 +45,18 @@
   "changeTheme": "Change Theme",
   "@changeTheme": {
     "description": "Change Theme SettingsScreen description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeThemeDialogContent": "Choose your favourite theme for the application",
+  "@changeThemeDialogContent": {
+    "description": "Change theme alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeThemeDialogTitle": "Change App Theme",
+  "@changeThemeDialogTitle": {
+    "description": "Change theme alert dialog title",
     "type": "text",
     "placeholders": {}
   },
@@ -335,6 +347,12 @@
   "settings": "Settings",
   "@settings": {
     "description": "Settings section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsFailure": "Failed loading settings",
+  "@settingsFailure": {
+    "description": "Snackbar settings loading failure text",
     "type": "text",
     "placeholders": {}
   },

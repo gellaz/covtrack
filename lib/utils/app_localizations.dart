@@ -552,6 +552,15 @@ class AppLocalizations {
     );
   }
 
+  String get settingsFailure {
+    return Intl.message(
+      'Failed loading settings',
+      name: 'settingsFailure',
+      desc: 'Snackbar settings loading failure text',
+      locale: localeName,
+    );
+  }
+
   String get showQr {
     return Intl.message(
       'Show QR Code',

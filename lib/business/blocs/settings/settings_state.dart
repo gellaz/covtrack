@@ -2,23 +2,14 @@ part of 'settings_bloc.dart';
 
 abstract class SettingsState extends Equatable {
   const SettingsState();
-}
 
-class SettingsInitial extends SettingsState {
   @override
   List<Object> get props => [];
-
-  @override
-  String toString() => 'SettingsInitial';
 }
 
-class SettingsLoadInProgress extends SettingsState {
-  @override
-  List<Object> get props => [];
+class SettingsInitial extends SettingsState {}
 
-  @override
-  String toString() => 'SettingsLoadInProgress';
-}
+class SettingsLoadInProgress extends SettingsState {}
 
 class SettingsLoadSuccess extends SettingsState {
   final Map<String, dynamic> settings;
@@ -29,7 +20,7 @@ class SettingsLoadSuccess extends SettingsState {
   List<Object> get props => [settings];
 
   @override
-  String toString() => 'SettingsLoadSuccess {settings: $settings}';
+  String toString() => 'SettingsLoadSuccess { settings: $settings }';
 }
 
 class SettingsLoadFailure extends SettingsState {
@@ -41,5 +32,5 @@ class SettingsLoadFailure extends SettingsState {
   List<Object> get props => [message];
 
   @override
-  String toString() => 'SettingsLoadFailure {message: $message}';
+  String toString() => 'SettingsLoadFailure { message: $message }';
 }

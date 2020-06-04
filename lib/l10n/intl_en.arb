@@ -48,6 +48,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeThemeDialogContent": "Choose your favourite theme for the application",
+  "@changeThemeDialogContent": {
+    "description": "Change theme alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeThemeDialogTitle": "Change App Theme",
+  "@changeThemeDialogTitle": {
+    "description": "Change theme alert dialog title",
+    "type": "text",
+    "placeholders": {}
+  },
   "confirmed": "Confirmed",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",
@@ -335,6 +347,12 @@
   "settings": "Settings",
   "@settings": {
     "description": "Settings section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsFailure": "Failed loading settings",
+  "@settingsFailure": {
+    "description": "Snackbar settings loading failure text",
     "type": "text",
     "placeholders": {}
   },
