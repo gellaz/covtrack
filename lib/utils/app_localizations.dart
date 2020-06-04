@@ -154,6 +154,24 @@ class AppLocalizations {
     );
   }
 
+  String get deleteAccountDialogContent {
+    return Intl.message(
+      'All saved data about your trips will be deleted. This action is not reversible.',
+      name: 'deleteAccountDialogContent',
+      desc: 'DeleteAccountDialog content',
+      locale: localeName,
+    );
+  }
+
+  String get deleteAccountDialogTitle {
+    return Intl.message(
+      'Are you sure you want to delete your account?',
+      name: 'deleteAccountDialogTitle',
+      desc: 'DeleteAccountDialog title',
+      locale: localeName,
+    );
+  }
+
   String get destination {
     return Intl.message(
       'Destination:',

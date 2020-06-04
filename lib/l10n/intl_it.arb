@@ -84,6 +84,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "deleteAccountDialogContent": "Tutti i dati salvati riguardanti gli spostamenti verranno eliminati. Questa azione non è reversibile.",
+  "@deleteAccountDialogContent": {
+    "description": "DeleteAccountDialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountDialogTitle": "Sei sicuro di voler eliminare il tuo account?",
+  "@deleteAccountDialogTitle": {
+    "description": "DeleteAccountDialog title",
+    "type": "text",
+    "placeholders": {}
+  },
   "destination": "Destinazione:",
   "@destination": {
     "description": "Destination description text",

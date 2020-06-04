@@ -84,6 +84,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "deleteAccountDialogContent": "All saved data about your trips will be deleted. This action is not reversible.",
+  "@deleteAccountDialogContent": {
+    "description": "DeleteAccountDialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountDialogTitle": "Are you sure you want to delete your account?",
+  "@deleteAccountDialogTitle": {
+    "description": "DeleteAccountDialog title",
+    "type": "text",
+    "placeholders": {}
+  },
   "destination": "Destination:",
   "@destination": {
     "description": "Destination description text",

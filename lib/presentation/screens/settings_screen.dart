@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/change_theme_dialog.dart';
+import '../widgets/delete_account_dialog.dart';
 import '../widgets/logout_button.dart';
 import 'change_password_screen.dart';
 
@@ -51,9 +52,11 @@ class SettingsScreen extends StatelessWidget {
                           Icons.color_lens,
                           color: Theme.of(context).primaryColor,
                         ),
-                        title: Text(AppLocalizations.of(context).changeTheme),
+                        title: Text(
+                          AppLocalizations.of(context).changeTheme,
+                        ),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () => showDialog(
+                        onTap: () async => showDialog(
                           context: context,
                           barrierDismissible: false,
                           builder: (_) => ChangeThemeDialog(),
@@ -65,24 +68,30 @@ class SettingsScreen extends StatelessWidget {
                           Icons.lock_outline,
                           color: Theme.of(context).primaryColor,
                         ),
-                        title:
-                            Text(AppLocalizations.of(context).changePassword),
+                        title: Text(
+                          AppLocalizations.of(context).changePassword,
+                        ),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(ChangePasswordScreen.routeName);
-                        },
+                        onTap: () => Navigator.of(context).pushNamed(
+                          ChangePasswordScreen.routeName,
+                        ),
                       ),
                       _buildContainer(),
                       ListTile(
                         leading: Icon(
                           FontAwesomeIcons.userAltSlash,
-                          size: 20,
+                          size: 18,
                           color: Theme.of(context).primaryColor,
                         ),
-                        title: Text(AppLocalizations.of(context).deleteAccount),
+                        title: Text(
+                          AppLocalizations.of(context).deleteAccount,
+                        ),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {},
+                        onTap: () async => showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (_) => DeleteAccountDialog(),
+                        ),
                       ),
                     ],
                   ),

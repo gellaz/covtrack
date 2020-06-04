@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount" : MessageLookupByLibrary.simpleMessage("Crea un nuovo account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deceduti"),
     "deleteAccount" : MessageLookupByLibrary.simpleMessage("Elimina Account"),
+    "deleteAccountDialogContent" : MessageLookupByLibrary.simpleMessage("Tutti i dati salvati riguardanti gli spostamenti verranno eliminati. Questa azione non è reversibile."),
+    "deleteAccountDialogTitle" : MessageLookupByLibrary.simpleMessage("Sei sicuro di voler eliminare il tuo account?"),
     "destination" : MessageLookupByLibrary.simpleMessage("Destinazione:"),
     "differentPasswords" : MessageLookupByLibrary.simpleMessage("Le due password inserite sono diverse"),
     "done" : MessageLookupByLibrary.simpleMessage("Fatto"),

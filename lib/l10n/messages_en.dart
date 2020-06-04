@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create a new account"),
     "deaths" : MessageLookupByLibrary.simpleMessage("Deaths"),
     "deleteAccount" : MessageLookupByLibrary.simpleMessage("Delete Account"),
+    "deleteAccountDialogContent" : MessageLookupByLibrary.simpleMessage("All saved data about your trips will be deleted. This action is not reversible."),
+    "deleteAccountDialogTitle" : MessageLookupByLibrary.simpleMessage("Are you sure you want to delete your account?"),
     "destination" : MessageLookupByLibrary.simpleMessage("Destination:"),
     "differentPasswords" : MessageLookupByLibrary.simpleMessage("The two passwords are not the same"),
     "done" : MessageLookupByLibrary.simpleMessage("Done"),
