@@ -8,10 +8,27 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
-  Future<void> changePassword(String password) async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    print('WAT');
-    return await user.updatePassword(password);
+  Future<void> changePassword(String oldPassword, String newPassword) async {
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    await currentUser.reauthenticateWithCredential(
+      EmailAuthProvider.getCredential(
+        email: currentUser.email,
+        password: oldPassword,
+      ),
+    );
+    return await currentUser.updatePassword(newPassword);
+  }
+
+  @override
+  Future<void> deleteAccount(String password) async {
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    await currentUser.reauthenticateWithCredential(
+      EmailAuthProvider.getCredential(
+        email: currentUser.email,
+        password: password,
+      ),
+    );
+    return await currentUser.delete();
   }
 
   @override
@@ -21,7 +38,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
 
   @override
   Future<bool> isSignedIn() async {
-    final currentUser = await _firebaseAuth.currentUser();
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
     return currentUser != null;
   }
 
@@ -35,10 +52,9 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
 
   @override
   Future<FirebaseUser> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
+    GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );

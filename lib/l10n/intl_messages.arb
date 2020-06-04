@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-04T15:31:00.758375",
+  "@@last_modified": "2020-06-04T21:08:10.494674",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -93,6 +93,36 @@
   "deleteAccountDialogTitle": "Are you sure you want to delete your account?",
   "@deleteAccountDialogTitle": {
     "description": "DeleteAccountDialog title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountFailure": "Error in deleting the account",
+  "@deleteAccountFailure": {
+    "description": "DeleteAccountScreen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountScreenBody": "Insert your password and press on Delete Account to permanently delete your account",
+  "@deleteAccountScreenBody": {
+    "description": "DeleteAccountScreen body",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountScreenTitle": "Delete Account",
+  "@deleteAccountScreenTitle": {
+    "description": "DeleteAccountScreen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccountSuccess": "Account successfully deleted",
+  "@deleteAccountSuccess": {
+    "description": "Snackbar message for the delete account process success",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deletingAccount": "Deleting account...",
+  "@deletingAccount": {
+    "description": "Snackbar message for the delete account process loading",
     "type": "text",
     "placeholders": {}
   },
@@ -218,6 +248,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "newPassword": "New password",
+  "@newPassword": {
+    "description": "New password TextInput label",
+    "type": "text",
+    "placeholders": {}
+  },
   "newTrip": "New Trip",
   "@newTrip": {
     "description": "New Trip button label",
@@ -269,6 +305,12 @@
   "objective": "Objective",
   "@objective": {
     "description": "First onboarding screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "oldPassword": "Old password",
+  "@oldPassword": {
+    "description": "Old Password TextInput label",
     "type": "text",
     "placeholders": {}
   },

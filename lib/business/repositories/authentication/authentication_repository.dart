@@ -1,5 +1,6 @@
 abstract class AuthenticationRepository {
-  Future changePassword(String password);
+  Future changePassword(String oldPassword, String newPassword);
+  Future deleteAccount(String password);
   Future getUser();
   Future isSignedIn();
   Future signInWithCredentials(String email, String password);

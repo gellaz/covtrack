@@ -12,7 +12,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  AuthenticationRepository authRepository;
+  final AuthenticationRepository authRepository;
 
   LoginBloc(this.authRepository) : assert(authRepository != null);
 

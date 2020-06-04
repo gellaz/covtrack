@@ -172,6 +172,51 @@ class AppLocalizations {
     );
   }
 
+  String get deleteAccountFailure {
+    return Intl.message(
+      'Error in deleting the account',
+      name: 'deleteAccountFailure',
+      desc: 'DeleteAccountScreen title',
+      locale: localeName,
+    );
+  }
+
+  String get deleteAccountScreenBody {
+    return Intl.message(
+      'Insert your password and press on Delete Account to permanently delete your account',
+      name: 'deleteAccountScreenBody',
+      desc: 'DeleteAccountScreen body',
+      locale: localeName,
+    );
+  }
+
+  String get deleteAccountScreenTitle {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccountScreenTitle',
+      desc: 'DeleteAccountScreen title',
+      locale: localeName,
+    );
+  }
+
+  String get deleteAccountSuccess {
+    return Intl.message(
+      'Account successfully deleted',
+      name: 'deleteAccountSuccess',
+      desc: 'Snackbar message for the delete account process success',
+      locale: localeName,
+    );
+  }
+
+  String get deletingAccount {
+    return Intl.message(
+      'Deleting account...',
+      name: 'deletingAccount',
+      desc: 'Snackbar message for the delete account process loading',
+      locale: localeName,
+    );
+  }
+
   String get destination {
     return Intl.message(
       'Destination:',
@@ -354,6 +399,15 @@ class AppLocalizations {
     );
   }
 
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: 'New password TextInput label',
+      locale: localeName,
+    );
+  }
+
   String get newTrip {
     return Intl.message(
       'New Trip',
@@ -431,6 +485,15 @@ class AppLocalizations {
       'Objective',
       name: 'objective',
       desc: 'First onboarding screen title',
+      locale: localeName,
+    );
+  }
+
+  String get oldPassword {
+    return Intl.message(
+      'Old password',
+      name: 'oldPassword',
+      desc: 'Old Password TextInput label',
       locale: localeName,
     );
   }

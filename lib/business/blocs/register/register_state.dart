@@ -1,10 +1,10 @@
 part of 'register_bloc.dart';
 
 /// Here is a list of the possible [RegisterState] in which the [RegisterForm] can be:
-/// [empty]: initial state of the [RegisterForm]
-/// [loading]: state of the [RegisterForm] when we are validating credentials
-/// [failure]: state of the [RegisterForm] when a login attempt has failed
-/// [success]: state of the [RegisterForm] when a login attempt has succeeded
+/// [empty] - initial state of the [RegisterForm]
+/// [loading] - state of the [RegisterForm] when we are validating credentials
+/// [failure] - state of the [RegisterForm] when a login attempt has failed
+/// [success] - state of the [RegisterForm] when a login attempt has succeeded
 @immutable
 class RegisterState {
   final bool isEmailValid;

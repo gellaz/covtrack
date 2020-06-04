@@ -5,9 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../business/blocs/authentication/authentication_bloc.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/change_theme_dialog.dart';
-import '../widgets/delete_account_dialog.dart';
 import '../widgets/logout_button.dart';
 import 'change_password_screen.dart';
+import 'delete_account_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const routeName = '/';
@@ -87,10 +87,8 @@ class SettingsScreen extends StatelessWidget {
                           AppLocalizations.of(context).deleteAccount,
                         ),
                         trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async => showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (_) => DeleteAccountDialog(),
+                        onTap: () => Navigator.of(context).pushNamed(
+                          DeleteAccountScreen.routeName,
                         ),
                       ),
                     ],

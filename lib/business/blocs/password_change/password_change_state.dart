@@ -2,17 +2,20 @@ part of 'password_change_bloc.dart';
 
 @immutable
 class PasswordChangeState {
-  final bool isPasswordValid;
-  final bool isPasswordCheckValid;
+  final bool isOldPasswordValid;
+  final bool isNewPasswordValid;
+  final bool isNewPasswordCheckValid;
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
 
-  bool get isFormValid => isPasswordValid && isPasswordCheckValid;
+  bool get isFormValid =>
+      isOldPasswordValid && isNewPasswordValid && isNewPasswordCheckValid;
 
   PasswordChangeState({
-    @required this.isPasswordValid,
-    @required this.isPasswordCheckValid,
+    @required this.isOldPasswordValid,
+    @required this.isNewPasswordValid,
+    @required this.isNewPasswordCheckValid,
     @required this.isSubmitting,
     @required this.isSuccess,
     @required this.isFailure,
@@ -20,8 +23,9 @@ class PasswordChangeState {
 
   factory PasswordChangeState.empty() {
     return PasswordChangeState(
-      isPasswordValid: true,
-      isPasswordCheckValid: true,
+      isOldPasswordValid: true,
+      isNewPasswordValid: true,
+      isNewPasswordCheckValid: true,
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
@@ -30,8 +34,9 @@ class PasswordChangeState {
 
   factory PasswordChangeState.loading() {
     return PasswordChangeState(
-      isPasswordValid: true,
-      isPasswordCheckValid: true,
+      isOldPasswordValid: true,
+      isNewPasswordValid: true,
+      isNewPasswordCheckValid: true,
       isSubmitting: true,
       isSuccess: false,
       isFailure: false,
@@ -40,8 +45,9 @@ class PasswordChangeState {
 
   factory PasswordChangeState.failure() {
     return PasswordChangeState(
-      isPasswordValid: true,
-      isPasswordCheckValid: true,
+      isOldPasswordValid: true,
+      isNewPasswordValid: true,
+      isNewPasswordCheckValid: true,
       isSubmitting: false,
       isSuccess: false,
       isFailure: true,
@@ -50,8 +56,9 @@ class PasswordChangeState {
 
   factory PasswordChangeState.success() {
     return PasswordChangeState(
-      isPasswordValid: true,
-      isPasswordCheckValid: true,
+      isOldPasswordValid: true,
+      isNewPasswordValid: true,
+      isNewPasswordCheckValid: true,
       isSubmitting: false,
       isSuccess: true,
       isFailure: false,
@@ -59,12 +66,14 @@ class PasswordChangeState {
   }
 
   PasswordChangeState update({
-    bool isPasswordValid,
-    bool isPasswordCheckValid,
+    bool isOldPasswordValid,
+    bool isNewPasswordValid,
+    bool isNewPasswordCheckValid,
   }) {
     return copyWith(
-      isPasswordValid: isPasswordValid,
-      isPasswordCheckValid: isPasswordCheckValid,
+      isOldPasswordValid: isOldPasswordValid,
+      isNewPasswordValid: isNewPasswordValid,
+      isNewPasswordCheckValid: isNewPasswordCheckValid,
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
@@ -72,16 +81,19 @@ class PasswordChangeState {
   }
 
   PasswordChangeState copyWith({
-    bool isPasswordValid,
-    bool isPasswordCheckValid,
+    bool isOldPasswordValid,
+    bool isNewPasswordValid,
+    bool isNewPasswordCheckValid,
     bool isSubmitEnabled,
     bool isSubmitting,
     bool isSuccess,
     bool isFailure,
   }) {
     return PasswordChangeState(
-      isPasswordValid: isPasswordValid ?? this.isPasswordValid,
-      isPasswordCheckValid: isPasswordCheckValid ?? this.isPasswordCheckValid,
+      isOldPasswordValid: isOldPasswordValid ?? this.isOldPasswordValid,
+      isNewPasswordValid: isNewPasswordValid ?? this.isNewPasswordValid,
+      isNewPasswordCheckValid:
+          isNewPasswordCheckValid ?? this.isNewPasswordCheckValid,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,
       isFailure: isFailure ?? this.isFailure,
@@ -92,8 +104,9 @@ class PasswordChangeState {
   String toString() {
     return '''
     PasswordChangeState {
-      isPasswordValid: $isPasswordValid,
-      isPasswordCheckValid: $isPasswordCheckValid,
+      isOldPasswordValid: $isOldPasswordValid,
+      isNewPasswordValid: $isNewPasswordValid,
+      isNewPasswordCheckValid: $isNewPasswordCheckValid,
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,

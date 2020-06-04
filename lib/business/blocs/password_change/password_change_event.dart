@@ -7,23 +7,35 @@ abstract class PasswordChangeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PasswordChanged extends PasswordChangeEvent {
+class OldPasswordChanged extends PasswordChangeEvent {
   final String password;
 
-  const PasswordChanged({@required this.password});
+  const OldPasswordChanged({@required this.password});
 
   @override
   List<Object> get props => [password];
 
   @override
-  String toString() => 'PasswordChanged { password: $password }';
+  String toString() => 'OldPasswordChanged { password: $password }';
 }
 
-class PasswordCheckChanged extends PasswordChangeEvent {
+class NewPasswordChanged extends PasswordChangeEvent {
+  final String password;
+
+  const NewPasswordChanged({@required this.password});
+
+  @override
+  List<Object> get props => [password];
+
+  @override
+  String toString() => 'NewPasswordChanged { password: $password }';
+}
+
+class NewPasswordCheckChanged extends PasswordChangeEvent {
   final String password;
   final String passwordCheck;
 
-  const PasswordCheckChanged({
+  const NewPasswordCheckChanged({
     @required this.password,
     @required this.passwordCheck,
   });
@@ -33,19 +45,22 @@ class PasswordCheckChanged extends PasswordChangeEvent {
 
   @override
   String toString() =>
-      'PasswordCheckChanged { password:$password, passwordCheck: $passwordCheck }';
+      'NewPasswordCheckChanged { password:$password, passwordCheck: $passwordCheck }';
 }
 
-class Submitted extends PasswordCheckChanged {
-  final String password;
+class Submitted extends PasswordChangeEvent {
+  final String oldPassword;
+  final String newPassowrd;
 
-  const Submitted({@required this.password});
+  const Submitted({
+    @required this.oldPassword,
+    @required this.newPassowrd,
+  });
 
   @override
-  List<Object> get props => [password];
+  List<Object> get props => [oldPassword, newPassowrd];
 
   @override
-  String toString() {
-    return 'Submitted { password: $password }';
-  }
+  String toString() =>
+      'Submitted { oldPassword: $oldPassword, newPassword: $newPassowrd }';
 }

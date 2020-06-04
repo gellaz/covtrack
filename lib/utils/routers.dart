@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../presentation/screens/change_password_screen.dart';
+import '../presentation/screens/delete_account_screen.dart';
 import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/info_screen.dart';
 import '../presentation/screens/new_trip_screen.dart';
@@ -79,6 +80,9 @@ class DonateRouter implements Router {
         break;
       case ChangePasswordScreen.routeName:
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+        break;
+      case DeleteAccountScreen.routeName:
+        return MaterialPageRoute(builder: (_) => DeleteAccountScreen());
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');

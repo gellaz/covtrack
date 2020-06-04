@@ -12,13 +12,15 @@ class ChangePasswordForm extends StatefulWidget {
 }
 
 class _ChangePasswordFormState extends State<ChangePasswordForm> {
-  final _passwordController = TextEditingController();
-  final _passwordCheckController = TextEditingController();
+  final _oldPasswordController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _newPasswordCheckController = TextEditingController();
   PasswordChangeBloc _passwordChangeBloc;
 
   bool get isPopulated =>
-      _passwordController.text.isNotEmpty &&
-      _passwordCheckController.text.isNotEmpty;
+      _oldPasswordController.text.isNotEmpty &&
+      _newPasswordController.text.isNotEmpty &&
+      _newPasswordCheckController.text.isNotEmpty;
 
   bool isChangePasswordButtonEnabled(PasswordChangeState state) =>
       state.isFormValid && isPopulated && !state.isSubmitting;
@@ -27,8 +29,9 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
   void initState() {
     super.initState();
     _passwordChangeBloc = context.bloc<PasswordChangeBloc>();
-    _passwordController.addListener(_onPasswordChanged);
-    _passwordCheckController.addListener(_onPasswordCheckChanged);
+    _oldPasswordController.addListener(_onOldPasswordChanged);
+    _newPasswordController.addListener(_onNewPasswordChanged);
+    _newPasswordCheckController.addListener(_onNewPasswordCheckChanged);
   }
 
   @override
@@ -56,8 +59,10 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                  content:
-                      Text(AppLocalizations.of(context).changePasswordSuccess)),
+                content: Text(
+                  AppLocalizations.of(context).changePasswordSuccess,
+                ),
+              ),
             );
         }
         if (state.isFailure) {
@@ -84,7 +89,6 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
               children: <Widget>[
                 Expanded(
                   child: ListView(
-                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Icon(
                         Icons.lock_outline,
@@ -96,25 +100,26 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                         style: Theme.of(context).textTheme.headline6,
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       Text(
                         AppLocalizations.of(context).changePasswordScreenBody,
                         style: Theme.of(context).textTheme.subtitle1,
                         textAlign: TextAlign.center,
                       ),
+                      const SizedBox(height: 20),
                       TextFormField(
                         autocorrect: false,
                         autovalidate: true,
-                        controller: _passwordController,
+                        controller: _oldPasswordController,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: AppLocalizations.of(context).oldPassword,
                         ),
                         obscureText: true,
                         onFieldSubmitted: (_) =>
                             FocusScope.of(context).nextFocus(),
                         textInputAction: TextInputAction.next,
                         validator: (_) {
-                          return !state.isPasswordValid
+                          return !state.isOldPasswordValid
                               ? AppLocalizations.of(context).invalidPassword
                               : null;
                         },
@@ -122,14 +127,31 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                       TextFormField(
                         autocorrect: false,
                         autovalidate: true,
-                        controller: _passwordCheckController,
+                        controller: _newPasswordController,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).newPassword,
+                        ),
+                        obscureText: true,
+                        onFieldSubmitted: (_) =>
+                            FocusScope.of(context).nextFocus(),
+                        textInputAction: TextInputAction.next,
+                        validator: (_) {
+                          return !state.isNewPasswordValid
+                              ? AppLocalizations.of(context).invalidPassword
+                              : null;
+                        },
+                      ),
+                      TextFormField(
+                        autocorrect: false,
+                        autovalidate: true,
+                        controller: _newPasswordCheckController,
                         decoration: InputDecoration(
                           labelText:
                               AppLocalizations.of(context).insertPasswordAgain,
                         ),
                         obscureText: true,
                         validator: (_) {
-                          return !state.isPasswordCheckValid
+                          return !state.isNewPasswordCheckValid
                               ? AppLocalizations.of(context).differentPasswords
                               : null;
                         },
@@ -160,31 +182,38 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
 
   @override
   void dispose() {
-    _passwordController.dispose();
-    _passwordCheckController.dispose();
+    _oldPasswordController.dispose();
+    _newPasswordController.dispose();
+    _newPasswordCheckController.dispose();
     super.dispose();
   }
 
-  void _onPasswordChanged() {
+  void _onOldPasswordChanged() {
     _passwordChangeBloc.add(
-      PasswordChanged(password: _passwordController.text),
+      OldPasswordChanged(password: _oldPasswordController.text),
     );
   }
 
-  void _onPasswordCheckChanged() {
+  void _onNewPasswordChanged() {
     _passwordChangeBloc.add(
-      PasswordCheckChanged(
-        password: _passwordController.text,
-        passwordCheck: _passwordCheckController.text,
+      NewPasswordChanged(password: _newPasswordController.text),
+    );
+  }
+
+  void _onNewPasswordCheckChanged() {
+    _passwordChangeBloc.add(
+      NewPasswordCheckChanged(
+        password: _newPasswordController.text,
+        passwordCheck: _newPasswordCheckController.text,
       ),
     );
   }
 
   void _onFormSubmitted() {
-    print('HEYYYYY');
     _passwordChangeBloc.add(
       Submitted(
-        password: _passwordController.text,
+        oldPassword: _oldPasswordController.text,
+        newPassowrd: _newPasswordController.text,
       ),
     );
   }

@@ -2,6 +2,7 @@ part of 'login_bloc.dart';
 
 /// List of [LoginEvent] objects to which our [LoginBloc] will be reacting to:
 /// [EmailChanged] - notifies the BLoC that the user has changed the email
+/// [PasswordChanged] - notifies the BLoC that the user has changed the password
 /// [Submitted] - notifies the BLoC that the user has submitted the form
 /// [LoginWithGooglePressed] - notifies the BLoC that the user has pressed the Google Sign In button
 /// [LoginWithCredentialsPressed] - notifies the BLoC that the user has pressed the regular sign in button
@@ -49,9 +50,7 @@ class Submitted extends LoginEvent {
   List<Object> get props => [email, password];
 
   @override
-  String toString() {
-    return 'Submitted { email: $email, password: $password }';
-  }
+  String toString() => 'Submitted { email: $email, password: $password }';
 }
 
 class LoginWithGooglePressed extends LoginEvent {}
@@ -69,7 +68,6 @@ class LoginWithCredentialsPressed extends LoginEvent {
   List<Object> get props => [email, password];
 
   @override
-  String toString() {
-    return 'LoginWithCredentialsPressed { email: $email, password: $password }';
-  }
+  String toString() =>
+      'LoginWithCredentialsPressed { email: $email, password: $password }';
 }
