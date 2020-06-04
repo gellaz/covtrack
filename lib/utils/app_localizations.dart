@@ -455,7 +455,7 @@ class AppLocalizations {
 
   String get onboarding4 {
     return Intl.message(
-      'In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19',
+      'In the Settings section you can change different account parameters and change the application appearence',
       name: 'onboarding4',
       desc: 'Fourth onboarding screen body',
       locale: localeName,

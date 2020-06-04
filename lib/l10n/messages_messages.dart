@@ -70,7 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboarding1" : MessageLookupByLibrary.simpleMessage("The main functionality of CovTrack is replacing the mandatory self-certification form"),
     "onboarding2" : MessageLookupByLibrary.simpleMessage("In the Home section you can view the active trip or create a new one"),
     "onboarding3" : MessageLookupByLibrary.simpleMessage("In the Info section you can read the latest information regarding the sanitary situation in your country and in the world"),
-    "onboarding4" : MessageLookupByLibrary.simpleMessage("In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19"),
+    "onboarding4" : MessageLookupByLibrary.simpleMessage("In the Settings section you can change different account parameters and change the application appearence"),
     "or" : MessageLookupByLibrary.simpleMessage("or"),
     "reasonPickerDesc" : MessageLookupByLibrary.simpleMessage("Reason:"),
     "recovered" : MessageLookupByLibrary.simpleMessage("Recovered"),

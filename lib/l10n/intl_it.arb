@@ -284,7 +284,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onboarding4": "Nella sezione Dona trovi una lista delle principali associazioni sanitarie ed ospedali a cui puoi fare una donazione per dare un aiuto nella lotta contro il Covid-19",
+  "onboarding4": "Nella sezione Impostazioni puoi cambiare i parametri dell'account con cui sei registrato e l'apparenza dell'applicazione",
   "@onboarding4": {
     "description": "Fourth onboarding screen body",
     "type": "text",

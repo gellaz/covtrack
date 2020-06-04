@@ -284,7 +284,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onboarding4": "In the Donate section you will find a list of the main health associations and hospitals to which you can make a donation to help in the fight against Covid-19",
+  "onboarding4": "In the Settings section you can change different account parameters and change the application appearence",
   "@onboarding4": {
     "description": "Fourth onboarding screen body",
     "type": "text",
