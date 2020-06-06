@@ -22,7 +22,27 @@ class Place extends Equatable {
       ? formattedAddress.replaceFirst(RegExp(name + ','), '').trim()
       : formattedAddress;
 
-  Map<String, dynamic> toMap() {
+  Map<String, Object> toJson() {
+    return {
+      "placeId": placeId,
+      "latitude": latitude,
+      "longitude": longitude,
+      "formattedAddress": formattedAddress,
+      "name": name,
+    };
+  }
+
+  factory Place.fromJson(Map<String, Object> json) {
+    return Place(
+      placeId: json['placeId'] as String,
+      latitude: json['latitude'] as double,
+      longitude: json['longitude'] as double,
+      formattedAddress: json['formattedAddress'] as String,
+      name: json['name'] as String,
+    );
+  }
+
+  Map<String, Object> toMap() {
     return {
       'placeId': placeId,
       'latitude': latitude,
@@ -32,7 +52,7 @@ class Place extends Equatable {
     };
   }
 
-  factory Place.fromMap(Map<String, dynamic> map) {
+  factory Place.fromMap(Map<String, Object> map) {
     return Place(
       placeId: map['placeId'],
       latitude: map['latitude'],

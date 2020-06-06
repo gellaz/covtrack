@@ -7,12 +7,9 @@ import 'old_trips_screen.dart';
 class NoActiveTripsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(40),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

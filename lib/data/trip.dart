@@ -6,7 +6,7 @@ import 'package:sembast/timestamp.dart';
 import 'place.dart';
 
 class Trip extends Equatable {
-  final int tripId;
+  final String tripId;
   final String reason;
   final DateTime startingTime;
   final DateTime arrivalTime;
@@ -23,6 +23,41 @@ class Trip extends Equatable {
     @required this.destination,
     @required this.stops,
   });
+
+  Map<String, Object> toJson() {
+    return {
+      "tripId": tripId,
+      "reason": reason,
+      "startingTime": startingTime,
+      "arrivalTime": arrivalTime,
+      "source": source.toJson(),
+      "destination": destination.toJson(),
+      "stops": stops,
+    };
+  }
+
+  factory Trip.fromJson(Map<String, Object> json) {
+    return Trip(
+      tripId: json['tripId'] as String,
+      reason: json['reason'] as String,
+      startingTime: json['startingTime'] as DateTime,
+      arrivalTime: json['startingTime'] as DateTime,
+      source: Place.fromJson(json['source']),
+      destination: Place.fromJson(json['destination']),
+      stops: null,
+    );
+  }
+
+  Map<String, Object> toDocument() {
+    return {
+      "reason": reason,
+      "startingTime": startingTime,
+      "arrivalTime": arrivalTime,
+      "source": source,
+      "destination": destination,
+      "stops": stops,
+    };
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -71,7 +106,7 @@ class Trip extends Equatable {
   }
 
   Trip copyWith({
-    int tripId,
+    String tripId,
     String reason,
     DateTime startingTime,
     DateTime arrivalTime,

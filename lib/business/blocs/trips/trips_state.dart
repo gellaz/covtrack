@@ -23,6 +23,8 @@ class TripsLoadSuccess extends TripsState {
   String toString() => 'TripsLoadSuccess { trips: $trips }';
 }
 
+class TripsEmpty extends TripsState {}
+
 class TripsLoadFailure extends TripsState {
   final String message;
 

@@ -15,7 +15,7 @@ class OldTripsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).oldTrips),
       ),
-      body: BlocListener<TripsBloc, TripsState>(
+      body: BlocConsumer<TripsBloc, TripsState>(
         listener: (context, state) {
           if (state is TripsLoadFailure) {
             Scaffold.of(context)
@@ -34,24 +34,18 @@ class OldTripsScreen extends StatelessWidget {
               );
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: BlocBuilder<TripsBloc, TripsState>(
-            builder: (context, state) {
-              if (state is TripsLoadInProgress) {
-                return _buildTripsLoadInProgress();
-              }
-              if (state is TripsLoadSuccess) {
-                if (state.trips.isEmpty) {
-                  return _buildNoPreviousTrips(context);
-                } else {
-                  return _buildTripsLoadSuccess(context, state.trips);
-                }
-              }
-              return Container();
-            },
-          ),
-        ),
+        builder: (context, state) {
+          if (state is TripsLoadInProgress) {
+            return _buildTripsLoadInProgress();
+          }
+          if (state is TripsEmpty) {
+            return _buildNoPreviousTrips(context);
+          }
+          if (state is TripsLoadSuccess) {
+            return _buildTripsLoadSuccess(context, state.trips);
+          }
+          return Container();
+        },
       ),
     );
   }
@@ -63,43 +57,53 @@ class OldTripsScreen extends StatelessWidget {
   }
 
   Widget _buildNoPreviousTrips(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.do_not_disturb_alt,
-            color: Theme.of(context).disabledColor,
-            size: 150,
-          ),
-          Text(
-            AppLocalizations.of(context).noPreviousTripsTitle,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(color: Theme.of(context).disabledColor),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 10),
-          Text(
-            AppLocalizations.of(context).noPreviousTripsBody,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1
-                .copyWith(color: Theme.of(context).disabledColor),
-            textAlign: TextAlign.center,
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(40),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.do_not_disturb_alt,
+              color: Theme.of(context).disabledColor,
+              size: 150,
+            ),
+            Text(
+              AppLocalizations.of(context).noPreviousTripsTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(color: Theme.of(context).disabledColor),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              AppLocalizations.of(context).noPreviousTripsBody,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1
+                  .copyWith(color: Theme.of(context).disabledColor),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTripsLoadSuccess(BuildContext context, List<Trip> trips) {
-    return ListView.builder(
-      itemCount: trips.length,
-      itemBuilder: (BuildContext context, int index) {
-        return OldTripListTile(trips.elementAt(index));
-      },
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: ListView.builder(
+            itemCount: trips.length,
+            itemBuilder: (BuildContext context, int index) {
+              return OldTripListTile(trips.elementAt(index));
+            },
+          ),
+        ),
+        Text(AppLocalizations.of(context).tripsTotal(trips.length)),
+      ],
     );
   }
 }

@@ -15,9 +15,7 @@ class QrScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-      ),
+      appBar: AppBar(elevation: 0),
       body: Container(
         color: Theme.of(context).primaryColor,
         child: Center(

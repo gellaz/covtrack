@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-04T21:08:10.494674",
+  "@@last_modified": "2020-06-07T00:19:15.003542",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -469,6 +469,14 @@
     "description": "Trips load failure message",
     "type": "text",
     "placeholders": {}
+  },
+  "tripsTotal": "Total number of trips: {tot}",
+  "@tripsTotal": {
+    "description": "It shows the user the total number of trips made",
+    "type": "text",
+    "placeholders": {
+      "tot": {}
+    }
   },
   "yes": "Yes",
   "@yes": {

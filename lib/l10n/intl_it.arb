@@ -470,6 +470,14 @@
     "type": "text",
     "placeholders": {}
   },
+  "tripsTotal": "Numero totale spostamenti: {tot}",
+  "@tripsTotal": {
+    "description": "It shows the user the total number of trips made",
+    "type": "text",
+    "placeholders": {
+      "tot": {}
+    }
+  },
   "yes": "Si",
   "@yes": {
     "description": "Yes message",

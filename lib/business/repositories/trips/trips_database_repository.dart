@@ -10,7 +10,7 @@ class TripsDatabaseRepository implements TripsRepository {
 
   // This store acts like a persistent map, values of which are Trip objects
   // converted to Map.
-  final _tripsStore = intMapStoreFactory.store(TRIPS_STORE_NAME);
+  final _tripsStore = stringMapStoreFactory.store(TRIPS_STORE_NAME);
 
   // Private getter to shorten the amount of code needed to get the singleton
   // instance of an opened database.

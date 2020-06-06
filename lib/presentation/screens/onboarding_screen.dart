@@ -4,11 +4,10 @@ import 'package:introduction_screen/introduction_screen.dart';
 
 import '../../business/blocs/settings/settings_bloc.dart';
 import '../../utils/app_localizations.dart';
-import '../containers/authentication_container.dart';
 import '../styles/decorations.dart';
+import 'authentication_screen.dart';
 
-/// This widget is used to intorduce the user to the application if
-/// it is the first time he launches it.
+/// This widget is used to introduce the user to the application on the first run.
 class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,13 +27,13 @@ class OnboardingScreen extends StatelessWidget {
 
   void _onDone(BuildContext context) {
     // Changing the `firstRun` setting so that the next time the application
-    // is launched, onboarding will no longer be displayed.
+    // is launched, the onboarding will no longer be displayed.
     context.bloc<SettingsBloc>()..add(SettingChanged('firstRun', false));
 
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => AuthenticationContainer(),
+        builder: (_) => AuthenticationScreen(),
       ),
     );
   }

@@ -19,7 +19,7 @@ import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
 import 'business/repositories/trips/trips_database_repository.dart';
-import 'presentation/containers/authentication_container.dart';
+import 'presentation/screens/authentication_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
@@ -112,7 +112,7 @@ class CovTrack extends StatelessWidget {
               : AppTheme.light;
           home = state.settings['firstRun']
               ? OnboardingScreen()
-              : AuthenticationContainer();
+              : AuthenticationScreen();
         } else if (state is SettingsLoadFailure) {
           Scaffold.of(context)
             ..hideCurrentSnackBar()

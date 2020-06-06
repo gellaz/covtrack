@@ -23,9 +23,6 @@ class ActiveTripScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LocationBloc, LocationState>(
       builder: (context, state) {
-        if (state is LocationInitial) {
-          return Center(child: Text('Fetching Location'));
-        }
         if (state is LocationLoadSuccess) {
           return Center(
             child: Padding(

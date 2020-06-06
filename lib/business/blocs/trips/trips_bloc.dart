@@ -35,8 +35,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   Stream<TripsState> _mapTripAddedToState(Trip trip) async* {
     try {
       await tripsRepository.insert(trip);
-      final trips = await tripsRepository.getAllTrips();
-      yield TripsLoadSuccess(trips);
+      add(TripsLoaded());
     } catch (e) {
       yield TripsLoadFailure(e.toString());
     }
@@ -45,7 +44,10 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   Stream<TripsState> _mapTripsLoadedToState() async* {
     try {
       final trips = await tripsRepository.getAllTrips();
-      yield TripsLoadSuccess(trips);
+      if (trips.isEmpty)
+        yield TripsEmpty();
+      else
+        yield TripsLoadSuccess(trips);
     } catch (e) {
       yield TripsLoadFailure(e.toString());
     }
@@ -54,8 +56,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   Stream<TripsState> _mapTripDeletedToState(Trip trip) async* {
     try {
       await tripsRepository.delete(trip);
-      final trips = await tripsRepository.getAllTrips();
-      yield TripsLoadSuccess(trips);
+      add(TripsLoaded());
     } catch (e) {
       yield TripsLoadFailure(e.toString());
     }
@@ -64,8 +65,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   Stream<TripsState> _mapTripUpdatedToState(Trip trip) async* {
     try {
       await tripsRepository.update(trip);
-      final trips = await tripsRepository.getAllTrips();
-      yield TripsLoadSuccess(trips);
+      add(TripsLoaded());
     } catch (e) {
       yield TripsLoadFailure(e.toString());
     }

@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             if (state is TripsLoadSuccess) {
               final trips = state.trips;
 
-              if (trips.isNotEmpty && trips.last.arrivalTime == null) {
+              if (trips.last.arrivalTime == null) {
                 final duration =
                     DateTime.now().difference(trips.last.startingTime);
                 context.bloc<TimerBloc>()..add(Start(duration.inSeconds));
@@ -58,6 +58,9 @@ class HomeScreen extends StatelessWidget {
               } else {
                 return NoActiveTripsScreen();
               }
+            }
+            if (state is TripsEmpty) {
+              return NoActiveTripsScreen();
             }
             return Container();
           },

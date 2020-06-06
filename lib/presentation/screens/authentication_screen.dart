@@ -6,7 +6,7 @@ import '../screens/login_screen.dart';
 import '../screens/splash_screen.dart';
 import 'root_screen.dart';
 
-class AuthenticationContainer extends StatelessWidget {
+class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(

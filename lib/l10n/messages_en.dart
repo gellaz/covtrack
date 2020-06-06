@@ -21,6 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m0(lastUpdate) => "Last update: ${lastUpdate}";
 
+  static m1(tot) => "Total number of trips: ${tot}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "activeTrip" : MessageLookupByLibrary.simpleMessage("Active Trip"),
@@ -101,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "stopTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Stop current trip"),
     "tripDetails" : MessageLookupByLibrary.simpleMessage("Trip Details"),
     "tripsLoadFailure" : MessageLookupByLibrary.simpleMessage("Error retrieving your previous trips"),
+    "tripsTotal" : m1,
     "yes" : MessageLookupByLibrary.simpleMessage("Yes")
   };
 }

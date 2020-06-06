@@ -24,9 +24,8 @@ class DeleteAccountDialog extends StatelessWidget {
         FlatButton(
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
-            // Notifies AuthenticationBloc of a new AccountDeleted event
+            // Notifies AuthenticationBloc of a new AccountDeleted event.
             deleteAccountBloc.add(Submitted(password: password));
-
             // Closes the AlertDialog.
             Navigator.of(context).pop();
           },
