@@ -1,9 +1,10 @@
+import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../business/blocs/location/location_bloc.dart';
-import '../../business/blocs/timer/timer_bloc.dart';
+
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../widgets/logout_button.dart';
 import 'active_trip_screen.dart';
@@ -46,13 +47,20 @@ class HomeScreen extends StatelessWidget {
               final trips = state.trips;
 
               if (trips.last.arrivalTime == null) {
-                final duration =
-                    DateTime.now().difference(trips.last.startingTime);
-                context.bloc<TimerBloc>()..add(Start(duration.inSeconds));
-                return BlocProvider(
-                  create: (context) =>
-                      LocationBloc(Geolocator(), trips.last.stops.length)
-                        ..add(LocationStarted()),
+                return MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (_) => StopwatchBloc(
+                        startingTime:
+                            DateTime.now().difference(trips.last.startingTime),
+                      )..add(Start()),
+                    ),
+                    BlocProvider(
+                      create: (_) =>
+                          LocationBloc(Geolocator(), trips.last.stops.length)
+                            ..add(LocationStarted()),
+                    ),
+                  ],
                   child: ActiveTripScreen(trips.last),
                 );
               } else {

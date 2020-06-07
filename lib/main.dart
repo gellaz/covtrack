@@ -6,9 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
-import 'business/blocs/timer/timer_bloc.dart';
+
 import 'business/blocs/trips/trips_bloc.dart';
-import 'business/providers/ticker.dart';
+
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/info/info_api_repository.dart';
@@ -70,9 +70,6 @@ void main() {
           }),
           BlocProvider(create: (_) {
             return TripsBloc(tripsRepository)..add(TripsLoaded());
-          }),
-          BlocProvider(create: (_) {
-            return TimerBloc(Ticker(), 10);
           }),
         ],
         child: CovTrack(),

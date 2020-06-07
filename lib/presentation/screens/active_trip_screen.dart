@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../business/blocs/location/location_bloc.dart';
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
-import '../widgets/active_trip_timer.dart';
+import '../widgets/active_trip_stopwatch.dart';
 import '../widgets/new_trip_dialog.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/return_trip_dialog.dart';
@@ -71,7 +71,7 @@ class ActiveTripScreen extends StatelessWidget {
                         child: ListTile(
                           leading: Icon(Icons.access_time),
                           title: Text(AppLocalizations.of(context).elapsedTime),
-                          trailing: ActiveTripTimer(),
+                          trailing: ActiveTripStopwatch(),
                         ),
                       ),
                     ],
