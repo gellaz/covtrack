@@ -147,214 +147,168 @@ class AppLocalizations {
         locale: localeName,
       );
 
-  String get deleteAccountScreenBody {
-    return Intl.message(
-      'Insert your password and press on Delete Account to permanently delete your account',
-      name: 'deleteAccountScreenBody',
-      desc: 'DeleteAccountScreen body',
-      locale: localeName,
-    );
-  }
+  String get deleteAccountScreenBody => Intl.message(
+        'Insert your password and press on Delete Account to permanently delete your account',
+        name: 'deleteAccountScreenBody',
+        desc: 'DeleteAccountScreen body',
+        locale: localeName,
+      );
 
-  String get deleteAccountScreenTitle {
-    return Intl.message(
-      'Delete Account',
-      name: 'deleteAccountScreenTitle',
-      desc: 'DeleteAccountScreen title',
-      locale: localeName,
-    );
-  }
+  String get deleteAccountScreenTitle => Intl.message(
+        'Delete Account',
+        name: 'deleteAccountScreenTitle',
+        desc: 'DeleteAccountScreen title',
+        locale: localeName,
+      );
 
-  String get deleteAccountSuccess {
-    return Intl.message(
-      'Account successfully deleted',
-      name: 'deleteAccountSuccess',
-      desc: 'Snackbar message for the delete account process success',
-      locale: localeName,
-    );
-  }
+  String get deleteAccountSuccess => Intl.message(
+        'Account successfully deleted',
+        name: 'deleteAccountSuccess',
+        desc: 'Snackbar message for the delete account process success',
+        locale: localeName,
+      );
 
-  String get deletingAccount {
-    return Intl.message(
-      'Deleting account...',
-      name: 'deletingAccount',
-      desc: 'Snackbar message for the delete account process loading',
-      locale: localeName,
-    );
-  }
+  String get deletingAccount => Intl.message(
+        'Deleting account...',
+        name: 'deletingAccount',
+        desc: 'Snackbar message for the delete account process loading',
+        locale: localeName,
+      );
 
-  String get destination {
-    return Intl.message(
-      'Destination:',
-      name: 'destination',
-      desc: 'Destination description text',
-      locale: localeName,
-    );
-  }
+  String get destination => Intl.message(
+        'Destination:',
+        name: 'destination',
+        desc: 'Destination description text',
+        locale: localeName,
+      );
 
-  String get differentPasswords {
-    return Intl.message(
-      'The two passwords are not the same',
-      name: 'differentPasswords',
-      desc: 'Error message when the entered passwords are not the same',
-      locale: localeName,
-    );
-  }
+  String get differentPasswords => Intl.message(
+        'The two passwords are not the same',
+        name: 'differentPasswords',
+        desc: 'Error message when the entered passwords are not the same',
+        locale: localeName,
+      );
 
-  String get done {
-    return Intl.message(
-      'Done',
-      name: 'done',
-      desc: 'Done button label',
-      locale: localeName,
-    );
-  }
+  String get done => Intl.message(
+        'Done',
+        name: 'done',
+        desc: 'Done button label',
+        locale: localeName,
+      );
 
-  String get elapsedTime {
-    return Intl.message(
-      'Elapsed Time:',
-      name: 'elapsedTime',
-      desc: 'Elapsed time Home screen description',
-      locale: localeName,
-    );
-  }
+  String get elapsedTime => Intl.message(
+        'Elapsed Time:',
+        name: 'elapsedTime',
+        desc: 'Elapsed time Home screen description',
+        locale: localeName,
+      );
 
-  String get global {
-    return Intl.message(
-      'Global',
-      name: 'global',
-      desc: 'Info screen Global title',
-      locale: localeName,
-    );
-  }
+  String get global => Intl.message(
+        'Global',
+        name: 'global',
+        desc: 'Info screen Global title',
+        locale: localeName,
+      );
 
-  String get home {
-    return Intl.message(
-      'Home',
-      name: 'home',
-      desc: 'Home section label',
-      locale: localeName,
-    );
-  }
+  String get home => Intl.message(
+        'Home',
+        name: 'home',
+        desc: 'Home section label',
+        locale: localeName,
+      );
 
-  String get info {
-    return Intl.message(
-      'Info',
-      name: 'info',
-      desc: 'Info section label',
-      locale: localeName,
-    );
-  }
+  String get info => Intl.message(
+        'Info',
+        name: 'info',
+        desc: 'Info section label',
+        locale: localeName,
+      );
 
-  String get infoDescription {
-    return Intl.message(
-      'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
-      name: 'infoDescription',
-      desc: 'Info screen body description',
-      locale: localeName,
-    );
-  }
+  String get infoDescription => Intl.message(
+        'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
+        name: 'infoDescription',
+        desc: 'Info screen body description',
+        locale: localeName,
+      );
 
-  String get infoDisclaimer {
-    return Intl.message(
-      'All data presented in this section are fetched from the API',
-      name: 'infoDisclaimer',
-      desc: 'Info screen disclaimer text',
-      locale: localeName,
-    );
-  }
+  String get infoDisclaimer => Intl.message(
+        'All data presented in this section are fetched from the API',
+        name: 'infoDisclaimer',
+        desc: 'Info screen disclaimer text',
+        locale: localeName,
+      );
 
-  String get insertPasswordAgain {
-    return Intl.message(
-      'Insert password again',
-      name: 'insertPasswordAgain',
-      desc:
-          'Hint message of the InputField for the second password in the RegisterScreen',
-      locale: localeName,
-    );
-  }
+  String get insertPasswordAgain => Intl.message(
+        'Insert password again',
+        name: 'insertPasswordAgain',
+        desc:
+            'Hint message of the InputField for the second password in the RegisterScreen',
+        locale: localeName,
+      );
 
-  String get insertPlace {
-    return Intl.message(
-      'Insert a place...',
-      name: 'insertPlace',
-      desc: 'Hint message of the InputField DestinationPickerScreen',
-      locale: localeName,
-    );
-  }
+  String get insertPlace => Intl.message(
+        'Insert a place...',
+        name: 'insertPlace',
+        desc: 'Hint message of the InputField DestinationPickerScreen',
+        locale: localeName,
+      );
 
-  String get invalidEmail {
-    return Intl.message(
-      'Invalid email',
-      name: 'invalidEmail',
-      desc: 'Error message of the Email InputField',
-      locale: localeName,
-    );
-  }
+  String get invalidEmail => Intl.message(
+        'Invalid email',
+        name: 'invalidEmail',
+        desc: 'Error message of the Email InputField',
+        locale: localeName,
+      );
 
-  String get invalidPassword {
-    return Intl.message(
-      'Invalid password',
-      name: 'invalidPassword',
-      desc: 'Hint message of the Password InputField',
-      locale: localeName,
-    );
-  }
+  String get invalidPassword => Intl.message(
+        'Invalid password',
+        name: 'invalidPassword',
+        desc: 'Hint message of the Password InputField',
+        locale: localeName,
+      );
 
-  String get italy {
-    return Intl.message(
-      'Italy',
-      name: 'italy',
-      desc: 'Info screen Italy title',
-      locale: localeName,
-    );
-  }
+  String get italy => Intl.message(
+        'Italy',
+        name: 'italy',
+        desc: 'Info screen Italy title',
+        locale: localeName,
+      );
 
-  String lastUpdate(String lastUpdate) {
-    return Intl.message(
-      'Last update: $lastUpdate',
-      args: [lastUpdate],
-      name: 'lastUpdate',
-      desc: 'InfoListView last update description',
-      locale: localeName,
-    );
-  }
+  String lastUpdate(String lastUpdate) => Intl.message(
+        'Last update: $lastUpdate',
+        args: [lastUpdate],
+        name: 'lastUpdate',
+        desc: 'InfoListView last update description',
+        locale: localeName,
+      );
 
-  String get loggingIn {
-    return Intl.message(
-      'Logging in...',
-      name: 'loggingIn',
-      desc: 'Snackbar message for the login process loading',
-      locale: localeName,
-    );
-  }
+  String get loggingIn => Intl.message(
+        'Logging in...',
+        name: 'loggingIn',
+        desc: 'Snackbar message for the login process loading',
+        locale: localeName,
+      );
 
-  String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: 'Login button label',
-      locale: localeName,
-    );
-  }
+  String get login => Intl.message(
+        'Login',
+        name: 'login',
+        desc: 'Login button label',
+        locale: localeName,
+      );
 
-  String get loginFailure {
-    return Intl.message(
-      'Login failure',
-      name: 'loginFailure',
-      desc: 'Snackbar message for the login process failure',
-      locale: localeName,
-    );
-  }
+  String get loginFailure => Intl.message(
+        'Login failure',
+        name: 'loginFailure',
+        desc: 'Snackbar message for the login process failure',
+        locale: localeName,
+      );
 
-  String get loginWithGoogle {
-    return Intl.message(
-      'Login with Google',
-      name: 'loginWithGoogle',
-      desc: 'Login with Google button label',
-      locale: localeName,
-    );
-  }
+  String get loginWithGoogle => Intl.message(
+        'Login with Google',
+        name: 'loginWithGoogle',
+        desc: 'Login with Google button label',
+        locale: localeName,
+      );
 
   String get loginWithYourAccount => Intl.message(
         'Login with your account',
