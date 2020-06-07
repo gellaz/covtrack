@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:sembast/timestamp.dart';
 
 import 'place.dart';
+import 'stop.dart';
 
 class Trip extends Equatable {
   final String tripId;
@@ -12,7 +12,7 @@ class Trip extends Equatable {
   final DateTime arrivalTime;
   final Place source;
   final Place destination;
-  final List<Position> stops;
+  final List<Stop> stops;
 
   Trip({
     @required this.tripId,
@@ -28,23 +28,32 @@ class Trip extends Equatable {
     return {
       "tripId": tripId,
       "reason": reason,
-      "startingTime": startingTime,
-      "arrivalTime": arrivalTime,
+      "startingTime": startingTime?.toIso8601String(),
+      "arrivalTime": arrivalTime?.toIso8601String(),
       "source": source.toJson(),
       "destination": destination.toJson(),
-      "stops": stops,
+      "stops": stops.map((Stop s) => s.toJson()).toList(),
     };
   }
 
   factory Trip.fromJson(Map<String, Object> json) {
+    List<Stop> _stops = [];
+
+    (json['stops'] as List).forEach((v) => _stops.add(Stop.fromJson(v)));
+
+    var _arrivalTime;
+    if (json['arrivalTime'] != null) {
+      _arrivalTime = DateTime.parse(json['arrivalTime'] as String);
+    }
+
     return Trip(
       tripId: json['tripId'] as String,
       reason: json['reason'] as String,
-      startingTime: json['startingTime'] as DateTime,
-      arrivalTime: json['startingTime'] as DateTime,
+      startingTime: DateTime.parse(json['startingTime'] as String),
+      arrivalTime: _arrivalTime,
       source: Place.fromJson(json['source']),
       destination: Place.fromJson(json['destination']),
-      stops: null,
+      stops: _stops,
     );
   }
 
@@ -57,40 +66,6 @@ class Trip extends Equatable {
       "destination": destination,
       "stops": stops,
     };
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'tripId': tripId,
-      'reason': reason,
-      'startingTime': Timestamp.fromDateTime(startingTime),
-      'arrivalTime':
-          arrivalTime != null ? Timestamp.fromDateTime(arrivalTime) : null,
-      'source': source.toMap(),
-      'destination': destination.toMap(),
-      'stops': this.stops != null
-          ? this.stops.map((pos) => pos.toJson()).toList()
-          : null,
-    };
-  }
-
-  factory Trip.fromMap(Map<String, dynamic> map) {
-    var myStops;
-    if (map['stops'] != null) {
-      myStops = List<Position>();
-      map['stops'].forEach((v) {
-        myStops.add(Position.fromMap(v));
-      });
-    }
-    return Trip(
-      tripId: map['tripId'],
-      reason: map['reason'],
-      startingTime: (map['startingTime'] as Timestamp)?.toDateTime(),
-      arrivalTime: (map['arrivalTime'] as Timestamp)?.toDateTime(),
-      source: Place.fromMap(map['source']),
-      destination: Place.fromMap(map['destination']),
-      stops: myStops,
-    );
   }
 
   Trip returnTrip() {
@@ -112,7 +87,7 @@ class Trip extends Equatable {
     DateTime arrivalTime,
     Place source,
     Place destination,
-    List<Position> stops,
+    List<Stop> stops,
   }) {
     return Trip(
       tripId: tripId ?? this.tripId,

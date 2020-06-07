@@ -1,11 +1,10 @@
-import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 
-import '../../business/blocs/location/location_bloc.dart';
-
+import '../../business/blocs/stops_tracker/stops_tracker_bloc.dart';
+import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
+import '../../business/repositories/location/location_repository.dart';
 import '../widgets/logout_button.dart';
 import 'active_trip_screen.dart';
 import 'no_active_trips_screen.dart';
@@ -56,9 +55,11 @@ class HomeScreen extends StatelessWidget {
                       )..add(Start()),
                     ),
                     BlocProvider(
-                      create: (_) =>
-                          LocationBloc(Geolocator(), trips.last.stops.length)
-                            ..add(LocationStarted()),
+                      create: (_) => StopsTrackerBloc(
+                        locationRepository:
+                            context.repository<LocationRepository>(),
+                        stops: trips.last.stops,
+                      )..add(StartTracking()),
                     ),
                   ],
                   child: ActiveTripScreen(trips.last),

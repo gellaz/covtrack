@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import 'coordinates.dart';
+
 class Place extends Equatable {
   final String placeId;
-  final double latitude;
-  final double longitude;
+  final Coordinates coords;
   final String formattedAddress;
   final String name;
 
   const Place({
     @required this.placeId,
-    @required this.latitude,
-    @required this.longitude,
+    @required this.coords,
     @required this.formattedAddress,
     @required this.name,
   });
@@ -25,8 +25,7 @@ class Place extends Equatable {
   Map<String, Object> toJson() {
     return {
       "placeId": placeId,
-      "latitude": latitude,
-      "longitude": longitude,
+      "coords": coords.toJson(),
       "formattedAddress": formattedAddress,
       "name": name,
     };
@@ -35,44 +34,21 @@ class Place extends Equatable {
   factory Place.fromJson(Map<String, Object> json) {
     return Place(
       placeId: json['placeId'] as String,
-      latitude: json['latitude'] as double,
-      longitude: json['longitude'] as double,
+      coords: Coordinates.fromJson(json['coords']),
       formattedAddress: json['formattedAddress'] as String,
       name: json['name'] as String,
     );
   }
 
-  Map<String, Object> toMap() {
-    return {
-      'placeId': placeId,
-      'latitude': latitude,
-      'longitude': longitude,
-      'formattedAddress': formattedAddress,
-      'name': name,
-    };
-  }
-
-  factory Place.fromMap(Map<String, Object> map) {
-    return Place(
-      placeId: map['placeId'],
-      latitude: map['latitude'],
-      longitude: map['longitude'],
-      formattedAddress: map['formattedAddress'],
-      name: map['name'],
-    );
-  }
-
   Place copyWith({
     String placeId,
-    double latitude,
-    double longitude,
+    Coordinates coords,
     String formattedAddress,
     String name,
   }) {
     return Place(
       placeId: placeId ?? this.placeId,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
+      coords: coords ?? this.coords,
       formattedAddress: formattedAddress ?? this.formattedAddress,
       name: name ?? this.name,
     );
@@ -81,8 +57,7 @@ class Place extends Equatable {
   @override
   List<Object> get props => [
         placeId,
-        latitude,
-        longitude,
+        coords,
         formattedAddress,
         name,
       ];
@@ -92,8 +67,7 @@ class Place extends Equatable {
     return '''
     Place {
       placeId: $placeId,
-      latitude: $latitude,
-      longitude: $longitude,
+      coords: $coords,
       formattedAddress: $formattedAddress,
       name: $name,
     }''';

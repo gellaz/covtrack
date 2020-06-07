@@ -37,6 +37,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       await tripsRepository.insert(trip);
       add(TripsLoaded());
     } catch (e) {
+      print('>>> TripAddedError $e');
       yield TripsLoadFailure(e.toString());
     }
   }
@@ -49,6 +50,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       else
         yield TripsLoadSuccess(trips);
     } catch (e) {
+      print('>>> TripLoadedError $e');
       yield TripsLoadFailure(e.toString());
     }
   }
@@ -58,6 +60,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       await tripsRepository.delete(trip);
       add(TripsLoaded());
     } catch (e) {
+      print('>>> TripDeletedError $e');
       yield TripsLoadFailure(e.toString());
     }
   }
@@ -67,6 +70,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       await tripsRepository.update(trip);
       add(TripsLoaded());
     } catch (e) {
+      print('>>> TripUpdatedError $e');
       yield TripsLoadFailure(e.toString());
     }
   }

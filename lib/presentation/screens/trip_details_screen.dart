@@ -1,3 +1,4 @@
+import 'package:covtrack/data/coordinates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -98,8 +99,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                               gestureRecognizers: null,
                               initialCameraPosition: CameraPosition(
                                 target: LatLng(
-                                  snapshot.data.latitude,
-                                  snapshot.data.longitude,
+                                  snapshot.data.coords.latitude,
+                                  snapshot.data.coords.longitude,
                                 ),
                                 zoom: 16,
                               ),
@@ -164,10 +165,10 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   }
 
   Future<Place> _getCurrentPlace() async {
-    final coordsMap = await _locationRepository.getCurrentLocation();
+    Coordinates coords = await _locationRepository.currentLocation;
     return await _placesRepository.getPlaceFromCoords(
-      coordsMap['latitude'],
-      coordsMap['longitude'],
+      coords.latitude,
+      coords.longitude,
     );
   }
 
@@ -207,8 +208,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
         Marker(
           markerId: MarkerId('sourceMarker'),
           position: LatLng(
-            _source.latitude,
-            _source.longitude,
+            _source.coords.latitude,
+            _source.coords.longitude,
           ),
           icon: sourceIcon,
         ),
@@ -218,8 +219,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
         Marker(
           markerId: MarkerId('destMarker'),
           position: LatLng(
-            widget.destination.latitude,
-            widget.destination.longitude,
+            widget.destination.coords.latitude,
+            widget.destination.coords.longitude,
           ),
           icon: destinationIcon,
         ),
@@ -231,12 +232,12 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     final result = await polylinePoints?.getRouteBetweenCoordinates(
       'AIzaSyC31XYERPq-Iy_kke7gkN_BB5DHGcSSncI',
       PointLatLng(
-        _source.latitude,
-        _source.longitude,
+        _source.coords.latitude,
+        _source.coords.longitude,
       ),
       PointLatLng(
-        widget.destination.latitude,
-        widget.destination.longitude,
+        widget.destination.coords.latitude,
+        widget.destination.coords.longitude,
       ),
     );
     if (result.points.isNotEmpty) {

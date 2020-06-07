@@ -58,8 +58,10 @@ class GooglePlacesRepository implements PlacesRepository {
     return Place(
       placeId: result.placeId,
       formattedAddress: result.formattedAddress,
-      latitude: resultCoords.lat,
-      longitude: resultCoords.lng,
+      coords: Coordinates(
+        latitude: resultCoords.lat,
+        longitude: resultCoords.lng,
+      ),
       name: result.name,
     );
   }

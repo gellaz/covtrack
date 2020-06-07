@@ -18,7 +18,7 @@ class TripsDatabaseRepository implements TripsRepository {
 
   @override
   Future<void> insert(Trip trip) async {
-    await _tripsStore.add(await _db, trip.toMap());
+    await _tripsStore.add(await _db, trip.toJson());
   }
 
   @override
@@ -26,7 +26,7 @@ class TripsDatabaseRepository implements TripsRepository {
     final finder = Finder(filter: Filter.byKey(trip.tripId));
     await _tripsStore.update(
       await _db,
-      trip.toMap(),
+      trip.toJson(),
       finder: finder,
     );
   }
@@ -44,8 +44,9 @@ class TripsDatabaseRepository implements TripsRepository {
   Future<List<Trip>> getAllTrips() async {
     final recordSnapshots = await _tripsStore.find(await _db);
     return recordSnapshots.map((snapshot) {
-      final trip = Trip.fromMap(snapshot.value);
-
+      print('>>> 1');
+      final trip = Trip.fromJson(snapshot.value);
+      print('>>> 2');
       return trip.copyWith(tripId: snapshot.key);
     }).toList();
   }

@@ -77,17 +77,17 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
   }
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
-    final place = await _placesRepository.getPlaceFromSuggestion(suggestion);
-    setText(place.formattedAddress);
+    Place place = await _placesRepository.getPlaceFromSuggestion(suggestion);
+    _setText(place.formattedAddress);
     widget.addMarkerAndCenterMapOn(
       LatLng(
-        place.latitude,
-        place.longitude,
+        place.coords.latitude,
+        place.coords.latitude,
       ),
     );
   }
 
-  void setText(String text) {
+  void _setText(String text) {
     _controller.text = text;
   }
 

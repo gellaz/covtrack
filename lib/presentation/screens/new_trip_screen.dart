@@ -104,11 +104,11 @@ class _NewTripScreenState extends State<NewTripScreen> {
   }
 
   void _onMapCreated(GoogleMapController mapController) {
-    _locationRepository.getCurrentLocation().then((coords) {
+    _locationRepository.currentLocation.then((coords) {
       setState(() {
         _userLocation = LatLng(
-          coords['latitude'],
-          coords['longitude'],
+          coords.latitude,
+          coords.longitude,
         );
       });
       _mapController = mapController;
