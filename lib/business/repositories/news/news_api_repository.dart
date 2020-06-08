@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../../data/info.dart';
-import 'info_repository.dart';
+import '../../../data/news.dart';
+import 'news_repository.dart';
 
-class InfoApiRepository implements InfoRepository {
+class NewsApiRepository implements NewsRepository {
   static const _authority = 'covidapi.info';
 
   @override
-  Future<Info> getCountryLatestInfo() async {
+  Future<News> getCountryLatestNews() async {
     final latestDate = await _getLatestDate();
     final latestDateString = latestDate.toString().split(' ').first;
     final path = '/api/v1/country/ITA/latest';
@@ -17,20 +17,20 @@ class InfoApiRepository implements InfoRepository {
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
-      return Info.fromJsonLocal(json.decode(response.body), latestDateString);
+      return News.fromJsonLocal(json.decode(response.body), latestDateString);
     } else {
       throw Exception('Failed to load latest local information');
     }
   }
 
   @override
-  Future<Info> getGlobalLatestInfo() async {
+  Future<News> getGlobalLatestNews() async {
     final path = '/api/v1/global';
     final uri = Uri.https(_authority, path);
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
-      return Info.fromJsonGlobal(json.decode(response.body));
+      return News.fromJsonGlobal(json.decode(response.body));
     } else {
       throw Exception('Failed to load latest global information');
     }

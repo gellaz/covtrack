@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Info extends Equatable {
+class News extends Equatable {
   final DateTime date;
   final int confirmed;
   final int deaths;
   final int recovered;
 
-  Info({
+  News({
     @required this.date,
     @required this.confirmed,
     @required this.deaths,
     @required this.recovered,
   });
 
-  factory Info.fromJsonLocal(Map<String, dynamic> json, String dateString) {
-    return Info(
+  factory News.fromJsonLocal(Map<String, dynamic> json, String dateString) {
+    return News(
       date: DateTime.parse(dateString),
       confirmed: json['result'][dateString]['confirmed'],
       deaths: json['result'][dateString]['deaths'],
@@ -23,8 +23,8 @@ class Info extends Equatable {
     );
   }
 
-  factory Info.fromJsonGlobal(Map<String, dynamic> json) {
-    return Info(
+  factory News.fromJsonGlobal(Map<String, dynamic> json) {
+    return News(
       date: DateTime.parse(json['date']),
       confirmed: json['result']['confirmed'],
       deaths: json['result']['deaths'],
@@ -32,13 +32,13 @@ class Info extends Equatable {
     );
   }
 
-  Info copyWith({
+  News copyWith({
     DateTime date,
     int confirmed,
     int deaths,
     int recovered,
   }) {
-    return Info(
+    return News(
       date: date ?? this.date,
       confirmed: confirmed ?? this.confirmed,
       deaths: deaths ?? this.deaths,
@@ -57,7 +57,7 @@ class Info extends Equatable {
   @override
   String toString() {
     return '''
-    Info {
+    News {
       date: $date,
       confirmed: $confirmed,
       deaths: $deaths,

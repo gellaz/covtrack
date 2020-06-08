@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../data/info.dart';
+import '../../data/news.dart';
 import '../../utils/app_localizations.dart';
 
-class InfoListView extends StatelessWidget {
-  final Info info;
+class NewsListView extends StatelessWidget {
+  final News info;
 
-  const InfoListView(this.info, {Key key}) : super(key: key);
+  const NewsListView(this.info, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,40 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../utils/routers.dart';
 
-enum TabIndex { info, home, settings }
-
 class TabItem {
   final Router router;
-  final Icon icon;
-  final Text title;
 
-  TabItem({
+  const TabItem({
     @required this.router,
-    @required this.icon,
-    this.title,
   });
 
-  factory TabItem.settings() {
-    return TabItem(
-      router: DonateRouter(),
-      icon: Icon(Icons.settings),
-      title: Text('Settings'),
-    );
-  }
+  factory TabItem.settings() => TabItem(router: SettingsRouter());
 
-  factory TabItem.home() {
-    return TabItem(
-      router: HomeRouter(),
-      icon: Icon(Icons.home),
-      title: Text('Home'),
-    );
-  }
+  factory TabItem.home() => TabItem(router: HomeRouter());
 
-  factory TabItem.info() {
-    return TabItem(
-      router: InfoRouter(),
-      icon: Icon(Icons.info),
-      title: Text('Info'),
-    );
-  }
+  factory TabItem.info() => TabItem(router: NewsRouter());
 }

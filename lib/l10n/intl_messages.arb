@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-08T12:07:12.950116",
+  "@@last_modified": "2020-06-09T00:17:14.985587",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -162,33 +162,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "info": "Info",
-  "@info": {
-    "description": "Info section label",
-    "type": "text",
-    "placeholders": {}
-  },
-  "infoDescription": "Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.",
-  "@infoDescription": {
-    "description": "Info screen body description",
-    "type": "text",
-    "placeholders": {}
-  },
-  "infoDisclaimer": "All data presented in this section are fetched from the API",
-  "@infoDisclaimer": {
-    "description": "Info screen disclaimer text",
+  "insertDestination": "Insert a destination...",
+  "@insertDestination": {
+    "description": "Hint message of the InputField DestinationPickerScreen",
     "type": "text",
     "placeholders": {}
   },
   "insertPasswordAgain": "Insert password again",
   "@insertPasswordAgain": {
     "description": "Hint message of the InputField for the second password in the RegisterScreen",
-    "type": "text",
-    "placeholders": {}
-  },
-  "insertPlace": "Insert a place...",
-  "@insertPlace": {
-    "description": "Hint message of the InputField DestinationPickerScreen",
     "type": "text",
     "placeholders": {}
   },
@@ -251,6 +233,24 @@
   "newPassword": "New password",
   "@newPassword": {
     "description": "New password TextInput label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "news": "News",
+  "@news": {
+    "description": "News section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsDescription": "Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.",
+  "@newsDescription": {
+    "description": "News screen body description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsDisclaimer": "All data presented in this section are fetched from the API",
+  "@newsDisclaimer": {
+    "description": "News screen disclaimer text",
     "type": "text",
     "placeholders": {}
   },
@@ -320,25 +320,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "onboarding1": "The main functionality of CovTrack is replacing the mandatory self-certification form",
+  "onboarding1": "CovTrack replaces the paper self-certification form by generating a QR Code and it records your stops cause of potential contagion",
   "@onboarding1": {
     "description": "First onboarding screen body",
     "type": "text",
     "placeholders": {}
   },
-  "onboarding2": "In the Home section you can view the active trip or create a new one",
+  "onboarding2": "In this section you can create a trip, view the active one or the list of previous ones",
   "@onboarding2": {
     "description": "Second onboarding screen body",
     "type": "text",
     "placeholders": {}
   },
-  "onboarding3": "In the Info section you can read the latest information regarding the sanitary situation in your country and in the world",
+  "onboarding3": "In this section you can read the latest information regarding the sanitary situation in your country and around the world",
   "@onboarding3": {
     "description": "Third onboarding screen body",
     "type": "text",
     "placeholders": {}
   },
-  "onboarding4": "In the Settings section you can change different account parameters and change the application appearence",
+  "onboarding4": "In this section you can change the password of your account, delete your account or change the application theme",
   "@onboarding4": {
     "description": "Fourth onboarding screen body",
     "type": "text",
@@ -434,7 +434,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "stayHome": "Stay Home. Stay Safe.",
+  "stayHome": "Stay Home, stay safe",
   "@stayHome": {
     "description": "HomeScreen title when there is no active trips",
     "type": "text",

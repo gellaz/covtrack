@@ -217,24 +217,10 @@ class AppLocalizations {
         locale: localeName,
       );
 
-  String get info => Intl.message(
-        'Info',
-        name: 'info',
-        desc: 'Info section label',
-        locale: localeName,
-      );
-
-  String get infoDescription => Intl.message(
-        'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
-        name: 'infoDescription',
-        desc: 'Info screen body description',
-        locale: localeName,
-      );
-
-  String get infoDisclaimer => Intl.message(
-        'All data presented in this section are fetched from the API',
-        name: 'infoDisclaimer',
-        desc: 'Info screen disclaimer text',
+  String get insertDestination => Intl.message(
+        'Insert a destination...',
+        name: 'insertDestination',
+        desc: 'Hint message of the InputField DestinationPickerScreen',
         locale: localeName,
       );
 
@@ -243,13 +229,6 @@ class AppLocalizations {
         name: 'insertPasswordAgain',
         desc:
             'Hint message of the InputField for the second password in the RegisterScreen',
-        locale: localeName,
-      );
-
-  String get insertPlace => Intl.message(
-        'Insert a place...',
-        name: 'insertPlace',
-        desc: 'Hint message of the InputField DestinationPickerScreen',
         locale: localeName,
       );
 
@@ -321,6 +300,27 @@ class AppLocalizations {
         'New password',
         name: 'newPassword',
         desc: 'New password TextInput label',
+        locale: localeName,
+      );
+
+  String get news => Intl.message(
+        'News',
+        name: 'news',
+        desc: 'News section label',
+        locale: localeName,
+      );
+
+  String get newsDescription => Intl.message(
+        'Below you can find a summary of the sanitary situation in your country and in the world. These data do not claim to be 100% reliable but can be considered a good estimate of the current health situation.',
+        name: 'newsDescription',
+        desc: 'News screen body description',
+        locale: localeName,
+      );
+
+  String get newsDisclaimer => Intl.message(
+        'All data presented in this section are fetched from the API',
+        name: 'newsDisclaimer',
+        desc: 'News screen disclaimer text',
         locale: localeName,
       );
 
@@ -402,28 +402,28 @@ class AppLocalizations {
       );
 
   String get onboarding1 => Intl.message(
-        'The main functionality of CovTrack is replacing the mandatory self-certification form',
+        'CovTrack replaces the paper self-certification form by generating a QR Code and it records your stops cause of potential contagion',
         name: 'onboarding1',
         desc: 'First onboarding screen body',
         locale: localeName,
       );
 
   String get onboarding2 => Intl.message(
-        'In the Home section you can view the active trip or create a new one',
+        'In this section you can create a trip, view the active one or the list of previous ones',
         name: 'onboarding2',
         desc: 'Second onboarding screen body',
         locale: localeName,
       );
 
   String get onboarding3 => Intl.message(
-        'In the Info section you can read the latest information regarding the sanitary situation in your country and in the world',
+        'In this section you can read the latest information regarding the sanitary situation in your country and around the world',
         name: 'onboarding3',
         desc: 'Third onboarding screen body',
         locale: localeName,
       );
 
   String get onboarding4 => Intl.message(
-        'In the Settings section you can change different account parameters and change the application appearence',
+        'In this section you can change the password of your account, delete your account or change the application theme',
         name: 'onboarding4',
         desc: 'Fourth onboarding screen body',
         locale: localeName,
@@ -535,7 +535,7 @@ class AppLocalizations {
       );
 
   String get stayHome => Intl.message(
-        'Stay Home. Stay Safe.',
+        'Stay Home, stay safe',
         name: 'stayHome',
         desc: 'HomeScreen title when there is no active trips',
         locale: localeName,

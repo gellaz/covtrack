@@ -5,8 +5,8 @@ import '../business/blocs/trips/trips_bloc.dart';
 import '../presentation/screens/change_password_screen.dart';
 import '../presentation/screens/delete_account_screen.dart';
 import '../presentation/screens/home_screen.dart';
-import '../presentation/screens/info_screen.dart';
 import '../presentation/screens/new_trip_screen.dart';
+import '../presentation/screens/news_screen.dart';
 import '../presentation/screens/old_trips_screen.dart';
 import '../presentation/screens/qr_screen.dart';
 import '../presentation/screens/settings_screen.dart';
@@ -66,15 +66,15 @@ class HomeRouter implements Router {
   }
 }
 
-class InfoRouter implements Router {
+class NewsRouter implements Router {
   @override
-  String get initialRoute => InfoScreen.routeName;
+  String get initialRoute => NewsScreen.routeName;
 
   @override
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case InfoScreen.routeName:
-        return MaterialPageRoute(builder: (_) => InfoScreen());
+      case NewsScreen.routeName:
+        return MaterialPageRoute(builder: (_) => NewsScreen());
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');
@@ -83,7 +83,7 @@ class InfoRouter implements Router {
   }
 }
 
-class DonateRouter implements Router {
+class SettingsRouter implements Router {
   @override
   String get initialRoute => SettingsScreen.routeName;
 

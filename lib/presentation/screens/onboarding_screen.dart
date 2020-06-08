@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import '../../business/blocs/settings/settings_bloc.dart';
@@ -19,7 +20,7 @@ class OnboardingScreen extends StatelessWidget {
         _buildPageFour(context),
       ],
       onDone: () => _onDone(context),
-      done: Text(AppLocalizations.of(context).done),
+      done: Text(AppLocalizations.of(context).login),
       showSkipButton: true,
       skip: Text(AppLocalizations.of(context).skip),
     );
@@ -42,7 +43,7 @@ class OnboardingScreen extends StatelessWidget {
   PageViewModel _buildPageOne(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Icon(Icons.library_books, size: 150),
+        child: Icon(FontAwesomeIcons.qrcode, size: 150),
       ),
       title: AppLocalizations.of(context).objective,
       body: AppLocalizations.of(context).onboarding1,
@@ -70,9 +71,9 @@ class OnboardingScreen extends StatelessWidget {
   PageViewModel _buildPageThree(BuildContext context) {
     return PageViewModel(
       image: Center(
-        child: Icon(Icons.info_outline, size: 150),
+        child: Icon(Icons.library_books, size: 150),
       ),
-      title: AppLocalizations.of(context).info,
+      title: AppLocalizations.of(context).news,
       body: AppLocalizations.of(context).onboarding3,
       decoration: PageDecoration(
         boxDecoration: Decorations.linearGradient(context),

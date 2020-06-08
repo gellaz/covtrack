@@ -4,47 +4,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../business/blocs/info/info_bloc.dart';
-import '../../business/repositories/info/info_repository.dart';
-import '../../data/info.dart';
+import '../../business/blocs/news/news_bloc.dart';
+import '../../business/repositories/news/news_repository.dart';
+import '../../data/news.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
 
-class InfoScreen extends StatelessWidget {
+class NewsScreen extends StatelessWidget {
   static const routeName = '/';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          InfoBloc(context.repository<InfoRepository>())..add(InfoFetched()),
-      child: InfoContent(),
+          NewsBloc(context.repository<NewsRepository>())..add(NewsFetched()),
+      child: NewsContent(),
     );
   }
 }
 
-class InfoContent extends StatelessWidget {
+class NewsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Info'),
+        title: Text('News'),
         actions: <Widget>[
           LogoutButton(),
         ],
       ),
-      body: BlocBuilder<InfoBloc, InfoState>(
+      body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
-          if (state is InfoLoadInProgress) {
+          if (state is NewsLoadInProgress) {
             return _buildLoading();
-          } else if (state is InfoLoadSuccess) {
+          } else if (state is NewsLoadSuccess) {
             return _buildLoadedData(
               context,
-              state.localInfo,
-              state.globalInfo,
+              state.localNews,
+              state.globalNews,
             );
-          } else if (state is InfoLoadFailure) {
+          } else if (state is NewsLoadFailure) {
             return _buildInitial();
           }
           return Container();
@@ -67,8 +67,8 @@ class InfoContent extends StatelessWidget {
 
   Widget _buildLoadedData(
     BuildContext context,
-    Info localInfo,
-    Info globalInfo,
+    News localNews,
+    News globalNews,
   ) {
     return RefreshIndicator(
       child: ListView(
@@ -81,21 +81,21 @@ class InfoContent extends StatelessWidget {
                 SizedBox(height: 10),
                 Divider(),
                 SizedBox(height: 10),
-                _buildInfoTitle(
+                _buildNewsTitle(
                   context,
                   AppLocalizations.of(context).italy,
-                  localInfo.date,
+                  localNews.date,
                 ),
-                InfoListView(localInfo),
+                NewsListView(localNews),
                 SizedBox(height: 10),
                 Divider(),
                 SizedBox(height: 10),
-                _buildInfoTitle(
+                _buildNewsTitle(
                   context,
                   AppLocalizations.of(context).global,
-                  globalInfo.date,
+                  globalNews.date,
                 ),
-                InfoListView(globalInfo),
+                NewsListView(globalNews),
                 SizedBox(height: 10),
                 Divider(),
                 SizedBox(height: 10),
@@ -105,19 +105,19 @@ class InfoContent extends StatelessWidget {
           ),
         ],
       ),
-      onRefresh: () async => context.bloc<InfoBloc>().add(InfoFetched()),
+      onRefresh: () async => context.bloc<NewsBloc>().add(NewsFetched()),
     );
   }
 
   Widget _buildDescription(BuildContext context) {
     return Text(
-      AppLocalizations.of(context).infoDescription,
+      AppLocalizations.of(context).newsDescription,
       style: Theme.of(context).textTheme.bodyText2,
       textAlign: TextAlign.justify,
     );
   }
 
-  Widget _buildInfoTitle(
+  Widget _buildNewsTitle(
     BuildContext context,
     String title,
     DateTime lastUpdate,
@@ -147,7 +147,7 @@ class InfoContent extends StatelessWidget {
       children: <Widget>[
         RichText(
           text: TextSpan(
-            text: AppLocalizations.of(context).infoDisclaimer,
+            text: AppLocalizations.of(context).newsDisclaimer,
             style: Theme.of(context).textTheme.caption,
             children: <TextSpan>[
               TextSpan(

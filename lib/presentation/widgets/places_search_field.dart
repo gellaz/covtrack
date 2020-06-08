@@ -53,7 +53,7 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
         decoration: InputDecoration(
           border: InputBorder.none,
           hintStyle: TextStyle(color: Colors.white),
-          hintText: AppLocalizations.of(context).insertPlace,
+          hintText: AppLocalizations.of(context).insertDestination,
           suffixIcon: ClearButton(_onClear),
         ),
         style: TextStyle(color: Colors.white),

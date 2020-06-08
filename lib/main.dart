@@ -8,10 +8,10 @@ import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
-import 'business/repositories/info/info_api_repository.dart';
-import 'business/repositories/info/info_repository.dart';
 import 'business/repositories/location/geolocator_location_repository.dart';
 import 'business/repositories/location/location_repository.dart';
+import 'business/repositories/news/news_api_repository.dart';
+import 'business/repositories/news/news_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
@@ -34,7 +34,7 @@ void main() {
   final locationRepository = GeolocatorLocationRepository();
   final placesRepository = GooglePlacesRepository();
   final settingsRepository = SettingsDatabaseRepository();
-  final infoRepository = InfoApiRepository();
+  final newsRepository = NewsApiRepository();
 
   runApp(
     MultiRepositoryProvider(
@@ -51,8 +51,8 @@ void main() {
         RepositoryProvider<SettingsRepository>(
           create: (_) => settingsRepository,
         ),
-        RepositoryProvider<InfoRepository>(
-          create: (_) => infoRepository,
+        RepositoryProvider<NewsRepository>(
+          create: (_) => newsRepository,
         ),
       ],
       child: MultiBlocProvider(

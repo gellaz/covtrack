@@ -4,7 +4,6 @@ import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/active_trip_numstops.dart';
 import '../widgets/active_trip_stopwatch.dart';
-import '../widgets/new_trip_button.dart';
 import '../widgets/place_list_tile.dart';
 import '../widgets/return_trip_button.dart';
 import '../widgets/show_qr_button.dart';

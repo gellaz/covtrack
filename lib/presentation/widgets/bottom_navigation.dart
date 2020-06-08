@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_localizations.dart';
 import 'tab_item.dart';
+
+enum TabIndex { info, home, settings }
 
 class BottomNavigation extends StatelessWidget {
   final TabIndex currentTab;
@@ -19,19 +22,33 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentTab.index,
       items: [
-        _buildItem(tabs[TabIndex.info]),
-        _buildItem(tabs[TabIndex.home]),
-        _buildItem(tabs[TabIndex.settings]),
+        _buildNewsItem(context),
+        _buildHomeItem(context),
+        _buildSettingsItem(context),
       ],
       onTap: (index) => onSelectTab(TabIndex.values[index]),
       type: BottomNavigationBarType.fixed,
     );
   }
 
-  BottomNavigationBarItem _buildItem(TabItem tabItem) {
+  BottomNavigationBarItem _buildNewsItem(BuildContext context) {
     return BottomNavigationBarItem(
-      icon: tabItem.icon,
-      title: tabItem.title,
+      icon: Icon(Icons.library_books),
+      title: Text(AppLocalizations.of(context).news),
+    );
+  }
+
+  BottomNavigationBarItem _buildHomeItem(BuildContext context) {
+    return BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      title: Text(AppLocalizations.of(context).home),
+    );
+  }
+
+  BottomNavigationBarItem _buildSettingsItem(BuildContext context) {
+    return BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      title: Text(AppLocalizations.of(context).settings),
     );
   }
 }
