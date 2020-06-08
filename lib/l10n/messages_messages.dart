@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "register" : MessageLookupByLibrary.simpleMessage("Register"),
     "registering" : MessageLookupByLibrary.simpleMessage("Registering..."),
     "registrationFailure" : MessageLookupByLibrary.simpleMessage("Registration failure"),
-    "returnTrip" : MessageLookupByLibrary.simpleMessage("Return"),
+    "returnTrip" : MessageLookupByLibrary.simpleMessage("Start Return Trip"),
     "returnTripDialogContent" : MessageLookupByLibrary.simpleMessage("Do you want to start the return trip?"),
     "returnTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Start return trip"),
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),

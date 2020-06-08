@@ -6,9 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
 import 'business/blocs/simple_bloc_delegate.dart';
-
-import 'business/blocs/trips/trips_bloc.dart';
-
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/info/info_api_repository.dart';
@@ -18,7 +15,6 @@ import 'business/repositories/location/location_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
-import 'business/repositories/trips/trips_database_repository.dart';
 import 'presentation/screens/authentication_screen.dart';
 import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
@@ -38,7 +34,6 @@ void main() {
   final locationRepository = GeolocatorLocationRepository();
   final placesRepository = GooglePlacesRepository();
   final settingsRepository = SettingsDatabaseRepository();
-  final tripsRepository = TripsDatabaseRepository();
   final infoRepository = InfoApiRepository();
 
   runApp(
@@ -67,9 +62,6 @@ void main() {
           }),
           BlocProvider(create: (_) {
             return AuthenticationBloc(authRepository)..add(AppStarted());
-          }),
-          BlocProvider(create: (_) {
-            return TripsBloc(tripsRepository)..add(TripsLoaded());
           }),
         ],
         child: CovTrack(),

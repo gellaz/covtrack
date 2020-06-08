@@ -34,7 +34,7 @@ class SettingsScreen extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(Icons.person),
                     title: state is Authenticated
-                        ? Text(state.email)
+                        ? Text(state.user.email)
                         : CircularProgressIndicator(),
                   ),
                 ),

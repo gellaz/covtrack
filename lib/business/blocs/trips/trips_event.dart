@@ -7,40 +7,51 @@ abstract class TripsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class TripsLoaded extends TripsEvent {}
+class LoadTrips extends TripsEvent {}
 
-class TripAdded extends TripsEvent {
+class AddTrip extends TripsEvent {
   final Trip trip;
 
-  const TripAdded(this.trip);
+  const AddTrip(this.trip);
 
   @override
   List<Object> get props => [trip];
 
   @override
-  String toString() => 'TripAdded { trip: $trip }';
+  String toString() => 'AddTrip { trip: $trip }';
 }
 
-class TripDeleted extends TripsEvent {
+class UpdateTrip extends TripsEvent {
   final Trip trip;
 
-  const TripDeleted(this.trip);
+  const UpdateTrip(this.trip);
 
   @override
   List<Object> get props => [trip];
 
   @override
-  String toString() => 'TripDeleted { trip: $trip }';
+  String toString() => 'UpdateTrip { trip: $trip }';
 }
 
-class TripUpdated extends TripsEvent {
+class DeleteTrip extends TripsEvent {
   final Trip trip;
 
-  const TripUpdated(this.trip);
+  const DeleteTrip(this.trip);
 
   @override
   List<Object> get props => [trip];
 
   @override
-  String toString() => 'TripUpdated { trip: $trip }';
+  String toString() => 'DeleteTrip { trip: $trip }';
+}
+
+class Clear extends TripsEvent {}
+
+class TripsUpdated extends TripsEvent {
+  final List<Trip> trips;
+
+  const TripsUpdated(this.trips);
+
+  @override
+  List<Object> get props => [trips];
 }

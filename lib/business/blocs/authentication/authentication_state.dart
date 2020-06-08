@@ -14,15 +14,15 @@ abstract class AuthenticationState extends Equatable {
 class Uninitialized extends AuthenticationState {}
 
 class Authenticated extends AuthenticationState {
-  final String email;
+  final FirebaseUser user;
 
-  const Authenticated(this.email);
-
-  @override
-  List<Object> get props => [email];
+  const Authenticated(this.user);
 
   @override
-  String toString() => 'Authenticated { email: $email }';
+  List<Object> get props => [user];
+
+  @override
+  String toString() => 'Authenticated { user: $user }';
 }
 
 class Unauthenticated extends AuthenticationState {}

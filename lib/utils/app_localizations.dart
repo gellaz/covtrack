@@ -472,7 +472,7 @@ class AppLocalizations {
       );
 
   String get returnTrip => Intl.message(
-        'Return',
+        'Start Return Trip',
         name: 'returnTrip',
         desc: 'Return tooltip text',
         locale: localeName,

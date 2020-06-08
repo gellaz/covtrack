@@ -97,12 +97,29 @@ class OldTripsScreen extends StatelessWidget {
         Expanded(
           child: ListView.builder(
             itemCount: trips.length,
-            itemBuilder: (BuildContext context, int index) {
-              return OldTripListTile(trips.elementAt(index));
-            },
+            itemBuilder: (_, int index) => Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 5,
+              ),
+              child: OldTripListTile(trips.elementAt(index)),
+            ),
           ),
         ),
-        Text(AppLocalizations.of(context).tripsTotal(trips.length)),
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: <Widget>[
+              const Divider(),
+              Text(
+                AppLocalizations.of(context).tripsTotal(trips.length),
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

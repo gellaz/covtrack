@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/active_trip_numstops.dart';
 import '../widgets/active_trip_stopwatch.dart';
-import '../widgets/new_trip_dialog.dart';
+import '../widgets/new_trip_button.dart';
 import '../widgets/place_list_tile.dart';
-import '../widgets/return_trip_dialog.dart';
-import '../widgets/stop_trip_dialog.dart';
-import 'qr_screen.dart';
+import '../widgets/return_trip_button.dart';
+import '../widgets/show_qr_button.dart';
+import '../widgets/stop_trip_button.dart';
 
 class ActiveTripScreen extends StatelessWidget {
   final Trip activeTrip;
@@ -48,7 +47,7 @@ class ActiveTripScreen extends StatelessWidget {
                     leading: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.not_listed_location),
+                        const Icon(Icons.not_listed_location),
                       ],
                     ),
                     title: Text(AppLocalizations.of(context).reasonPickerDesc),
@@ -57,14 +56,14 @@ class ActiveTripScreen extends StatelessWidget {
                 ),
                 Card(
                   child: ListTile(
-                    leading: Icon(Icons.exposure_plus_1),
+                    leading: const Icon(Icons.exposure_plus_1),
                     title: Text(AppLocalizations.of(context).numStops),
                     trailing: ActiveTripNumStops(),
                   ),
                 ),
                 Card(
                   child: ListTile(
-                    leading: Icon(Icons.access_time),
+                    leading: const Icon(Icons.access_time),
                     title: Text(AppLocalizations.of(context).elapsedTime),
                     trailing: ActiveTripStopwatch(),
                   ),
@@ -73,60 +72,11 @@ class ActiveTripScreen extends StatelessWidget {
             ),
             ButtonBar(
               alignment: MainAxisAlignment.center,
-              buttonPadding: EdgeInsets.symmetric(horizontal: 20),
+              buttonPadding: const EdgeInsets.symmetric(horizontal: 20),
               children: <Widget>[
-                Tooltip(
-                  message: AppLocalizations.of(context).showQr,
-                  preferBelow: false,
-                  verticalOffset: 40,
-                  child: FloatingActionButton(
-                    child: Icon(FontAwesomeIcons.qrcode),
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      QrScreen.routeName,
-                      arguments: activeTrip,
-                    ),
-                  ),
-                ),
-                Tooltip(
-                  message: AppLocalizations.of(context).stopTrip,
-                  preferBelow: false,
-                  verticalOffset: 40,
-                  child: FloatingActionButton(
-                    child: Icon(Icons.stop),
-                    onPressed: () async => showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (_) => StopTripDialog(activeTrip),
-                    ),
-                  ),
-                ),
-                Tooltip(
-                  message: AppLocalizations.of(context).returnTrip,
-                  preferBelow: false,
-                  verticalOffset: 40,
-                  child: FloatingActionButton(
-                    child: Icon(Icons.keyboard_return),
-                    onPressed: () async => showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (_) => ReturnTripDialog(activeTrip),
-                    ),
-                  ),
-                ),
-                Tooltip(
-                  message: AppLocalizations.of(context).newTrip,
-                  preferBelow: false,
-                  verticalOffset: 40,
-                  child: FloatingActionButton(
-                    child: Icon(Icons.add),
-                    onPressed: () async => showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (_) => NewTripDialog(activeTrip),
-                    ),
-                  ),
-                ),
+                ShowQrButton(activeTrip: activeTrip),
+                StopTripButton(activeTrip: activeTrip),
+                ReturnTripButton(activeTrip: activeTrip),
               ],
             ),
           ],

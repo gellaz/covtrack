@@ -1,8 +1,8 @@
-import 'package:covtrack/presentation/screens/trip_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
+import '../screens/trip_details_screen.dart';
 
 class OldTripListTile extends StatelessWidget {
   final Trip trip;

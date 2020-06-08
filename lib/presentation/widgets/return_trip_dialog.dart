@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
@@ -21,10 +22,12 @@ class ReturnTripDialog extends StatelessWidget {
         FlatButton(
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
+            context.bloc<StopwatchBloc>()..add(Stop())..add(Reset());
             context.bloc<TripsBloc>()
               ..add(
-                  TripUpdated(activeTrip.copyWith(arrivalTime: DateTime.now())))
-              ..add(TripAdded(activeTrip.returnTrip()));
+                  UpdateTrip(activeTrip.copyWith(arrivalTime: DateTime.now())))
+              ..add(AddTrip(activeTrip.returnTrip()));
+            context.bloc<StopwatchBloc>()..add(Start());
             Navigator.of(context).pop();
           },
         ),

@@ -36,7 +36,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PasswordChangeBloc, PasswordChangeState>(
+    return BlocConsumer<PasswordChangeBloc, PasswordChangeState>(
       listener: (context, state) {
         if (state.isSubmitting) {
           Scaffold.of(context)
@@ -82,101 +82,99 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
             );
         }
       },
-      child: BlocBuilder<PasswordChangeBloc, PasswordChangeState>(
-        builder: (context, state) {
-          return Form(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView(
-                    children: <Widget>[
-                      Icon(
-                        Icons.lock_outline,
-                        color: Theme.of(context).primaryColor,
-                        size: 150,
+      builder: (context, state) {
+        return Form(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    Icon(
+                      Icons.lock_outline,
+                      color: Theme.of(context).primaryColor,
+                      size: 150,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).changePasswordScreenTitle,
+                      style: Theme.of(context).textTheme.headline6,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      AppLocalizations.of(context).changePasswordScreenBody,
+                      style: Theme.of(context).textTheme.subtitle1,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
+                      controller: _oldPasswordController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context).oldPassword,
                       ),
-                      Text(
-                        AppLocalizations.of(context).changePasswordScreenTitle,
-                        style: Theme.of(context).textTheme.headline6,
-                        textAlign: TextAlign.center,
+                      obscureText: true,
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
+                      validator: (_) {
+                        return !state.isOldPasswordValid
+                            ? AppLocalizations.of(context).invalidPassword
+                            : null;
+                      },
+                    ),
+                    TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
+                      controller: _newPasswordController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context).newPassword,
                       ),
-                      const SizedBox(height: 20),
-                      Text(
-                        AppLocalizations.of(context).changePasswordScreenBody,
-                        style: Theme.of(context).textTheme.subtitle1,
-                        textAlign: TextAlign.center,
+                      obscureText: true,
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
+                      validator: (_) {
+                        return !state.isNewPasswordValid
+                            ? AppLocalizations.of(context).invalidPassword
+                            : null;
+                      },
+                    ),
+                    TextFormField(
+                      autocorrect: false,
+                      autovalidate: true,
+                      controller: _newPasswordCheckController,
+                      decoration: InputDecoration(
+                        labelText:
+                            AppLocalizations.of(context).insertPasswordAgain,
                       ),
-                      const SizedBox(height: 20),
-                      TextFormField(
-                        autocorrect: false,
-                        autovalidate: true,
-                        controller: _oldPasswordController,
-                        decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context).oldPassword,
-                        ),
-                        obscureText: true,
-                        onFieldSubmitted: (_) =>
-                            FocusScope.of(context).nextFocus(),
-                        textInputAction: TextInputAction.next,
-                        validator: (_) {
-                          return !state.isOldPasswordValid
-                              ? AppLocalizations.of(context).invalidPassword
-                              : null;
-                        },
+                      obscureText: true,
+                      validator: (_) {
+                        return !state.isNewPasswordCheckValid
+                            ? AppLocalizations.of(context).differentPasswords
+                            : null;
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          ChangePasswordButton(
+                            onPressed: isChangePasswordButtonEnabled(state)
+                                ? _onFormSubmitted
+                                : null,
+                          ),
+                        ],
                       ),
-                      TextFormField(
-                        autocorrect: false,
-                        autovalidate: true,
-                        controller: _newPasswordController,
-                        decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context).newPassword,
-                        ),
-                        obscureText: true,
-                        onFieldSubmitted: (_) =>
-                            FocusScope.of(context).nextFocus(),
-                        textInputAction: TextInputAction.next,
-                        validator: (_) {
-                          return !state.isNewPasswordValid
-                              ? AppLocalizations.of(context).invalidPassword
-                              : null;
-                        },
-                      ),
-                      TextFormField(
-                        autocorrect: false,
-                        autovalidate: true,
-                        controller: _newPasswordCheckController,
-                        decoration: InputDecoration(
-                          labelText:
-                              AppLocalizations.of(context).insertPasswordAgain,
-                        ),
-                        obscureText: true,
-                        validator: (_) {
-                          return !state.isNewPasswordCheckValid
-                              ? AppLocalizations.of(context).differentPasswords
-                              : null;
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 40),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            ChangePasswordButton(
-                              onPressed: isChangePasswordButtonEnabled(state)
-                                  ? _onFormSubmitted
-                                  : null,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 

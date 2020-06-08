@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:covtrack/data/coordinates.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../data/coordinates.dart';
 import '../../../data/place.dart';
 import '../../../data/place_suggestion.dart';
 

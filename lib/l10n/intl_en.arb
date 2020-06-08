@@ -380,7 +380,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "returnTrip": "Return",
+  "returnTrip": "Start Return Trip",
   "@returnTrip": {
     "description": "Return tooltip text",
     "type": "text",

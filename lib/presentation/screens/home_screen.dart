@@ -17,63 +17,61 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        actions: <Widget>[
-          LogoutButton(),
-        ],
+        actions: <Widget>[LogoutButton()],
       ),
-      body: BlocListener<TripsBloc, TripsState>(
+      body: BlocConsumer<TripsBloc, TripsState>(
         listener: (context, state) {
           if (state is TripsLoadFailure) {
             Scaffold.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
                 SnackBar(
+                  backgroundColor: Colors.red,
                   content: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [Text(state.message), Icon(Icons.error)],
                   ),
-                  backgroundColor: Colors.red,
                 ),
               );
           }
         },
-        child: BlocBuilder<TripsBloc, TripsState>(
-          builder: (context, state) {
-            if (state is TripsLoadInProgress) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (state is TripsLoadSuccess) {
-              final trips = state.trips;
+        builder: (context, state) {
+          if (state is TripsLoadInProgress) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is TripsEmpty) {
+            return NoActiveTripsScreen();
+          }
+          if (state is TripsLoadSuccessNotActive) {
+            return NoActiveTripsScreen();
+          }
+          if (state is TripsLoadSuccessActive) {
+            final activeTrip = state.trips.last;
 
-              if (trips.last.arrivalTime == null) {
-                return MultiBlocProvider(
-                  providers: [
-                    BlocProvider(
-                      create: (_) => StopwatchBloc(
-                        startingTime:
-                            DateTime.now().difference(trips.last.startingTime),
-                      )..add(Start()),
-                    ),
-                    BlocProvider(
-                      create: (_) => StopsTrackerBloc(
-                        locationRepository:
-                            context.repository<LocationRepository>(),
-                        stops: trips.last.stops,
-                      )..add(StartTracking()),
-                    ),
-                  ],
-                  child: ActiveTripScreen(trips.last),
-                );
-              } else {
-                return NoActiveTripsScreen();
-              }
-            }
-            if (state is TripsEmpty) {
-              return NoActiveTripsScreen();
-            }
-            return Container();
-          },
-        ),
+            return MultiBlocProvider(
+              child: ActiveTripScreen(activeTrip),
+              providers: [
+                BlocProvider.value(
+                  value: context.bloc<TripsBloc>(),
+                ),
+                BlocProvider(
+                  create: (_) => StopwatchBloc(
+                    startingTime:
+                        DateTime.now().difference(activeTrip.startingTime),
+                  )..add(Start()),
+                ),
+                BlocProvider(
+                  create: (_) => StopsTrackerBloc(
+                    locationRepository:
+                        context.repository<LocationRepository>(),
+                    stops: activeTrip.stops,
+                  )..add(StartTracking()),
+                ),
+              ],
+            );
+          }
+          return Container();
+        },
       ),
     );
   }

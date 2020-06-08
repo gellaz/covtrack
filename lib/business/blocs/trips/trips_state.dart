@@ -20,7 +20,15 @@ class TripsLoadSuccess extends TripsState {
   List<Object> get props => [trips];
 
   @override
-  String toString() => 'TripsLoadSuccess { trips: $trips }';
+  String toString() => 'TripsLoadSuccessActive { trips: $trips }';
+}
+
+class TripsLoadSuccessActive extends TripsLoadSuccess {
+  const TripsLoadSuccessActive(List<Trip> trips) : super(trips);
+}
+
+class TripsLoadSuccessNotActive extends TripsLoadSuccess {
+  const TripsLoadSuccessNotActive(List<Trip> trips) : super(trips);
 }
 
 class TripsEmpty extends TripsState {}

@@ -12,66 +12,73 @@ part 'trips_state.dart';
 class TripsBloc extends Bloc<TripsEvent, TripsState> {
   final TripsRepository tripsRepository;
 
+  StreamSubscription _tripsSubscription;
+
   TripsBloc(this.tripsRepository) : assert(tripsRepository != null);
 
   @override
   TripsState get initialState => TripsInitial();
 
   @override
-  Stream<TripsState> mapEventToState(TripsEvent event) async* {
-    yield TripsLoadInProgress();
-
-    if (event is TripsLoaded) {
-      yield* _mapTripsLoadedToState();
-    } else if (event is TripAdded) {
-      yield* _mapTripAddedToState(event.trip);
-    } else if (event is TripDeleted) {
-      yield* _mapTripDeletedToState(event.trip);
-    } else if (event is TripUpdated) {
-      yield* _mapTripUpdatedToState(event.trip);
+  Stream<TripsState> mapEventToState(
+    TripsEvent event,
+  ) async* {
+    if (event is LoadTrips) {
+      yield* _mapLoadTripsToState();
+    } else if (event is AddTrip) {
+      yield* _mapAddTripToState(event);
+    } else if (event is UpdateTrip) {
+      yield* _mapUpdateTripToState(event);
+    } else if (event is DeleteTrip) {
+      yield* _mapDeleteTripToState(event);
+    } else if (event is TripsUpdated) {
+      yield* _mapTripsUpdatedToState(event);
+    } else if (event is Clear) {
+      yield* _mapClearToState();
     }
   }
 
-  Stream<TripsState> _mapTripAddedToState(Trip trip) async* {
-    try {
-      await tripsRepository.insert(trip);
-      add(TripsLoaded());
-    } catch (e) {
-      print('>>> TripAddedError $e');
-      yield TripsLoadFailure(e.toString());
+  Stream<TripsState> _mapLoadTripsToState() async* {
+    _tripsSubscription?.cancel();
+    _tripsSubscription = tripsRepository.getAllTrips().listen(
+          (trips) => add(TripsUpdated(trips)),
+        );
+  }
+
+  Stream<TripsState> _mapAddTripToState(AddTrip event) async* {
+    tripsRepository.insert(event.trip);
+  }
+
+  Stream<TripsState> _mapUpdateTripToState(UpdateTrip event) async* {
+    tripsRepository.update(event.trip);
+  }
+
+  Stream<TripsState> _mapDeleteTripToState(DeleteTrip event) async* {
+    tripsRepository.delete(event.trip);
+  }
+
+  Stream<TripsState> _mapTripsUpdatedToState(TripsUpdated event) async* {
+    if (event.trips.isEmpty) {
+      print('>>>>>>>>>>>>>>>>> EMPTY');
+      yield TripsEmpty();
+    } else if (event.trips.last.arrivalTime == null) {
+      print('>>>>>>>>>>>>>>>>> LAST TRIP: ${event.trips.last}');
+      print('>>>>>>>>>>>>>>>>> SUCCESS ACTIVE');
+      yield TripsLoadSuccessActive(event.trips);
+    } else {
+      print('>>>>>>>>>>>>>>>>> LAST TRIP: ${event.trips.last}');
+      print('>>>>>>>>>>>>>>>>> SUCCESS NOT ACTIVE');
+      yield TripsLoadSuccessNotActive(event.trips);
     }
   }
 
-  Stream<TripsState> _mapTripsLoadedToState() async* {
-    try {
-      final trips = await tripsRepository.getAllTrips();
-      if (trips.isEmpty)
-        yield TripsEmpty();
-      else
-        yield TripsLoadSuccess(trips);
-    } catch (e) {
-      print('>>> TripLoadedError $e');
-      yield TripsLoadFailure(e.toString());
-    }
+  Stream<TripsState> _mapClearToState() async* {
+    tripsRepository.clear();
   }
 
-  Stream<TripsState> _mapTripDeletedToState(Trip trip) async* {
-    try {
-      await tripsRepository.delete(trip);
-      add(TripsLoaded());
-    } catch (e) {
-      print('>>> TripDeletedError $e');
-      yield TripsLoadFailure(e.toString());
-    }
-  }
-
-  Stream<TripsState> _mapTripUpdatedToState(Trip trip) async* {
-    try {
-      await tripsRepository.update(trip);
-      add(TripsLoaded());
-    } catch (e) {
-      print('>>> TripUpdatedError $e');
-      yield TripsLoadFailure(e.toString());
-    }
+  @override
+  Future<void> close() {
+    _tripsSubscription?.cancel();
+    return super.close();
   }
 }

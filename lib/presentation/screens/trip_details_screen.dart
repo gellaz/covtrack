@@ -1,4 +1,3 @@
-import 'package:covtrack/data/coordinates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -7,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../business/repositories/location/location_repository.dart';
 import '../../business/repositories/places/places_repository.dart';
+import '../../data/coordinates.dart';
 import '../../data/place.dart';
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
@@ -180,7 +180,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
   void _onPressed(BuildContext context) {
     context.bloc<TripsBloc>().add(
-          TripAdded(
+          AddTrip(
             Trip(
               tripId: null,
               reason: _selectedReason,
@@ -192,6 +192,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
             ),
           ),
         );
+
     Navigator.popUntil(context, (route) => route.isFirst);
   }
 

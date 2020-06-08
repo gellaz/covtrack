@@ -40,6 +40,7 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
   }
 
   Stream<StopwatchState> _mapStartToState() async* {
+    timer?.cancel();
     _stopwatch.start();
     timer = Timer.periodic(Duration(seconds: 1), _update);
   }
@@ -50,7 +51,6 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
 
   Stream<StopwatchState> _mapStopToState() async* {
     _stopwatch.stop();
-    timer = null;
     yield Paused(_stopwatch.elapsed);
   }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
+import '../../business/blocs/trips/trips_bloc.dart';
+import '../../business/repositories/trips/firestore_trips_repository.dart';
 import '../screens/login_screen.dart';
 import '../screens/splash_screen.dart';
 import 'root_screen.dart';
@@ -18,7 +20,12 @@ class AuthenticationScreen extends StatelessWidget {
           return LoginScreen();
         }
         if (state is Authenticated) {
-          return RootScreen();
+          return BlocProvider(
+            child: RootScreen(),
+            create: (_) => TripsBloc(
+              FirestoreTripsRepository(uid: state.user.uid),
+            )..add(LoadTrips()),
+          );
         }
         return Container();
       },

@@ -75,14 +75,15 @@ class _NewTripScreenState extends State<NewTripScreen> {
       _detailCard = Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: DestinationCard(
-            place: destination,
-            onButtonPressed: () {
-              Navigator.pushNamed(
-                context,
-                TripDetailsScreen.routeName,
-                arguments: destination,
-              );
-            }),
+          place: destination,
+          onButtonPressed: () {
+            Navigator.pushNamed(
+              context,
+              TripDetailsScreen.routeName,
+              arguments: destination,
+            );
+          },
+        ),
       );
     });
   }

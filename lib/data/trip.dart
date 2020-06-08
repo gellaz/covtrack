@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:sembast/timestamp.dart';
 
 import 'place.dart';
 import 'stop.dart';
@@ -57,15 +57,24 @@ class Trip extends Equatable {
     );
   }
 
-  Map<String, Object> toDocument() {
-    return {
-      "reason": reason,
-      "startingTime": startingTime,
-      "arrivalTime": arrivalTime,
-      "source": source,
-      "destination": destination,
-      "stops": stops,
-    };
+  factory Trip.fromSnapshot(DocumentSnapshot snap) {
+    List<Stop> _stops = [];
+
+    (snap.data['stops'] as List).forEach((v) => _stops.add(Stop.fromJson(v)));
+
+    var _arrivalTime;
+    if (snap.data['arrivalTime'] != null) {
+      _arrivalTime = DateTime.parse(snap.data['arrivalTime'] as String);
+    }
+    return Trip(
+      tripId: snap.documentID,
+      reason: snap.data['reason'] as String,
+      startingTime: DateTime.parse(snap.data['startingTime'] as String),
+      arrivalTime: _arrivalTime,
+      source: Place.fromJson(snap.data['source']),
+      destination: Place.fromJson(snap.data['destination']),
+      stops: _stops,
+    );
   }
 
   Trip returnTrip() {

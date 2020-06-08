@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
@@ -23,8 +24,8 @@ class StopTripDialog extends StatelessWidget {
           onPressed: () {
             final updatedTrip =
                 activeTrip.copyWith(arrivalTime: DateTime.now());
-
-            context.bloc<TripsBloc>()..add(TripUpdated(updatedTrip));
+            context.bloc<StopwatchBloc>()..add(Stop())..add(Reset());
+            context.bloc<TripsBloc>()..add(UpdateTrip(updatedTrip));
             Navigator.of(context).pop();
           },
         ),

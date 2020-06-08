@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../business/blocs/trips/trips_bloc.dart';
 import '../presentation/screens/change_password_screen.dart';
 import '../presentation/screens/delete_account_screen.dart';
 import '../presentation/screens/home_screen.dart';
@@ -29,16 +31,29 @@ class HomeRouter implements Router {
         return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
       case NewTripScreen.routeName:
-        return MaterialPageRoute(builder: (_) => NewTripScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: context.bloc<TripsBloc>(),
+            child: NewTripScreen(),
+          ),
+        );
         break;
       case TripDetailsScreen.routeName:
         var destination = settings.arguments;
         return MaterialPageRoute(
-          builder: (_) => TripDetailsScreen(destination),
+          builder: (context) => BlocProvider.value(
+            value: context.bloc<TripsBloc>(),
+            child: TripDetailsScreen(destination),
+          ),
         );
         break;
       case OldTripsScreen.routeName:
-        return MaterialPageRoute(builder: (_) => OldTripsScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: context.bloc<TripsBloc>(),
+            child: OldTripsScreen(),
+          ),
+        );
         break;
       case QrScreen.routeName:
         var activeTrip = settings.arguments;
@@ -82,7 +97,12 @@ class DonateRouter implements Router {
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
         break;
       case DeleteAccountScreen.routeName:
-        return MaterialPageRoute(builder: (_) => DeleteAccountScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: context.bloc<TripsBloc>(),
+            child: DeleteAccountScreen(),
+          ),
+        );
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');

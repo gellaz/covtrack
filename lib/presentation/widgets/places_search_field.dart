@@ -78,11 +78,12 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
     Place place = await _placesRepository.getPlaceFromSuggestion(suggestion);
+
     _setText(place.formattedAddress);
     widget.addMarkerAndCenterMapOn(
       LatLng(
         place.coords.latitude,
-        place.coords.latitude,
+        place.coords.longitude,
       ),
     );
   }
