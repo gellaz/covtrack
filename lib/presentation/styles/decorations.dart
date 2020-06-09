@@ -7,7 +7,7 @@ class Decorations {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          Theme.of(context).primaryColor,
+          Theme.of(context).appBarTheme.color,
           Colors.white,
         ],
       ),

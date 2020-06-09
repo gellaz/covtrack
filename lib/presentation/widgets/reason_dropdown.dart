@@ -17,23 +17,12 @@ class ReasonDropdown extends StatefulWidget {
 }
 
 class _ReasonDropdownState extends State<ReasonDropdown> {
-  List<DropdownMenuItem<String>> dropdownItems;
   String selectedReason;
 
   @override
   void initState() {
     super.initState();
     selectedReason = widget.reasonsList.first;
-    dropdownItems =
-        widget.reasonsList.map<DropdownMenuItem<String>>((String reason) {
-      return DropdownMenuItem<String>(
-        value: reason,
-        child: Text(
-          reason,
-          style: TextStyle(color: Theme.of(context).primaryColorLight),
-        ),
-      );
-    }).toList();
   }
 
   @override
@@ -59,7 +48,16 @@ class _ReasonDropdownState extends State<ReasonDropdown> {
             color: Theme.of(context).accentColor,
           ),
           onChanged: onChanged,
-          items: dropdownItems,
+          items:
+              widget.reasonsList.map<DropdownMenuItem<String>>((String reason) {
+            return DropdownMenuItem<String>(
+              value: reason,
+              child: Text(
+                reason,
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
+              ),
+            );
+          }).toList(),
         ),
       ),
     );

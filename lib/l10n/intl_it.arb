@@ -398,6 +398,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectedDestination": "Destinazione Selezionata",
+  "@selectedDestination": {
+    "description": "DestinationCard title",
+    "type": "text",
+    "placeholders": {}
+  },
   "settings": "Impostazioni",
   "@settings": {
     "description": "Settings section label",

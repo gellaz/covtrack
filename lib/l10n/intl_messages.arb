@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-09T00:17:14.985587",
+  "@@last_modified": "2020-06-09T16:22:50.939997",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -395,6 +395,12 @@
   "returnTripDialogContent": "Do you want to start the return trip?",
   "@returnTripDialogContent": {
     "description": "Return trip alert dialog content",
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectedDestination": "Selected Destination",
+  "@selectedDestination": {
+    "description": "DestinationCard title",
     "type": "text",
     "placeholders": {}
   },

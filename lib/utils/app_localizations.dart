@@ -492,6 +492,13 @@ class AppLocalizations {
         locale: localeName,
       );
 
+  String get selectedDestination => Intl.message(
+        'Selected Destination',
+        name: 'selectedDestination',
+        desc: 'DestinationCard title',
+        locale: localeName,
+      );
+
   String get settings => Intl.message(
         'Settings',
         name: 'settings',

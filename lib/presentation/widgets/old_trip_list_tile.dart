@@ -38,7 +38,11 @@ class OldTripListTile extends StatelessWidget {
                             text: AppLocalizations.of(context).source,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          TextSpan(text: ' ' + trip.source.formattedAddress),
+                          TextSpan(
+                            text: ' ' + trip.source.formattedAddress,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          ),
                         ],
                       ),
                     ),
@@ -50,7 +54,10 @@ class OldTripListTile extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           TextSpan(
-                              text: ' ' + trip.destination.formattedAddress),
+                            text: ' ' + trip.destination.formattedAddress,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          ),
                         ],
                       ),
                     ),

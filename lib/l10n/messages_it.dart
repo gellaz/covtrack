@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "returnTrip" : MessageLookupByLibrary.simpleMessage("Avvia Spostamento di Ritorno"),
     "returnTripDialogContent" : MessageLookupByLibrary.simpleMessage("Vuoi avviare lo spostamento di ritorno?"),
     "returnTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Avvio spostamento di ritorno"),
+    "selectedDestination" : MessageLookupByLibrary.simpleMessage("Destinazione Selezionata"),
     "settings" : MessageLookupByLibrary.simpleMessage("Impostazioni"),
     "settingsFailure" : MessageLookupByLibrary.simpleMessage("Errore nel caricamento delle impostazioni"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Mostra QR Code"),

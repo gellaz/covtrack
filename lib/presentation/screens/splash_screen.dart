@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../styles/decorations.dart';
 
@@ -27,10 +28,10 @@ class SplashScreen extends StatelessWidget {
                       .headline3
                       .copyWith(letterSpacing: 6, fontWeight: FontWeight.w600),
                 ),
-                Spacer(),
-                const Icon(Icons.home, size: 150),
-                SizedBox(height: 50),
-                Spacer(),
+                const Spacer(),
+                const Icon(FontAwesomeIcons.virus, size: 150),
+                const SizedBox(height: 50),
+                const Spacer(),
                 Column(
                   children: <Widget>[
                     const Text('from'),

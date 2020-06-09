@@ -88,7 +88,7 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                       padding: const EdgeInsets.all(20),
                       child: Icon(
                         FontAwesomeIcons.userAltSlash,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).accentColor,
                         size: 120,
                       ),
                     ),
@@ -100,7 +100,7 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                     const SizedBox(height: 20),
                     Text(
                       AppLocalizations.of(context).deleteAccountScreenBody,
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).accentTextTheme.subtitle1,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20),
@@ -109,6 +109,9 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                       autovalidate: true,
                       controller: _passwordController,
                       decoration: InputDecoration(
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
                         labelText: 'Password',
                       ),
                       obscureText: true,

@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "returnTrip" : MessageLookupByLibrary.simpleMessage("Start Return Trip"),
     "returnTripDialogContent" : MessageLookupByLibrary.simpleMessage("Do you want to start the return trip?"),
     "returnTripDialogTitle" : MessageLookupByLibrary.simpleMessage("Start return trip"),
+    "selectedDestination" : MessageLookupByLibrary.simpleMessage("Selected Destination"),
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "settingsFailure" : MessageLookupByLibrary.simpleMessage("Failed loading settings"),
     "showQr" : MessageLookupByLibrary.simpleMessage("Show QR Code"),

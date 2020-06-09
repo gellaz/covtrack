@@ -91,7 +91,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                   children: <Widget>[
                     Icon(
                       Icons.lock_outline,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).accentColor,
                       size: 150,
                     ),
                     Text(
@@ -102,7 +102,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                     const SizedBox(height: 20),
                     Text(
                       AppLocalizations.of(context).changePasswordScreenBody,
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).accentTextTheme.subtitle1,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20),
@@ -112,6 +112,9 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                       controller: _oldPasswordController,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context).oldPassword,
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                       obscureText: true,
                       onFieldSubmitted: (_) =>
@@ -129,6 +132,9 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                       controller: _newPasswordController,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context).newPassword,
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                       obscureText: true,
                       onFieldSubmitted: (_) =>
@@ -147,6 +153,9 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                       decoration: InputDecoration(
                         labelText:
                             AppLocalizations.of(context).insertPasswordAgain,
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                       obscureText: true,
                       validator: (_) {
