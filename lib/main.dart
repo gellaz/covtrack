@@ -83,7 +83,7 @@ class CovTrack extends StatelessWidget {
           return MaterialApp(
             title: 'CovTrack',
             theme: state.settings['theme'] == 'dark'
-                ? AppTheme.light
+                ? AppTheme.dark
                 : AppTheme.light,
             supportedLocales: [
               const Locale('en', 'US'), // English
