@@ -102,7 +102,7 @@ class OldTripsScreen extends StatelessWidget {
                 horizontal: 10,
                 vertical: 5,
               ),
-              child: OldTripListTile(trips.elementAt(index)),
+              child: OldTripListTile(trips.reversed.elementAt(index)),
             ),
           ),
         ),
