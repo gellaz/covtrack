@@ -1,3 +1,4 @@
+import 'package:covtrack/utils/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/place.dart';
@@ -17,11 +18,26 @@ class DestinationListTile extends StatelessWidget {
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Icon(Icons.pin_drop),
+            Icon(
+              Icons.pin_drop,
+              color: Theme.of(context).accentColor,
+            ),
           ],
         ),
-        title: Text('${destination.mainText}'),
-        subtitle: Text('${destination.secondaryText}'),
+        title: Text(AppLocalizations.of(context).destination),
+        subtitle: Text.rich(
+          TextSpan(
+            text: '${destination.mainText}',
+            style: TextStyle(color: Theme.of(context).primaryColorLight),
+            children: <TextSpan>[
+              TextSpan(
+                text: '\n${destination.secondaryText}',
+                style: TextStyle(
+                    color: Theme.of(context).primaryColorLight, fontSize: 12),
+              ),
+            ],
+          ),
+        ),
         isThreeLine: true,
       ),
     );

@@ -10,7 +10,10 @@ class StopwatchListTile extends StatelessWidget {
     return Card(
       elevation: 5,
       child: ListTile(
-        leading: const Icon(Icons.access_time),
+        leading: Icon(
+          Icons.access_time,
+          color: Theme.of(context).accentColor,
+        ),
         title: Text(AppLocalizations.of(context).elapsedTime),
         trailing: BlocBuilder<StopwatchBloc, StopwatchState>(
           builder: (_, state) {
@@ -22,7 +25,10 @@ class StopwatchListTile extends StatelessWidget {
             final String hoursStr =
                 (elapsedTime.inHours).toString().padLeft(2, '0');
 
-            return Text('$hoursStr:$minutesStr:$secondsStr');
+            return Text(
+              '$hoursStr:$minutesStr:$secondsStr',
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
+            );
           },
         ),
       ),

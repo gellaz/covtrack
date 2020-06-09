@@ -37,7 +37,11 @@ class SettingsScreen extends StatelessWidget {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: state is Authenticated
-                        ? Text(state.user.email)
+                        ? Text(
+                            state.user.email,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          )
                         : CircularProgressIndicator(),
                   ),
                 ),
@@ -57,6 +61,8 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         title: Text(
                           AppLocalizations.of(context).changeTheme,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight),
                         ),
                         trailing: Icon(
                           Icons.keyboard_arrow_right,
@@ -76,6 +82,8 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         title: Text(
                           AppLocalizations.of(context).changePassword,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight),
                         ),
                         trailing: Icon(
                           Icons.keyboard_arrow_right,
@@ -94,6 +102,8 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         title: Text(
                           AppLocalizations.of(context).deleteAccount,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight),
                         ),
                         trailing: Icon(
                           Icons.keyboard_arrow_right,

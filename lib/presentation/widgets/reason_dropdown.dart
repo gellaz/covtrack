@@ -28,7 +28,10 @@ class _ReasonDropdownState extends State<ReasonDropdown> {
         widget.reasonsList.map<DropdownMenuItem<String>>((String reason) {
       return DropdownMenuItem<String>(
         value: reason,
-        child: Text(reason),
+        child: Text(
+          reason,
+          style: TextStyle(color: Theme.of(context).primaryColorLight),
+        ),
       );
     }).toList();
   }
@@ -38,11 +41,17 @@ class _ReasonDropdownState extends State<ReasonDropdown> {
     return Card(
       elevation: 5,
       child: ListTile(
-        leading: const Icon(Icons.not_listed_location),
+        leading: Icon(
+          Icons.not_listed_location,
+          color: Theme.of(context).accentColor,
+        ),
         title: DropdownButton<String>(
           value: selectedReason,
           isExpanded: true,
-          icon: const Icon(Icons.arrow_drop_down),
+          icon: Icon(
+            Icons.arrow_drop_down,
+            color: Theme.of(context).iconTheme.color,
+          ),
           iconSize: 24,
           elevation: 16,
           underline: Container(

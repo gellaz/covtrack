@@ -17,11 +17,19 @@ class ReasonListTile extends StatelessWidget {
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Icon(Icons.not_listed_location),
+            Icon(
+              Icons.not_listed_location,
+              color: Theme.of(context).accentColor,
+            ),
           ],
         ),
-        title: Text(AppLocalizations.of(context).reasonPickerDesc),
-        subtitle: Text(reason),
+        title: Text(
+          AppLocalizations.of(context).reasonPickerDesc,
+        ),
+        subtitle: Text(
+          reason,
+          style: TextStyle(color: Theme.of(context).primaryColorLight),
+        ),
       ),
     );
   }

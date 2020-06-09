@@ -14,16 +14,19 @@ class NewsListView extends StatelessWidget {
     return Column(
       children: <Widget>[
         _buildListTile(
+          context,
           Icon(Icons.local_hotel, color: Colors.yellow[700]),
           AppLocalizations.of(context).confirmed,
           info.confirmed,
         ),
         _buildListTile(
+          context,
           Icon(Icons.local_hospital, color: Colors.red),
           AppLocalizations.of(context).deaths,
           info.deaths,
         ),
         _buildListTile(
+          context,
           Icon(Icons.sentiment_satisfied, color: Colors.green),
           AppLocalizations.of(context).recovered,
           info.recovered,
@@ -32,7 +35,8 @@ class NewsListView extends StatelessWidget {
     );
   }
 
-  Widget _buildListTile(Icon icon, String title, int data) {
+  Widget _buildListTile(
+      BuildContext context, Icon icon, String title, int data) {
     var f = NumberFormat.decimalPattern();
     return Card(
       child: ListTile(
@@ -41,7 +45,10 @@ class NewsListView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(title),
-            Text('${f.format(data)}'),
+            Text(
+              '${f.format(data)}',
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
+            ),
           ],
         ),
       ),

@@ -60,7 +60,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "confirmed": "Confermati",
+  "confirmed": "Contagiati",
   "@confirmed": {
     "description": "Confirmed Info screen list tile description",
     "type": "text",
@@ -162,24 +162,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "info": "Info",
-  "@info": {
-    "description": "Info section label",
-    "type": "text",
-    "placeholders": {}
-  },
-  "infoDescription": "Di seguito trovi un resoconto della situazione sanitaria nel tuo paese e nel mondo. I dati presentati non hanno la presunzione di essere affidabili al 100% ma possono essere considerati una buona stima della situazione corrente.",
-  "@infoDescription": {
-    "description": "Info screen body description",
-    "type": "text",
-    "placeholders": {}
-  },
-  "infoDisclaimer": "Tutti i dati presenti in questa sezione sono raccolti dalla API ",
-  "@infoDisclaimer": {
-    "description": "Info screen disclaimer text",
-    "type": "text",
-    "placeholders": {}
-  },
   "insertDestination": "Inserisci una destinazione...",
   "@insertDestination": {
     "description": "Hint message of the InputField DestinationPickerScreen",
@@ -251,6 +233,24 @@
   "newPassword": "Nuova password",
   "@newPassword": {
     "description": "New password TextInput label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "news": "News",
+  "@news": {
+    "description": "News section label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsDescription": "Di seguito trovi un resoconto della situazione sanitaria nel tuo paese e nel mondo. I dati presentati non hanno la presunzione di essere affidabili al 100% ma possono essere considerati una buona stima della situazione corrente.",
+  "@newsDescription": {
+    "description": "News screen body description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "newsDisclaimer": "Tutti i dati presenti in questa sezione sono raccolti dalla API",
+  "@newsDisclaimer": {
+    "description": "News screen disclaimer text",
     "type": "text",
     "placeholders": {}
   },

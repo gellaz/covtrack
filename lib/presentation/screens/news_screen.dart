@@ -29,7 +29,7 @@ class NewsContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News'),
+        title: Text(AppLocalizations.of(context).news),
         actions: <Widget>[
           LogoutButton(),
         ],
@@ -78,27 +78,21 @@ class NewsContent extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _buildDescription(context),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
+                _buildDivider(),
                 _buildNewsTitle(
                   context,
                   AppLocalizations.of(context).italy,
                   localNews.date,
                 ),
                 NewsListView(localNews),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
+                _buildDivider(),
                 _buildNewsTitle(
                   context,
                   AppLocalizations.of(context).global,
                   globalNews.date,
                 ),
                 NewsListView(globalNews),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
+                _buildDivider(),
                 _buildDisclaimer(context),
               ],
             ),
@@ -109,10 +103,17 @@ class NewsContent extends StatelessWidget {
     );
   }
 
+  Padding _buildDivider() {
+    return const Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: const Divider(),
+    );
+  }
+
   Widget _buildDescription(BuildContext context) {
     return Text(
       AppLocalizations.of(context).newsDescription,
-      style: Theme.of(context).textTheme.bodyText2,
+      style: Theme.of(context).accentTextTheme.bodyText2,
       textAlign: TextAlign.justify,
     );
   }
@@ -135,7 +136,7 @@ class NewsContent extends StatelessWidget {
           ),
           Text(
             AppLocalizations.of(context).lastUpdate(formattedLastUpdate),
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).accentTextTheme.caption,
           ),
         ],
       ),
@@ -148,8 +149,9 @@ class NewsContent extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: AppLocalizations.of(context).newsDisclaimer,
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).accentTextTheme.caption,
             children: <TextSpan>[
+              TextSpan(text: ' '),
               TextSpan(
                 text: 'covidapi.info',
                 style: Theme.of(context).textTheme.caption.copyWith(

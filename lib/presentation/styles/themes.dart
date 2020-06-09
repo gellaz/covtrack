@@ -5,13 +5,13 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       color: Colors.deepOrange,
       textTheme: textTheme(Colors.white),
-      actionsIconTheme: IconThemeData(
-        color: Colors.white,
-      ),
+      iconTheme: IconThemeData(color: Colors.white),
+      actionsIconTheme: IconThemeData(color: Colors.white),
     ),
     iconTheme: IconThemeData(color: Colors.grey[850]),
     primarySwatch: Colors.deepOrange,
     primaryColor: Colors.deepOrange,
+    primaryColorLight: Colors.grey[850],
     accentColor: Colors.grey[850],
     accentColorBrightness: Brightness.dark,
     disabledColor: Colors.grey,
@@ -34,14 +34,14 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       color: Colors.black,
       textTheme: TextTheme(),
-      actionsIconTheme: IconThemeData(
-        color: Colors.deepOrange,
-      ),
+      iconTheme: IconThemeData(color: Colors.deepOrange),
+      actionsIconTheme: IconThemeData(color: Colors.deepOrange),
     ),
     cardColor: Colors.black,
     iconTheme: IconThemeData(color: Colors.deepOrange),
     primarySwatch: Colors.grey,
     primaryColor: Colors.grey[850],
+    primaryColorLight: Colors.white,
     primaryColorBrightness: Brightness.light,
     accentColor: Colors.deepOrange,
     accentColorBrightness: Brightness.dark,
@@ -58,7 +58,7 @@ class AppTheme {
     fontFamily: 'Prompt',
     textTheme: textTheme(Colors.deepOrange),
     primaryTextTheme: textTheme(Colors.deepOrange),
-    accentTextTheme: textTheme(Colors.deepOrange),
+    accentTextTheme: textTheme(Colors.white),
   );
 
   static TextTheme textTheme(Color textColor) {

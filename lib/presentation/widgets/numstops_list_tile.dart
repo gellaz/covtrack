@@ -10,11 +10,17 @@ class NumStopsListTile extends StatelessWidget {
     return Card(
       elevation: 5,
       child: ListTile(
-        leading: const Icon(Icons.exposure_plus_1),
+        leading: Icon(
+          Icons.exposure_plus_1,
+          color: Theme.of(context).accentColor,
+        ),
         title: Text(AppLocalizations.of(context).numStops),
         trailing: BlocBuilder<StopsTrackerBloc, StopsTrackerState>(
           builder: (_, state) {
-            return Text('${state.stops.length}');
+            return Text(
+              '${state.stops.length}',
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
+            );
           },
         ),
       ),

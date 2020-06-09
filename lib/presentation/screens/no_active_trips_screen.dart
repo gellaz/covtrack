@@ -19,13 +19,13 @@ class NoActiveTripsScreen extends StatelessWidget {
                 const Icon(Icons.home, size: 100),
                 Text(
                   AppLocalizations.of(context).stayHome,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline5,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20),
                 Text(
                   AppLocalizations.of(context).noActiveTrips,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).accentTextTheme.subtitle1,
                   textAlign: TextAlign.justify,
                 ),
               ],
