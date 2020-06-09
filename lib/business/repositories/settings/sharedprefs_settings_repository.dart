@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'settings_repository.dart';
 
-class SettingsDatabaseRepository implements SettingsRepository {
+class SharedPrefsSettingsRepository implements SettingsRepository {
   @override
   Future<Map<String, dynamic>> getSettings() async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

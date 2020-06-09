@@ -10,11 +10,11 @@ import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/location/geolocator_location_repository.dart';
 import 'business/repositories/location/location_repository.dart';
-import 'business/repositories/news/news_api_repository.dart';
+import 'business/repositories/news/api_news_repository.dart';
 import 'business/repositories/news/news_repository.dart';
 import 'business/repositories/places/places_repository.dart';
-import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
+import 'business/repositories/settings/sharedprefs_settings_repository.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
 import 'utils/app_localizations.dart';
@@ -31,8 +31,8 @@ void main() {
   final authRepository = FirebaseAuthenticationRepository();
   final locationRepository = GeolocatorLocationRepository();
   final placesRepository = GooglePlacesRepository();
-  final settingsRepository = SettingsDatabaseRepository();
-  final newsRepository = NewsApiRepository();
+  final settingsRepository = SharedPrefsSettingsRepository();
+  final newsRepository = ApiNewsRepository();
 
   runApp(
     MultiRepositoryProvider(

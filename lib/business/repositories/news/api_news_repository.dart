@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../../../data/news.dart';
 import 'news_repository.dart';
 
-class NewsApiRepository implements NewsRepository {
+class ApiNewsRepository implements NewsRepository {
   static const _authority = 'covidapi.info';
 
   @override
