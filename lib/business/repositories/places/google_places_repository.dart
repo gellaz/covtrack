@@ -30,7 +30,6 @@ class GooglePlacesRepository implements PlacesRepository {
   ) async {
     final response = await places.autocomplete(
       input,
-      components: [Component(Component.country, window.locale.languageCode)],
       language: window.locale.languageCode,
       location: Location(latitude, longitude),
       radius: 50000,
