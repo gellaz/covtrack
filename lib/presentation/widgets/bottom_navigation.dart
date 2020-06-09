@@ -20,6 +20,11 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Theme.of(context).appBarTheme.color,
+      unselectedIconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
+      selectedIconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
+      selectedItemColor: Theme.of(context).appBarTheme.actionsIconTheme.color,
+      unselectedItemColor: Theme.of(context).appBarTheme.actionsIconTheme.color,
       currentIndex: currentTab.index,
       items: [
         _buildNewsItem(context),

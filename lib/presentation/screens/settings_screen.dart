@@ -32,7 +32,10 @@ class SettingsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    leading: Icon(Icons.person),
+                    leading: Icon(
+                      Icons.person,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
                     title: state is Authenticated
                         ? Text(state.user.email)
                         : CircularProgressIndicator(),
@@ -50,12 +53,15 @@ class SettingsScreen extends StatelessWidget {
                       ListTile(
                         leading: Icon(
                           Icons.color_lens,
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).iconTheme.color,
                         ),
                         title: Text(
                           AppLocalizations.of(context).changeTheme,
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                         onTap: () async => showDialog(
                           context: context,
                           barrierDismissible: false,
@@ -66,12 +72,15 @@ class SettingsScreen extends StatelessWidget {
                       ListTile(
                         leading: Icon(
                           Icons.lock_outline,
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).iconTheme.color,
                         ),
                         title: Text(
                           AppLocalizations.of(context).changePassword,
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                         onTap: () => Navigator.of(context).pushNamed(
                           ChangePasswordScreen.routeName,
                         ),
@@ -80,13 +89,16 @@ class SettingsScreen extends StatelessWidget {
                       ListTile(
                         leading: Icon(
                           FontAwesomeIcons.userAltSlash,
+                          color: Theme.of(context).iconTheme.color,
                           size: 18,
-                          color: Theme.of(context).primaryColor,
                         ),
                         title: Text(
                           AppLocalizations.of(context).deleteAccount,
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                         onTap: () => Navigator.of(context).pushNamed(
                           DeleteAccountScreen.routeName,
                         ),
