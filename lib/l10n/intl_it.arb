@@ -350,6 +350,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "reason1": "Comprovate esigenze lavorative",
+  "@reason1": {
+    "description": "First reason of dropdown picker",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason2": "Situazioni di necessità",
+  "@reason2": {
+    "description": "Second reason of dropdown picker",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason3": "Motivi di salute",
+  "@reason3": {
+    "description": "Third reason of dropdown picker",
+    "type": "text",
+    "placeholders": {}
+  },
   "reasonPickerDesc": "Motivazione:",
   "@reasonPickerDesc": {
     "description": "Reason picker description",
@@ -401,6 +419,12 @@
   "selectedDestination": "Destinazione Selezionata",
   "@selectedDestination": {
     "description": "DestinationCard title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectReason": "Seleziona una motivazione...",
+  "@selectReason": {
+    "description": "ReasonDropdown placeholder",
     "type": "text",
     "placeholders": {}
   },

@@ -1,29 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ReasonDropdown extends StatefulWidget {
-  final List<String> reasonsList;
+import '../../utils/app_localizations.dart';
+
+class ReasonDropdown extends StatelessWidget {
   final Function onReasonSelected;
 
-  const ReasonDropdown({
-    Key key,
-    @required this.reasonsList,
-    @required this.onReasonSelected,
-  })  : assert(reasonsList != null),
-        assert(onReasonSelected != null),
+  const ReasonDropdown({Key key, @required this.onReasonSelected})
+      : assert(onReasonSelected != null),
         super(key: key);
-
-  @override
-  _ReasonDropdownState createState() => _ReasonDropdownState();
-}
-
-class _ReasonDropdownState extends State<ReasonDropdown> {
-  String selectedReason;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedReason = widget.reasonsList.first;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +19,8 @@ class _ReasonDropdownState extends State<ReasonDropdown> {
           color: Theme.of(context).accentColor,
         ),
         title: DropdownButton<String>(
-          value: selectedReason,
+          value: null,
+          hint: Text(AppLocalizations.of(context).selectReason),
           isExpanded: true,
           icon: Icon(
             Icons.arrow_drop_down,
@@ -48,23 +33,35 @@ class _ReasonDropdownState extends State<ReasonDropdown> {
             color: Theme.of(context).accentColor,
           ),
           onChanged: onChanged,
-          items:
-              widget.reasonsList.map<DropdownMenuItem<String>>((String reason) {
-            return DropdownMenuItem<String>(
-              value: reason,
+          items: <DropdownMenuItem<String>>[
+            DropdownMenuItem<String>(
+              value: AppLocalizations.of(context).reason1,
               child: Text(
-                reason,
+                AppLocalizations.of(context).reason1,
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-            );
-          }).toList(),
+            ),
+            DropdownMenuItem<String>(
+              value: AppLocalizations.of(context).reason2,
+              child: Text(
+                AppLocalizations.of(context).reason2,
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
+              ),
+            ),
+            DropdownMenuItem<String>(
+              value: AppLocalizations.of(context).reason3,
+              child: Text(
+                AppLocalizations.of(context).reason3,
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   void onChanged(String newReason) {
-    setState(() => selectedReason = newReason);
-    widget.onReasonSelected(newReason);
+    onReasonSelected(newReason);
   }
 }

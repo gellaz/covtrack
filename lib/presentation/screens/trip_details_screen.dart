@@ -12,12 +12,6 @@ import '../widgets/destination_list_tile.dart';
 import '../widgets/reason_dropdown.dart';
 import '../widgets/source_list_tile.dart';
 
-const List<String> reasonsList = const [
-  'Comprovate esigenze lavorative',
-  'Situazioni di necessità',
-  'Motivi di salute'
-];
-
 class TripDetailsScreen extends StatefulWidget {
   static const routeName = '/trip-details';
 
@@ -32,7 +26,9 @@ class TripDetailsScreen extends StatefulWidget {
 }
 
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
-  String selectedReason = reasonsList.first;
+  String selectedReason;
+
+  bool isStartTripButtonEnabled() => selectedReason != null;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +113,6 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     ReasonDropdown(
-                      reasonsList: reasonsList,
                       onReasonSelected: onReasonSelected,
                     ),
                   ],
@@ -130,7 +125,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
             child: FloatingActionButton.extended(
               icon: const Icon(Icons.keyboard_arrow_right),
               label: Text(AppLocalizations.of(context).startTrip),
-              onPressed: () => onPressed(context, source),
+              onPressed: isStartTripButtonEnabled()
+                  ? () => onPressed(context, source)
+                  : null,
             ),
           ),
         ],

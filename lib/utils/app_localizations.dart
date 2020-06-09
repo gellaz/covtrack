@@ -436,6 +436,27 @@ class AppLocalizations {
         locale: localeName,
       );
 
+  String get reason1 => Intl.message(
+        'Proven work needs',
+        name: 'reason1',
+        desc: 'First reason of dropdown picker',
+        locale: localeName,
+      );
+
+  String get reason2 => Intl.message(
+        'Situations of need',
+        name: 'reason2',
+        desc: 'Second reason of dropdown picker',
+        locale: localeName,
+      );
+
+  String get reason3 => Intl.message(
+        'Health reasons',
+        name: 'reason3',
+        desc: 'Third reason of dropdown picker',
+        locale: localeName,
+      );
+
   String get reasonPickerDesc => Intl.message(
         'Reason:',
         name: 'reasonPickerDesc',
@@ -496,6 +517,13 @@ class AppLocalizations {
         'Selected Destination',
         name: 'selectedDestination',
         desc: 'DestinationCard title',
+        locale: localeName,
+      );
+
+  String get selectReason => Intl.message(
+        'Select a reason...',
+        name: 'selectReason',
+        desc: 'ReasonDropdown placeholder',
         locale: localeName,
       );
 
