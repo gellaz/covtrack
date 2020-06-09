@@ -28,23 +28,19 @@ dependencies:
   geolocator:
   # Google Maps.
   google_maps_flutter:
-  # Google Maps APIs.
+  # Google Maps APIs wrapper.
   google_maps_webservice:
   # Authentication with Google.
   google_sign_in:
   # HTTP client for making requests.
   http:
-  # Internationalization and localization facilities.
+  # Internationalization and localization.
   intl:
   intl_translation:
   # Onboarding.
   introduction_screen:
   # Reactive programming.
   rxdart:
-  # Define the location for storing the database on disk.
-  path:
-  # Find commonly used locations on the filesystem.
-  path_provider:
   # QR code rendering.
   qr_flutter:
   # Shared preferences.
