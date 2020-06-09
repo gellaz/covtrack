@@ -47,8 +47,6 @@ dependencies:
   path_provider:
   # QR code rendering.
   qr_flutter:
-  # NoSQL database.
-  sembast:
   # Shared preferences.
   shared_preferences:
   # Launching a URL in the mobile platform.
