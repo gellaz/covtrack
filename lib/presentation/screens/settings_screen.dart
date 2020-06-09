@@ -70,7 +70,6 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         onTap: () async => showDialog(
                           context: context,
-                          barrierDismissible: false,
                           builder: (_) => ChangeThemeDialog(),
                         ),
                       ),

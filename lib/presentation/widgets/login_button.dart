@@ -5,7 +5,7 @@ import '../../utils/app_localizations.dart';
 class LoginButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  LoginButton({Key key, @required this.onPressed}) : super(key: key);
+  const LoginButton({Key key, @required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

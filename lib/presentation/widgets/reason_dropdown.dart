@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_localizations.dart';
 
-class ReasonDropdown extends StatelessWidget {
+class ReasonDropdown extends StatefulWidget {
   final Function onReasonSelected;
 
   const ReasonDropdown({Key key, @required this.onReasonSelected})
       : assert(onReasonSelected != null),
         super(key: key);
+
+  @override
+  _ReasonDropdownState createState() => _ReasonDropdownState();
+}
+
+class _ReasonDropdownState extends State<ReasonDropdown> {
+  String selectedReason;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +26,11 @@ class ReasonDropdown extends StatelessWidget {
           color: Theme.of(context).accentColor,
         ),
         title: DropdownButton<String>(
-          value: null,
-          hint: Text(AppLocalizations.of(context).selectReason),
+          value: selectedReason,
+          hint: Text(
+            AppLocalizations.of(context).selectReason,
+            style: TextStyle(color: Theme.of(context).primaryColorLight),
+          ),
           isExpanded: true,
           icon: Icon(
             Icons.arrow_drop_down,
@@ -62,6 +72,7 @@ class ReasonDropdown extends StatelessWidget {
   }
 
   void onChanged(String newReason) {
-    onReasonSelected(newReason);
+    setState(() => selectedReason = newReason);
+    widget.onReasonSelected(newReason);
   }
 }

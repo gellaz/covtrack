@@ -1,3 +1,4 @@
+import 'package:covtrack/presentation/widgets/start_trip_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -122,12 +123,15 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: FloatingActionButton.extended(
-              icon: const Icon(Icons.keyboard_arrow_right),
-              label: Text(AppLocalizations.of(context).startTrip),
-              onPressed: isStartTripButtonEnabled()
-                  ? () => onPressed(context, source)
-                  : null,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                StartTripButton(
+                  onPressed: isStartTripButtonEnabled()
+                      ? () => onPressed(context, source)
+                      : null,
+                ),
+              ],
             ),
           ),
         ],
