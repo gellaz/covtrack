@@ -1,12 +1,45 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../business/blocs/settings/settings_bloc.dart';
 import '../styles/decorations.dart';
+import 'authentication_screen.dart';
+import 'onboarding_screen.dart';
 
 /// Splash screen of the application
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+      Duration(seconds: 3),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BlocBuilder<SettingsBloc, SettingsState>(
+            builder: (_, state) {
+              if (state is SettingsLoadSuccess) {
+                return state.settings['firstRun']
+                    ? OnboardingScreen()
+                    : AuthenticationScreen();
+              }
+              return Container();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

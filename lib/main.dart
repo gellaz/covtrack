@@ -73,84 +73,46 @@ void main() {
 class CovTrack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SettingsBloc, SettingsState>(
-      listener: (context, state) {
-        if (state is SettingsLoadFailure) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text(state.message), Icon(Icons.error)],
-                ),
-              ),
-            );
-        }
-      },
-      builder: (_, state) {
-        ThemeData currentTheme;
-        Widget home;
+    // Preventing device orientation changes and force portrait.
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
-        if (state is SettingsLoadInProgress) {
-          home = SplashScreen();
-        } else if (state is SettingsLoadSuccess) {
-          currentTheme = state.settings['theme'] == 'dark'
-              ? AppTheme.dark
-              : AppTheme.light;
-          home = state.settings['firstRun']
-              ? OnboardingScreen()
-              : AuthenticationScreen();
-        } else if (state is SettingsLoadFailure) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text(state.message), Icon(Icons.error)],
-                ),
-              ),
-            );
-        } else {
-          home = Container();
-        }
-
-        // Preventing device orientation changes and force portrait.
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
-
-        return MaterialApp(
-          title: 'CovTrack',
-          theme: currentTheme,
-          supportedLocales: [
-            const Locale('en', 'US'), // English
-            const Locale('it', 'IT'), // Italian
-          ],
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            // Checking if the current device locale is supported.
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale.languageCode &&
-                  supportedLocale.countryCode == locale.countryCode) {
-                return supportedLocale;
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, state) {
+        if (state is SettingsLoadSuccess) {
+          return MaterialApp(
+            title: 'CovTrack',
+            theme: state.settings['theme'] == 'dark'
+                ? AppTheme.light
+                : AppTheme.light,
+            supportedLocales: [
+              const Locale('en', 'US'), // English
+              const Locale('it', 'IT'), // Italian
+            ],
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            localeResolutionCallback: (locale, supportedLocales) {
+              // Checking if the current device locale is supported.
+              for (var supportedLocale in supportedLocales) {
+                if (supportedLocale.languageCode == locale.languageCode &&
+                    supportedLocale.countryCode == locale.countryCode) {
+                  return supportedLocale;
+                }
               }
-            }
-            // If the locale of the device is not supported, use the first one
-            // from the list (English, in this case).
-            return supportedLocales.first;
-          },
-          home: home,
-        );
+              // If the locale of the device is not supported, use the first one
+              // from the list (English, in this case).
+              return supportedLocales.first;
+            },
+            home: SplashScreen(),
+          );
+        }
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

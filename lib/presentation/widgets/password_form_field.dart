@@ -35,7 +35,10 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
       decoration: InputDecoration(
         labelText: widget.labelText,
         suffixIcon: IconButton(
-          icon: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
+          icon: Icon(
+            _showPassword ? Icons.visibility : Icons.visibility_off,
+            color: Theme.of(context).accentColor,
+          ),
           onPressed: () {
             setState(() {
               _showPassword = !_showPassword;

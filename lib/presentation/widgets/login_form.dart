@@ -90,7 +90,6 @@ class _LoginFormState extends State<LoginForm> {
                             AppLocalizations.of(context).login.toUpperCase(),
                             style:
                                 Theme.of(context).textTheme.headline4.copyWith(
-                                      color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 8,
                                     ),
@@ -99,7 +98,6 @@ class _LoginFormState extends State<LoginForm> {
                           Icon(
                             Icons.person,
                             size: 200,
-                            color: Colors.white,
                           ),
                           TextFormField(
                             autocorrect: false,
