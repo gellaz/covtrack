@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../business/blocs/trips/trips_bloc.dart';
 import '../presentation/screens/change_password_screen.dart';
 import '../presentation/screens/delete_account_screen.dart';
+import '../presentation/screens/destination_picker_screen.dart';
 import '../presentation/screens/home_screen.dart';
-import '../presentation/screens/new_trip_screen.dart';
 import '../presentation/screens/news_screen.dart';
 import '../presentation/screens/old_trips_screen.dart';
 import '../presentation/screens/qr_screen.dart';
@@ -30,11 +30,11 @@ class HomeRouter implements Router {
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
-      case NewTripScreen.routeName:
+      case DestinationPickerScreen.routeName:
         return MaterialPageRoute(
           builder: (context) => BlocProvider.value(
             value: context.bloc<TripsBloc>(),
-            child: NewTripScreen(),
+            child: DestinationPickerScreen(),
           ),
         );
         break;

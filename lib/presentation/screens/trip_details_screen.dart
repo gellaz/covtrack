@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../business/blocs/trip_details/trip_details_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../business/repositories/location/location_repository.dart';
 import '../../business/repositories/places/places_repository.dart';
-import '../../data/coordinates.dart';
 import '../../data/place.dart';
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
-import '../widgets/place_list_tile.dart';
-import '../widgets/reason_picker.dart';
+import '../widgets/destination_list_tile.dart';
+import '../widgets/reason_dropdown.dart';
+import '../widgets/source_list_tile.dart';
 
-const List<String> reasonsList = [
+const List<String> reasonsList = const [
   'Comprovate esigenze lavorative',
   'Situazioni di necessità',
   'Motivi di salute'
@@ -33,243 +32,136 @@ class TripDetailsScreen extends StatefulWidget {
 }
 
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
-  GoogleMapController _mapController;
-  LocationRepository _locationRepository;
-  PlacesRepository _placesRepository;
-  Future<Place> _futureSource;
-  Place _source;
-  // this set will hold my markers
-  Set<Marker> _markers = {};
-  // this will hold the generated polylines
-  Set<Polyline> _polylines = {};
-  // this will hold each polyline coordinate as Lat and Lng pairs
-  List<LatLng> polylineCoordinates = [];
-  // this is the key object - the PolylinePoints
-  // which generates every polyline between start and finish
-  PolylinePoints polylinePoints = PolylinePoints();
-  // for my custom icons
-  BitmapDescriptor sourceIcon;
-  BitmapDescriptor destinationIcon;
-  String _selectedReason;
-
-  @override
-  void initState() {
-    super.initState();
-    _locationRepository = context.repository<LocationRepository>();
-    _placesRepository = context.repository<PlacesRepository>();
-    _futureSource = _getCurrentPlace();
-    _selectedReason = reasonsList.first;
-    _setSourceAndDestinationIcons();
-  }
+  String selectedReason = reasonsList.first;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context).tripDetails),
-      ),
-      body: FutureBuilder<Place>(
-        future: _futureSource,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            _source = snapshot.data;
-            return Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView(
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            AppLocalizations.of(context).source,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                          PlaceListTile(snapshot.data, PlaceType.Source),
-                          Text(
-                            AppLocalizations.of(context).destination,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                          PlaceListTile(
-                              widget.destination, PlaceType.Destination),
-                          SizedBox(height: 10),
-                          Container(
-                            height: 300,
-                            child: GoogleMap(
-                              compassEnabled: false,
-                              gestureRecognizers: null,
-                              initialCameraPosition: CameraPosition(
-                                target: LatLng(
-                                  snapshot.data.coords.latitude,
-                                  snapshot.data.coords.longitude,
-                                ),
-                                zoom: 16,
-                              ),
-                              mapToolbarEnabled: false,
-                              mapType: MapType.normal,
-                              markers: _markers,
-                              myLocationButtonEnabled: false,
-                              myLocationEnabled: false,
-                              onMapCreated: _onMapCreated,
-                              polylines: _polylines,
-                              scrollGesturesEnabled: false,
-                              tiltGesturesEnabled: false,
-                              trafficEnabled: false,
-                              zoomControlsEnabled: false,
-                              zoomGesturesEnabled: false,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            AppLocalizations.of(context).reasonPickerDesc,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                          SizedBox(height: 10),
-                          ReasonPicker(reasonsList, _onReasonSelected),
-                          SizedBox(height: 10),
-                        ],
+    return BlocProvider(
+      create: (context) => TripDetailsBloc(
+        locationRepository: context.repository<LocationRepository>(),
+        placesRepository: context.repository<PlacesRepository>(),
+      )..add(LoadCurrentPlace()),
+      child: Scaffold(
+        appBar: AppBar(title: Text(AppLocalizations.of(context).tripDetails)),
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<TripsBloc, TripsState>(
+              listener: (context, state) {
+                if (state is TripsLoadSuccessActive) {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                }
+              },
+            ),
+            BlocListener<TripDetailsBloc, TripDetailsState>(
+              listener: (context, state) {
+                if (state is UserPlaceError) {
+                  Scaffold.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [Text('Error'), Icon(Icons.error)],
+                        ),
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: FloatingActionButton.extended(
-                    icon: Icon(Icons.keyboard_arrow_right),
-                    label: Text(AppLocalizations.of(context).startTrip),
-                    onPressed: () => _onPressed(context),
-                  ),
+                    );
+                }
+              },
+            ),
+          ],
+          child: BlocBuilder<TripDetailsBloc, TripDetailsState>(
+            builder: (_, state) {
+              if (state is UserPlaceLoading) {
+                return _buildLoading();
+              }
+              if (state is UserPlaceSuccess) {
+                return _buildSuccess(context, state.place);
+              }
+              return Container();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoading() {
+    return Center(child: CircularProgressIndicator());
+  }
+
+  Widget _buildSuccess(BuildContext context, Place source) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Text(
+                      AppLocalizations.of(context).source,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SourceListTile(source: source),
+                    buildDivider(),
+                    Text(
+                      AppLocalizations.of(context).destination,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    DestinationListTile(destination: widget.destination),
+                    buildDivider(),
+                    Text(
+                      AppLocalizations.of(context).reasonPickerDesc,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    ReasonDropdown(
+                      reasonsList: reasonsList,
+                      onReasonSelected: onReasonSelected,
+                    ),
+                  ],
                 ),
               ],
-            );
-          } else if (snapshot.hasError) {
-            Scaffold.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Error'), Icon(Icons.error)],
-                  ),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            return null;
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: FloatingActionButton.extended(
+              icon: const Icon(Icons.keyboard_arrow_right),
+              label: Text(AppLocalizations.of(context).startTrip),
+              onPressed: () => onPressed(context, source),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Future<Place> _getCurrentPlace() async {
-    Coordinates coords = await _locationRepository.currentLocation;
-    return await _placesRepository.getPlaceFromCoords(
-      coords.latitude,
-      coords.longitude,
+  Padding buildDivider() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: const Divider(thickness: 1),
     );
   }
 
-  void _onMapCreated(GoogleMapController mapController) {
-    _mapController = mapController;
-    _setMarkers();
-    _setPolylines();
-  }
-
-  void _onPressed(BuildContext context) {
+  void onPressed(BuildContext context, Place source) {
     context.bloc<TripsBloc>().add(
           AddTrip(
             Trip(
               tripId: null,
-              reason: _selectedReason,
+              reason: selectedReason,
               startingTime: DateTime.now(),
               arrivalTime: null,
-              source: _source,
+              source: source,
               destination: widget.destination,
               stops: [],
             ),
           ),
         );
-
-    Navigator.popUntil(context, (route) => route.isFirst);
   }
 
-  void _onReasonSelected(int index) {
-    setState(() {
-      _selectedReason = reasonsList.elementAt(index);
-    });
-  }
-
-  void _setMarkers() {
-    setState(() {
-      // Source marker
-      _markers.add(
-        Marker(
-          markerId: MarkerId('sourceMarker'),
-          position: LatLng(
-            _source.coords.latitude,
-            _source.coords.longitude,
-          ),
-          icon: sourceIcon,
-        ),
-      );
-      // Destination marker
-      _markers.add(
-        Marker(
-          markerId: MarkerId('destMarker'),
-          position: LatLng(
-            widget.destination.coords.latitude,
-            widget.destination.coords.longitude,
-          ),
-          icon: destinationIcon,
-        ),
-      );
-    });
-  }
-
-  void _setPolylines() async {
-    final result = await polylinePoints?.getRouteBetweenCoordinates(
-      'AIzaSyC31XYERPq-Iy_kke7gkN_BB5DHGcSSncI',
-      PointLatLng(
-        _source.coords.latitude,
-        _source.coords.longitude,
-      ),
-      PointLatLng(
-        widget.destination.coords.latitude,
-        widget.destination.coords.longitude,
-      ),
-    );
-    if (result.points.isNotEmpty) {
-      // loop through all PointLatLng points and convert them
-      // to a list of LatLng, required by the Polyline
-      result.points.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-    }
-    setState(() {
-      // create a Polyline instance
-      // with an id, an RGB color and the list of LatLng pairs
-      Polyline polyline = Polyline(
-        polylineId: PolylineId('poly'),
-        color: Color.fromARGB(255, 40, 122, 198),
-        points: polylineCoordinates,
-      );
-
-      // add the constructed polyline as a set of points
-      // to the polyline set, which will eventually
-      // end up showing up on the map
-      _polylines.add(polyline);
-    });
-  }
-
-  void _setSourceAndDestinationIcons() {
-    sourceIcon = BitmapDescriptor.defaultMarkerWithHue(
-      BitmapDescriptor.hueBlue,
-    );
-    destinationIcon = BitmapDescriptor.defaultMarkerWithHue(
-      BitmapDescriptor.hueOrange,
-    );
+  void onReasonSelected(String newReason) {
+    setState(() => selectedReason = newReason);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_localizations.dart';
-import '../screens/new_trip_screen.dart';
+import '../screens/destination_picker_screen.dart';
 
 class NewTripButton extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class NewTripButton extends StatelessWidget {
   void _onPressed(BuildContext context) {
     Navigator.pushNamed(
       context,
-      NewTripScreen.routeName,
+      DestinationPickerScreen.routeName,
     );
   }
 }

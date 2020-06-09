@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../data/trip.dart';
 import '../../utils/app_localizations.dart';
-import '../widgets/active_trip_numstops.dart';
-import '../widgets/active_trip_stopwatch.dart';
-import '../widgets/place_list_tile.dart';
+import '../widgets/destination_list_tile.dart';
+import '../widgets/numstops_list_tile.dart';
+import '../widgets/reason_list_tile.dart';
 import '../widgets/return_trip_button.dart';
 import '../widgets/show_qr_button.dart';
+import '../widgets/source_list_tile.dart';
 import '../widgets/stop_trip_button.dart';
+import '../widgets/stopwatch_list_tile.dart';
 
 class ActiveTripScreen extends StatelessWidget {
   final Trip activeTrip;
@@ -30,43 +32,15 @@ class ActiveTripScreen extends StatelessWidget {
                   AppLocalizations.of(context).activeTrip,
                   style: Theme.of(context).textTheme.headline5,
                 ),
-                const SizedBox(height: 10),
-                const Divider(),
-                const SizedBox(height: 10),
-                PlaceListTile(
-                  activeTrip.source,
-                  PlaceType.Source,
+                const Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: const Divider(),
                 ),
-                PlaceListTile(
-                  activeTrip.destination,
-                  PlaceType.Destination,
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Icon(Icons.not_listed_location),
-                      ],
-                    ),
-                    title: Text(AppLocalizations.of(context).reasonPickerDesc),
-                    subtitle: Text(activeTrip.reason),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.exposure_plus_1),
-                    title: Text(AppLocalizations.of(context).numStops),
-                    trailing: ActiveTripNumStops(),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.access_time),
-                    title: Text(AppLocalizations.of(context).elapsedTime),
-                    trailing: ActiveTripStopwatch(),
-                  ),
-                ),
+                SourceListTile(source: activeTrip.source),
+                DestinationListTile(destination: activeTrip.destination),
+                ReasonListTile(reason: activeTrip.reason),
+                NumStopsListTile(),
+                StopwatchListTile(),
               ],
             ),
             ButtonBar(

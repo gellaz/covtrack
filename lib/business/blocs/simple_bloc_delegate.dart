@@ -18,7 +18,7 @@ class SimpleBlocDelegate extends BlocDelegate {
     super.onError(bloc, error, stackTrace);
   }
 
-  ///  Prints the transition from one state to another in a BLoC.
+  /// Prints the transition from one state to another in a BLoC.
   @override
   void onTransition(Bloc bloc, Transition transition) {
     print(transition);
