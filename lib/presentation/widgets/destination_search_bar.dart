@@ -7,16 +7,15 @@ import '../../business/repositories/places/places_repository.dart';
 import '../../data/place.dart';
 import '../../data/place_suggestion.dart';
 import '../../utils/app_localizations.dart';
-import 'clear_button.dart';
 import 'place_suggestion_list_tile.dart';
 
-class PlacesSearchField extends StatefulWidget {
+class DestinationSearchBar extends StatefulWidget {
   final Function addMarkerAndCenterMapOn;
   final double userLatitude;
   final double userLongitude;
   final Place selectedPlace;
 
-  const PlacesSearchField(
+  const DestinationSearchBar(
       this.userLatitude, this.userLongitude, this.addMarkerAndCenterMapOn,
       {this.selectedPlace, Key key})
       : assert(addMarkerAndCenterMapOn != null),
@@ -25,10 +24,10 @@ class PlacesSearchField extends StatefulWidget {
         super(key: key);
 
   @override
-  _PlacesSearchFieldState createState() => _PlacesSearchFieldState();
+  _DestinationSearchBarState createState() => _DestinationSearchBarState();
 }
 
-class _PlacesSearchFieldState extends State<PlacesSearchField> {
+class _DestinationSearchBarState extends State<DestinationSearchBar> {
   final TextEditingController _controller = TextEditingController();
   PlacesRepository _placesRepository;
 
@@ -51,12 +50,19 @@ class _PlacesSearchFieldState extends State<PlacesSearchField> {
       textFieldConfiguration: TextFieldConfiguration(
         controller: _controller,
         decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: TextStyle(color: Colors.white),
+          contentPadding: const EdgeInsets.all(12),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+              width: 10,
+            ),
+            borderRadius: BorderRadius.circular(50),
+          ),
           hintText: AppLocalizations.of(context).insertDestination,
-          suffixIcon: ClearButton(_onClear),
+          suffixIcon: IconButton(icon: Icon(Icons.clear), onPressed: _onClear),
         ),
-        style: TextStyle(color: Colors.white),
         textInputAction: TextInputAction.none,
       ),
     );

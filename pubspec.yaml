@@ -20,8 +20,6 @@ dependencies:
   firebase_core:
   # BLoC pattern utilities.
   flutter_bloc:
-  # Decodes encoded google polyline string into list of geo-coordinates suitable for showing route/polyline on maps.
-  flutter_polyline_points:
   # Autocomplete TextField.
   flutter_typeahead:
   # Font Awesome icon pack.

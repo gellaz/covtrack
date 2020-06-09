@@ -1,3 +1,4 @@
+import '../widgets/destination_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -6,7 +7,7 @@ import '../../business/repositories/location/location_repository.dart';
 import '../../business/repositories/places/places_repository.dart';
 import '../../data/place.dart';
 import '../widgets/destination_card.dart';
-import '../widgets/places_search_field.dart';
+
 import 'trip_details_screen.dart';
 
 class DestinationPickerScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _DestinationPickerScreenState extends State<DestinationPickerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: _userLocation != null
-            ? PlacesSearchField(
+            ? DestinationSearchBar(
                 _userLocation.latitude,
                 _userLocation.longitude,
                 _onTap,
