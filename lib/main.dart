@@ -15,8 +15,6 @@ import 'business/repositories/news/news_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_database_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
-import 'presentation/screens/authentication_screen.dart';
-import 'presentation/screens/onboarding_screen.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
 import 'utils/app_localizations.dart';
