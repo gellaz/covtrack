@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cloud_firestore:
-  # Internationalization.
+  # App localization.
   flutter_localizations:
     sdk: flutter
   # Compare objects not references.
@@ -36,7 +36,6 @@ dependencies:
   http:
   # Internationalization and localization.
   intl:
-  intl_translation:
   # Onboarding.
   introduction_screen:
   # Reactive programming.
