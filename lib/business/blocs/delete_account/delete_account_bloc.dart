@@ -11,15 +11,19 @@ import '../../repositories/authentication/authentication_repository.dart';
 part 'delete_account_event.dart';
 part 'delete_account_state.dart';
 
+/// BLoC responsible for the business logic behind the account deletion process. In particular
+/// this BLoC will map the incoming [DeleteAccountEvent] to the correct [DeleteAccountState].
 class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
+  /// Authentication repository used to delete the account.
   final AuthenticationRepository authRepository;
 
-  DeleteAccountBloc(this.authRepository) : assert(authRepository != null);
+  DeleteAccountBloc({@required this.authRepository})
+      : assert(authRepository != null);
 
   @override
   DeleteAccountState get initialState => DeleteAccountState.empty();
 
-  // Overriding transformEvents in order to debounce the EmailChanged and PasswordChanged events
+  // Overriding transformEvents in order to debounce the PasswordChanged event
   // so that we give the user some time to stop typing before validating the input.
   @override
   Stream<Transition<DeleteAccountEvent, DeleteAccountState>> transformEvents(

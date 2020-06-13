@@ -1,5 +1,12 @@
 part of 'trips_bloc.dart';
 
+/// The [TripsBloc] will need to know how to process the following events:
+/// [LoadTrips] - informs the [TripsBloc] to load the list of all user's trips.
+/// [AddTrip] - informs the [TripsBloc] to add a trip to the list of user's trips.
+/// [UpdateTrip] -  informs the [TripsBloc] that a trip has been updated.
+/// [DeleteTrip] -  informs the [TripsBloc] that a trip has been deleted.
+/// [ClearCompleted] - informs the [TripsBloc] the all user's trips should be deleted.
+/// [TripsUpdated] - event that groups all the previous events.
 abstract class TripsEvent extends Equatable {
   const TripsEvent();
 
@@ -12,7 +19,7 @@ class LoadTrips extends TripsEvent {}
 class AddTrip extends TripsEvent {
   final Trip trip;
 
-  const AddTrip(this.trip);
+  const AddTrip({@required this.trip});
 
   @override
   List<Object> get props => [trip];
@@ -24,7 +31,7 @@ class AddTrip extends TripsEvent {
 class UpdateTrip extends TripsEvent {
   final Trip trip;
 
-  const UpdateTrip(this.trip);
+  const UpdateTrip({@required this.trip});
 
   @override
   List<Object> get props => [trip];
@@ -36,7 +43,7 @@ class UpdateTrip extends TripsEvent {
 class DeleteTrip extends TripsEvent {
   final Trip trip;
 
-  const DeleteTrip(this.trip);
+  const DeleteTrip({@required this.trip});
 
   @override
   List<Object> get props => [trip];
@@ -45,13 +52,16 @@ class DeleteTrip extends TripsEvent {
   String toString() => 'DeleteTrip { trip: $trip }';
 }
 
-class Clear extends TripsEvent {}
+class ClearCompleted extends TripsEvent {}
 
 class TripsUpdated extends TripsEvent {
   final List<Trip> trips;
 
-  const TripsUpdated(this.trips);
+  const TripsUpdated({@required this.trips});
 
   @override
   List<Object> get props => [trips];
+
+  @override
+  String toString() => 'TripsUpdated { trips: $trips }';
 }

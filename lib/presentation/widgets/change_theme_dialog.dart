@@ -107,7 +107,7 @@ class _LoadSuccessDialogState extends State<LoadSuccessDialog> {
 
           // Dispatching SettingChanged event to the SettingsBloc with
           // the key value pair containing the selected theme.
-          _settingsBloc.add(SettingChanged('theme', selectedTheme));
+          _settingsBloc.add(SettingChanged(key: 'theme', value: selectedTheme));
 
           // Closes the AlertDialog.
           Navigator.of(context).pop();

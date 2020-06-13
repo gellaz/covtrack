@@ -15,7 +15,7 @@ class DeleteAccountScreen extends StatelessWidget {
       appBar: AppBar(title: Text(AppLocalizations.of(context).deleteAccount)),
       body: BlocProvider(
         create: (context) => DeleteAccountBloc(
-          context.repository<AuthenticationRepository>(),
+          authRepository: context.repository<AuthenticationRepository>(),
         ),
         child: Padding(
           padding: const EdgeInsets.all(40),

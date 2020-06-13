@@ -3,18 +3,23 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meta/meta.dart';
 
 import '../../repositories/authentication/authentication_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-/// BLoC that is going to manage checking and updating a user's [AuthenticationState] in response to [AuthenticationEvents].
+/// BLoC responsible for the business logic behind the authentication process. In particular this BLoC will
+/// map the incoming [AuthenticationEvent] to the correct [AuthenticationState].
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
+  /// Authentication repository used to check if the user is currently signed in,
+  /// to get the user and to sign out the user.
   final AuthenticationRepository authRepository;
 
-  AuthenticationBloc(this.authRepository) : assert(authRepository != null);
+  AuthenticationBloc({@required this.authRepository})
+      : assert(authRepository != null);
 
   @override
   AuthenticationState get initialState => Uninitialized();

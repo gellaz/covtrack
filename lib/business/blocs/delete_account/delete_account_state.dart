@@ -1,10 +1,10 @@
 part of 'delete_account_bloc.dart';
 
 /// Here is a list of the possible [DeleteAccountState] in which the [DeleteAccountForm] can be:
-/// [empty]: initial state of the [DeleteAccountForm]
-/// [loading]: state of the [DeleteAccountForm] when we are validating credentials
-/// [failure]: state of the [DeleteAccountForm] when a login attempt has failed
-/// [success]: state of the [DeleteAccountForm] when a login attempt has succeeded
+/// [empty] - initial state of the [DeleteAccountForm]
+/// [loading] - state of the [DeleteAccountForm] when we are validating the inserted password
+/// [failure] - state of the [DeleteAccountForm] when a delete account attempt has failed
+/// [success] - state of the [DeleteAccountForm] when a delete account attempt has succeeded
 @immutable
 class DeleteAccountState {
   final bool isPasswordValid;
@@ -12,9 +12,7 @@ class DeleteAccountState {
   final bool isSuccess;
   final bool isFailure;
 
-  bool get isFormValid => isPasswordValid;
-
-  DeleteAccountState({
+  const DeleteAccountState({
     @required this.isPasswordValid,
     @required this.isSubmitting,
     @required this.isSuccess,

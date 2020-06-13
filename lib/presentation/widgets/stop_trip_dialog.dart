@@ -24,8 +24,10 @@ class StopTripDialog extends StatelessWidget {
           onPressed: () {
             final updatedTrip =
                 activeTrip.copyWith(arrivalTime: DateTime.now());
-            context.bloc<StopwatchBloc>()..add(Stop())..add(Reset());
-            context.bloc<TripsBloc>()..add(UpdateTrip(updatedTrip));
+            context.bloc<StopwatchBloc>()
+              ..add(StopwatchPaused())
+              ..add(StopwatchReset());
+            context.bloc<TripsBloc>()..add(UpdateTrip(trip: updatedTrip));
             Navigator.of(context).pop();
           },
         ),

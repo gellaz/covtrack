@@ -22,12 +22,17 @@ class ReturnTripDialog extends StatelessWidget {
         FlatButton(
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
-            context.bloc<StopwatchBloc>()..add(Stop())..add(Reset());
+            context.bloc<StopwatchBloc>()
+              ..add(StopwatchPaused())
+              ..add(StopwatchReset());
             context.bloc<TripsBloc>()
+              ..add(UpdateTrip(
+                trip: activeTrip.copyWith(arrivalTime: DateTime.now()),
+              ))
               ..add(
-                  UpdateTrip(activeTrip.copyWith(arrivalTime: DateTime.now())))
-              ..add(AddTrip(activeTrip.returnTrip()));
-            context.bloc<StopwatchBloc>()..add(Start());
+                AddTrip(trip: activeTrip.returnTrip()),
+              );
+            context.bloc<StopwatchBloc>()..add(StopwatchStarted());
             Navigator.of(context).pop();
           },
         ),

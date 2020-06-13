@@ -10,10 +10,19 @@ import '../../repositories/location/location_repository.dart';
 part 'stops_tracker_event.dart';
 part 'stops_tracker_state.dart';
 
+/// BLoC responsible for the business logic behind the stops tracker. Every time
+/// the user stops in a place (moving -> stationary) [Stop] will be added to the
+/// list of the stops of the active [Trip]. In particular this BLoC will map the
+/// incoming [StopsTrackerEvent] to the correct [StopsTrackerState].
 class StopsTrackerBloc extends Bloc<StopsTrackerEvent, StopsTrackerState> {
+  /// Location repository used to receive continuous location updates.
   final LocationRepository locationRepository;
+
+  /// List of stops for the active trip.
   final List<Stop> stops;
-  StreamSubscription locationSubscription;
+
+  /// Subscription to location changes.
+  StreamSubscription _locationSubscription;
 
   StopsTrackerBloc({
     @required this.locationRepository,
@@ -35,20 +44,19 @@ class StopsTrackerBloc extends Bloc<StopsTrackerEvent, StopsTrackerState> {
     }
   }
 
-  /// Cancels the [locationSubscription] when the [StopsTrackerBloc] is closed.
+  // Cancels the _locationSubscription when the StopsTrackerBloc is closed.
   @override
-  Future<void> close() async {
-    super.close();
-    return await locationSubscription?.cancel();
+  Future<void> close() {
+    _locationSubscription?.cancel();
+    return super.close();
   }
 
   Stream<StopsTrackerState> _mapStartTrackingToState() async* {
-    await locationSubscription?.cancel();
-    locationSubscription =
+    _locationSubscription?.cancel();
+    _locationSubscription =
         locationRepository.locationStream.listen((Stop stop) {
-      add(NewStopRecorded(stop));
+      add(NewStopRecorded(stop: stop));
     });
-    yield Running(stops);
   }
 
   Stream<StopsTrackerState> _mapNewStopRecordedToState(Stop stop) async* {
@@ -57,7 +65,7 @@ class StopsTrackerBloc extends Bloc<StopsTrackerEvent, StopsTrackerState> {
   }
 
   Stream<StopsTrackerState> _mapStopTrackingToState() async* {
-    await locationSubscription?.cancel();
+    _locationSubscription?.cancel();
     yield Paused(stops);
   }
 }

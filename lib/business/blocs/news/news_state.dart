@@ -15,7 +15,10 @@ class NewsLoadSuccess extends NewsState {
   final News localNews;
   final News globalNews;
 
-  const NewsLoadSuccess(this.localNews, this.globalNews);
+  const NewsLoadSuccess({
+    @required this.localNews,
+    @required this.globalNews,
+  });
 
   @override
   List<Object> get props => [localNews, globalNews];
@@ -28,7 +31,7 @@ class NewsLoadSuccess extends NewsState {
 class NewsLoadFailure extends NewsState {
   final String message;
 
-  const NewsLoadFailure(this.message);
+  const NewsLoadFailure({@required this.message});
 
   @override
   List<Object> get props => [message];

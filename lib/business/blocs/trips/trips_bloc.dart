@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 import '../../../data/trip.dart';
 import '../../repositories/trips/trips_repository.dart';
@@ -9,12 +10,17 @@ import '../../repositories/trips/trips_repository.dart';
 part 'trips_event.dart';
 part 'trips_state.dart';
 
+/// BLoC responsible for the business logic behind trips. It will retrieve, update
+/// and delete the trips from the database. In particular this BLoC will map the
+/// incoming [TripsEvent] to the correct [TripsState].
 class TripsBloc extends Bloc<TripsEvent, TripsState> {
+  /// Trips repository used to perform CRUD operations.
   final TripsRepository tripsRepository;
 
+  /// Subscription to trips database changes.
   StreamSubscription _tripsSubscription;
 
-  TripsBloc(this.tripsRepository) : assert(tripsRepository != null);
+  TripsBloc({@required this.tripsRepository}) : assert(tripsRepository != null);
 
   @override
   TripsState get initialState => TripsInitial();
@@ -33,15 +39,22 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       yield* _mapDeleteTripToState(event);
     } else if (event is TripsUpdated) {
       yield* _mapTripsUpdatedToState(event);
-    } else if (event is Clear) {
-      yield* _mapClearToState();
+    } else if (event is ClearCompleted) {
+      yield* _mapClearCompletedToState();
     }
+  }
+
+  // Cancels the _tripsSubscription when the TripsBloc is closed.
+  @override
+  Future<void> close() {
+    _tripsSubscription?.cancel();
+    return super.close();
   }
 
   Stream<TripsState> _mapLoadTripsToState() async* {
     _tripsSubscription?.cancel();
     _tripsSubscription = tripsRepository.getAllTrips().listen(
-          (trips) => add(TripsUpdated(trips)),
+          (List<Trip> trips) => add(TripsUpdated(trips: trips)),
         );
   }
 
@@ -57,28 +70,20 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     tripsRepository.delete(event.trip);
   }
 
+  // When we load our trips, we are subscribing to the TripsRepository
+  // and every time a new trip comes in, we add a TripsUpdated event.
+  // We then handle all TodosUpdates via the following method.
   Stream<TripsState> _mapTripsUpdatedToState(TripsUpdated event) async* {
     if (event.trips.isEmpty) {
-      print('>>>>>>>>>>>>>>>>> EMPTY');
-      yield TripsEmpty();
+      yield TripsLoadSuccessEmpty();
     } else if (event.trips.last.arrivalTime == null) {
-      print('>>>>>>>>>>>>>>>>> LAST TRIP: ${event.trips.last}');
-      print('>>>>>>>>>>>>>>>>> SUCCESS ACTIVE');
       yield TripsLoadSuccessActive(event.trips);
     } else {
-      print('>>>>>>>>>>>>>>>>> LAST TRIP: ${event.trips.last}');
-      print('>>>>>>>>>>>>>>>>> SUCCESS NOT ACTIVE');
       yield TripsLoadSuccessNotActive(event.trips);
     }
   }
 
-  Stream<TripsState> _mapClearToState() async* {
+  Stream<TripsState> _mapClearCompletedToState() async* {
     tripsRepository.clear();
-  }
-
-  @override
-  Future<void> close() {
-    _tripsSubscription?.cancel();
-    return super.close();
   }
 }

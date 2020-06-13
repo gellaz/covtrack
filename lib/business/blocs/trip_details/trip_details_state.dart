@@ -1,5 +1,11 @@
 part of 'trip_details_bloc.dart';
 
+/// The [TripDetailsBloc] state can be one of the following:
+/// [TripDetailsInitial] - trip details screen not loaded.
+/// [UserPlaceLoading] - user place loading.
+/// [UserPlaceSuccess] - user place loaded successfully.
+/// [UserPlaceError] - user place loding process failed.
+/// [NewReason] - new reason selected.
 abstract class TripDetailsState extends Equatable {
   const TripDetailsState();
 

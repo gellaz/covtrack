@@ -11,10 +11,14 @@ import '../../repositories/authentication/authentication_repository.dart';
 part 'register_event.dart';
 part 'register_state.dart';
 
+/// BLoC responsible for the business logic behind the registration process. In particular
+/// this BLoC will map the incoming [RegisterEvent] to the correct [RegisterState].
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  /// Authentication repository used to sign-up the user.
   final AuthenticationRepository authRepository;
 
-  RegisterBloc(this.authRepository) : assert(authRepository != null);
+  RegisterBloc({@required this.authRepository})
+      : assert(authRepository != null);
 
   @override
   RegisterState get initialState => RegisterState.empty();

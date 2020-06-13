@@ -23,7 +23,7 @@ class AuthenticationScreen extends StatelessWidget {
           return BlocProvider(
             child: RootScreen(),
             create: (_) => TripsBloc(
-              FirestoreTripsRepository(uid: state.user.uid),
+              tripsRepository: FirestoreTripsRepository(uid: state.user.uid),
             )..add(LoadTrips()),
           );
         }

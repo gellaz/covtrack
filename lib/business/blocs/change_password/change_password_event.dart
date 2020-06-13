@@ -1,13 +1,13 @@
-part of 'password_change_bloc.dart';
+part of 'change_password_bloc.dart';
 
-abstract class PasswordChangeEvent extends Equatable {
-  const PasswordChangeEvent();
+abstract class ChangePasswordEvent extends Equatable {
+  const ChangePasswordEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class OldPasswordChanged extends PasswordChangeEvent {
+class OldPasswordChanged extends ChangePasswordEvent {
   final String password;
 
   const OldPasswordChanged({@required this.password});
@@ -19,19 +19,24 @@ class OldPasswordChanged extends PasswordChangeEvent {
   String toString() => 'OldPasswordChanged { password: $password }';
 }
 
-class NewPasswordChanged extends PasswordChangeEvent {
+class NewPasswordChanged extends ChangePasswordEvent {
   final String password;
+  final String passwordCheck;
 
-  const NewPasswordChanged({@required this.password});
+  const NewPasswordChanged({
+    @required this.password,
+    @required this.passwordCheck,
+  });
 
   @override
-  List<Object> get props => [password];
+  List<Object> get props => [password, passwordCheck];
 
   @override
-  String toString() => 'NewPasswordChanged { password: $password }';
+  String toString() =>
+      'NewPasswordChanged { password: $password, passwordCheck: $passwordCheck }';
 }
 
-class NewPasswordCheckChanged extends PasswordChangeEvent {
+class NewPasswordCheckChanged extends ChangePasswordEvent {
   final String password;
   final String passwordCheck;
 
@@ -48,7 +53,7 @@ class NewPasswordCheckChanged extends PasswordChangeEvent {
       'NewPasswordCheckChanged { password:$password, passwordCheck: $passwordCheck }';
 }
 
-class Submitted extends PasswordChangeEvent {
+class Submitted extends ChangePasswordEvent {
   final String oldPassword;
   final String newPassowrd;
 

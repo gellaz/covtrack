@@ -1,5 +1,9 @@
 part of 'stopwatch_bloc.dart';
 
+/// The [StopwatchBloc] state can be one of the following:
+/// [StopwatchInitial] - ready to start counting given an initail elapsed time.
+/// [StopwatchRunInProgess] - actively counting from the specified elapsed time.
+/// [StopwatchRunPause] - paused with some elapsed time.
 abstract class StopwatchState extends Equatable {
   final Duration elapsedTime;
 
@@ -9,23 +13,23 @@ abstract class StopwatchState extends Equatable {
   List<Object> get props => [elapsedTime];
 }
 
-class Ready extends StopwatchState {
-  Ready(Duration elapsedTime) : super(elapsedTime);
+class StopwatchInitial extends StopwatchState {
+  StopwatchInitial(Duration elapsedTime) : super(elapsedTime);
 
   @override
-  String toString() => 'Ready { elapsedTime: $elapsedTime }';
+  String toString() => 'StopwatchInitial { elapsedTime: $elapsedTime }';
 }
 
-class Running extends StopwatchState {
-  Running(Duration elapsedTime) : super(elapsedTime);
+class StopwatchRunInProgess extends StopwatchState {
+  StopwatchRunInProgess(Duration elapsedTime) : super(elapsedTime);
 
   @override
-  String toString() => 'Running { elapsedTime: $elapsedTime }';
+  String toString() => 'StopwatchRunInProgess { elapsedTime: $elapsedTime }';
 }
 
-class Paused extends StopwatchState {
-  Paused(Duration elapsedTime) : super(elapsedTime);
+class StopwatchRunPause extends StopwatchState {
+  StopwatchRunPause(Duration elapsedTime) : super(elapsedTime);
 
   @override
-  String toString() => 'Paused { elapsedTime: $elapsedTime }';
+  String toString() => 'StopwatchRunPause { elapsedTime: $elapsedTime }';
 }

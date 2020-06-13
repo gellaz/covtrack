@@ -56,10 +56,12 @@ void main() {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) {
-            return SettingsBloc(settingsRepository)..add(AppLoaded());
+            return SettingsBloc(settingsRepository: settingsRepository)
+              ..add(AppLoaded());
           }),
           BlocProvider(create: (_) {
-            return AuthenticationBloc(authRepository)..add(AppStarted());
+            return AuthenticationBloc(authRepository: authRepository)
+              ..add(AppStarted());
           }),
         ],
         child: CovTrack(),

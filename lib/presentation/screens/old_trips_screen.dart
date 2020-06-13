@@ -38,7 +38,7 @@ class OldTripsScreen extends StatelessWidget {
           if (state is TripsLoadInProgress) {
             return _buildTripsLoadInProgress();
           }
-          if (state is TripsEmpty) {
+          if (state is TripsLoadSuccessEmpty) {
             return _buildNoPreviousTrips(context);
           }
           if (state is TripsLoadSuccess) {

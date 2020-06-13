@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 
-/// With this helper class we have access to all BLoCs Transitions in
+/// Helper class through which we have access to all BLoCs Transitions in
 /// one place and we can do something in response to all of them.
-/// It is mainly used for debugging purposes.
+/// In this case is used as a logger printing on screen all BLoCs events,
+/// transitions and errors.
 class SimpleBlocDelegate extends BlocDelegate {
   /// Prints the event when it is added to the BLoC.
   @override

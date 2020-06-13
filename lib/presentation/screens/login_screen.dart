@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
       body: Center(
         child: BlocProvider<LoginBloc>(
           create: (context) => LoginBloc(
-            context.repository<AuthenticationRepository>(),
+            authRepository: context.repository<AuthenticationRepository>(),
           ),
           child: LoginForm(),
         ),

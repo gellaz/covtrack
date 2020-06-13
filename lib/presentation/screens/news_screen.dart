@@ -18,7 +18,8 @@ class NewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          NewsBloc(context.repository<NewsRepository>())..add(NewsFetched()),
+          NewsBloc(newsRepository: context.repository<NewsRepository>())
+            ..add(NewsFetched()),
       child: NewsContent(),
     );
   }

@@ -149,7 +149,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   void onPressed(BuildContext context, Place source) {
     context.bloc<TripsBloc>().add(
           AddTrip(
-            Trip(
+            trip: Trip(
               tripId: null,
               reason: selectedReason,
               startingTime: DateTime.now(),

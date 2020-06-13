@@ -1,7 +1,12 @@
-part of 'password_change_bloc.dart';
+part of 'change_password_bloc.dart';
 
+/// Here is a list of the possible [RegisterState] in which the [RegisterForm] can be:
+/// [empty] - initial state of the [RegisterForm]
+/// [loading] - state of the [RegisterForm] when we are validating credentials
+/// [failure] - state of the [RegisterForm] when a login attempt has failed
+/// [success] - state of the [RegisterForm] when a login attempt has succeeded
 @immutable
-class PasswordChangeState {
+class ChangePasswordState {
   final bool isOldPasswordValid;
   final bool isNewPasswordValid;
   final bool isNewPasswordCheckValid;
@@ -12,7 +17,7 @@ class PasswordChangeState {
   bool get isFormValid =>
       isOldPasswordValid && isNewPasswordValid && isNewPasswordCheckValid;
 
-  PasswordChangeState({
+  const ChangePasswordState({
     @required this.isOldPasswordValid,
     @required this.isNewPasswordValid,
     @required this.isNewPasswordCheckValid,
@@ -21,8 +26,8 @@ class PasswordChangeState {
     @required this.isFailure,
   });
 
-  factory PasswordChangeState.empty() {
-    return PasswordChangeState(
+  factory ChangePasswordState.empty() {
+    return ChangePasswordState(
       isOldPasswordValid: true,
       isNewPasswordValid: true,
       isNewPasswordCheckValid: true,
@@ -32,8 +37,8 @@ class PasswordChangeState {
     );
   }
 
-  factory PasswordChangeState.loading() {
-    return PasswordChangeState(
+  factory ChangePasswordState.loading() {
+    return ChangePasswordState(
       isOldPasswordValid: true,
       isNewPasswordValid: true,
       isNewPasswordCheckValid: true,
@@ -43,8 +48,8 @@ class PasswordChangeState {
     );
   }
 
-  factory PasswordChangeState.failure() {
-    return PasswordChangeState(
+  factory ChangePasswordState.failure() {
+    return ChangePasswordState(
       isOldPasswordValid: true,
       isNewPasswordValid: true,
       isNewPasswordCheckValid: true,
@@ -54,8 +59,8 @@ class PasswordChangeState {
     );
   }
 
-  factory PasswordChangeState.success() {
-    return PasswordChangeState(
+  factory ChangePasswordState.success() {
+    return ChangePasswordState(
       isOldPasswordValid: true,
       isNewPasswordValid: true,
       isNewPasswordCheckValid: true,
@@ -65,7 +70,7 @@ class PasswordChangeState {
     );
   }
 
-  PasswordChangeState update({
+  ChangePasswordState update({
     bool isOldPasswordValid,
     bool isNewPasswordValid,
     bool isNewPasswordCheckValid,
@@ -80,7 +85,7 @@ class PasswordChangeState {
     );
   }
 
-  PasswordChangeState copyWith({
+  ChangePasswordState copyWith({
     bool isOldPasswordValid,
     bool isNewPasswordValid,
     bool isNewPasswordCheckValid,
@@ -89,7 +94,7 @@ class PasswordChangeState {
     bool isSuccess,
     bool isFailure,
   }) {
-    return PasswordChangeState(
+    return ChangePasswordState(
       isOldPasswordValid: isOldPasswordValid ?? this.isOldPasswordValid,
       isNewPasswordValid: isNewPasswordValid ?? this.isNewPasswordValid,
       isNewPasswordCheckValid:
@@ -103,7 +108,7 @@ class PasswordChangeState {
   @override
   String toString() {
     return '''
-    PasswordChangeState {
+    ChangePasswordState {
       isOldPasswordValid: $isOldPasswordValid,
       isNewPasswordValid: $isNewPasswordValid,
       isNewPasswordCheckValid: $isNewPasswordCheckValid,

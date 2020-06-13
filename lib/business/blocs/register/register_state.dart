@@ -17,7 +17,7 @@ class RegisterState {
   bool get isFormValid =>
       isEmailValid && isPasswordValid && isPasswordCheckValid;
 
-  RegisterState({
+  const RegisterState({
     @required this.isEmailValid,
     @required this.isPasswordValid,
     @required this.isPasswordCheckValid,

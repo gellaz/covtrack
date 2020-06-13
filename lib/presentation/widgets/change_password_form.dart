@@ -1,8 +1,8 @@
+import 'package:covtrack/business/blocs/change_password/change_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
-import '../../business/blocs/password_change/password_change_bloc.dart';
 import '../../utils/app_localizations.dart';
 import 'change_password_button.dart';
 
@@ -15,20 +15,20 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _newPasswordCheckController = TextEditingController();
-  PasswordChangeBloc _passwordChangeBloc;
+  ChangePasswordBloc _passwordChangeBloc;
 
   bool get isPopulated =>
       _oldPasswordController.text.isNotEmpty &&
       _newPasswordController.text.isNotEmpty &&
       _newPasswordCheckController.text.isNotEmpty;
 
-  bool isChangePasswordButtonEnabled(PasswordChangeState state) =>
+  bool isChangePasswordButtonEnabled(ChangePasswordState state) =>
       state.isFormValid && isPopulated && !state.isSubmitting;
 
   @override
   void initState() {
     super.initState();
-    _passwordChangeBloc = context.bloc<PasswordChangeBloc>();
+    _passwordChangeBloc = context.bloc<ChangePasswordBloc>();
     _oldPasswordController.addListener(_onOldPasswordChanged);
     _newPasswordController.addListener(_onNewPasswordChanged);
     _newPasswordCheckController.addListener(_onNewPasswordCheckChanged);
@@ -36,7 +36,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PasswordChangeBloc, PasswordChangeState>(
+    return BlocConsumer<ChangePasswordBloc, ChangePasswordState>(
       listener: (context, state) {
         if (state.isSubmitting) {
           Scaffold.of(context)
@@ -203,7 +203,10 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
 
   void _onNewPasswordChanged() {
     _passwordChangeBloc.add(
-      NewPasswordChanged(password: _newPasswordController.text),
+      NewPasswordChanged(
+        password: _newPasswordController.text,
+        passwordCheck: _newPasswordCheckController.text,
+      ),
     );
   }
 

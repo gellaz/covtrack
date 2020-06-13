@@ -11,10 +11,14 @@ import '../../repositories/authentication/authentication_repository.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
+/// BLoC responsible for the business logic behind the login process. In particular this BLoC will
+/// map the incoming [LoginEvent] to the correct [LoginState].
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  /// Authentication repository that provides to the user the methods to sign-in
+  /// with credentials and to sign-in with a Google account.
   final AuthenticationRepository authRepository;
 
-  LoginBloc(this.authRepository) : assert(authRepository != null);
+  LoginBloc({@required this.authRepository}) : assert(authRepository != null);
 
   @override
   LoginState get initialState => LoginState.empty();

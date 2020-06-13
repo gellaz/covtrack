@@ -39,7 +39,7 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
         FlatButton(
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
-            _tripsBloc.add(Clear());
+            _tripsBloc.add(ClearCompleted());
             // Notifies AuthenticationBloc of a new AccountDeleted event.
             widget.deleteAccountBloc.add(Submitted(password: widget.password));
             // Closes the AlertDialog.

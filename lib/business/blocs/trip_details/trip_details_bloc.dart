@@ -11,8 +11,15 @@ import '../../repositories/places/places_repository.dart';
 part 'trip_details_event.dart';
 part 'trip_details_state.dart';
 
+/// BLoC responsible for the business logic behind the trip details screen. It will determine
+/// the starting point of the trip from the current location of the device and it will
+/// manage the business logic behind the reason picker. In particular this BLoC will map the
+/// incoming [TripDetailsEvent] to the correct [TripDetailsState].
 class TripDetailsBloc extends Bloc<TripDetailsEvent, TripDetailsState> {
+  /// Location repository used to retrieve user location.
   final LocationRepository locationRepository;
+
+  /// Places repository used to map user's coordinates to a place using Google reverse geocoding APIs.
   final PlacesRepository placesRepository;
 
   TripDetailsBloc({

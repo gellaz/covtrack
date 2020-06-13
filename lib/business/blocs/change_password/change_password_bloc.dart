@@ -8,25 +8,27 @@ import 'package:rxdart/rxdart.dart';
 import '../../../utils/validators.dart';
 import '../../repositories/authentication/authentication_repository.dart';
 
-part 'password_change_event.dart';
-part 'password_change_state.dart';
+part 'change_password_event.dart';
+part 'change_password_state.dart';
 
-/// BLoC that is going to manage the checking and updating a user's [PasswordChangeState] in response to [PasswordChangeEvents].
-class PasswordChangeBloc
-    extends Bloc<PasswordChangeEvent, PasswordChangeState> {
+/// BLoC that is going to manage the checking and updating a user's [ChangePasswordState] in response to [ChangePasswordEvents].
+class ChangePasswordBloc
+    extends Bloc<ChangePasswordEvent, ChangePasswordState> {
+  /// Authentication repository used to change the password of the account.
   final AuthenticationRepository authRepository;
 
-  PasswordChangeBloc(this.authRepository) : assert(authRepository != null);
+  ChangePasswordBloc({@required this.authRepository})
+      : assert(authRepository != null);
 
   @override
-  PasswordChangeState get initialState => PasswordChangeState.empty();
+  ChangePasswordState get initialState => ChangePasswordState.empty();
 
   // Overriding transformEvents in order to debounce the OldPasswordChanged, NewPasswordChanged and NewPasswordCheckChanged
   // events so that we give the user some time to stop typing before validating the input.
   @override
-  Stream<Transition<PasswordChangeEvent, PasswordChangeState>> transformEvents(
-    Stream<PasswordChangeEvent> events,
-    TransitionFunction<PasswordChangeEvent, PasswordChangeState> transitionFn,
+  Stream<Transition<ChangePasswordEvent, ChangePasswordState>> transformEvents(
+    Stream<ChangePasswordEvent> events,
+    TransitionFunction<ChangePasswordEvent, ChangePasswordState> transitionFn,
   ) {
     final nonDebounceStream = events.where((event) {
       return (event is! OldPasswordChanged &&
@@ -45,13 +47,13 @@ class PasswordChangeBloc
   }
 
   @override
-  Stream<PasswordChangeState> mapEventToState(
-    PasswordChangeEvent event,
+  Stream<ChangePasswordState> mapEventToState(
+    ChangePasswordEvent event,
   ) async* {
     if (event is OldPasswordChanged) {
       yield* _mapOldPasswordChangedToState(event.password);
     } else if (event is NewPasswordChanged) {
-      yield* _mapNewPasswordChangedToState(event.password);
+      yield* _mapNewPasswordChangedToState(event.password, event.passwordCheck);
     } else if (event is NewPasswordCheckChanged) {
       yield* _mapNewPasswordCheckChangedToState(
         event.password,
@@ -62,7 +64,7 @@ class PasswordChangeBloc
     }
   }
 
-  Stream<PasswordChangeState> _mapOldPasswordChangedToState(
+  Stream<ChangePasswordState> _mapOldPasswordChangedToState(
     String password,
   ) async* {
     yield state.update(
@@ -70,15 +72,17 @@ class PasswordChangeBloc
     );
   }
 
-  Stream<PasswordChangeState> _mapNewPasswordChangedToState(
+  Stream<ChangePasswordState> _mapNewPasswordChangedToState(
     String password,
+    String passwordCheck,
   ) async* {
     yield state.update(
       isNewPasswordValid: Validators.isValidPassword(password),
+      isNewPasswordCheckValid: password == passwordCheck,
     );
   }
 
-  Stream<PasswordChangeState> _mapNewPasswordCheckChangedToState(
+  Stream<ChangePasswordState> _mapNewPasswordCheckChangedToState(
     String password,
     String passwordCheck,
   ) async* {
@@ -87,17 +91,17 @@ class PasswordChangeBloc
     );
   }
 
-  Stream<PasswordChangeState> _mapFormSubmittedToState(
+  Stream<ChangePasswordState> _mapFormSubmittedToState(
     String oldPassword,
     String newPassword,
   ) async* {
-    yield PasswordChangeState.loading();
+    yield ChangePasswordState.loading();
     try {
       await authRepository.changePassword(oldPassword, newPassword);
 
-      yield PasswordChangeState.success();
+      yield ChangePasswordState.success();
     } catch (_) {
-      yield PasswordChangeState.failure();
+      yield ChangePasswordState.failure();
     }
   }
 }

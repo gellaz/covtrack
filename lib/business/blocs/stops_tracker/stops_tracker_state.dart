@@ -1,5 +1,9 @@
 part of 'stops_tracker_bloc.dart';
 
+/// The [StopsTrackerState] state can be one of the following:
+/// [Ready] - ready to start tracking user's stops.
+/// [Running] - actively tracking user's stops.
+/// [Paused] - paused with some stops recorded.
 abstract class StopsTrackerState extends Equatable {
   final List<Stop> stops;
 

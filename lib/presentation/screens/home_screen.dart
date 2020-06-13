@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           if (state is TripsLoadInProgress) {
             return Center(child: CircularProgressIndicator());
           }
-          if (state is TripsEmpty) {
+          if (state is TripsLoadSuccessEmpty) {
             return NoActiveTripsScreen();
           }
           if (state is TripsLoadSuccessNotActive) {
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                   create: (_) => StopwatchBloc(
                     startingTime:
                         DateTime.now().difference(activeTrip.startingTime),
-                  )..add(Start()),
+                  )..add(StopwatchStarted()),
                 ),
                 BlocProvider(
                   create: (_) => StopsTrackerBloc(

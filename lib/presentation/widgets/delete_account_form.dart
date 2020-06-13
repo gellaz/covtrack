@@ -21,7 +21,7 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
   bool get isPopulated => _passwordController.text.isNotEmpty;
 
   bool isChangePasswordButtonEnabled(DeleteAccountState state) =>
-      state.isFormValid && isPopulated && !state.isSubmitting;
+      state.isPasswordValid && isPopulated && !state.isSubmitting;
 
   @override
   void initState() {

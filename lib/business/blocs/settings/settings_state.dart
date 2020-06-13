@@ -1,5 +1,10 @@
 part of 'settings_bloc.dart';
 
+/// The [SettingsBloc] state can be one of the following:
+/// [SettingsInitial] - ready to fetch settings data.
+/// [SettingsLoadInProgress] - loading settings data.
+/// [SettingsLoadSuccess] - settings data loaded successfully.
+/// [SettingsLoadFailure] - an error has occurred while loading settings data.
 abstract class SettingsState extends Equatable {
   const SettingsState();
 

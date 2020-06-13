@@ -29,7 +29,8 @@ class OnboardingScreen extends StatelessWidget {
   void _onDone(BuildContext context) {
     // Changing the `firstRun` setting so that the next time the application
     // is launched, the onboarding will no longer be displayed.
-    context.bloc<SettingsBloc>()..add(SettingChanged('firstRun', false));
+    context.bloc<SettingsBloc>()
+      ..add(SettingChanged(key: 'firstRun', value: false));
 
     Navigator.push(
       context,

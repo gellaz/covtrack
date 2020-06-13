@@ -4,31 +4,23 @@ part of 'delete_account_bloc.dart';
 /// [PasswordChanged] - notifies the BLoC that the user has changed the email
 /// [Submitted] - notifies the BLoC that the user has submitted the form
 abstract class DeleteAccountEvent extends Equatable {
-  const DeleteAccountEvent();
-
-  @override
-  List<Object> get props => [];
-}
-
-class PasswordChanged extends DeleteAccountEvent {
   final String password;
 
-  const PasswordChanged({@required this.password});
+  const DeleteAccountEvent(this.password);
 
   @override
   List<Object> get props => [password];
+}
+
+class PasswordChanged extends DeleteAccountEvent {
+  const PasswordChanged({@required String password}) : super(password);
 
   @override
   String toString() => 'PasswordChanged { password: $password }';
 }
 
 class Submitted extends DeleteAccountEvent {
-  final String password;
-
-  const Submitted({@required this.password});
-
-  @override
-  List<Object> get props => [password];
+  const Submitted({@required String password}) : super(password);
 
   @override
   String toString() => 'Submitted { password: $password }';
