@@ -15,7 +15,7 @@ import '../presentation/screens/trip_details_screen.dart';
 abstract class Router {
   final String initialRoute;
 
-  Router({this.initialRoute});
+  const Router({this.initialRoute});
 
   Route<dynamic> generateRoute(RouteSettings settings);
 }

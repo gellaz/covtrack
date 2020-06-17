@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../l10n/messages_all.dart';
 
+/// Class used for internationalization.
 class AppLocalizations {
   final String localeName;
 

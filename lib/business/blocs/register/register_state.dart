@@ -5,8 +5,7 @@ part of 'register_bloc.dart';
 /// [loading] - state of the [RegisterForm] when we are validating credentials
 /// [failure] - state of the [RegisterForm] when a login attempt has failed
 /// [success] - state of the [RegisterForm] when a login attempt has succeeded
-@immutable
-class RegisterState {
+class RegisterState extends Equatable {
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isPasswordCheckValid;
@@ -103,6 +102,16 @@ class RegisterState {
       isFailure: isFailure ?? this.isFailure,
     );
   }
+
+  @override
+  List<Object> get props => [
+        isEmailValid,
+        isPasswordValid,
+        isPasswordCheckValid,
+        isSubmitting,
+        isSuccess,
+        isFailure,
+      ];
 
   @override
   String toString() {

@@ -222,7 +222,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
   void _onFormSubmitted() {
     _passwordChangeBloc.add(
       Submitted(
-        oldPassword: _oldPasswordController.text,
+        currentPassword: _oldPasswordController.text,
         newPassowrd: _newPasswordController.text,
       ),
     );

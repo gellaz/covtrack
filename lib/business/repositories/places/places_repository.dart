@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../data/coordinates.dart';
@@ -20,22 +21,22 @@ part 'google_places_repository.dart';
 abstract class PlacesRepository {
   /// Returns the the place with the given coordinates ([latitude] and
   /// [longitude]).
-  Future<Place> getPlaceFromCoords(
+  Future<Place> getPlaceFromCoords({
     double latitude,
     double longitude,
-  );
+  });
 
   /// Returns the [Place] associated to the given [suggestion].
-  Future<Place> getPlaceFromSuggestion(
+  Future<Place> getPlaceFromSuggestion({
     PlaceSuggestion suggestion,
-  );
+  });
 
   /// Returns a list of suggested places matching the [input] string entered by
   /// the user and computed starting from the given coordinates ([latitude] and
   /// [longitude]).
-  Future<List<PlaceSuggestion>> getSuggestions(
+  Future<List<PlaceSuggestion>> getSuggestions({
     String input,
     double latitude,
     double longitude,
-  );
+  });
 }

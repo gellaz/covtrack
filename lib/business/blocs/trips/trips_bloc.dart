@@ -53,21 +53,21 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
 
   Stream<TripsState> _mapLoadTripsToState() async* {
     _tripsSubscription?.cancel();
-    _tripsSubscription = tripsRepository.getAllTrips().listen(
+    _tripsSubscription = tripsRepository.trips().listen(
           (List<Trip> trips) => add(TripsUpdated(trips: trips)),
         );
   }
 
   Stream<TripsState> _mapAddTripToState(AddTrip event) async* {
-    tripsRepository.insert(event.trip);
+    tripsRepository.insert(trip: event.trip);
   }
 
   Stream<TripsState> _mapUpdateTripToState(UpdateTrip event) async* {
-    tripsRepository.update(event.trip);
+    tripsRepository.update(trip: event.trip);
   }
 
   Stream<TripsState> _mapDeleteTripToState(DeleteTrip event) async* {
-    tripsRepository.delete(event.trip);
+    tripsRepository.delete(trip: event.trip);
   }
 
   // When we load our trips, we are subscribing to the TripsRepository

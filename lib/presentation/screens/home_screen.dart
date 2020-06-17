@@ -55,10 +55,9 @@ class HomeScreen extends StatelessWidget {
                   value: context.bloc<TripsBloc>(),
                 ),
                 BlocProvider(
-                  create: (_) => StopwatchBloc(
-                    startingTime:
-                        DateTime.now().difference(activeTrip.startingTime),
-                  )..add(StopwatchStarted()),
+                  create: (_) =>
+                      StopwatchBloc(startingTime: activeTrip.startingTime)
+                        ..add(StopwatchStarted()),
                 ),
                 BlocProvider(
                   create: (_) => StopsTrackerBloc(

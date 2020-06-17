@@ -1,4 +1,4 @@
-import 'package:covtrack/business/blocs/authentication/authentication_bloc.dart';
+import 'package:covtrack/business/blocs/register/register_bloc.dart';
 import 'package:covtrack/business/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -8,24 +8,23 @@ class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  group('AuthenticationBloc', () {
+  group('ChangePasswordBloc', () {
     AuthenticationRepository authRepository;
-    AuthenticationBloc authBloc;
+    RegisterBloc registerBloc;
 
     setUp(() {
       authRepository = MockAuthenticationRepository();
-      authBloc = AuthenticationBloc(authRepository: authRepository);
+      registerBloc = RegisterBloc(authRepository: authRepository);
     });
 
     test('throws AssertionError if AuthenticationRepository is null', () {
       expect(
-        () => AuthenticationBloc(authRepository: null),
+        () => RegisterBloc(authRepository: null),
         throwsA(isAssertionError),
       );
     });
-
-    test('initial state is Uninitialized', () {
-      expect(authBloc.initialState, Uninitialized());
+    test('initial state is RegisterState.empty()', () {
+      expect(registerBloc.initialState, RegisterState.empty());
     });
   });
 }

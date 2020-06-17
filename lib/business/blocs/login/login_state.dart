@@ -5,8 +5,7 @@ part of 'login_bloc.dart';
 /// [loading]: state of the [LoginForm] when we are validating credentials
 /// [failure]: state of the [LoginForm] when a login attempt has failed
 /// [success]: state of the [LoginForm] when a login attempt has succeeded
-@immutable
-class LoginState {
+class LoginState extends Equatable {
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isSubmitting;
@@ -15,7 +14,7 @@ class LoginState {
 
   bool get isFormValid => isEmailValid && isPasswordValid;
 
-  LoginState({
+  const LoginState({
     @required this.isEmailValid,
     @required this.isPasswordValid,
     @required this.isSubmitting,
@@ -92,6 +91,15 @@ class LoginState {
       isFailure: isFailure ?? this.isFailure,
     );
   }
+
+  @override
+  List<Object> get props => [
+        isEmailValid,
+        isPasswordValid,
+        isSubmitting,
+        isSuccess,
+        isFailure,
+      ];
 
   @override
   String toString() {

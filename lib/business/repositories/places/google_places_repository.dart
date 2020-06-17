@@ -9,7 +9,10 @@ class GooglePlacesRepository implements PlacesRepository {
   final geocoding = GoogleMapsGeocoding(apiKey: GOOGLE_API_KEY);
 
   @override
-  Future<Place> getPlaceFromCoords(double latitude, double longitude) async {
+  Future<Place> getPlaceFromCoords({
+    @required double latitude,
+    @required double longitude,
+  }) async {
     final geocodingResponse = await geocoding.searchByLocation(
       Location(latitude, longitude),
     );
@@ -18,16 +21,18 @@ class GooglePlacesRepository implements PlacesRepository {
   }
 
   @override
-  Future<Place> getPlaceFromSuggestion(PlaceSuggestion suggestion) async {
+  Future<Place> getPlaceFromSuggestion({
+    @required PlaceSuggestion suggestion,
+  }) async {
     return await _getDetailsByPlaceId(suggestion.placeId);
   }
 
   @override
-  Future<List<PlaceSuggestion>> getSuggestions(
-    String input,
-    double latitude,
-    double longitude,
-  ) async {
+  Future<List<PlaceSuggestion>> getSuggestions({
+    @required String input,
+    @required double latitude,
+    @required double longitude,
+  }) async {
     final response = await places.autocomplete(
       input,
       language: window.locale.languageCode,

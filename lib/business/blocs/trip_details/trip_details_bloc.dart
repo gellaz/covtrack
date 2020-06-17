@@ -45,8 +45,8 @@ class TripDetailsBloc extends Bloc<TripDetailsEvent, TripDetailsState> {
     try {
       final currentCoords = await locationRepository.currentLocation;
       final place = await placesRepository.getPlaceFromCoords(
-        currentCoords.latitude,
-        currentCoords.longitude,
+        latitude: currentCoords.latitude,
+        longitude: currentCoords.longitude,
       );
       yield UserPlaceSuccess(place);
     } catch (_) {

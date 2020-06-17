@@ -11,8 +11,8 @@ part 'stopwatch_state.dart';
 /// elapsed time since the start of the active trip. In particular this BLoC
 /// will map the incoming [StopwatchEvent] to the correct [StopwatchState].
 class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
-  /// Time elapsed since the start of the trip.
-  final Duration startingTime;
+  /// Active trip starting time.
+  final DateTime startingTime;
 
   /// Stopwatch to measure the elapsed time since the start of the trip.
   final Stopwatch _stopwatch;
@@ -31,7 +31,8 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
   }
 
   @override
-  StopwatchState get initialState => StopwatchInitial(startingTime);
+  StopwatchState get initialState =>
+      StopwatchInitial(DateTime.now().difference(startingTime));
 
   @override
   Stream<StopwatchState> mapEventToState(
@@ -48,6 +49,12 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
     }
   }
 
+  @override
+  Future<void> close() {
+    _timer?.cancel();
+    return super.close();
+  }
+
   Stream<StopwatchState> _mapStartToState() async* {
     _timer?.cancel();
     _stopwatch.start();
@@ -55,12 +62,12 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
   }
 
   Stream<StopwatchState> _mapTickToState() async* {
-    yield StopwatchRunInProgess(_stopwatch.elapsed);
+    yield StopwatchRunInProgess(DateTime.now().difference(startingTime));
   }
 
   Stream<StopwatchState> _mapStopToState() async* {
     _stopwatch.stop();
-    yield StopwatchRunPause(_stopwatch.elapsed);
+    yield StopwatchRunPause(DateTime.now().difference(startingTime));
   }
 
   Stream<StopwatchState> _mapResetToState() async* {

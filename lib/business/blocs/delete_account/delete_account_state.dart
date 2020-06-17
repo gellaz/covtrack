@@ -5,8 +5,7 @@ part of 'delete_account_bloc.dart';
 /// [loading] - state of the [DeleteAccountForm] when we are validating the inserted password
 /// [failure] - state of the [DeleteAccountForm] when a delete account attempt has failed
 /// [success] - state of the [DeleteAccountForm] when a delete account attempt has succeeded
-@immutable
-class DeleteAccountState {
+class DeleteAccountState extends Equatable {
   final bool isPasswordValid;
   final bool isSubmitting;
   final bool isSuccess;
@@ -80,6 +79,14 @@ class DeleteAccountState {
       isFailure: isFailure ?? this.isFailure,
     );
   }
+
+  @override
+  List<Object> get props => [
+        isPasswordValid,
+        isSubmitting,
+        isSuccess,
+        isFailure,
+      ];
 
   @override
   String toString() {

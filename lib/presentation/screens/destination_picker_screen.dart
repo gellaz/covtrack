@@ -101,8 +101,8 @@ class _DestinationPickerScreenState extends State<DestinationPickerScreen> {
 
   Future<Place> _getLocationDetails(LatLng location) async {
     return await _placesRepository.getPlaceFromCoords(
-      location.latitude,
-      location.longitude,
+      latitude: location.latitude,
+      longitude: location.longitude,
     );
   }
 

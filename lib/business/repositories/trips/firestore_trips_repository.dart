@@ -4,6 +4,8 @@ import 'package:meta/meta.dart';
 import '../../../data/trip.dart';
 import 'trips_repository.dart';
 
+/// Implementation of the [TripsRepository] interface. It manages the integration with
+/// the Firebase's remote database service Cloud Firestore.
 class FirestoreTripsRepository implements TripsRepository {
   final CollectionReference userTripsCollection;
   final String uid;
@@ -13,12 +15,25 @@ class FirestoreTripsRepository implements TripsRepository {
         userTripsCollection = Firestore.instance.collection(uid);
 
   @override
-  Future<void> delete(Trip trip) async {
+  Future<void> clear() async {
+    QuerySnapshot snap = await userTripsCollection.getDocuments();
+    return snap.documents.forEach(
+      (DocumentSnapshot ds) => ds.reference.delete(),
+    );
+  }
+
+  @override
+  Future<void> delete({@required Trip trip}) async {
     return userTripsCollection.document(trip.tripId).delete();
   }
 
   @override
-  Stream<List<Trip>> getAllTrips() {
+  Future<void> insert({@required Trip trip}) async {
+    return userTripsCollection.add(trip.toJson());
+  }
+
+  @override
+  Stream<List<Trip>> trips() {
     return userTripsCollection.snapshots().map((snapshot) {
       return snapshot.documents.map((doc) => Trip.fromSnapshot(doc)).toList()
         ..sort((t1, t2) => t1.startingTime.compareTo(t2.startingTime));
@@ -26,20 +41,7 @@ class FirestoreTripsRepository implements TripsRepository {
   }
 
   @override
-  Future<void> insert(Trip trip) async {
-    return userTripsCollection.add(trip.toJson());
-  }
-
-  @override
-  Future<void> update(Trip trip) async {
+  Future<void> update({@required Trip trip}) async {
     return userTripsCollection.document(trip.tripId).updateData(trip.toJson());
-  }
-
-  @override
-  Future<void> clear() async {
-    QuerySnapshot snap = await userTripsCollection.getDocuments();
-    return snap.documents.forEach(
-      (DocumentSnapshot ds) => ds.reference.delete(),
-    );
   }
 }

@@ -83,7 +83,9 @@ class _DestinationSearchBarState extends State<DestinationSearchBar> {
   }
 
   void _onSuggestionSelected(PlaceSuggestion suggestion) async {
-    Place place = await _placesRepository.getPlaceFromSuggestion(suggestion);
+    Place place = await _placesRepository.getPlaceFromSuggestion(
+      suggestion: suggestion,
+    );
 
     _setText(place.formattedAddress);
     widget.addMarkerAndCenterMapOn(
@@ -100,9 +102,9 @@ class _DestinationSearchBarState extends State<DestinationSearchBar> {
 
   Future<List<PlaceSuggestion>> _suggestionsCallback(String input) async {
     return await _placesRepository.getSuggestions(
-      input,
-      widget.userLatitude,
-      widget.userLongitude,
+      input: input,
+      latitude: widget.userLatitude,
+      longitude: widget.userLongitude,
     );
   }
 }

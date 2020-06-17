@@ -5,8 +5,7 @@ part of 'change_password_bloc.dart';
 /// [loading] - state of the [RegisterForm] when we are validating credentials
 /// [failure] - state of the [RegisterForm] when a login attempt has failed
 /// [success] - state of the [RegisterForm] when a login attempt has succeeded
-@immutable
-class ChangePasswordState {
+class ChangePasswordState extends Equatable {
   final bool isOldPasswordValid;
   final bool isNewPasswordValid;
   final bool isNewPasswordCheckValid;
@@ -104,6 +103,16 @@ class ChangePasswordState {
       isFailure: isFailure ?? this.isFailure,
     );
   }
+
+  @override
+  List<Object> get props => [
+        isOldPasswordValid,
+        isNewPasswordValid,
+        isNewPasswordCheckValid,
+        isSubmitting,
+        isSuccess,
+        isFailure,
+      ];
 
   @override
   String toString() {

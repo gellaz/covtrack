@@ -60,7 +60,7 @@ class ChangePasswordBloc
         event.passwordCheck,
       );
     } else if (event is Submitted) {
-      yield* _mapFormSubmittedToState(event.oldPassword, event.newPassowrd);
+      yield* _mapFormSubmittedToState(event.currentPassword, event.newPassowrd);
     }
   }
 
@@ -92,13 +92,15 @@ class ChangePasswordBloc
   }
 
   Stream<ChangePasswordState> _mapFormSubmittedToState(
-    String oldPassword,
+    String currentPassword,
     String newPassword,
   ) async* {
     yield ChangePasswordState.loading();
     try {
-      await authRepository.changePassword(oldPassword, newPassword);
-
+      await authRepository.changePassword(
+        currentPassword: null,
+        newPassword: null,
+      );
       yield ChangePasswordState.success();
     } catch (_) {
       yield ChangePasswordState.failure();
