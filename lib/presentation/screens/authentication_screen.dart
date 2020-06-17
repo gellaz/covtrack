@@ -12,7 +12,7 @@ class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      builder: (context, state) {
+      builder: (_, state) {
         if (state is Uninitialized) {
           return SplashScreen();
         }

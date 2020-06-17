@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
+import '../../../data/user.dart';
 import '../../repositories/authentication/authentication_repository.dart';
 
 part 'authentication_event.dart';

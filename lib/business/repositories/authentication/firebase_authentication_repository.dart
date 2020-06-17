@@ -2,10 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
+import '../../../data/user.dart';
 import 'authentication_repository.dart';
 
 /// Implementation of the [AuthenticationRepository] interface that uses
-/// Firebase the authentication service provider.
+/// Firebase as the authentication service provider.
 class FirebaseAuthenticationRepository implements AuthenticationRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -38,8 +39,9 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   }
 
   @override
-  Future<FirebaseUser> getUser() async {
-    return await _firebaseAuth.currentUser();
+  Future<User> getUser() async {
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    return User.fromFirebaseUser(currentUser);
   }
 
   @override
@@ -60,7 +62,7 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   }
 
   @override
-  Future<FirebaseUser> signInWithGoogle() async {
+  Future<User> signInWithGoogle() async {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -68,7 +70,8 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
       idToken: googleAuth.idToken,
     );
     await _firebaseAuth.signInWithCredential(credential);
-    return _firebaseAuth.currentUser();
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    return User.fromFirebaseUser(currentUser);
   }
 
   @override

@@ -30,7 +30,7 @@ class NoActiveTripsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             ButtonBar(
               alignment: MainAxisAlignment.center,
               buttonPadding: const EdgeInsets.symmetric(horizontal: 40),
