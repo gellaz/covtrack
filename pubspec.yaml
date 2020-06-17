@@ -8,6 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Firebase NoSQL database. 
   cloud_firestore:
   # App localization.
   flutter_localizations:
@@ -53,7 +54,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Mocking facilities for testing.
   mockito:
+  # Testing BLoCs.
   bloc_test:
   
 

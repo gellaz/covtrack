@@ -1,6 +1,7 @@
 import 'package:covtrack/data/user.dart';
 
 /// Contract that all implementations of [AuthenticationRepository] interface must follow.
+/// Exposes all the necessary methods to manage authentication and account management operations.
 abstract class AuthenticationRepository {
   /// Changes a registered user's [currentPassword] to [newPassword].
   Future<void> changePassword({String currentPassword, String newPassword});

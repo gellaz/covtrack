@@ -4,11 +4,17 @@ import 'package:meta/meta.dart';
 import '../../../data/trip.dart';
 import 'trips_repository.dart';
 
-/// Implementation of the [TripsRepository] interface. It manages the integration with
-/// the Firebase's remote database service Cloud Firestore.
+/// Implementation of the [TripsRepository] interface. It manages the integration with Firebase
+/// remote NoSQL database service Cloud Firestore. The database is structured following Cloud
+/// Firestore's data model: there is a collection for every user identified by user's [uid],
+/// each collection contains a document for each trip of the user identified by a unique id
+/// automatically assigned at the time of insertion by Cloud Firestore.
 class FirestoreTripsRepository implements TripsRepository {
-  final CollectionReference userTripsCollection;
+  /// User id that identifies the corresponding user's trips collection.
   final String uid;
+
+  /// Reference to the collection containing user's trips.
+  final CollectionReference userTripsCollection;
 
   FirestoreTripsRepository({@required this.uid})
       : assert(uid != null),
