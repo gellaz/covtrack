@@ -1,3 +1,4 @@
+import 'package:covtrack/business/blocs/old_destinations/old_destinations_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: Colors.red,
                   content: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text(state.message), Icon(Icons.error)],
+                    children: [Text(state.message), const Icon(Icons.error)],
                   ),
                 ),
               );
@@ -39,12 +40,14 @@ class HomeScreen extends StatelessWidget {
           if (state is TripsLoadInProgress) {
             return Center(child: CircularProgressIndicator());
           }
-          if (state is TripsLoadSuccessEmpty) {
-            return NoActiveTripsScreen();
+          if (state is TripsLoadSuccessEmpty ||
+              state is TripsLoadSuccessNotActive) {
+            return BlocProvider.value(
+              child: NoActiveTripsScreen(),
+              value: context.bloc<OldDestinationsBloc>(),
+            );
           }
-          if (state is TripsLoadSuccessNotActive) {
-            return NoActiveTripsScreen();
-          }
+
           if (state is TripsLoadSuccessActive) {
             final activeTrip = state.trips.last;
 

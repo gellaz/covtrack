@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_localizations.dart';
-import '../screens/old_trips_screen.dart';
+import '../screens/old_destinations_screen.dart';
 
-class OldTripsButton extends StatelessWidget {
+class OldDestinationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: AppLocalizations.of(context).oldTrips,
+      message: AppLocalizations.of(context).oldDestinations,
       preferBelow: false,
       verticalOffset: 40,
       child: FloatingActionButton(
@@ -20,7 +20,7 @@ class OldTripsButton extends StatelessWidget {
   void _onPressed(BuildContext context) {
     Navigator.pushNamed(
       context,
-      OldTripsScreen.routeName,
+      OldDestinationsScreen.routeName,
     );
   }
 }

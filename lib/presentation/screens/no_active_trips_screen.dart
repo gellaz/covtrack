@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_localizations.dart';
 import '../widgets/new_trip_button.dart';
-import '../widgets/old_trips_button.dart';
+import '../widgets/old_destinations_button.dart';
 
 class NoActiveTripsScreen extends StatelessWidget {
   @override
@@ -36,7 +36,7 @@ class NoActiveTripsScreen extends StatelessWidget {
               buttonPadding: const EdgeInsets.symmetric(horizontal: 40),
               children: <Widget>[
                 NewTripButton(),
-                OldTripsButton(),
+                OldDestinationsButton(),
               ],
             ),
           ],

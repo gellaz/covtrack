@@ -6,7 +6,7 @@ part of 'trips_bloc.dart';
 /// [TripsLoadSuccess] - abstract state for trips data loaded successfully.
 /// [TripsLoadSuccessActive] - trips data loaded successfully and the last trip is currently active.
 /// [TripsLoadSuccessNotActive] - trips data loaded successfully and there are no active trips.
-/// [TripsEmpty] - the list of trips loaded is empty.
+/// [TripsLoadSuccessEmpty] - the list of trips loaded is empty.
 /// [TripsLoadFailure] - an error has occurred while loading trips data.
 abstract class TripsState extends Equatable {
   const TripsState();

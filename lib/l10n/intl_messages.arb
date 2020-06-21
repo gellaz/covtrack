@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-09T20:05:33.784015",
+  "@@last_modified": "2020-06-21T12:07:00.151685",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -308,15 +308,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "oldPassword": "Old password",
-  "@oldPassword": {
-    "description": "Old Password TextInput label",
+  "oldDestinations": "Old Destinations",
+  "@oldDestinations": {
+    "description": "Old Destinations button label",
     "type": "text",
     "placeholders": {}
   },
-  "oldTrips": "Old Trips",
-  "@oldTrips": {
-    "description": "Old Trips button label",
+  "oldDestinationsLoadFailure": "Failed loading old destinations",
+  "@oldDestinationsLoadFailure": {
+    "description": "Snackbar message for the old destinations failure",
+    "type": "text",
+    "placeholders": {}
+  },
+  "oldPassword": "Old password",
+  "@oldPassword": {
+    "description": "Old Password TextInput label",
     "type": "text",
     "placeholders": {}
   },

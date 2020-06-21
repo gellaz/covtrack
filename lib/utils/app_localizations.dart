@@ -388,17 +388,24 @@ class AppLocalizations {
         locale: localeName,
       );
 
+  String get oldDestinations => Intl.message(
+        'Old Destinations',
+        name: 'oldDestinations',
+        desc: 'Old Destinations button label',
+        locale: localeName,
+      );
+
+  String get oldDestinationsLoadFailure => Intl.message(
+        'Failed loading old destinations',
+        name: 'oldDestinationsLoadFailure',
+        desc: 'Snackbar message for the old destinations failure',
+        locale: localeName,
+      );
+
   String get oldPassword => Intl.message(
         'Old password',
         name: 'oldPassword',
         desc: 'Old Password TextInput label',
-        locale: localeName,
-      );
-
-  String get oldTrips => Intl.message(
-        'Old Trips',
-        name: 'oldTrips',
-        desc: 'Old Trips button label',
         locale: localeName,
       );
 

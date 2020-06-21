@@ -1,7 +1,7 @@
-import 'package:covtrack/presentation/widgets/start_trip_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/old_destinations/old_destinations_bloc.dart';
 import '../../business/blocs/trip_details/trip_details_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../business/repositories/location/location_repository.dart';
@@ -12,6 +12,7 @@ import '../../utils/app_localizations.dart';
 import '../widgets/destination_list_tile.dart';
 import '../widgets/reason_dropdown.dart';
 import '../widgets/source_list_tile.dart';
+import '../widgets/start_trip_button.dart';
 
 class TripDetailsScreen extends StatefulWidget {
   static const routeName = '/trip-details';
@@ -59,7 +60,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                         backgroundColor: Colors.red,
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('Error'), Icon(Icons.error)],
+                          children: [Text('Error'), const Icon(Icons.error)],
                         ),
                       ),
                     );

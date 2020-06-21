@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../business/blocs/trips/trips_bloc.dart';
-import '../../data/trip.dart';
+import '../../business/blocs/old_destinations/old_destinations_bloc.dart';
+import '../../data/old_destination.dart';
 import '../../utils/app_localizations.dart';
-import '../widgets/old_trip_list_tile.dart';
+import '../widgets/old_destination_list_tile.dart';
 
-class OldTripsScreen extends StatelessWidget {
-  static const routeName = '/old-trips';
+class OldDestinationsScreen extends StatelessWidget {
+  static const routeName = '/old-destinations';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).oldTrips),
+        title: Text(AppLocalizations.of(context).oldDestinations),
       ),
-      body: BlocConsumer<TripsBloc, TripsState>(
+      body: BlocConsumer<OldDestinationsBloc, OldDestinationsState>(
         listener: (context, state) {
-          if (state is TripsLoadFailure) {
+          if (state is OldDestinationsLoadFailure) {
             Scaffold.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
@@ -26,8 +26,9 @@ class OldTripsScreen extends StatelessWidget {
                   content: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context).tripsLoadFailure),
-                      Icon(Icons.error),
+                      Text(AppLocalizations.of(context)
+                          .oldDestinationsLoadFailure),
+                      const Icon(Icons.error),
                     ],
                   ),
                 ),
@@ -35,14 +36,17 @@ class OldTripsScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is TripsLoadInProgress) {
-            return _buildTripsLoadInProgress();
+          if (state is OldDestinationsLoadInProgress) {
+            return _buildOldDestinationsLoadInProgress();
           }
-          if (state is TripsLoadSuccessEmpty) {
-            return _buildNoPreviousTrips(context);
+          if (state is OldDestinationsLoadSuccessEmpty) {
+            return _buildNoPreviousOldDestinations(context);
           }
-          if (state is TripsLoadSuccess) {
-            return _buildTripsLoadSuccess(context, state.trips);
+          if (state is OldDestinationsLoadSuccess) {
+            return _buildOldDestinationsLoadSuccess(
+              context,
+              state.oldDestinations,
+            );
           }
           return Container();
         },
@@ -50,13 +54,13 @@ class OldTripsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTripsLoadInProgress() {
+  Widget _buildOldDestinationsLoadInProgress() {
     return Center(
       child: CircularProgressIndicator(),
     );
   }
 
-  Widget _buildNoPreviousTrips(BuildContext context) {
+  Widget _buildNoPreviousOldDestinations(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(40),
       child: Center(
@@ -91,18 +95,23 @@ class OldTripsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTripsLoadSuccess(BuildContext context, List<Trip> trips) {
+  Widget _buildOldDestinationsLoadSuccess(
+    BuildContext context,
+    List<OldDestination> oldDestinations,
+  ) {
     return Column(
       children: <Widget>[
         Expanded(
           child: ListView.builder(
-            itemCount: trips.length,
+            itemCount: oldDestinations.length,
             itemBuilder: (_, int index) => Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 5,
               ),
-              child: OldTripListTile(trips.reversed.elementAt(index)),
+              child: OldDestinationListTile(
+                oldDestination: oldDestinations.elementAt(index),
+              ),
             ),
           ),
         ),
@@ -112,7 +121,7 @@ class OldTripsScreen extends StatelessWidget {
             children: <Widget>[
               const Divider(),
               Text(
-                AppLocalizations.of(context).tripsTotal(trips.length),
+                AppLocalizations.of(context).tripsTotal(oldDestinations.length),
                 style: Theme.of(context).textTheme.subtitle1.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

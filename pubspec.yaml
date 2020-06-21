@@ -37,6 +37,7 @@ dependencies:
   http:
   # Internationalization and localization.
   intl:
+  intl_translation:
   # Onboarding.
   introduction_screen:
   # Reactive programming.

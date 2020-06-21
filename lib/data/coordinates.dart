@@ -10,6 +10,8 @@ class Coordinates extends Equatable {
     @required this.longitude,
   });
 
+  String get latLngStr => '$latitude,$longitude';
+
   Map<String, Object> toJson() {
     return {
       "latitude": latitude,

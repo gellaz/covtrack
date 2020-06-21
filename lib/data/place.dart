@@ -22,6 +22,8 @@ class Place extends Equatable {
       ? formattedAddress.replaceFirst(RegExp(name + ','), '').trim()
       : formattedAddress;
 
+  String get coordsStr => '${coords.latLngStr}';
+
   Map<String, Object> toJson() {
     return {
       "placeId": placeId,

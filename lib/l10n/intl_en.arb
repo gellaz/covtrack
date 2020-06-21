@@ -308,9 +308,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "oldPassword": "Old password",
-  "@oldPassword": {
-    "description": "Old Password TextInput label",
+  "oldDestinations": "Old Destinations",
+  "@oldDestinations": {
+    "description": "Old Destinations button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "oldDestinationsLoadFailure": "Failed loading old destinations",
+  "@oldDestinationsLoadFailure": {
+    "description": "Snackbar message for the old destinations failure",
     "type": "text",
     "placeholders": {}
   },

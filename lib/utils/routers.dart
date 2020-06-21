@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../business/blocs/old_destinations/old_destinations_bloc.dart';
 import '../business/blocs/trips/trips_bloc.dart';
 import '../presentation/screens/change_password_screen.dart';
 import '../presentation/screens/delete_account_screen.dart';
 import '../presentation/screens/destination_picker_screen.dart';
 import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/news_screen.dart';
-import '../presentation/screens/old_trips_screen.dart';
+import '../presentation/screens/old_destinations_screen.dart';
 import '../presentation/screens/qr_screen.dart';
 import '../presentation/screens/settings_screen.dart';
 import '../presentation/screens/trip_details_screen.dart';
@@ -47,11 +48,11 @@ class HomeRouter implements Router {
           ),
         );
         break;
-      case OldTripsScreen.routeName:
+      case OldDestinationsScreen.routeName:
         return MaterialPageRoute(
           builder: (context) => BlocProvider.value(
-            value: context.bloc<TripsBloc>(),
-            child: OldTripsScreen(),
+            value: context.bloc<OldDestinationsBloc>(),
+            child: OldDestinationsScreen(),
           ),
         );
         break;
