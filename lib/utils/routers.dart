@@ -58,7 +58,8 @@ class HomeRouter implements Router {
         break;
       case QrScreen.routeName:
         var activeTrip = settings.arguments;
-        return MaterialPageRoute(builder: (_) => QrScreen(activeTrip));
+        return MaterialPageRoute(
+            builder: (_) => QrScreen(activeTrip: activeTrip));
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');

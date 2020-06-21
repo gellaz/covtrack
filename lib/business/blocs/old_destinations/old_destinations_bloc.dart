@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 import '../../../data/old_destination.dart';
-import '../../../data/place.dart';
 import '../../repositories/old_destinations/old_destinations_repository.dart';
 
 part 'old_destinations_event.dart';
@@ -34,10 +33,6 @@ class OldDestinationsBloc
   ) async* {
     if (event is LoadOldDestinations) {
       yield* _mapLoadOldDestinationsToState();
-    } else if (event is SetOldDestination) {
-      yield* _mapSetOldDestinationToState(event);
-    } else if (event is DeleteOldDestination) {
-      yield* _mapDeleteOldDestinationToState(event);
     } else if (event is OldDestinationsUpdated) {
       yield* _mapOldDestinationsUpdatedToState(event);
     }
@@ -56,22 +51,6 @@ class OldDestinationsBloc
           (List<OldDestination> oldDestinations) =>
               add(OldDestinationsUpdated(oldDestinations: oldDestinations)),
         );
-  }
-
-  Stream<OldDestinationsState> _mapSetOldDestinationToState(
-    SetOldDestination event,
-  ) async* {
-    oldDestinationsRepository.setDestination(
-      destination: event.destination,
-    );
-  }
-
-  Stream<OldDestinationsState> _mapDeleteOldDestinationToState(
-    DeleteOldDestination event,
-  ) async* {
-    oldDestinationsRepository.deleteDestination(
-      oldDestination: event.oldDestination,
-    );
   }
 
   // When we load our destinations, we are subscribing to the OldDestinationsRepository

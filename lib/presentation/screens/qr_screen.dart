@@ -10,7 +10,7 @@ class QrScreen extends StatelessWidget {
 
   final Trip activeTrip;
 
-  const QrScreen(this.activeTrip, {Key key})
+  const QrScreen({Key key, @required this.activeTrip})
       : assert(activeTrip != null),
         super(key: key);
 
@@ -25,7 +25,7 @@ class QrScreen extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               child: Center(
                 child: QrImage(
-                  data: state.user.uid + '-' + activeTrip.tripId,
+                  data: '${state.user.uid}-${activeTrip.tripId}',
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.all(20),
                   version: QrVersions.auto,

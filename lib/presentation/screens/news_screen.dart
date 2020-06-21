@@ -31,9 +31,7 @@ class NewsContent extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).news),
-        actions: <Widget>[
-          LogoutButton(),
-        ],
+        actions: <Widget>[LogoutButton()],
       ),
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {

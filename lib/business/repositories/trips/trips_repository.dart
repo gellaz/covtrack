@@ -4,9 +4,6 @@ import '../../../data/trip.dart';
 /// It provides all the necessary methods to perform CRUD operations on a database
 /// of [Trip] objects.
 abstract class TripsRepository {
-  /// Deletes all the saved trips for the given user.
-  Future<void> clear();
-
   /// Deletes the given [trip] from the list of user's trips.
   Future<void> delete({Trip trip});
 
