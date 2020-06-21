@@ -29,20 +29,26 @@ abstract class TripsLoadSuccess extends TripsState {
 }
 
 class TripsLoadSuccessActive extends TripsLoadSuccess {
-  const TripsLoadSuccessActive(List<Trip> trips) : super(trips: trips);
+  final List<Trip> trips;
+
+  const TripsLoadSuccessActive({@required this.trips});
 
   @override
   String toString() => 'TripsLoadSuccessActive { trips: $trips }';
 }
 
 class TripsLoadSuccessNotActive extends TripsLoadSuccess {
-  const TripsLoadSuccessNotActive(List<Trip> trips) : super(trips: trips);
+  final List<Trip> trips;
+
+  const TripsLoadSuccessNotActive({@required this.trips});
 
   @override
   String toString() => 'TripsLoadSuccessNotActive { trips: $trips }';
 }
 
-class TripsLoadSuccessEmpty extends TripsLoadSuccess {}
+class TripsLoadSuccessEmpty extends TripsLoadSuccess {
+  const TripsLoadSuccessEmpty() : super(trips: const []);
+}
 
 class TripsLoadFailure extends TripsState {
   final String message;

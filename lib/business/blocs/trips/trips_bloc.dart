@@ -37,6 +37,8 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       yield* _mapUpdateTripToState(event);
     } else if (event is DeleteTrip) {
       yield* _mapDeleteTripToState(event);
+    } else if (event is ClearCompleted) {
+      yield* _mapClearCompletedToState();
     } else if (event is TripsUpdated) {
       yield* _mapTripsUpdatedToState(event);
     }
@@ -68,6 +70,14 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     tripsRepository.delete(trip: event.trip);
   }
 
+  Stream<TripsState> _mapClearCompletedToState() async* {
+    final currentState = state;
+    if (currentState is TripsLoadSuccess) {
+      List<Trip> trips = currentState.trips;
+      trips.forEach((trip) => tripsRepository.delete(trip: trip));
+    }
+  }
+
   // When we load our trips, we are subscribing to the TripsRepository
   // and every time a new trip comes in, we add a TripsUpdated event.
   // We then handle all TodosUpdates via the following method.
@@ -75,9 +85,9 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     if (event.trips.isEmpty) {
       yield TripsLoadSuccessEmpty();
     } else if (event.trips.last.arrivalTime == null) {
-      yield TripsLoadSuccessActive(event.trips);
+      yield TripsLoadSuccessActive(trips: event.trips);
     } else {
-      yield TripsLoadSuccessNotActive(event.trips);
+      yield TripsLoadSuccessNotActive(trips: event.trips);
     }
   }
 }

@@ -161,6 +161,9 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
             ),
           ),
         );
+    context
+        .bloc<OldDestinationsBloc>()
+        .add(SetOldDestination(destination: widget.destination));
   }
 
   void onReasonSelected(String newReason) {

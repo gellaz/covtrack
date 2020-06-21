@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:covtrack/data/place.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -33,8 +34,14 @@ class OldDestinationsBloc
   ) async* {
     if (event is LoadOldDestinations) {
       yield* _mapLoadOldDestinationsToState();
+    } else if (event is SetOldDestination) {
+      yield* _mapSetOldDestinationToState(event);
+    } else if (event is DeleteOldDestination) {
+      yield* _mapDeleteOldDestinationToState(event);
     } else if (event is OldDestinationsUpdated) {
       yield* _mapOldDestinationsUpdatedToState(event);
+    } else if (event is ClearCompleted) {
+      yield* _mapClearCompletedToState();
     }
   }
 
@@ -51,6 +58,31 @@ class OldDestinationsBloc
           (List<OldDestination> oldDestinations) =>
               add(OldDestinationsUpdated(oldDestinations: oldDestinations)),
         );
+  }
+
+  Stream<OldDestinationsState> _mapSetOldDestinationToState(
+    SetOldDestination event,
+  ) async* {
+    oldDestinationsRepository.setDestination(
+      destination: event.destination,
+    );
+  }
+
+  Stream<OldDestinationsState> _mapDeleteOldDestinationToState(
+    DeleteOldDestination event,
+  ) async* {
+    oldDestinationsRepository.deleteDestination(
+      destination: event.destination,
+    );
+  }
+
+  Stream<OldDestinationsState> _mapClearCompletedToState() async* {
+    final currentState = state;
+    if (currentState is OldDestinationsLoadSuccess) {
+      List<OldDestination> oldDestinations = currentState.oldDestinations;
+      oldDestinations.forEach((oldDestination) => oldDestinationsRepository
+          .deleteDestination(destination: oldDestination.place));
+    }
   }
 
   // When we load our destinations, we are subscribing to the OldDestinationsRepository

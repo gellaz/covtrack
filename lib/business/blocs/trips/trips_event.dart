@@ -52,6 +52,8 @@ class DeleteTrip extends TripsEvent {
   String toString() => 'DeleteTrip { trip: $trip }';
 }
 
+class ClearCompleted extends TripsEvent {}
+
 class TripsUpdated extends TripsEvent {
   final List<Trip> trips;
 

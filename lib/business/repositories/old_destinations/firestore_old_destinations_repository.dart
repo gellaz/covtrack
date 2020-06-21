@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covtrack/data/coordinates.dart';
 import 'package:covtrack/data/place.dart';
 import 'package:meta/meta.dart';
 
@@ -29,9 +28,9 @@ class FirestoreOldDestinationsRepository implements OldDestinationsRepository {
 
   @override
   Future<void> deleteDestination({
-    @required OldDestination oldDestination,
+    @required Place destination,
   }) async {
-    return userDestinations.document(oldDestination.coordsStr).delete();
+    return userDestinations.document(destination.coordsStr).delete();
   }
 
   @override
