@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/delete_account/delete_account_bloc.dart';
 import '../../utils/app_localizations.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
-  final DeleteAccountBloc deleteAccountBloc;
   final String password;
 
   const DeleteAccountDialog({
     Key key,
-    @required this.deleteAccountBloc,
     @required this.password,
-  })  : assert(deleteAccountBloc != null),
-        assert(password != null),
+  })  : assert(password != null),
         super(key: key);
 
   @override
@@ -24,8 +22,10 @@ class DeleteAccountDialog extends StatelessWidget {
         FlatButton(
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
-            // Notifies AuthenticationBloc of a new AccountDeleted event.
-            deleteAccountBloc.add(Submitted(password: password));
+            // Notifies DeleteAccountBloc of a new Submiitted event.
+            context
+                .bloc<DeleteAccountBloc>()
+                .add(Submitted(password: password));
             // Closes the AlertDialog.
             Navigator.pop(context);
           },

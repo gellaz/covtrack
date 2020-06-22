@@ -26,6 +26,14 @@ class FirestoreTripsRepository implements TripsRepository {
             .collection('trips');
 
   @override
+  Future<void> clear() async {
+    QuerySnapshot snap = await userTrips.getDocuments();
+    return snap.documents.forEach(
+      (DocumentSnapshot ds) => ds.reference.delete(),
+    );
+  }
+
+  @override
   Future<void> delete({@required Trip trip}) async {
     return userTrips.document(trip.tripId).delete();
   }

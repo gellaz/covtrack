@@ -40,8 +40,8 @@ class OldDestinationsBloc
       yield* _mapDeleteOldDestinationToState(event);
     } else if (event is OldDestinationsUpdated) {
       yield* _mapOldDestinationsUpdatedToState(event);
-    } else if (event is ClearCompleted) {
-      yield* _mapClearCompletedToState();
+    } else if (event is OldDestinationsCleared) {
+      yield* _mapOldDestinationsClearedToState();
     }
   }
 
@@ -63,7 +63,7 @@ class OldDestinationsBloc
   Stream<OldDestinationsState> _mapSetOldDestinationToState(
     SetOldDestination event,
   ) async* {
-    oldDestinationsRepository.setDestination(
+    oldDestinationsRepository.incrementNumVisits(
       destination: event.destination,
     );
   }
@@ -76,7 +76,7 @@ class OldDestinationsBloc
     );
   }
 
-  Stream<OldDestinationsState> _mapClearCompletedToState() async* {
+  Stream<OldDestinationsState> _mapOldDestinationsClearedToState() async* {
     final currentState = state;
     if (currentState is OldDestinationsLoadSuccess) {
       List<OldDestination> oldDestinations = currentState.oldDestinations;

@@ -99,12 +99,7 @@ class SettingsRouter implements Router {
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
         break;
       case DeleteAccountScreen.routeName:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
-            value: context.bloc<TripsBloc>(),
-            child: DeleteAccountScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => DeleteAccountScreen());
         break;
       default:
         throw Exception('Invalid route: ${settings.name}');

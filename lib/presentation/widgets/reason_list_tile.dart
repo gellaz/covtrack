@@ -25,6 +25,7 @@ class ReasonListTile extends StatelessWidget {
         ),
         title: Text(
           AppLocalizations.of(context).reasonPickerDesc,
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
           reason,

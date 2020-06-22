@@ -1,4 +1,3 @@
-import 'package:covtrack/business/blocs/trips/trips_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -161,9 +160,8 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
       context: context,
       barrierDismissible: false,
       builder: (_) => BlocProvider.value(
-        value: context.bloc<TripsBloc>(),
+        value: context.bloc<DeleteAccountBloc>(),
         child: DeleteAccountDialog(
-          deleteAccountBloc: _deleteAccountBloc,
           password: _passwordController.text,
         ),
       ),

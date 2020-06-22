@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../business/blocs/old_destinations/old_destinations_bloc.dart';
 import '../../business/blocs/stopwatch/stopwatch_bloc.dart';
 import '../../business/blocs/trips/trips_bloc.dart';
 import '../../data/trip.dart';
@@ -35,6 +36,7 @@ class ReturnTripButton extends StatelessWidget {
         child: ReturnTripDialog(activeTrip),
         providers: [
           BlocProvider.value(value: context.bloc<TripsBloc>()),
+          BlocProvider.value(value: context.bloc<OldDestinationsBloc>()),
           BlocProvider.value(value: context.bloc<StopwatchBloc>()),
         ],
       ),

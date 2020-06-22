@@ -7,6 +7,8 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../utils/validators.dart';
 import '../../repositories/authentication/authentication_repository.dart';
+import '../../repositories/old_destinations/old_destinations_repository.dart';
+import '../../repositories/trips/trips_repository.dart';
 
 part 'delete_account_event.dart';
 part 'delete_account_state.dart';
@@ -17,8 +19,19 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
   /// Authentication repository used to delete the account.
   final AuthenticationRepository authRepository;
 
-  DeleteAccountBloc({@required this.authRepository})
-      : assert(authRepository != null);
+  /// Trips repository used to clear all the stored trips of the user from the database.
+  final TripsRepository tripsRepository;
+
+  /// Old destinations repository used to clear all the reached destinations of the user stored in the database.
+  final OldDestinationsRepository oldDestinationsRepository;
+
+  DeleteAccountBloc({
+    @required this.authRepository,
+    @required this.tripsRepository,
+    @required this.oldDestinationsRepository,
+  })  : assert(authRepository != null),
+        assert(tripsRepository != null),
+        assert(oldDestinationsRepository != null);
 
   @override
   DeleteAccountState get initialState => DeleteAccountState.empty();
@@ -66,7 +79,14 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
   ) async* {
     yield DeleteAccountState.loading();
     try {
-      await authRepository.deleteAccount(password: password);
+      Future.wait([
+        // Deletes user account.
+        authRepository.deleteAccount(password: password),
+        // Deletes all the trips stored in the database for that user.
+        tripsRepository.clear(),
+        // Deletes all the reached destinations stored in the database for that user.
+        oldDestinationsRepository.clear(),
+      ]);
       yield DeleteAccountState.success();
     } catch (e) {
       yield DeleteAccountState.failure();

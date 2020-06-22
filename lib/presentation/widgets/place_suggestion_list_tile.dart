@@ -12,9 +12,15 @@ class PlaceSuggestionListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.pin_drop),
+      leading: Icon(
+        Icons.pin_drop,
+        color: Theme.of(context).accentColor,
+      ),
       title: Text(suggestion.mainText),
-      subtitle: Text(suggestion.secondaryText),
+      subtitle: Text(
+        suggestion.secondaryText,
+        style: TextStyle(color: Theme.of(context).primaryColorLight),
+      ),
     );
   }
 }

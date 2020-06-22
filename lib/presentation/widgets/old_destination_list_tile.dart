@@ -18,15 +18,26 @@ class OldDestinationListTile extends StatelessWidget {
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.history),
+            Icon(
+              Icons.history,
+              color: Theme.of(context).accentColor,
+            ),
           ],
         ),
         title: Text(
           oldDestination.place.mainText,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(oldDestination.place.secondaryText),
-        trailing: Text(oldDestination.numVisits.toString()),
+        subtitle: Text(
+          oldDestination.place.secondaryText,
+          overflow: TextOverflow.fade,
+          softWrap: false,
+          style: TextStyle(color: Theme.of(context).primaryColorLight),
+        ),
+        trailing: Text(
+          oldDestination.numVisits.toString(),
+          style: TextStyle(color: Theme.of(context).primaryColorLight),
+        ),
         onTap: () => _onTap(context),
       ),
     );

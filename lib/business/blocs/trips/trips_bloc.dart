@@ -37,8 +37,8 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
       yield* _mapUpdateTripToState(event);
     } else if (event is DeleteTrip) {
       yield* _mapDeleteTripToState(event);
-    } else if (event is ClearCompleted) {
-      yield* _mapClearCompletedToState();
+    } else if (event is TripsCleared) {
+      yield* _mapTripsClearedToState();
     } else if (event is TripsUpdated) {
       yield* _mapTripsUpdatedToState(event);
     }
@@ -70,7 +70,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     tripsRepository.delete(trip: event.trip);
   }
 
-  Stream<TripsState> _mapClearCompletedToState() async* {
+  Stream<TripsState> _mapTripsClearedToState() async* {
     final currentState = state;
     if (currentState is TripsLoadSuccess) {
       List<Trip> trips = currentState.trips;

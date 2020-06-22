@@ -14,7 +14,10 @@ class NumStopsListTile extends StatelessWidget {
           Icons.exposure_plus_1,
           color: Theme.of(context).accentColor,
         ),
-        title: Text(AppLocalizations.of(context).numStops),
+        title: Text(
+          AppLocalizations.of(context).numStops,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         trailing: BlocBuilder<StopsTrackerBloc, StopsTrackerState>(
           builder: (_, state) {
             return Text(

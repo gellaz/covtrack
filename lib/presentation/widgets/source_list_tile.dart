@@ -24,7 +24,10 @@ class SourceListTile extends StatelessWidget {
             ),
           ],
         ),
-        title: Text(AppLocalizations.of(context).source),
+        title: Text(
+          AppLocalizations.of(context).source,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         subtitle: Text.rich(
           TextSpan(
             text: '${source.mainText}',

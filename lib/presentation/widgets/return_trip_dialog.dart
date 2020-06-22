@@ -1,3 +1,4 @@
+import 'package:covtrack/business/blocs/old_destinations/old_destinations_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +33,10 @@ class ReturnTripDialog extends StatelessWidget {
               ..add(
                 AddTrip(trip: activeTrip.returnTrip()),
               );
-            context.bloc<StopwatchBloc>()..add(StopwatchStarted());
+            context
+                .bloc<OldDestinationsBloc>()
+                .add(SetOldDestination(destination: activeTrip.source));
+            context.bloc<StopwatchBloc>().add(StopwatchStarted());
             Navigator.of(context).pop();
           },
         ),

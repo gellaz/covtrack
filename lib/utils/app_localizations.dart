@@ -605,6 +605,22 @@ class AppLocalizations {
         locale: localeName,
       );
 
+  String totalDestinations(int tot) => Intl.message(
+        'Total destinations reached: $tot',
+        name: 'totalDestinations',
+        args: [tot],
+        desc: 'It shows the user the total number of destinations reached',
+        locale: localeName,
+      );
+
+  String totalTrips(int tot) => Intl.message(
+        'Total number of trips: $tot',
+        name: 'totalTrips',
+        args: [tot],
+        desc: 'It shows the user the total number of trips made',
+        locale: localeName,
+      );
+
   String get tripDetails => Intl.message(
         'Trip Details',
         name: 'tripDetails',
@@ -616,14 +632,6 @@ class AppLocalizations {
         'Error retrieving your previous trips',
         name: 'tripsLoadFailure',
         desc: 'Trips load failure message',
-        locale: localeName,
-      );
-
-  String tripsTotal(int tot) => Intl.message(
-        'Total number of trips: $tot',
-        name: 'tripsTotal',
-        args: [tot],
-        desc: 'It shows the user the total number of trips made',
         locale: localeName,
       );
 

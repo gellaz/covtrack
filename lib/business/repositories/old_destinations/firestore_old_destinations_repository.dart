@@ -27,6 +27,14 @@ class FirestoreOldDestinationsRepository implements OldDestinationsRepository {
             .collection('destinations');
 
   @override
+  Future<void> clear() async {
+    QuerySnapshot snap = await userDestinations.getDocuments();
+    return snap.documents.forEach(
+      (DocumentSnapshot ds) => ds.reference.delete(),
+    );
+  }
+
+  @override
   Future<void> deleteDestination({
     @required Place destination,
   }) async {
@@ -39,17 +47,20 @@ class FirestoreOldDestinationsRepository implements OldDestinationsRepository {
       return snapshot.documents
           .map((doc) => OldDestination.fromSnapshot(doc))
           .toList()
-            ..sort((o1, o2) => o1.numVisits.compareTo(o2.numVisits));
+            ..sort((o1, o2) => o2.numVisits.compareTo(o1.numVisits));
     });
   }
 
   @override
-  Future<void> setDestination({
+  Future<void> incrementNumVisits({
     @required Place destination,
   }) async {
-    return userDestinations.document(destination.coordsStr).setData({
-      "place": destination.toJson(),
-      "numVisits": FieldValue.increment(1),
-    });
+    return userDestinations.document(destination.coordsStr).setData(
+      {
+        "place": destination.toJson(),
+        "numVisits": FieldValue.increment(1),
+      },
+      merge: true,
+    );
   }
 }

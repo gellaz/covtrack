@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/delete_account/delete_account_bloc.dart';
 import '../../business/repositories/authentication/authentication_repository.dart';
+import '../../business/repositories/old_destinations/old_destinations_repository.dart';
+import '../../business/repositories/trips/trips_repository.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/delete_account_form.dart';
 
@@ -16,6 +18,9 @@ class DeleteAccountScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) => DeleteAccountBloc(
           authRepository: context.repository<AuthenticationRepository>(),
+          tripsRepository: context.repository<TripsRepository>(),
+          oldDestinationsRepository:
+              context.repository<OldDestinationsRepository>(),
         ),
         child: Padding(
           padding: const EdgeInsets.all(40),

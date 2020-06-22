@@ -120,11 +120,26 @@ class OldDestinationsScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               const Divider(),
-              Text(
-                AppLocalizations.of(context).tripsTotal(oldDestinations.length),
-                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)
+                        .totalDestinations(oldDestinations.length),
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context).totalTrips(
+                        oldDestinations.fold(
+                            0,
+                            (previousValue, element) =>
+                                previousValue + element.numVisits)),
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
               ),
             ],
           ),

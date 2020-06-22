@@ -5,7 +5,7 @@ part of 'trips_bloc.dart';
 /// [AddTrip] - informs the [TripsBloc] to add a trip to the list of user's trips.
 /// [UpdateTrip] -  informs the [TripsBloc] that a trip has been updated.
 /// [DeleteTrip] -  informs the [TripsBloc] that a trip has been deleted.
-/// [ClearCompleted] - informs the [TripsBloc] the all user's trips should be deleted.
+/// [TripsCleared] - informs the [TripsBloc] the all user's trips should be deleted.
 /// [TripsUpdated] - event that groups all the previous events.
 abstract class TripsEvent extends Equatable {
   const TripsEvent();
@@ -52,7 +52,7 @@ class DeleteTrip extends TripsEvent {
   String toString() => 'DeleteTrip { trip: $trip }';
 }
 
-class ClearCompleted extends TripsEvent {}
+class TripsCleared extends TripsEvent {}
 
 class TripsUpdated extends TripsEvent {
   final List<Trip> trips;

@@ -4,7 +4,7 @@ part of 'old_destinations_bloc.dart';
 /// [LoadOldDestinations] - informs the [OldDestinationsBloc] to load the list of all user's old destinations.
 /// [SetOldDestination] - informs the [OldDestinationsBloc] to add a old destination to the list of user's old destinations if not present yet otherwise to update the number of visits for that destination.
 /// [DeleteOldDestination] -  informs the [OldDestinationsBloc] that an old destination has been deleted.
-/// [ClearCompleted] - informs the [OldDestinationsBloc] the all user's old destinations should be deleted.
+/// [OldDestinationsCleared] - informs the [OldDestinationsBloc] the all user's old destinations should be deleted.
 /// [OldDestinationsUpdated] - informs the [OldDestinationsBloc] that the loaded list containing user's old destinations has been updated.
 abstract class OldDestinationsEvent extends Equatable {
   const OldDestinationsEvent();
@@ -37,7 +37,7 @@ class DeleteOldDestination extends OldDestinationsEvent {
   String toString() => 'DeleteOldDestination { destination: $destination }';
 }
 
-class ClearCompleted extends OldDestinationsEvent {}
+class OldDestinationsCleared extends OldDestinationsEvent {}
 
 class LoadOldDestinations extends OldDestinationsEvent {}
 

@@ -14,7 +14,10 @@ class StopwatchListTile extends StatelessWidget {
           Icons.access_time,
           color: Theme.of(context).accentColor,
         ),
-        title: Text(AppLocalizations.of(context).elapsedTime),
+        title: Text(
+          AppLocalizations.of(context).elapsedTime,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         trailing: BlocBuilder<StopwatchBloc, StopwatchState>(
           builder: (_, state) {
             final Duration elapsedTime = state.elapsedTime;

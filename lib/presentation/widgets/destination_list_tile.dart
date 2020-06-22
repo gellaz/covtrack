@@ -24,7 +24,10 @@ class DestinationListTile extends StatelessWidget {
             ),
           ],
         ),
-        title: Text(AppLocalizations.of(context).destination),
+        title: Text(
+          AppLocalizations.of(context).destination,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         subtitle: Text.rich(
           TextSpan(
             text: '${destination.mainText}',

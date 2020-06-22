@@ -494,6 +494,22 @@
     "type": "text",
     "placeholders": {}
   },
+  "totalDestinations": "Totale destinationi raggiunte: {tot}",
+  "@totalDestinations": {
+    "description": "It shows the user the total number of destinations reached",
+    "type": "text",
+    "placeholders": {
+      "tot": {}
+    }
+  },
+  "totalTrips": "Totale spostamenti: {tot}",
+  "@totalTrips": {
+    "description": "It shows the user the total number of trips made",
+    "type": "text",
+    "placeholders": {
+      "tot": {}
+    }
+  },
   "tripDetails": "Dettagli Spostamento",
   "@tripDetails": {
     "description": "Trip Details appbar title",
@@ -505,14 +521,6 @@
     "description": "Trips load failure message",
     "type": "text",
     "placeholders": {}
-  },
-  "tripsTotal": "Numero totale spostamenti: {tot}",
-  "@tripsTotal": {
-    "description": "It shows the user the total number of trips made",
-    "type": "text",
-    "placeholders": {
-      "tot": {}
-    }
   },
   "yes": "Si",
   "@yes": {
