@@ -79,14 +79,12 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
   ) async* {
     yield DeleteAccountState.loading();
     try {
-      Future.wait([
-        // Deletes user account.
-        authRepository.deleteAccount(password: password),
-        // Deletes all the trips stored in the database for that user.
-        tripsRepository.clear(),
-        // Deletes all the reached destinations stored in the database for that user.
-        oldDestinationsRepository.clear(),
-      ]);
+      // Deletes all the trips stored in the database for that user.
+      await tripsRepository.clear();
+      // Deletes all the reached destinations stored in the database for that user.
+      await oldDestinationsRepository.clear();
+      // Deletes user account.
+      await authRepository.deleteAccount(password: password);
       yield DeleteAccountState.success();
     } catch (e) {
       yield DeleteAccountState.failure();

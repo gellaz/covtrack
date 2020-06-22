@@ -17,8 +17,9 @@ class ChangePasswordBloc
   /// Authentication repository used to change the password of the account.
   final AuthenticationRepository authRepository;
 
-  ChangePasswordBloc({@required this.authRepository})
-      : assert(authRepository != null);
+  ChangePasswordBloc({
+    @required this.authRepository,
+  }) : assert(authRepository != null);
 
   @override
   ChangePasswordState get initialState => ChangePasswordState.empty();
@@ -98,8 +99,8 @@ class ChangePasswordBloc
     yield ChangePasswordState.loading();
     try {
       await authRepository.changePassword(
-        currentPassword: null,
-        newPassword: null,
+        currentPassword: currentPassword,
+        newPassword: newPassword,
       );
       yield ChangePasswordState.success();
     } catch (_) {

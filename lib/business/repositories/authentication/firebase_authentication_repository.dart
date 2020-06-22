@@ -17,24 +17,17 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
     @required String newPassword,
   }) async {
     FirebaseUser currentUser = await _firebaseAuth.currentUser();
-    await currentUser.reauthenticateWithCredential(
-      EmailAuthProvider.getCredential(
-        email: currentUser.email,
-        password: currentPassword,
-      ),
-    );
+    await reauthenticate(password: currentPassword);
     return await currentUser.updatePassword(newPassword);
   }
 
   @override
-  Future<void> deleteAccount({@required String password}) async {
+  Future<void> deleteAccount({
+    @required String email,
+    @required String password,
+  }) async {
     FirebaseUser currentUser = await _firebaseAuth.currentUser();
-    await currentUser.reauthenticateWithCredential(
-      EmailAuthProvider.getCredential(
-        email: currentUser.email,
-        password: password,
-      ),
-    );
+    await reauthenticate(password: password);
     return await currentUser.delete();
   }
 
@@ -48,6 +41,20 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   Future<bool> isSignedIn() async {
     FirebaseUser currentUser = await _firebaseAuth.currentUser();
     return currentUser != null;
+  }
+
+  @override
+  Future<void> reauthenticate({
+    @required String password,
+  }) async {
+    FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    await currentUser.reauthenticateWithCredential(
+      EmailAuthProvider.getCredential(
+        email: currentUser.email,
+        password: password,
+      ),
+    );
+    return await currentUser.reload();
   }
 
   @override
