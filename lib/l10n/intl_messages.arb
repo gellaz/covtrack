@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-22T09:47:29.903100",
+  "@@last_modified": "2020-06-22T20:15:32.260752",
   "activeTrip": "Active Trip",
   "@activeTrip": {
     "description": "Active trip Home screen description",
@@ -470,7 +470,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "stayHome": "Stay Home, stay safe",
+  "stayHome": "Stay Home, Stay Safe",
   "@stayHome": {
     "description": "HomeScreen title when there is no active trips",
     "type": "text",

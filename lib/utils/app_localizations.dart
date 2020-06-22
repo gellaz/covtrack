@@ -578,7 +578,7 @@ class AppLocalizations {
       );
 
   String get stayHome => Intl.message(
-        'Stay Home, stay safe',
+        'Stay Home, Stay Safe',
         name: 'stayHome',
         desc: 'HomeScreen title when there is no active trips',
         locale: localeName,

@@ -470,7 +470,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "stayHome": "Stay Home, stay safe",
+  "stayHome": "Stay Home, Stay Safe",
   "@stayHome": {
     "description": "HomeScreen title when there is no active trips",
     "type": "text",
