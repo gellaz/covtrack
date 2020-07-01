@@ -23,8 +23,19 @@ void main() {
         throwsA(isAssertionError),
       );
     });
+
     test('initial state is ChangePasswordState.empty()', () {
       expect(changePasswordBloc.initialState, ChangePasswordState.empty());
     });
+
+    blocTest(
+      'testingthisshit',
+      build: () async {
+        return changePasswordBloc;
+      },
+      act: (bloc) => bloc.add(OldPasswordChanged(password: 'test1234')),
+      expect: [ChangePasswordState.empty().update(isOldPasswordValid: true)],
+      wait: Duration(milliseconds: 300),
+    );
   });
 }
