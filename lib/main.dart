@@ -29,6 +29,7 @@ Future<String> getGoogleApiKey() async {
   return remoteConfig.getValue('google_api_key').asString();
 }
 
+/// Flutter application entry point.
 void main() async {
   // Required in Flutter v1.9.4+ before using any plugins if
   // the code is executed before runApp.
@@ -78,18 +79,18 @@ void main() async {
   );
 }
 
-// Widget wrapping the whole mobile application.
+// Widget wrapping the whole application.
 class CovTrackApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Preventing device orientation changes and force portrait.
+    // Preventing device orientation changes and force portrait mode only.
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
     return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (context, state) {
+      builder: (_, state) {
         if (state is SettingsLoadSuccess) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
