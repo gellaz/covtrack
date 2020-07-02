@@ -5,27 +5,33 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../business/blocs/news/news_bloc.dart';
+import '../../business/repositories/news/api_news_repository.dart';
 import '../../business/repositories/news/news_repository.dart';
 import '../../data/news.dart';
 import '../../utils/app_localizations.dart';
 import '../widgets/info_list_view.dart';
 import '../widgets/logout_button.dart';
 
+/// Container class used to provide the [NewsBloc] to the class
+/// [NewsScreenContent] containing the actual content of the screen.
 class NewsScreen extends StatelessWidget {
   static const routeName = '/';
 
   @override
   Widget build(BuildContext context) {
+    final NewsRepository newsRepository = ApiNewsRepository();
+
     return BlocProvider(
-      create: (context) =>
-          NewsBloc(newsRepository: context.repository<NewsRepository>())
-            ..add(NewsFetched()),
-      child: NewsContent(),
+      create: (_) =>
+          NewsBloc(newsRepository: newsRepository)..add(NewsFetched()),
+      child: NewsScreenContent(),
     );
   }
 }
 
-class NewsContent extends StatelessWidget {
+/// Content of the [NewsScreen]. The content shown on the page depends
+/// on the status of the [NewsBloc].
+class NewsScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
