@@ -4,8 +4,12 @@ import 'package:meta/meta.dart';
 
 import 'place.dart';
 
+/// Class representing a destination reached in the past by the user with a trip.
 class OldDestination extends Equatable {
+  /// Visited place.
   final Place place;
+
+  /// How many times the user has reached the destination.
   final int numVisits;
 
   const OldDestination({
@@ -13,8 +17,11 @@ class OldDestination extends Equatable {
     @required this.numVisits,
   });
 
+  /// Getter returning a string with the coordinates of the point
+  /// in the following format: '[latitude],[longitude]'.
   String get coordsStr => '${place.coords.latLngStr}';
 
+  /// Serializes the [OldDestination] object into a JSON format object.
   Map<String, Object> toJson() {
     return {
       "place": place.toJson(),
@@ -22,6 +29,7 @@ class OldDestination extends Equatable {
     };
   }
 
+  /// Deserializes the input [json] object into an [OldDestination] object.
   factory OldDestination.fromJson(Map<String, Object> json) {
     return OldDestination(
       place: Place.fromJson(json['place']),
@@ -29,6 +37,9 @@ class OldDestination extends Equatable {
     );
   }
 
+  /// Deserializes the input DocumentSnapshot object ([snap]) object
+  /// into an [OldDestination] object. DocumentSnapshot is the class
+  /// representing a document in Cloud Firestore data model.
   factory OldDestination.fromSnapshot(DocumentSnapshot snap) {
     return OldDestination(
       place: Place.fromJson(snap.data['place']),
@@ -36,6 +47,8 @@ class OldDestination extends Equatable {
     );
   }
 
+  /// Returns a copy of the [OldDestination] object where only the properties
+  /// passed in as arguments are updated.
   OldDestination copyWith({
     Place place,
     int numVisits,

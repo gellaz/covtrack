@@ -5,16 +5,30 @@ import 'package:meta/meta.dart';
 import 'place.dart';
 import 'stop.dart';
 
+/// Class representing the trip of a user.
 class Trip extends Equatable {
+  /// Unique ID of the trip.
   final String tripId;
+
+  /// Reason for the trip.
   final String reason;
+
+  /// Exact time when the trip starts.
   final DateTime startingTime;
+
+  /// Exact time when the trip ends.
   final DateTime arrivalTime;
+
+  /// Place of departure of the trip.
   final Place source;
+
+  /// Place of arrival of the trip.
   final Place destination;
+
+  /// List containing all the stops of the trip.
   final List<Stop> stops;
 
-  Trip({
+  const Trip({
     @required this.tripId,
     @required this.reason,
     @required this.startingTime,
@@ -24,6 +38,7 @@ class Trip extends Equatable {
     @required this.stops,
   });
 
+  /// Serializes the [Trip] object into a JSON format object.
   Map<String, Object> toJson() {
     return {
       "tripId": tripId,
@@ -36,6 +51,7 @@ class Trip extends Equatable {
     };
   }
 
+  /// Deserializes the input [json] object into an [Trip] object.
   factory Trip.fromJson(Map<String, Object> json) {
     List<Stop> _stops = [];
 
@@ -57,6 +73,9 @@ class Trip extends Equatable {
     );
   }
 
+  /// Deserializes the input DocumentSnapshot object ([snap]) object
+  /// into a [Trip] object. DocumentSnapshot is the class
+  /// representing a document in Cloud Firestore data model.
   factory Trip.fromSnapshot(DocumentSnapshot snap) {
     List<Stop> _stops = [];
 
@@ -77,6 +96,8 @@ class Trip extends Equatable {
     );
   }
 
+  /// Returns the return trip (source and destination swapped)
+  /// starting from the current trip.
   Trip returnTrip() {
     return Trip(
       tripId: null,
@@ -89,6 +110,8 @@ class Trip extends Equatable {
     );
   }
 
+  /// Returns a copy of the [Trip] object where only the properties
+  /// passed in as arguments are updated.
   Trip copyWith({
     String tripId,
     String reason,
