@@ -1,15 +1,5 @@
-import 'dart:ui';
-
-import 'package:google_maps_webservice/geocoding.dart';
-import 'package:google_maps_webservice/places.dart';
-import 'package:meta/meta.dart';
-import 'package:uuid/uuid.dart';
-
-import '../../../data/coordinates.dart';
 import '../../../data/place.dart';
 import '../../../data/place_suggestion.dart';
-
-part 'google_places_repository.dart';
 
 /// Contract that all the implementations of the [PlacesRepository] interface must follow.
 /// This interface is an abstraction to let the user retrieve different kind of information

@@ -1,12 +1,32 @@
-part of 'places_repository.dart';
+import 'dart:ui';
+
+import 'package:google_maps_webservice/geocoding.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:meta/meta.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../../data/coordinates.dart';
+import '../../../data/place.dart';
+import '../../../data/place_suggestion.dart';
+import 'places_repository.dart';
 
 /// Implementation of the [PlacesService] interface that uses
 /// the package [google_maps_webservice] which is simply a wrapper
-/// around Google Places APIs.
+/// around Google Maps APIs.
 class GooglePlacesRepository implements PlacesRepository {
-  static const GOOGLE_API_KEY = 'AIzaSyC5k8IchkmGBB4bNVjkIpVjm_X-XVMEvXQ';
-  final places = GoogleMapsPlaces(apiKey: GOOGLE_API_KEY);
-  final geocoding = GoogleMapsGeocoding(apiKey: GOOGLE_API_KEY);
+  /// API key necessary to access Google Maps webservices.
+  final String googleApiKey;
+
+  /// Wrapper for the Google Places API.
+  final GoogleMapsPlaces places;
+
+  /// Wrapper for the Google Geocoding API.
+  final GoogleMapsGeocoding geocoding;
+
+  GooglePlacesRepository({@required this.googleApiKey})
+      : assert(googleApiKey != null),
+        places = GoogleMapsPlaces(apiKey: googleApiKey),
+        geocoding = GoogleMapsGeocoding(apiKey: googleApiKey);
 
   @override
   Future<Place> getPlaceFromCoords({

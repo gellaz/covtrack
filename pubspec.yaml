@@ -15,10 +15,12 @@ dependencies:
     sdk: flutter
   # Compare objects not references.
   equatable:
-  # Firebase authentication API.
+  # Firebase Authentication API.
   firebase_auth:
-  # Firebase core Flutter SDK.
+  # Firebase Core Flutter SDK.
   firebase_core:
+  # Firebase Remote Config API.
+  firebase_remote_config:
   # BLoC pattern utilities.
   flutter_bloc:
   # Autocomplete TextField.

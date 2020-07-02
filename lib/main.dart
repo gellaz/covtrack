@@ -1,3 +1,4 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'business/repositories/location/geolocator_location_repository.dart';
 import 'business/repositories/location/location_repository.dart';
 import 'business/repositories/news/api_news_repository.dart';
 import 'business/repositories/news/news_repository.dart';
+import 'business/repositories/places/google_places_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
 import 'business/repositories/settings/sharedprefs_settings_repository.dart';
@@ -19,7 +21,7 @@ import 'presentation/screens/splash_screen.dart';
 import 'presentation/styles/themes.dart';
 import 'utils/app_localizations.dart';
 
-void main() {
+void main() async {
   // Required in Flutter v1.9.4+ before using any plugins if
   // the code is executed before runApp.
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,10 +29,13 @@ void main() {
   // Bloc delegate used for debugging.
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
+  // Fetching Google Maps API key from Firebase.
+  final String googleApiKey = await getGoogleApiKey();
+
   // Create the repositories.
   final authRepository = FirebaseAuthenticationRepository();
   final locationRepository = GeolocatorLocationRepository();
-  final placesRepository = GooglePlacesRepository();
+  final placesRepository = GooglePlacesRepository(googleApiKey: googleApiKey);
   final settingsRepository = SharedPrefsSettingsRepository();
   final newsRepository = ApiNewsRepository();
 
@@ -83,6 +88,7 @@ class CovTrack extends StatelessWidget {
       builder: (context, state) {
         if (state is SettingsLoadSuccess) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'CovTrack',
             theme: state.settings['theme'] == 'dark'
                 ? AppTheme.dark
@@ -116,4 +122,13 @@ class CovTrack extends StatelessWidget {
       },
     );
   }
+}
+
+/// Returns the API key to access the Google Maps web services. The key is saved in a
+/// remote configuration file in the Firebase back-end.
+Future<String> getGoogleApiKey() async {
+  final RemoteConfig remoteConfig = await RemoteConfig.instance;
+  await remoteConfig.fetch(expiration: Duration(hours: 1));
+  await remoteConfig.activateFetched();
+  return remoteConfig.getValue('google_api_key').asString();
 }
