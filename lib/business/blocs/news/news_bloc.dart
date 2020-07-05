@@ -17,10 +17,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   /// News repository used to fetch data from the Covid-19 API.
   final NewsRepository newsRepository;
 
-  NewsBloc({@required this.newsRepository}) : assert(newsRepository != null);
-
-  @override
-  NewsState get initialState => NewsInitial();
+  NewsBloc({@required this.newsRepository})
+      : assert(newsRepository != null),
+        super(NewsInitial());
 
   @override
   Stream<NewsState> mapEventToState(NewsEvent event) async* {

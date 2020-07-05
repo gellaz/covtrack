@@ -6,12 +6,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'business/blocs/authentication/authentication_bloc.dart';
 import 'business/blocs/settings/settings_bloc.dart';
-import 'business/blocs/simple_bloc_delegate.dart';
+import 'business/blocs/simple_bloc_observer.dart';
 import 'business/repositories/authentication/authentication_repository.dart';
 import 'business/repositories/authentication/firebase_authentication_repository.dart';
 import 'business/repositories/location/geolocator_location_repository.dart';
 import 'business/repositories/location/location_repository.dart';
-
 import 'business/repositories/places/google_places_repository.dart';
 import 'business/repositories/places/places_repository.dart';
 import 'business/repositories/settings/settings_repository.dart';
@@ -36,7 +35,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Bloc delegate used for debugging.
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocObserver();
 
   // Fetching Google Maps API key from Firebase.
   final String googleApiKey = await getGoogleApiKey();

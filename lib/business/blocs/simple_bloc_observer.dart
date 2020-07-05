@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 /// one place and we can do something in response to all of them.
 /// In this case is used as a logger printing on screen all BLoCs events,
 /// transitions and errors.
-class SimpleBlocDelegate extends BlocDelegate {
+class SimpleBlocObserver extends BlocObserver {
   /// Prints the event when it is added to the BLoC.
   @override
   void onEvent(Bloc bloc, Object event) {

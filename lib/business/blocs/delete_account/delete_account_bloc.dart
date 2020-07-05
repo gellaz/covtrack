@@ -31,10 +31,8 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
     @required this.oldDestinationsRepository,
   })  : assert(authRepository != null),
         assert(tripsRepository != null),
-        assert(oldDestinationsRepository != null);
-
-  @override
-  DeleteAccountState get initialState => DeleteAccountState.empty();
+        assert(oldDestinationsRepository != null),
+        super(DeleteAccountState.empty());
 
   // Overriding transformEvents in order to debounce the PasswordChanged event
   // so that we give the user some time to stop typing before validating the input.

@@ -36,7 +36,7 @@ void main() {
       );
     });
     test('initial state is NewsInitial', () {
-      expect(newsBloc.initialState, NewsInitial());
+      expect(newsBloc.state, NewsInitial());
     });
 
     group('NewsFetched', () {

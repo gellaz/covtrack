@@ -20,10 +20,9 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   /// Subscription to trips database changes.
   StreamSubscription _tripsSubscription;
 
-  TripsBloc({@required this.tripsRepository}) : assert(tripsRepository != null);
-
-  @override
-  TripsState get initialState => TripsInitial();
+  TripsBloc({@required this.tripsRepository})
+      : assert(tripsRepository != null),
+        super(TripsInitial());
 
   @override
   Stream<TripsState> mapEventToState(

@@ -64,7 +64,7 @@ void main() {
     });
 
     test('initial state is DeleteAccountState.empty()', () {
-      expect(deleteAccountBloc.initialState, DeleteAccountState.empty());
+      expect(deleteAccountBloc.state, DeleteAccountState.empty());
     });
   });
 }

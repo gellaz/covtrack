@@ -23,10 +23,8 @@ class OldDestinationsBloc
   StreamSubscription _destinationsSubscription;
 
   OldDestinationsBloc({@required this.oldDestinationsRepository})
-      : assert(oldDestinationsRepository != null);
-
-  @override
-  OldDestinationsState get initialState => OldDestinationsInitial();
+      : assert(oldDestinationsRepository != null),
+        super(OldDestinationsInitial());
 
   @override
   Stream<OldDestinationsState> mapEventToState(

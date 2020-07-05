@@ -19,10 +19,8 @@ class ChangePasswordBloc
 
   ChangePasswordBloc({
     @required this.authRepository,
-  }) : assert(authRepository != null);
-
-  @override
-  ChangePasswordState get initialState => ChangePasswordState.empty();
+  })  : assert(authRepository != null),
+        super(ChangePasswordState.empty());
 
   // Overriding transformEvents in order to debounce the OldPasswordChanged, NewPasswordChanged and NewPasswordCheckChanged
   // events so that we give the user some time to stop typing before validating the input.

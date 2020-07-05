@@ -26,10 +26,8 @@ class TripDetailsBloc extends Bloc<TripDetailsEvent, TripDetailsState> {
     @required this.locationRepository,
     @required this.placesRepository,
   })  : assert(locationRepository != null),
-        assert(placesRepository != null);
-
-  @override
-  TripDetailsState get initialState => TripDetailsInitial();
+        assert(placesRepository != null),
+        super(TripDetailsInitial());
 
   @override
   Stream<TripDetailsState> mapEventToState(TripDetailsEvent event) async* {

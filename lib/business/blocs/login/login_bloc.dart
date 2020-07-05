@@ -18,10 +18,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   /// with credentials and to sign-in with a Google account.
   final AuthenticationRepository authRepository;
 
-  LoginBloc({@required this.authRepository}) : assert(authRepository != null);
-
-  @override
-  LoginState get initialState => LoginState.empty();
+  LoginBloc({@required this.authRepository})
+      : assert(authRepository != null),
+        super(LoginState.empty());
 
   // Overriding transformEvents in order to debounce the EmailChanged and PasswordChanged events
   // so that we give the user some time to stop typing before validating the input.

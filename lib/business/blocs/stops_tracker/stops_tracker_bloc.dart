@@ -28,10 +28,8 @@ class StopsTrackerBloc extends Bloc<StopsTrackerEvent, StopsTrackerState> {
     @required this.locationRepository,
     @required this.stops,
   })  : assert(locationRepository != null),
-        assert(stops != null);
-
-  @override
-  StopsTrackerState get initialState => Ready(stops);
+        assert(stops != null),
+        super(Ready(stops));
 
   @override
   Stream<StopsTrackerState> mapEventToState(StopsTrackerEvent event) async* {

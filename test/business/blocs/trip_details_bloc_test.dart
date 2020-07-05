@@ -45,7 +45,7 @@ void main() {
     });
 
     test('initial state is TripsInitial', () {
-      expect(tripDetailsBloc.initialState, TripDetailsInitial());
+      expect(tripDetailsBloc.state, TripDetailsInitial());
     });
   });
 }

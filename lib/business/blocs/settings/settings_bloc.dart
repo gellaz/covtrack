@@ -17,10 +17,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final SettingsRepository settingsRepository;
 
   SettingsBloc({@required this.settingsRepository})
-      : assert(settingsRepository != null);
-
-  @override
-  SettingsState get initialState => SettingsInitial();
+      : assert(settingsRepository != null),
+        super(SettingsInitial());
 
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {

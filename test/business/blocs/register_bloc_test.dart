@@ -24,7 +24,7 @@ void main() {
       );
     });
     test('initial state is RegisterState.empty()', () {
-      expect(registerBloc.initialState, RegisterState.empty());
+      expect(registerBloc.state, RegisterState.empty());
     });
   });
 }

@@ -23,7 +23,7 @@ void main() {
       );
     });
     test('initial state is SettingsInitial', () {
-      expect(settingsBloc.initialState, SettingsInitial());
+      expect(settingsBloc.state, SettingsInitial());
     });
   });
 }

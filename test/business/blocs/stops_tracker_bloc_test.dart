@@ -59,7 +59,7 @@ void main() {
       );
     });
     test('initial state is Ready', () {
-      expect(stopsTrackerBloc.initialState, Ready(stops));
+      expect(stopsTrackerBloc.state, Ready(stops));
     });
   });
 }

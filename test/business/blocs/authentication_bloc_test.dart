@@ -30,7 +30,7 @@ void main() {
     });
 
     test('initial state is Uninitialized', () {
-      expect(authBloc.initialState, Uninitialized());
+      expect(authBloc.state, Uninitialized());
     });
 
     group('AppStarted', () {

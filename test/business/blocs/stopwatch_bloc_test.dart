@@ -23,7 +23,7 @@ void main() {
         'initial state is StopwatchInitial with elapsed time from startingTime',
         () {
       expect(
-        stopwatchBloc.initialState,
+        stopwatchBloc.state,
         StopwatchInitial(DateTime.now().difference(startingTime)),
       );
     });

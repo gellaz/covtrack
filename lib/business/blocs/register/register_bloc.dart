@@ -18,10 +18,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final AuthenticationRepository authRepository;
 
   RegisterBloc({@required this.authRepository})
-      : assert(authRepository != null);
-
-  @override
-  RegisterState get initialState => RegisterState.empty();
+      : assert(authRepository != null),
+        super(RegisterState.empty());
 
   // Overriding transformEvents in order to debounce the EmailChanged, PasswordChanged and PasswordCheckChanged
   // events so that we give the user some time to stop typing before validating the input.

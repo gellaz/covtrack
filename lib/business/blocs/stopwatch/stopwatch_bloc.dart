@@ -22,17 +22,14 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
 
   StopwatchBloc({@required this.startingTime})
       : assert(startingTime != null),
-        _stopwatch = Stopwatch();
+        _stopwatch = Stopwatch(),
+        super(StopwatchInitial(DateTime.now().difference(startingTime)));
 
   void _update(Timer _timer) {
     if (_stopwatch.isRunning) {
       add(StopwatchTicked());
     }
   }
-
-  @override
-  StopwatchState get initialState =>
-      StopwatchInitial(DateTime.now().difference(startingTime));
 
   @override
   Stream<StopwatchState> mapEventToState(
