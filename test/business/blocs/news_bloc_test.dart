@@ -73,7 +73,7 @@ void main() {
         act: (bloc) => bloc.add(NewsFetched()),
         expect: [
           NewsLoadInProgress(),
-          NewsLoadFailure(message: null),
+          NewsLoadFailure(),
         ],
       );
     });

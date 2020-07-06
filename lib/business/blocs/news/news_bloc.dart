@@ -29,8 +29,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         final localNews = await newsRepository.getCountryLatestNews();
         final globalNews = await newsRepository.getGlobalLatestNews();
         yield NewsLoadSuccess(localNews: localNews, globalNews: globalNews);
-      } catch (e) {
-        yield NewsLoadFailure(message: e.toString());
+      } catch (_) {
+        yield NewsLoadFailure();
       }
     }
   }

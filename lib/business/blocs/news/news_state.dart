@@ -31,7 +31,7 @@ class NewsLoadSuccess extends NewsState {
 class NewsLoadFailure extends NewsState {
   final String message;
 
-  const NewsLoadFailure({@required this.message});
+  const NewsLoadFailure({this.message});
 
   @override
   List<Object> get props => [message];

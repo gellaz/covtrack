@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,7 +89,7 @@ class NewsScreenContent extends StatelessWidget {
                 _buildDivider(),
                 _buildNewsTitle(
                   context,
-                  AppLocalizations.of(context).italy,
+                  CountryCode.fromCode(window.locale.countryCode).name,
                   localNews.date,
                 ),
                 NewsListView(localNews),

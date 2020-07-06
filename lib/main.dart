@@ -23,7 +23,7 @@ import 'utils/app_localizations.dart';
 /// is saved in a remote configuration file in the Firebase back-end.
 Future<String> getGoogleApiKey() async {
   final RemoteConfig remoteConfig = await RemoteConfig.instance;
-  await remoteConfig.fetch(expiration: Duration(hours: 1));
+  await remoteConfig.fetch(expiration: const Duration(seconds: 0));
   await remoteConfig.activateFetched();
   return remoteConfig.getValue('google_api_key').asString();
 }
