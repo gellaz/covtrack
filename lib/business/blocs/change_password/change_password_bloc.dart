@@ -59,7 +59,7 @@ class ChangePasswordBloc
         event.passwordCheck,
       );
     } else if (event is Submitted) {
-      yield* _mapFormSubmittedToState(event.currentPassword, event.newPassowrd);
+      yield* _mapFormSubmittedToState(event.currentPassword, event.newPassword);
     }
   }
 

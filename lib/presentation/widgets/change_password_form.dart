@@ -1,8 +1,8 @@
-import 'package:covtrack/business/blocs/change_password/change_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/blocs/authentication/authentication_bloc.dart';
+import '../../business/blocs/change_password/change_password_bloc.dart';
 import '../../utils/app_localizations.dart';
 import 'change_password_button.dart';
 
@@ -223,7 +223,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
     _passwordChangeBloc.add(
       Submitted(
         currentPassword: _oldPasswordController.text,
-        newPassowrd: _newPasswordController.text,
+        newPassword: _newPasswordController.text,
       ),
     );
   }

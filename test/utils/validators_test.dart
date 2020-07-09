@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Validators', () {
-    test('E-mail', () {
+    test(
+        'isValidEmail method checks if the string passed in as an argument is a valid email',
+        () {
       expect(Validators.isValidEmail(''), false);
       expect(Validators.isValidEmail('johndoe@'), false);
       expect(Validators.isValidEmail('johndoe@mail.'), false);
@@ -11,7 +13,9 @@ void main() {
       expect(Validators.isValidEmail('johndoe@mail.it'), true);
     });
 
-    test('Password', () {
+    test(
+        'isValidPassword method checks if the string passed in as an argument is a valid password',
+        () {
       expect(Validators.isValidPassword(''), false);
       expect(Validators.isValidPassword('1234567890'), false);
       expect(Validators.isValidPassword('abcdefghijklmnopqrstuvwxyz'), false);

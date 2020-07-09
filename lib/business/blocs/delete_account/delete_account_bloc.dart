@@ -84,7 +84,7 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
       // Deletes user account.
       await authRepository.deleteAccount(password: password);
       yield DeleteAccountState.success();
-    } catch (e) {
+    } catch (_) {
       yield DeleteAccountState.failure();
     }
   }

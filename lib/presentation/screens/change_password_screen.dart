@@ -7,7 +7,7 @@ import '../../utils/app_localizations.dart';
 import '../widgets/change_password_form.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
-  static const routeName = '/change-password';
+  static const String routeName = '/change-password';
 
   @override
   Widget build(BuildContext context) {

@@ -34,8 +34,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     try {
       final settings = await settingsRepository.getSettings();
       yield SettingsLoadSuccess(settings);
-    } catch (e) {
-      yield SettingsLoadFailure(e.toString());
+    } catch (_) {
+      yield SettingsLoadFailure();
     }
   }
 
@@ -46,8 +46,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       await settingsRepository.saveKV(event.key, event.value);
       final settings = await settingsRepository.getSettings();
       yield SettingsLoadSuccess(settings);
-    } catch (e) {
-      yield SettingsLoadFailure(e.toString());
+    } catch (_) {
+      yield SettingsLoadFailure();
     }
   }
 }

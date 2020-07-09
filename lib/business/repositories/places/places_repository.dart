@@ -1,5 +1,6 @@
 import '../../../data/place.dart';
 import '../../../data/place_suggestion.dart';
+import 'package:meta/meta.dart';
 
 /// Contract that all the implementations of the [PlacesRepository] interface must follow.
 /// This interface is an abstraction to let the user retrieve different kind of information
@@ -12,21 +13,21 @@ abstract class PlacesRepository {
   /// Returns the the place with the given coordinates ([latitude] and
   /// [longitude]).
   Future<Place> getPlaceFromCoords({
-    double latitude,
-    double longitude,
+    @required double latitude,
+    @required double longitude,
   });
 
   /// Returns the [Place] associated to the given [suggestion].
   Future<Place> getPlaceFromSuggestion({
-    PlaceSuggestion suggestion,
+    @required PlaceSuggestion suggestion,
   });
 
   /// Returns a list of suggested places matching the [input] string entered by
   /// the user and computed starting from the given coordinates ([latitude] and
   /// [longitude]).
   Future<List<PlaceSuggestion>> getSuggestions({
-    String input,
-    double latitude,
-    double longitude,
+    @required String input,
+    @required double latitude,
+    @required double longitude,
   });
 }

@@ -28,6 +28,8 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   Stream<TripsState> mapEventToState(
     TripsEvent event,
   ) async* {
+    yield TripsLoadInProgress();
+
     if (event is LoadTrips) {
       yield* _mapLoadTripsToState();
     } else if (event is AddTrip) {
@@ -52,28 +54,48 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
 
   Stream<TripsState> _mapLoadTripsToState() async* {
     _tripsSubscription?.cancel();
-    _tripsSubscription = tripsRepository.trips().listen(
-          (List<Trip> trips) => add(TripsUpdated(trips: trips)),
-        );
+    try {
+      _tripsSubscription = tripsRepository.trips().listen(
+            (List<Trip> trips) => add(TripsUpdated(trips: trips)),
+          );
+    } catch (_) {
+      yield TripsLoadFailure();
+    }
   }
 
   Stream<TripsState> _mapAddTripToState(AddTrip event) async* {
-    tripsRepository.insert(trip: event.trip);
+    try {
+      tripsRepository.insert(trip: event.trip);
+    } catch (_) {
+      yield TripsLoadFailure();
+    }
   }
 
   Stream<TripsState> _mapUpdateTripToState(UpdateTrip event) async* {
-    tripsRepository.update(trip: event.trip);
+    try {
+      tripsRepository.update(trip: event.trip);
+    } catch (_) {
+      yield TripsLoadFailure();
+    }
   }
 
   Stream<TripsState> _mapDeleteTripToState(DeleteTrip event) async* {
-    tripsRepository.delete(trip: event.trip);
+    try {
+      tripsRepository.delete(trip: event.trip);
+    } catch (_) {
+      yield TripsLoadFailure();
+    }
   }
 
   Stream<TripsState> _mapTripsClearedToState() async* {
     final currentState = state;
     if (currentState is TripsLoadSuccess) {
       List<Trip> trips = currentState.trips;
-      trips.forEach((trip) => tripsRepository.delete(trip: trip));
+      try {
+        trips.forEach((trip) => tripsRepository.delete(trip: trip));
+      } catch (_) {
+        yield TripsLoadFailure();
+      }
     }
   }
 

@@ -26,6 +26,7 @@ class NewPasswordChanged extends ChangePasswordEvent {
   const NewPasswordChanged({
     @required this.password,
     @required this.passwordCheck,
+    String newPassword,
   });
 
   @override
@@ -55,17 +56,17 @@ class NewPasswordCheckChanged extends ChangePasswordEvent {
 
 class Submitted extends ChangePasswordEvent {
   final String currentPassword;
-  final String newPassowrd;
+  final String newPassword;
 
   const Submitted({
     @required this.currentPassword,
-    @required this.newPassowrd,
+    @required this.newPassword,
   });
 
   @override
-  List<Object> get props => [currentPassword, newPassowrd];
+  List<Object> get props => [currentPassword, newPassword];
 
   @override
   String toString() =>
-      'Submitted { currentPassword: $currentPassword, newPassword: $newPassowrd }';
+      'Submitted { currentPassword: $currentPassword, newPassword: $newPassword }';
 }

@@ -53,7 +53,7 @@ class TripsLoadSuccessEmpty extends TripsLoadSuccess {
 class TripsLoadFailure extends TripsState {
   final String message;
 
-  const TripsLoadFailure(this.message);
+  const TripsLoadFailure([this.message]);
 
   @override
   List<Object> get props => [message];

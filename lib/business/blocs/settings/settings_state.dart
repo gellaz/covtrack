@@ -31,7 +31,7 @@ class SettingsLoadSuccess extends SettingsState {
 class SettingsLoadFailure extends SettingsState {
   final String message;
 
-  const SettingsLoadFailure(this.message);
+  const SettingsLoadFailure([this.message]);
 
   @override
   List<Object> get props => [message];

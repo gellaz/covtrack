@@ -36,13 +36,13 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
     StopwatchEvent event,
   ) async* {
     if (event is StopwatchStarted) {
-      yield* _mapStartToState();
+      yield* _mapStopwatchStartedToState();
     } else if (event is StopwatchTicked) {
-      yield* _mapTickToState();
+      yield* _mapStopwatchTickedToState();
     } else if (event is StopwatchPaused) {
-      yield* _mapStopToState();
+      yield* _mapStopwatchPausedToState();
     } else if (event is StopwatchReset) {
-      yield* _mapResetToState();
+      yield* _mapStopwatchResetToState();
     }
   }
 
@@ -52,22 +52,22 @@ class StopwatchBloc extends Bloc<StopwatchEvent, StopwatchState> {
     return super.close();
   }
 
-  Stream<StopwatchState> _mapStartToState() async* {
+  Stream<StopwatchState> _mapStopwatchStartedToState() async* {
     _timer?.cancel();
     _stopwatch.start();
     _timer = Timer.periodic(Duration(seconds: 1), _update);
   }
 
-  Stream<StopwatchState> _mapTickToState() async* {
+  Stream<StopwatchState> _mapStopwatchTickedToState() async* {
     yield StopwatchRunInProgess(DateTime.now().difference(startingTime));
   }
 
-  Stream<StopwatchState> _mapStopToState() async* {
+  Stream<StopwatchState> _mapStopwatchPausedToState() async* {
     _stopwatch.stop();
     yield StopwatchRunPause(DateTime.now().difference(startingTime));
   }
 
-  Stream<StopwatchState> _mapResetToState() async* {
+  Stream<StopwatchState> _mapStopwatchResetToState() async* {
     _stopwatch.reset();
     yield StopwatchInitial(Duration.zero);
   }
