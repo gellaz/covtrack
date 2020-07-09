@@ -23,7 +23,7 @@ void main() {
     });
 
     test(
-        'initial state is StopwatchInitial with elapsed time from startingTime',
+        'initial state is StopwatchInitial with the given initial elapsed time',
         () {
       expect(
         stopwatchBloc.state,

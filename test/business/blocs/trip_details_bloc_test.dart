@@ -75,7 +75,7 @@ void main() {
       );
 
       blocTest(
-        'emits [UserPlaceLoading, UserPlaceSuccess] if no exception is raised',
+        'emits [UserPlaceLoading, UserPlaceSuccess] if the user\'s current location is successfully loaded',
         build: () async {
           when(locationRepository.currentLocation).thenAnswer(
             (_) async => coords,
@@ -96,7 +96,7 @@ void main() {
       );
 
       blocTest(
-        'emits [UserPlaceLoading, UserPlaceError] if an exception is raised',
+        'emits [UserPlaceLoading, UserPlaceError] if an exception is thrown',
         build: () async {
           when(locationRepository.currentLocation).thenThrow(Exception('oops'));
           return tripDetailsBloc;
@@ -111,7 +111,7 @@ void main() {
 
     group('SelectNewReason', () {
       blocTest(
-        'emits [NewReason] when new reason is selected',
+        'emits [NewReason] when a new reason is selected',
         build: () async => tripDetailsBloc,
         act: (bloc) => bloc.add(SelectNewReason(reason: 'Proven work needs')),
         expect: [NewReason('Proven work needs')],

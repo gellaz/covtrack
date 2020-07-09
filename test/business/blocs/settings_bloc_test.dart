@@ -45,7 +45,7 @@ void main() {
         'theme': 'light',
       };
       blocTest(
-        'emits [SettingsLoadInProgress, SettingsLoadSuccess] when no exception is raised',
+        'emits [SettingsLoadInProgress, SettingsLoadSuccess] when settings are successfully fetched from the database',
         build: () async {
           when(settingsRepository.getSettings())
               .thenAnswer((_) => Future.value(settings));
@@ -59,7 +59,7 @@ void main() {
       );
 
       blocTest(
-        'emits [SettingsLoadInProgress, SettingsLoadFailure] an exception is raised',
+        'emits [SettingsLoadInProgress, SettingsLoadFailure] an exception is thrown',
         build: () async {
           when(settingsRepository.getSettings()).thenThrow(Exception('oops'));
           return settingsBloc;
@@ -78,7 +78,7 @@ void main() {
         'theme': 'dark',
       };
       blocTest(
-        'emits [SettingsLoadInProgress, SettingsLoadSuccess] when no exception is raised',
+        'emits [SettingsLoadInProgress, SettingsLoadSuccess] when a setting is successfully updated',
         build: () async {
           when(settingsRepository.saveKV('theme', 'dark'))
               .thenAnswer((_) => Future.value(null));
@@ -94,7 +94,7 @@ void main() {
       );
 
       blocTest(
-        'emits [SettingsLoadInProgress, SettingsLoadFailure] an exception is raised',
+        'emits [SettingsLoadInProgress, SettingsLoadFailure] an exception is thrown',
         build: () async {
           when(settingsRepository.getSettings()).thenThrow(Exception('oops'));
           return settingsBloc;

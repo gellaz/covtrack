@@ -15,7 +15,7 @@ class MockOldDestinationsRepository extends Mock
     implements OldDestinationsRepository {}
 
 void main() {
-  group('ChangePasswordBloc', () {
+  group('DeleteAccountBloc', () {
     AuthenticationRepository authRepository;
     TripsRepository tripsRepository;
     OldDestinationsRepository oldDestinationsRepository;
@@ -69,7 +69,7 @@ void main() {
       );
     });
 
-    test('initial state is DeleteAccountState.empty()', () {
+    test('initial state is DeleteAccountState.empty', () {
       expect(deleteAccountBloc.state, DeleteAccountState.empty());
     });
 
@@ -83,7 +83,7 @@ void main() {
 
     group('PasswordChanged', () {
       blocTest(
-        'emits [DeleteAccountState] with password not valid if the password is not valid',
+        'emits [DeleteAccountState] with password not valid if the inserted password is not valid',
         build: () async => deleteAccountBloc,
         act: (bloc) => bloc.add(PasswordChanged(password: 'test')),
         wait: const Duration(milliseconds: 400),
@@ -117,7 +117,7 @@ void main() {
       );
 
       blocTest(
-        'emits [DeleteAccountState.loading, DeleteAccountState.failure] when an exception is raised',
+        'emits [DeleteAccountState.loading, DeleteAccountState.failure] when an exception is thrown',
         build: () async {
           when(tripsRepository.clear()).thenAnswer((_) => Future.value(null));
           when(oldDestinationsRepository.clear()).thenThrow(Exception('oops'));

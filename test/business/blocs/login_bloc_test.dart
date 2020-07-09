@@ -8,7 +8,7 @@ class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  group('RegisterBloc', () {
+  group('LoginBloc', () {
     AuthenticationRepository authRepository;
     LoginBloc loginBloc;
 
@@ -28,7 +28,7 @@ void main() {
       );
     });
 
-    test('initial state is LoginState.empty()', () {
+    test('initial state is LoginState.empty', () {
       expect(loginBloc.state, LoginState.empty());
     });
 

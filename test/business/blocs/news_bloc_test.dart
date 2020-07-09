@@ -56,7 +56,7 @@ void main() {
 
     group('NewsFetched', () {
       blocTest(
-        'emits [NewsLoadInProgress, NewsLoadSuccess] if no exceptions are raised',
+        'emits [NewsLoadInProgress, NewsLoadSuccess] and correctly provides local and global news if no exception is thrown',
         build: () async {
           when(newsRepository.getCountryLatestNews()).thenAnswer(
             (_) async => localNews,
@@ -77,7 +77,7 @@ void main() {
       );
 
       blocTest(
-        'emits [NewsLoadInProgress, NewsLoadFailure] if an exception is raised',
+        'emits [NewsLoadInProgress, NewsLoadFailure] if an exception is thrown',
         build: () async {
           when(newsRepository.getCountryLatestNews()).thenAnswer(
             (_) async => localNews,

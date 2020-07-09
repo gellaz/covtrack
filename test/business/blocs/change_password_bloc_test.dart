@@ -28,7 +28,7 @@ void main() {
       );
     });
 
-    test('initial state is ChangePasswordState.empty()', () {
+    test('initial state is ChangePasswordState.empty', () {
       expect(changePasswordBloc.state, ChangePasswordState.empty());
     });
 

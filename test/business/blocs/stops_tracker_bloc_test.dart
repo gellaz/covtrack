@@ -54,7 +54,7 @@ void main() {
       );
     });
 
-    test('throws AssertionError if stops list is null', () {
+    test('throws AssertionError if initial list of stops list is null', () {
       expect(
         () => StopsTrackerBloc(
           locationRepository: locationRepository,
@@ -110,7 +110,7 @@ void main() {
 
     group('StopTracking', () {
       blocTest(
-        'correctly stops tracking the stops',
+        'correctly stops tracking',
         build: () async {
           when(locationRepository.locationStream)
               .thenAnswer((_) => Stream.fromIterable([]));
