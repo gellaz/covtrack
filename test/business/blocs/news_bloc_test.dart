@@ -1,6 +1,7 @@
 import 'package:covtrack/business/blocs/news/news_bloc.dart';
 import 'package:covtrack/business/repositories/news/news_repository.dart';
 import 'package:covtrack/data/news.dart';
+import 'package:covtrack/utils/custom_exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -11,6 +12,7 @@ void main() {
   group('NewsBloc', () {
     NewsRepository newsRepository;
     NewsBloc newsBloc;
+
     final News localNews = News(
       date: DateTime.now(),
       confirmed: 100000,
@@ -29,14 +31,27 @@ void main() {
       newsBloc = NewsBloc(newsRepository: newsRepository);
     });
 
+    tearDown(() {
+      newsBloc?.close();
+    });
+
     test('throws AssertionError if NewsRepository is null', () {
       expect(
         () => NewsBloc(newsRepository: null),
         throwsA(isAssertionError),
       );
     });
+
     test('initial state is NewsInitial', () {
       expect(newsBloc.state, NewsInitial());
+    });
+
+    test('close does not emit new states', () {
+      expectLater(
+        newsBloc,
+        emitsInOrder([NewsInitial(), emitsDone]),
+      );
+      newsBloc.close();
     });
 
     group('NewsFetched', () {
@@ -67,7 +82,8 @@ void main() {
           when(newsRepository.getCountryLatestNews()).thenAnswer(
             (_) async => localNews,
           );
-          when(newsRepository.getGlobalLatestNews()).thenThrow(Error());
+          when(newsRepository.getGlobalLatestNews())
+              .thenThrow(NotFoundException());
           return newsBloc;
         },
         act: (bloc) => bloc.add(NewsFetched()),

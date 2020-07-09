@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:covtrack/business/blocs/stops_tracker/stops_tracker_bloc.dart';
 import 'package:covtrack/business/repositories/location/location_repository.dart';
 import 'package:covtrack/data/coordinates.dart';
@@ -9,41 +10,45 @@ import 'package:bloc_test/bloc_test.dart';
 class MockLocationRepository extends Mock implements LocationRepository {}
 
 void main() {
-  LocationRepository locationRepository;
-  StopsTrackerBloc stopsTrackerBloc;
-  List<Stop> stops = [
-    Stop(
-      coords: Coordinates(latitude: 1234, longitude: 5678),
-      time: DateTime.now(),
-    ),
-    Stop(
-      coords: Coordinates(latitude: 7232, longitude: 1270),
-      time: DateTime.now(),
-    ),
-    Stop(
-      coords: Coordinates(latitude: 4467, longitude: 8942),
-      time: DateTime.now(),
-    ),
-    Stop(
-      coords: Coordinates(latitude: 1296, longitude: 2332),
-      time: DateTime.now(),
-    ),
-  ];
-
   group('StopsTrackerBloc', () {
+    LocationRepository locationRepository;
+    StopsTrackerBloc stopsTrackerBloc;
+    final List<Stop> initialStops = <Stop>[
+      Stop(
+        coords: Coordinates(latitude: 1111, longitude: 1111),
+        time: DateTime.now(),
+      ),
+      Stop(
+        coords: Coordinates(latitude: 2222, longitude: 2222),
+        time: DateTime.now(),
+      ),
+      Stop(
+        coords: Coordinates(latitude: 3333, longitude: 3333),
+        time: DateTime.now(),
+      ),
+      Stop(
+        coords: Coordinates(latitude: 4444, longitude: 4444),
+        time: DateTime.now(),
+      ),
+    ];
+
     setUp(() {
       locationRepository = MockLocationRepository();
       stopsTrackerBloc = StopsTrackerBloc(
         locationRepository: locationRepository,
-        stops: stops,
+        stops: initialStops,
       );
+    });
+
+    tearDown(() {
+      stopsTrackerBloc?.close();
     });
 
     test('throws AssertionError if LocationRepository is null', () {
       expect(
         () => StopsTrackerBloc(
           locationRepository: null,
-          stops: stops,
+          stops: initialStops,
         ),
         throwsA(isAssertionError),
       );
@@ -58,8 +63,64 @@ void main() {
         throwsA(isAssertionError),
       );
     });
+
     test('initial state is Ready', () {
-      expect(stopsTrackerBloc.state, Ready(stops));
+      expect(stopsTrackerBloc.state, Ready(initialStops));
+    });
+
+    test('close does not emit new states', () {
+      expectLater(
+        stopsTrackerBloc,
+        emitsInOrder([Ready(initialStops), emitsDone]),
+      );
+      stopsTrackerBloc.close();
+    });
+
+    group('StartTracking', () {
+      blocTest(
+        'emits [Running] with the initial list of stops',
+        build: () async {
+          when(locationRepository.locationStream)
+              .thenAnswer((_) => Stream.fromIterable([]));
+          return stopsTrackerBloc;
+        },
+        act: (bloc) => bloc.add(StartTracking()),
+        expect: [
+          //Running(initialStops),
+        ],
+      );
+    });
+
+    group('NewStopRecorded', () {
+      final Stop newStop = Stop(
+        coords: Coordinates(latitude: 5555, longitude: 5555),
+        time: DateTime.now(),
+      );
+      blocTest(
+        'adds a new stop to the initial list of stops',
+        build: () async {
+          when(locationRepository.locationStream)
+              .thenAnswer((_) => Stream.fromIterable([newStop]));
+          return stopsTrackerBloc;
+        },
+        act: (bloc) => bloc.add(NewStopRecorded(stop: newStop)),
+        expect: [Running(initialStops..add(newStop))],
+      );
+    });
+
+    group('StopTracking', () {
+      blocTest(
+        'correctly stops tracking the stops',
+        build: () async {
+          when(locationRepository.locationStream)
+              .thenAnswer((_) => Stream.fromIterable([]));
+          return stopsTrackerBloc;
+        },
+        act: (bloc) => bloc.add(StopTracking()),
+        expect: [
+          Paused(initialStops),
+        ],
+      );
     });
   });
 }

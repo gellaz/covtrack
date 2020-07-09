@@ -12,7 +12,7 @@ void main() {
   group('AuthenticationBloc', () {
     AuthenticationRepository authRepository;
     AuthenticationBloc authBloc;
-    User user = User(
+    final User user = User(
       uid: 'AbCd1234',
       email: 'johndoe@mail.com',
     );
@@ -20,6 +20,10 @@ void main() {
     setUp(() {
       authRepository = MockAuthenticationRepository();
       authBloc = AuthenticationBloc(authRepository: authRepository);
+    });
+
+    tearDown(() {
+      authBloc?.close();
     });
 
     test('throws AssertionError if AuthenticationRepository is null', () {
@@ -31,6 +35,14 @@ void main() {
 
     test('initial state is Uninitialized', () {
       expect(authBloc.state, Uninitialized());
+    });
+
+    test('close does not emit new states', () {
+      expectLater(
+        authBloc,
+        emitsInOrder([Uninitialized(), emitsDone]),
+      );
+      authBloc.close();
     });
 
     group('AppStarted', () {

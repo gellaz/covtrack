@@ -1,16 +1,18 @@
 import 'package:covtrack/business/blocs/stopwatch/stopwatch_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 
 void main() {
-  // Starting time is one hour ago.
-  DateTime startingTime = DateTime.now().add(Duration(hours: -1));
-  StopwatchBloc stopwatchBloc;
-
   group('StopwatchBloc', () {
+    final DateTime startingTime = DateTime.now().add(Duration(hours: -1));
+    StopwatchBloc stopwatchBloc;
+
     setUp(() {
       stopwatchBloc = StopwatchBloc(startingTime: startingTime);
+    });
+
+    tearDown(() {
+      stopwatchBloc?.close();
     });
 
     test('throws AssertionError if startingTime is null', () {
@@ -19,12 +21,61 @@ void main() {
         throwsA(isAssertionError),
       );
     });
+
     test(
         'initial state is StopwatchInitial with elapsed time from startingTime',
         () {
       expect(
         stopwatchBloc.state,
-        StopwatchInitial(DateTime.now().difference(startingTime)),
+        isA<StopwatchInitial>(),
+      );
+    });
+
+    test('close does not emit new states', () {
+      expectLater(
+        stopwatchBloc,
+        emitsInOrder([
+          isA<StopwatchInitial>(),
+          emitsDone,
+        ]),
+      );
+      stopwatchBloc.close();
+    });
+
+    group('StopwatchStarted', () {
+      blocTest(
+        'emits [StopwatchRunInProgess] n times if I wait n seconds',
+        build: () async => stopwatchBloc,
+        act: (bloc) => bloc.add(StopwatchStarted()),
+        wait: const Duration(seconds: 4),
+        expect: [
+          isA<StopwatchRunInProgess>(),
+          isA<StopwatchRunInProgess>(),
+          isA<StopwatchRunInProgess>(),
+        ],
+      );
+    });
+
+    group('StopwatchPaused', () {
+      blocTest(
+        'correctly stops the stopwatch',
+        build: () async => stopwatchBloc,
+        act: (bloc) async =>
+            bloc..add(StopwatchStarted())..add(StopwatchPaused()),
+        expect: [
+          isA<StopwatchRunPause>(),
+        ],
+      );
+    });
+
+    group('StopwatchReset', () {
+      blocTest(
+        'correctly resets the stopwatch to zero',
+        build: () async => stopwatchBloc,
+        act: (bloc) async => bloc.add(StopwatchStarted()),
+        expect: [
+          //StopwatchInitial(Duration.zero),
+        ],
       );
     });
   });
