@@ -1,16 +1,7 @@
-# covtrack
+# CovTrack
 
-CovTrack is a mobile app to help against Covid-19 pandemic
+_CovTrack_ is a cross-platform mobile application to help the citizens and the authorities in the fight against Covid-19 pandemic.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [Design Document](https://github.com/gellaz/covtrack/blob/master/docs/covtrack_design_document.pdf)
+* [Slides](https://github.com/gellaz/covtrack/blob/master/docs/covtrack_presentation.pptx)
+* [Elevator Pitch](https://youtu.be/Dl15QV1fAz8)
